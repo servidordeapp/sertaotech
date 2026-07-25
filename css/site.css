@@ -203,6 +203,12 @@ section[id], div[id] { scroll-margin-top: 84px; }
   color: var(--sand-50); margin: 18px 0 0;
 }
 .hero__title em { font-style: normal; color: var(--amber-400); }
+.hero__title-sub {
+  display: block; margin-top: 18px;
+  font-family: var(--font-wordmark); font-weight: 700; text-transform: uppercase;
+  font-size: clamp(14px, 1.7vw, 18px); line-height: 1.35; letter-spacing: 0.05em;
+  color: var(--amber-300);
+}
 .hero__lead {
   font-family: var(--font-body); font-size: 19px; line-height: 1.6;
   color: var(--text-on-ink-muted); margin: 22px 0 0; max-width: 520px;
@@ -292,6 +298,22 @@ section[id], div[id] { scroll-margin-top: 84px; }
   display: flex; justify-content: space-between; align-items: flex-end;
   flex-wrap: wrap; gap: 16px; margin-bottom: 34px;
 }
+
+/* ---------- cabeçalho de página interna (/patrocinio, /palestrantes) ---------- */
+.page-head { padding: 56px 40px 68px; }
+.page-head__title {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(32px, 5vw, 50px); line-height: 1.06; letter-spacing: -0.015em;
+  color: var(--sand-50); margin: 16px 0 0;
+}
+.page-head .hero__actions { margin-top: 28px; }
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+  font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em;
+  text-transform: uppercase; color: var(--text-on-ink-muted); margin-bottom: 22px;
+}
+.breadcrumb a { color: var(--amber-300); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
 
 /* ---------- agenda ---------- */
 .agenda-head { padding: 72px 40px 40px; }
@@ -444,7 +466,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .site-footer__about p { margin-top: 16px; color: var(--text-on-ink-muted); font-size: 15px; line-height: 1.6; }
 .site-footer__word { font-family: var(--font-wordmark); font-weight: 800; font-size: 20px; text-transform: uppercase; color: var(--sand-50); }
 .site-footer__cols { display: flex; gap: 56px; flex-wrap: wrap; }
-.site-footer__cols h2 {
+.site-footer__cols h3 {
   font-family: var(--font-mono); font-size: 11px; text-transform: uppercase;
   letter-spacing: 0.12em; color: var(--amber-300); margin: 0 0 14px; font-weight: 700;
 }
@@ -477,6 +499,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
   .hero__art img { width: min(70%, 260px); }
   .hero__facts { grid-template-columns: repeat(2, 1fr); padding: 28px 32px 36px; }
   .section, .section--tight { padding: 64px 32px; }
+  .page-head { padding: 44px 32px 56px; }
   .agenda-head { padding: 56px 32px 32px; }
   .agenda-body { padding: 8px 32px 64px; }
   .site-header__inner { padding: 0 32px; }
@@ -512,6 +535,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .section-head { align-items: flex-start; }
 
+  .page-head { padding: 36px 20px 44px; }
   .agenda-head { padding: 44px 20px 24px; }
   .agenda-body { padding: 8px 20px 48px; }
   .agenda-row__inner { grid-template-columns: 1fr; gap: 8px; padding: 16px 18px; }
