@@ -1,0 +1,46 @@
+/* Sertão Tech — Base element defaults
+ * Sensible, on-brand defaults consumers get for free. Kept minimal — tokens do
+ * the heavy lifting. Not a reset framework.
+ */
+:root {
+  color-scheme: light;
+  --selection-bg: var(--amber-300);
+  --selection-fg: var(--espresso-900);
+}
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+  background: var(--surface-page);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+h1, h2, h3, h4, h5 {
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  line-height: var(--leading-tight);
+  color: var(--text-strong);
+  margin: 0;
+  text-wrap: balance;
+}
+p { text-wrap: pretty; }
+code, kbd, pre, samp { font-family: var(--font-mono); }
+
+/* Links — brand terracotta, never browser blue */
+a { color: var(--text-link); text-decoration-color: color-mix(in srgb, var(--text-link) 40%, transparent); text-underline-offset: 2px; transition: color var(--dur-fast) var(--ease-standard); }
+a:hover { color: var(--text-link-hover); text-decoration-color: currentColor; }
+
+::selection { background: var(--selection-bg); color: var(--selection-fg); }
+
+:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; border-radius: var(--radius-xs); }
+
+/* Eyebrow / kicker label — a recurring rustic motif */
+.st-eyebrow {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  color: var(--terra-600);
+}

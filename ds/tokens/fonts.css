@@ -1,0 +1,11 @@
+/* Sertão Tech — Webfonts
+ * The logo is AI-generated and has NO official typeface. This type direction was
+ * chosen with the organizer to match the mark's geometric, robust, slightly-condensed
+ * lettering:
+ *   Wordmark          → League Spartan   (echoes the SERTÃO TECH lettering; set UPPERCASE)
+ *   Display/headings  → Space Grotesk    (geometric, technological)
+ *   Body / UI         → Instrument Sans  (clean, contemporary, highly legible)
+ *   Mono              → Space Mono       (code + technical labels; pairs w/ Space Grotesk)
+ * All load from Google Fonts. See readme.md → VISUAL FOUNDATIONS / Caveats.
+ */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');

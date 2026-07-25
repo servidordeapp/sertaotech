@@ -1,0 +1,89 @@
+/* Sertão Tech — Color System
+ * Sampled from the brand badge: espresso brown structure, burnt-orange sertão
+ * mountains, golden sun, and warm cream "paper". Neutrals are intentionally warm
+ * (never pure grey/white). Status colors are harmonized to the desert palette.
+ */
+:root {
+  /* ---- Sand / warm neutrals (paper → gold) ---- */
+  --sand-50:  #FBF6EA;
+  --sand-100: #F5EAD0;
+  --sand-200: #EEDCB2;
+  --sand-300: #E2C88C;
+  --sand-400: #CFAE6B;
+  --sand-500: #B8925A;
+
+  /* ---- Espresso / ink & dark surfaces (from the badge outline) ---- */
+  --espresso-950: #1F1305;
+  --espresso-900: #2A1908;
+  --espresso-800: #3C210B; /* the logo's border brown — primary ink */
+  --espresso-700: #4E2E13;
+  --espresso-600: #6B4526;
+  --espresso-500: #8A6440;
+  --espresso-400: #A5875E;
+
+  /* ---- Amber / the sun (golden highlight) ---- */
+  --amber-100: #FBEBC8;
+  --amber-300: #F6C56C; /* the wordmark gold */
+  --amber-400: #EDA83E;
+  --amber-500: #D87D0E; /* the sun */
+  --amber-600: #B4670B;
+
+  /* ---- Terracotta / the sertão mountains (primary brand fill) ---- */
+  --terra-100: #F4E0C6;
+  --terra-400: #CE7A2E;
+  --terra-500: #BC5E1A; /* bright terracotta — decorative fills */
+  --terra-600: #A8511A; /* primary action (AA with cream text) */
+  --terra-700: #8A4015;
+
+  /* ---- Status (desert-harmonized) ---- */
+  --cactus-100: #E7EDD3; --cactus-500: #5E7A32; --cactus-600: #4C6329; /* success */
+  --honey-100:  #F7E8C4; --honey-500:  #C88A12; --honey-600:  #A87310; /* warning */
+  --brick-100:  #F6DCD1; --brick-500:  #B23A20; --brick-600:  #97301A; /* danger  */
+  --agave-100:  #D2E7E2; --agave-500:  #2E7A6F; --agave-600:  #245F57; /* info    */
+
+  /* ================= Semantic aliases ================= */
+  /* Surfaces */
+  --surface-page:      var(--sand-100);   /* warm cream — the desert day */
+  --surface-card:      var(--sand-50);    /* lighter paper — cards lift up */
+  --surface-sunken:    var(--sand-200);   /* wells, insets */
+  --surface-hover:     #EFE1C0;           /* subtle hover tint on cream */
+  --surface-ink:       var(--espresso-800); /* dark brown panels (the badge) */
+  --surface-ink-deep:  var(--espresso-950);
+  --surface-brand:     var(--terra-500);
+  --surface-accent:    var(--amber-500);
+
+  /* Text */
+  --text-strong:       var(--espresso-900);
+  --text-body:         var(--espresso-800);
+  --text-muted:        var(--espresso-500);
+  --text-subtle:       var(--espresso-400);
+  --text-on-ink:       var(--sand-100);   /* cream text on brown */
+  --text-on-ink-muted: #C9AE7E;
+  --text-on-brand:     #FFF8EC;           /* cream text on terracotta */
+  --text-on-accent:    var(--espresso-900); /* dark text on amber/gold */
+  --text-link:         var(--terra-600);
+  --text-link-hover:   var(--terra-700);
+
+  /* Borders */
+  --border-subtle:  rgba(60,33,11,0.12);
+  --border-default: var(--sand-400);
+  --border-strong:  var(--sand-500);
+  --border-ink:     rgba(60,33,11,0.85);   /* hard badge outlines */
+  --border-on-ink:  rgba(245,234,208,0.16);
+
+  /* Status semantic */
+  --success: var(--cactus-500); --success-fg:#FBF6EA; --success-soft:var(--cactus-100);
+  --warning: var(--honey-500);  --warning-fg:var(--espresso-900); --warning-soft:var(--honey-100);
+  --danger:  var(--brick-500);  --danger-fg:#FBF6EA; --danger-soft:var(--brick-100);
+  --info:    var(--agave-500);  --info-fg:#FBF6EA; --info-soft:var(--agave-100);
+
+  /* Brand action (terracotta primary — AA with cream text) */
+  --brand-primary:        var(--terra-600);
+  --brand-primary-hover:  var(--terra-700);
+  --brand-primary-active: #6F340F;
+  --brand-primary-soft:   var(--terra-100);
+  --brand-ink:            var(--espresso-800);
+
+  /* Focus */
+  --focus-ring: var(--amber-500);
+}

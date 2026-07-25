@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sertão Tech 2026 — Dê o primeiro passo na tecnologia</title>
+<meta name="description" content="Sertão Tech, 2ª edição: um dia inteiro de palestras, roda de conversa e networking no norte do Piauí. 09 de outubro de 2026, das 14h às 22h.">
+<meta name="theme-color" content="#3C210B">
+<link rel="icon" href="assets/logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sertão Tech 2026 — Dê o primeiro passo na tecnologia">
+<meta property="og:description" content="Palestras, roda de conversa e networking pra quem quer começar ou crescer na tecnologia. 09/10/2026, norte do Piauí.">
+<meta property="og:image" content="assets/logo.png">
+<meta property="og:locale" content="pt_BR">
+<link rel="stylesheet" href="ds/styles.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="brand" href="#topo">
+      <img src="assets/logo.png" alt="Sertão Tech" width="40" height="40">
+      <span class="brand__word">Sertão Tech</span>
+    </a>
+    <button class="nav-toggle" type="button" id="navToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Abrir menu"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
+    <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
+      <a class="site-nav__link" href="#sobre">Sobre</a>
+      <a class="site-nav__link" href="#trilhas">Conteúdo</a>
+      <a class="site-nav__link" href="#agenda">Cronograma</a>
+      <a class="site-nav__link" href="#patrocinio">Patrocínio</a>
+      <span class="site-nav__sep" aria-hidden="true"></span>
+      <a class="btn btn--primary btn--sm" href="#inscricao">Inscreva-se<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <div class="hero" id="topo">
+    <div class="hero__glow" aria-hidden="true"></div>
+    <div class="hero__inner">
+      <div>
+        <span class="eyebrow eyebrow--ink">// 2ª edição · norte do Piauí</span>
+        <h1 class="hero__title">Dê o primeiro passo<br>na <em>tecnologia</em>.</h1>
+        <p class="hero__lead">Um dia inteiro de palestras, roda de conversa e networking pra estudantes, profissionais e quem tá migrando de carreira. Do interior pro mundo da tecnologia — apoiado por PHP PI &amp; PHPWomen PI.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--lg" href="#inscricao">Quero participar<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="btn btn--outline-ink btn--lg" href="#agenda"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>Ver cronograma</a>
+        </div>
+        <div class="hero__support">
+          <span class="hero__support-label">apoio</span>
+          <span class="pill-on-ink">PHP PI</span>
+          <span class="pill-on-ink">PHPWomen PI</span>
+        </div>
+      </div>
+      <div class="hero__art">
+        <img src="assets/logo.png" alt="Selo do Sertão Tech" width="360" height="360">
+      </div>
+    </div>
+    <div class="hero__facts">
+      <div class="fact">
+        <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg></span>
+        <div>
+          <div class="fact__k">data</div>
+          <div class="fact__v">09 de outubro de 2026</div>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+        <div>
+          <div class="fact__k">horário</div>
+          <div class="fact__v">14h às 22h</div>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
+        <div>
+          <div class="fact__k">inscrição</div>
+          <div class="fact__v">R$ 20</div>
+        </div>
+      </div>
+      <div class="fact">
+        <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+        <div>
+          <div class="fact__k">local</div>
+          <div class="fact__v">A definir · Norte do PI</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOBRE -->
+  <section class="section" id="sobre">
+    <div class="container two-col">
+      <div>
+        <span class="eyebrow">// sobre o evento</span>
+        <h2 class="section-title">Tecnologia também é coisa de quem vem do interior.</h2>
+        <p class="prose">O Sertão Tech inspira pessoas de <strong>todos os gêneros</strong> a dar o primeiro passo na tecnologia. Na 2ª edição, a gente reúne estudantes, profissionais, empresas e comunidades do norte do Piauí num só lugar — sem jargão que assusta.</p>
+        <p class="prose">Realizado com o apoio do <strong>PHP PI</strong> e da <strong>PHPWomen PI</strong>. Nosso objetivo é consolidar o evento como o principal encontro de tecnologia do norte do Piauí e preparar o público pra eventos maiores, como o PHPeste.</p>
+      </div>
+      <div class="card card--badge" style="padding: 32px;">
+        <span class="eyebrow">// pra todo mundo</span>
+        <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Um evento para todos os gêneros</h3>
+        <p style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 20px;">Inclusão não é detalhe, é o ponto de partida. Aqui você chega do jeito que é — e sai codando.</p>
+        <div class="pill-row">
+          <span class="tag tag--terra"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>Inclusivo</span>
+          <span class="tag tag--amber"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>Presencial</span>
+          <span class="tag tag--cactus"><svg class="icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>Comunidade</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PÚBLICO-ALVO -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container">
+        <span class="eyebrow">// pra quem é</span>
+        <h2 class="section-title" style="margin-bottom: 34px;">Feito pra você que quer começar ou crescer</h2>
+        <div class="grid-4">
+          <div class="card">
+            <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3 class="card-title">Estudantes</h3>
+            <p class="card-text">De cursos de tecnologia que querem dar o primeiro passo.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></span>
+            <h3 class="card-title">Profissionais</h3>
+            <p class="card-text">Da área de tecnologia buscando trocar e evoluir.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+            <h3 class="card-title">Transição de carreira</h3>
+            <p class="card-text">Quem tá migrando de área e mirando a tecnologia.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <h3 class="card-title">Gestores &amp; entusiastas</h3>
+            <p class="card-text">Empreendedores, líderes e curiosos pela área.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CONTEÚDO / TRILHAS -->
+  <section class="section" id="trilhas">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">// conteúdo</span>
+          <h2 class="section-title">Uma programação diversificada</h2>
+          <p class="section-lead" style="max-width: 560px;">A submissão de palestras é aberta à comunidade. Veja as áreas que vão estar no palco:</p>
+        </div>
+        <a class="btn btn--outline btn--md" href="#inscricao"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg>Quero palestrar</a>
+      </div>
+      <div class="grid-3">
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></span>
+            <h3>Desenvolvimento de Software</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>
+            <h3>Inteligência Artificial</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+            <h3>Cloud Computing</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg></span>
+            <h3>Segurança da Informação</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <h3>Dados</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <h3>Product Management</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+            <h3>UX / UI</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>Carreira e Soft Skills</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+            <h3>Open Source e comunidades</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CRONOGRAMA -->
+  <div class="band-ink" id="agenda">
+    <section class="agenda-head">
+      <div class="container">
+        <span class="eyebrow eyebrow--ink">// cronograma · 2ª edição</span>
+        <h2 class="section-title section-title--on-ink" style="font-size: clamp(30px, 5vw, 44px);">Programação do dia</h2>
+        <p class="section-lead" style="color: var(--text-on-ink-muted);">09 de outubro de 2026 · das 14h às 22h · norte do Piauí</p>
+      </div>
+    </section>
+    <section class="agenda-body">
+      <div class="container agenda-list">
+        <div class="agenda-row agenda-row--break">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14h00</div>
+            <div>
+              <h3 class="agenda-row__title">Credenciamento e Networking</h3>
+            </div>
+            <span class="chip chip--break">abertura da casa</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14h30</div>
+            <div>
+              <h3 class="agenda-row__title">Abertura Oficial</h3>
+              <p class="agenda-row__desc">Boas-vindas, apresentação do Sertão Tech, parceiros e patrocinadores.</p>
+            </div>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>14h45</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 1</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>15h30</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 2</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>16h10</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 3</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row agenda-row--break">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>16h50</div>
+            <div>
+              <h3 class="agenda-row__title">Coffee Break &amp; Networking</h3>
+            </div>
+            <span class="chip chip--break">intervalo</span>
+          </div>
+        </div>
+        <div class="agenda-row agenda-row--highlight">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>17h20</div>
+            <div>
+              <h3 class="agenda-row__title">Roda de Conversa — Transição de Carreira para Tecnologia</h3>
+              <p class="agenda-row__desc">Convidados de diferentes áreas compartilham experiências migrando pra tecnologia: desafios, aprendizados e oportunidades. Perguntas abertas ao público.</p>
+            </div>
+            <span class="chip chip--gold">destaque</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>18h20</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 4</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>19h00</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 5</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>19h40</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 6</h3>
+            </div>
+            <span class="chip chip--talk">palestra</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>20h20</div>
+            <div>
+              <h3 class="agenda-row__title">Momento Patrocinador Ouro</h3>
+              <p class="agenda-row__desc">Apresentação institucional (até 3 minutos) e sorteio de brindes.</p>
+            </div>
+            <span class="chip chip--sponsor">patrocínio</span>
+          </div>
+        </div>
+        <div class="agenda-row agenda-row--highlight">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>20h30</div>
+            <div>
+              <h3 class="agenda-row__title">Palestra 7 — Encerramento Técnico / Palestrante principal</h3>
+            </div>
+            <span class="chip chip--gold">keynote</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>21h10</div>
+            <div>
+              <h3 class="agenda-row__title">Sorteio de brindes e agradecimentos</h3>
+              <p class="agenda-row__desc">Sorteio dos patrocinadores e agradecimento às comunidades parceiras.</p>
+            </div>
+            <span class="chip chip--sponsor">sorteio</span>
+          </div>
+        </div>
+        <div class="agenda-row">
+          <div class="agenda-row__inner">
+            <div class="agenda-row__time"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>21h40</div>
+            <div>
+              <h3 class="agenda-row__title">Encerramento Oficial</h3>
+              <p class="agenda-row__desc">Considerações finais, agradecimentos e convite para o PHPeste. Foto oficial do evento.</p>
+            </div>
+          </div>
+        </div>
+        <p class="agenda-note"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg><span>Cada palestra: 30 min de apresentação + perguntas · ~40 min no total.</span></p>
+      </div>
+    </section>
+  </div>
+
+  <!-- EXPERIÊNCIA DO PARTICIPANTE -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// experiência</span>
+      <h2 class="section-title" style="margin-bottom: 34px;">O que te espera no dia</h2>
+      <div class="grid-3">
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg></span>
+          <div>
+            <h3>Credenciamento rápido</h3>
+            <p>Chegou, credenciou, tá dentro. Sem filas longas.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span>
+          <div>
+            <h3>Coffee break</h3>
+            <p>Um respiro pra recarregar e conversar com a galera.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div>
+            <h3>Área de networking</h3>
+            <p>Espaço pra conhecer gente, empresas e comunidades.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
+          <div>
+            <h3>Sorteio de brindes</h3>
+            <p>Brindes dos patrocinadores ao longo da programação.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+          <div>
+            <h3>Certificado</h3>
+            <p>Emissão de certificado de participação pra todo mundo.</p>
+          </div>
+        </div>
+        <div class="feature-row">
+          <span class="chip-round-cactus"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+          <div>
+            <h3>Kit do participante</h3>
+            <p>Kits pra quem participa (caso haja patrocinadores).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container two-col" style="grid-template-columns: 0.85fr 1.15fr; align-items: start;">
+        <div>
+          <span class="eyebrow">// diferenciais</span>
+          <h2 class="section-title" style="font-size: clamp(28px, 4.2vw, 38px);">Mais que palestras: um ponto de encontro do ecossistema</h2>
+          <p class="section-lead" style="font-size: 16px; margin-top: 16px;">Aproximar empresas, comunidades e talentos da região é o que faz o Sertão Tech acontecer.</p>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <span class="chip-icon chip-icon--agave"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3 class="card-title" style="font-size: 18px; margin-top: 14px;">Networking com empresas</h3>
+            <p class="card-text" style="font-size: 14px;">Espaço pra empresas e participantes se conectarem.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--agave"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <h3 class="card-title" style="font-size: 18px; margin-top: 14px;">Painel de oportunidades</h3>
+            <p class="card-text" style="font-size: 14px;">Empresas apresentando vagas de estágio e emprego.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--agave"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>
+            <h3 class="card-title" style="font-size: 18px; margin-top: 14px;">Projetos da região</h3>
+            <p class="card-text" style="font-size: 14px;">Vitrine de projetos desenvolvidos aqui no norte do PI.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--agave"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span>
+            <h3 class="card-title" style="font-size: 18px; margin-top: 14px;">Espaço pra comunidades</h3>
+            <p class="card-text" style="font-size: 14px;">Comunidades de tecnologia apresentando seu trabalho.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- COTAS DE PATROCÍNIO -->
+  <section class="section" id="patrocinio">
+    <div class="container">
+      <div class="sponsors-intro">
+        <span class="eyebrow">// patrocínio</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">Cotas de patrocínio</h2>
+        <p class="section-lead">Conecte sua marca a talentos da região e apoie o ecossistema de tecnologia do norte do Piauí.</p>
+      </div>
+      <div class="sponsor-table">
+        <div class="sponsor-grid">
+          <div class="sponsor-head__label"><span class="eyebrow">// benefícios</span></div>
+          <div class="sponsor-head__cell">
+            <div class="sponsor-head__flag"></div>
+            <span class="sponsor-head__medal sponsor-head__medal--silver"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <div class="sponsor-head__name">Prata</div>
+            <p class="sponsor-head__tagline">Presença forte em toda a comunicação.</p>
+          </div>
+          <div class="sponsor-head__cell sponsor-head__cell--gold">
+            <div class="sponsor-head__flag"><span>destaque</span></div>
+            <span class="sponsor-head__medal sponsor-head__medal--gold"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <div class="sponsor-head__name">Ouro</div>
+            <p class="sponsor-head__tagline">Máxima visibilidade e ativação no palco.</p>
+          </div>
+          <div class="sponsor-head__cell">
+            <div class="sponsor-head__flag"></div>
+            <span class="sponsor-head__medal sponsor-head__medal--bronze"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <div class="sponsor-head__name">Bronze</div>
+            <p class="sponsor-head__tagline">Apoio essencial, com marca reconhecida.</p>
+          </div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Apresentação institucional no palco (até 3 min)</div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Prata: não incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Espaço para exposição / stand no local</div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Prata: não incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Sorteio de brindes durante a programação</div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Prata: não incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Menção como patrocinador também no encerramento</div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Prata: não incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Logomarca nos materiais impressos do evento</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Logomarca no banner oficial (palco/credenciamento)</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Distribuição de brindes aos participantes</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="no" aria-hidden="true">–</span><span class="sr-only">Bronze: não incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Logomarca nos materiais digitais de divulgação</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Bronze: incluso</span></div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Logomarca na página de patrocinadores do site</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Bronze: incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Divulgação nas redes sociais do evento</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Bronze: incluso</span></div>
+        </div>
+        <div class="sponsor-grid sponsor-grid--stripe">
+          <div class="sponsor-row__label">Brindes ou material no credenciamento</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Bronze: incluso</span></div>
+        </div>
+        <div class="sponsor-grid">
+          <div class="sponsor-row__label">Menção como patrocinador na abertura</div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Prata: incluso</span></div>
+          <div class="sponsor-row__cell sponsor-row__cell--gold"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Ouro: incluso</span></div>
+          <div class="sponsor-row__cell"><span class="yes"><svg class="icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg></span><span class="sr-only">Bronze: incluso</span></div>
+        </div>
+      </div>
+      <div class="sponsor-cta">
+        <a class="btn btn--primary btn--lg" href="https://wa.me/5586999202231" target="_blank" rel="noopener">Quero patrocinar<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <p>Fale com a organização pelo WhatsApp +55 (86) 99920-2231</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARCERIAS INSTITUCIONAIS -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container two-col" style="grid-template-columns: 0.9fr 1.1fr;">
+        <div>
+          <span class="eyebrow">// instituições de ensino</span>
+          <h2 class="section-title" style="font-size: clamp(26px, 4vw, 36px);">Parcerias que trazem o interior pra dentro</h2>
+          <p class="section-lead" style="font-size: 16px; line-height: 1.65; margin: 16px 0 20px;">A gente convida coordenadores e professores da região pra organizar caravanas e aproximar estudantes do evento.</p>
+          <div class="pill-row">
+            <span class="pill-outline">UFDPAR</span>
+            <span class="pill-outline">IFPI</span>
+            <span class="pill-outline">IFMA</span>
+            <span class="pill-outline">IFCE</span>
+            <span class="pill-outline">+ instituições da região</span>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
+            <div>
+              <h3>Desconto para grupos</h3>
+              <p>Inscrição com desconto para caravanas de estudantes.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span>
+            <div>
+              <h3>Indicação de palestrante</h3>
+              <p>Espaço para um palestrante da instituição, mediante avaliação da organização.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <div>
+              <h3>Divulgação como apoiadora</h3>
+              <p>A instituição é divulgada como apoiadora oficial do evento.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- INSCRIÇÃO / CTA -->
+  <div class="cta" id="inscricao">
+    <div class="cta__glow" aria-hidden="true"></div>
+    <section class="section cta__inner">
+      <div class="container two-col" style="grid-template-columns: 1.15fr 0.85fr;">
+        <div>
+          <span class="eyebrow eyebrow--ink">// bora dar o primeiro passo?</span>
+          <h2 class="cta__title">Garanta sua vaga<br>no Sertão Tech.</h2>
+          <p class="cta__lead">A inscrição é paga pra incentivar o comprometimento e reduzir ausências — e ajuda a cobrir parte dos custos do evento. As vagas são limitadas.</p>
+          <div class="hero__actions">
+            <a class="btn btn--accent btn--lg" href="https://wa.me/5586999202231" target="_blank" rel="noopener">Fazer inscrição<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></a>
+            <a class="btn btn--outline-ink btn--lg" href="https://instagram.com/osertaotech" target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>Seguir no Instagram</a>
+          </div>
+        </div>
+        <div class="card card--badge ticket" style="padding: 30px;">
+          <img src="assets/logo.png" alt="Sertão Tech" width="44" height="44">
+          <div class="ticket__price-row">
+            <span class="ticket__price">R$ 20</span>
+            <span class="badge badge--success-soft"><span class="badge__dot" aria-hidden="true"></span>vagas limitadas</span>
+          </div>
+          <p class="ticket__meta">09 out 2026 · 14h–22h · norte do PI</p>
+          <div class="ticket__rule" aria-hidden="true"></div>
+          <ul class="ticket__list">
+            <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Acesso a todas as palestras e à roda de conversa</li>
+            <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Certificado de participação</li>
+            <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Coffee break &amp; área de networking</li>
+            <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Sorteios e brindes dos patrocinadores</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__top">
+      <div class="site-footer__about">
+        <span class="brand">
+          <img src="assets/logo.png" alt="Sertão Tech" width="44" height="44">
+          <span class="site-footer__word">Sertão Tech</span>
+        </span>
+        <p>09 de outubro de 2026 · norte do Piauí. Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia.</p>
+      </div>
+      <div class="site-footer__cols">
+        <div>
+          <h2>// evento</h2>
+          <a href="#sobre">Sobre</a>
+          <a href="#trilhas">Conteúdo</a>
+          <a href="#agenda">Cronograma</a>
+          <a href="#patrocinio">Patrocínio</a>
+          <a href="#inscricao">Inscrição</a>
+        </div>
+        <div>
+          <h2>// contato</h2>
+          <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">Instagram @osertaotech</a>
+          <a href="https://wa.me/5586999202231" target="_blank" rel="noopener">WhatsApp +55 (86) 99920-2231</a>
+        </div>
+        <div>
+          <h2>// apoio</h2>
+          <div class="static">PHP PI</div>
+          <div class="static">PHPWomen PI</div>
+        </div>
+      </div>
+    </div>
+    <div class="site-footer__bottom">
+      <span>#sertaotech · © 2026</span>
+      <div class="social">
+        <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener" aria-label="Instagram do Sertão Tech"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
+        <a href="https://wa.me/5586999202231" target="_blank" rel="noopener" aria-label="WhatsApp da organização"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile nav toggle — the only behaviour the page needs.
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('siteNav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu');
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

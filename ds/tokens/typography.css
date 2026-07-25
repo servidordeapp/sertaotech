@@ -1,0 +1,46 @@
+/* Sertão Tech — Typography tokens */
+:root {
+  /* Families */
+  --font-display: "Space Grotesk", "Outfit", system-ui, sans-serif;
+  --font-body:    "Instrument Sans", system-ui, -apple-system, "Segoe UI", Helvetica, sans-serif;
+  --font-mono:    "Space Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --font-wordmark:"League Spartan", "Space Grotesk", system-ui, sans-serif; /* the SERTÃO TECH lockup — set uppercase */
+  /* Semantic */
+  --font-heading: var(--font-display);
+  --font-ui:      var(--font-body);
+  --font-code:    var(--font-mono);
+
+  /* Size scale */
+  --text-2xs: 0.6875rem; /* 11 */
+  --text-xs:  0.75rem;   /* 12 */
+  --text-sm:  0.875rem;  /* 14 */
+  --text-base:1rem;      /* 16 */
+  --text-lg:  1.125rem;  /* 18 */
+  --text-xl:  1.25rem;   /* 20 */
+  --text-2xl: 1.5rem;    /* 24 */
+  --text-3xl: 1.875rem;  /* 30 */
+  --text-4xl: 2.375rem;  /* 38 */
+  --text-5xl: 3rem;      /* 48 */
+  --text-6xl: 4rem;      /* 64 */
+  --text-7xl: 5rem;      /* 80 */
+
+  /* Weights */
+  --fw-regular: 400; /* @kind font */
+  --fw-medium: 500; /* @kind font */
+  --fw-semibold: 600; /* @kind font */
+  --fw-bold: 700; /* @kind font */
+
+  /* Line height */
+  --leading-none: 1;
+  --leading-tight: 1.1;
+  --leading-snug: 1.25;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.65;
+
+  /* Letter spacing */
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-wider: 0.06em;
+  --tracking-caps: 0.14em; /* rustic uppercase eyebrows/labels */
+}
