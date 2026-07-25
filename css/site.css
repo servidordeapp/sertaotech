@@ -264,6 +264,12 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .section-lead { font-size: 17px; line-height: 1.6; color: var(--text-muted); margin: 10px 0 0; }
 
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+/* per-section desktop column ratios — kept as classes (not inline styles) so the
+   mobile/tablet media queries below can reset .two-col back to a single column */
+.two-col--diferenciais { grid-template-columns: 0.85fr 1.15fr; align-items: start; }
+.two-col--parcerias { grid-template-columns: 0.9fr 1.1fr; }
+.two-col--inscricao { grid-template-columns: 1.15fr 0.85fr; }
+.two-col--submissao { grid-template-columns: 0.95fr 1.05fr; }
 .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -536,6 +542,11 @@ section[id], div[id] { scroll-margin-top: 84px; }
   .hero__facts { grid-template-columns: 1fr; gap: 16px; padding: 24px 20px 32px; }
   .hero__actions .btn { width: 100%; }
   .hero__actions a { width: 100%; }
+
+  .sponsor-cta .btn {
+    width: 100%; height: auto; min-height: 56px;
+    padding: 14px 20px; white-space: normal; text-align: center;
+  }
 
   .section, .section--tight { padding: 48px 20px; }
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
