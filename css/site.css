@@ -27,7 +27,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--terra-600);
+  color: var(--terra-700); /* terra-600 only hit 4.0:1 on band-sunken (sand-200) — bumped a step for AA */
   display: block;
 }
 .eyebrow--ink { color: var(--amber-300); }
@@ -104,7 +104,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
   white-space: nowrap;
 }
 .tag--terra  { background: var(--terra-100);  color: var(--terra-700); }
-.tag--amber  { background: var(--amber-100);  color: var(--amber-600); }
+.tag--amber  { background: var(--amber-100);  color: var(--terra-700); } /* amber-600 only hit 3.65:1 on amber-100 */
 .tag--cactus { background: var(--cactus-100); color: var(--cactus-600); }
 
 /* ---------- Badge (DS: components/display/Badge.jsx) ---------- */
@@ -272,6 +272,10 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .prose { font-size: 17px; line-height: 1.7; color: var(--text-muted); margin: 18px 0 0; }
 .prose strong { color: var(--text-body); }
 
+/* Inline links in body copy must not rely on color alone to read as links */
+.prose a, .section-lead a { text-decoration: underline; text-decoration-color: color-mix(in srgb, currentColor 40%, transparent); text-underline-offset: 2px; }
+.prose a:hover, .section-lead a:hover { text-decoration-color: currentColor; }
+
 /* ---------- icon chips inside cards ---------- */
 .chip-icon {
   width: 46px; height: 46px; border-radius: var(--radius-md);
@@ -345,6 +349,8 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .chip--break { background: rgba(94,122,50,0.25); color: var(--cactus-100); }
 .chip--talk { background: rgba(245,234,208,0.1); color: var(--text-on-ink-muted); }
 .chip--gold { background: rgba(246,197,108,0.22); color: var(--amber-300); }
+/* on light surfaces (e.g. inside .card) amber-300 fails contrast — swap to the tag--amber pairing */
+.card .chip--gold { background: var(--amber-100); color: var(--terra-700); }
 .chip--sponsor { background: rgba(216,125,14,0.2); color: var(--amber-300); }
 .agenda-note {
   margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;

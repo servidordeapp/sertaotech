@@ -55,8 +55,8 @@
   /* Text */
   --text-strong:       var(--espresso-900);
   --text-body:         var(--espresso-800);
-  --text-muted:        var(--espresso-500);
-  --text-subtle:       var(--espresso-400);
+  --text-muted:        var(--espresso-600); /* AA on sand-100/200 (was espresso-500, ~4.4:1 — failed PageSpeed contrast audit) */
+  --text-subtle:       var(--espresso-500);
   --text-on-ink:       var(--sand-100);   /* cream text on brown */
   --text-on-ink-muted: #C9AE7E;
   --text-on-brand:     #FFF8EC;           /* cream text on terracotta */
