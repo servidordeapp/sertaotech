@@ -2,18 +2,17 @@
  * Sertão Tech — Design System
  * Global entry point. Consumers link THIS file only.
  *
- * This file is the compiled concatenation of tokens/*.css (colors,
- * typography, spacing, radius, shadows, motion, base). It used to be a
- * list of @import statements, but each @import is its own render-blocking
- * HTTP request chained behind this file — 8 extra round-trips before
- * first paint. Inlined here instead. tokens/fonts.css has no rules (font
- * comment/doc only) so it isn't part of this file.
- *
- * Edit the matching tokens/*.css file for the token you're changing, then
- * copy the change into the matching section below — there's no build step.
+ * GENERATED FILE — do not edit directly.
+ * Source of truth is ds/tokens/*.css. After editing a token file, run:
+ *   ./scripts/build-ds.sh
+ * to regenerate this file, then commit both.
  * ============================================================ */
 
-/* ---- tokens/colors.css ---- */
+/* Sertão Tech — Color System
+ * Sampled from the brand badge: espresso brown structure, burnt-orange sertão
+ * mountains, golden sun, and warm cream "paper". Neutrals are intentionally warm
+ * (never pure grey/white). Status colors are harmonized to the desert palette.
+ */
 :root {
   /* ---- Sand / warm neutrals (paper → gold) ---- */
   --sand-50:  #FBF6EA;
@@ -99,7 +98,7 @@
   --focus-ring: var(--amber-500);
 }
 
-/* ---- tokens/typography.css ---- */
+/* Sertão Tech — Typography tokens */
 :root {
   /* Families */
   --font-display: "Space Grotesk", "Outfit", system-ui, sans-serif;
@@ -146,7 +145,7 @@
   --tracking-caps: 0.14em; /* rustic uppercase eyebrows/labels */
 }
 
-/* ---- tokens/spacing.css ---- */
+/* Sertão Tech — Spacing scale (4px base) */
 :root {
   --space-0: 0;
   --space-1: 0.25rem;  /* 4  */
@@ -169,7 +168,10 @@
   --gutter: var(--space-6);
 }
 
-/* ---- tokens/radius.css ---- */
+/* Sertão Tech — Corner radii
+ * The brand mark is a stadium/capsule badge, so the system leans on generous,
+ * friendly rounding, with a full pill for interactive controls.
+ */
 :root {
   --radius-xs: 4px;
   --radius-sm: 8px;
@@ -185,7 +187,11 @@
   --radius-field: var(--radius-md);
 }
 
-/* ---- tokens/shadows.css ---- */
+/* Sertão Tech — Elevation
+ * Shadows are warm (espresso-tinted), never neutral grey. The signature
+ * "badge" shadow is a hard, offset sticker shadow used with an ink border for
+ * emphasis moments — it recalls a printed patch / enamel pin.
+ */
 :root {
   --shadow-xs: 0 1px 2px rgba(60,33,11,0.10);
   --shadow-sm: 0 2px 6px rgba(60,33,11,0.12);
@@ -203,7 +209,10 @@
   --shadow-inset: inset 0 2px 4px rgba(60,33,11,0.10);
 }
 
-/* ---- tokens/motion.css ---- */
+/* Sertão Tech — Motion
+ * Warm and welcoming ("dê o primeiro passo"): quick ease-outs with an
+ * occasional gentle overshoot on entrances. Never long or showy.
+ */
 :root {
   --dur-fast: 120ms; /* @kind other */
   --dur-base: 200ms; /* @kind other */
@@ -216,7 +225,10 @@
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */ /* gentle welcoming overshoot */
 }
 
-/* ---- tokens/base.css ---- */
+/* Sertão Tech — Base element defaults
+ * Sensible, on-brand defaults consumers get for free. Kept minimal — tokens do
+ * the heavy lifting. Not a reset framework.
+ */
 :root {
   color-scheme: light;
   --selection-bg: var(--amber-300);
@@ -259,3 +271,4 @@ a:hover { color: var(--text-link-hover); text-decoration-color: currentColor; }
   font-weight: var(--fw-bold);
   color: var(--terra-600);
 }
+
