@@ -248,6 +248,15 @@ section[id], div[id] { scroll-margin-top: 84px; }
   font-family: var(--font-display); font-weight: 600; font-size: 16px;
   color: var(--sand-50); margin-top: 2px;
 }
+.fact__v a {
+  color: inherit; text-decoration: underline;
+  text-decoration-color: var(--border-on-ink); text-underline-offset: 3px;
+}
+.fact__v a:hover { text-decoration-color: currentColor; }
+.fact__note {
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--text-on-ink-muted); margin-top: 2px;
+}
 
 /* ---------- generic section rhythm ---------- */
 .section { padding: 84px 40px; }
