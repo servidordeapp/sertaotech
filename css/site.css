@@ -440,6 +440,80 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .sponsor-cta { text-align: center; margin-top: 36px; }
 .sponsor-cta p { font-family: var(--font-mono); font-size: 13px; color: var(--text-muted); margin: 14px 0 0; }
 
+/* ---------- sponsor logo wall ----------
+ * Grid of sponsor logos, grouped by tier. Each tier is a <div class="logo-tier">
+ * with a label plus a .logo-wall grid; the tier modifier only changes the tile
+ * size, so adding a sponsor is a matter of pasting one .logo-card and dropping
+ * the image in assets/patrocinadores/. See that folder's README for the rules
+ * every logo file has to follow. */
+.logo-tier + .logo-tier { margin-top: 40px; }
+.logo-tier__head {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 18px; justify-content: center;
+}
+.logo-tier__name {
+  font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-muted);
+  margin: 0;
+}
+.logo-tier__rule { flex: 1; max-width: 120px; height: 1px; background: var(--border-subtle); }
+/* Flex, não grid: com auto-fit uma cota de um patrocinador só esticava o card
+ * por toda a largura do mural. Aqui o tile fica na largura da cota
+ * (--logo-min), quantos houver, sempre centralizados. */
+.logo-wall {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 18px; margin: 0 auto; padding: 0; list-style: none;
+  max-width: var(--logo-wall-max, 1000px);
+}
+.logo-wall > li { display: flex; flex: 0 1 var(--logo-min, 200px); min-width: 0; }
+/* Tier sizing: gold reads first, bronze/apoio sit quieter. --logo-h drives the
+ * tile height so every logo in a row optically matches regardless of its own
+ * aspect ratio. */
+.logo-wall--gold   { --logo-min: 320px; --logo-h: 116px; --logo-wall-max: 860px; }
+.logo-wall--silver { --logo-min: 260px; --logo-h: 96px; }
+.logo-wall--bronze { --logo-min: 210px; --logo-h: 78px; }
+.logo-wall--apoio  { --logo-min: 190px; --logo-h: 72px; --logo-wall-max: 900px; }
+
+.logo-card {
+  flex: 1;
+  display: flex; align-items: center; justify-content: center;
+  min-height: var(--logo-h); padding: 18px 22px;
+  background: var(--surface-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease-standard),
+              box-shadow var(--dur-base) var(--ease-standard),
+              border-color var(--dur-base) var(--ease-standard);
+}
+.logo-card--gold { border: 2px solid var(--border-ink); box-shadow: var(--shadow-badge); }
+a.logo-card:hover, a.logo-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
+  border-color: var(--border-ink);
+  box-shadow: 8px 8px 0 var(--border-ink);
+}
+.logo-card img {
+  max-width: 100%; width: auto;
+  max-height: calc(var(--logo-h) - 30px);
+  object-fit: contain;
+}
+/* Fallback for a sponsor that hasn't sent artwork yet: the name renders as
+ * type in the same tile, so the wall never shows a broken image. */
+.logo-card__name {
+  font-family: var(--font-display); font-weight: 700; font-size: 18px;
+  color: var(--text-strong); text-align: center; line-height: 1.25; margin: 0;
+  text-wrap: balance;
+}
+/* nomes de apoio costumam ser o nome inteiro do curso/comunidade, não uma
+ * marca curta — um corpo menor evita quatro linhas num tile de 190px */
+.logo-wall--apoio .logo-card__name { font-size: 15px; }
+.logo-wall__empty {
+  text-align: center; font-family: var(--font-mono); font-size: 13px;
+  color: var(--text-muted); margin: 0;
+}
+
 /* screen-reader-only column labels for the sponsor table */
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
@@ -557,6 +631,16 @@ section[id], div[id] { scroll-margin-top: 84px; }
     width: 100%; height: auto; min-height: 56px;
     padding: 14px 20px; white-space: normal; text-align: center;
   }
+
+  /* logo wall: 2 tiles per row on phones (1 for gold), so a logo never gets
+     squeezed below a readable size */
+  .logo-wall { gap: 12px; }
+  .logo-wall > li { flex-basis: var(--logo-min-sm, 130px); }
+  .logo-wall--gold { --logo-min-sm: 100%; --logo-h: 92px; }
+  .logo-wall--silver { --logo-min-sm: 100%; --logo-h: 78px; }
+  .logo-wall--bronze { --logo-min-sm: 200px; }
+  .logo-wall--apoio { --logo-min-sm: 150px; }
+  .logo-card { padding: 14px 16px; }
 
   .section, .section--tight { padding: 48px 20px; }
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
