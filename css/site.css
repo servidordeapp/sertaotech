@@ -367,6 +367,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 /* on light surfaces (e.g. inside .card) amber-300 fails contrast — swap to the tag--amber pairing */
 .card .chip--gold { background: var(--amber-100); color: var(--terra-700); }
 .chip--sponsor { background: rgba(216,125,14,0.2); color: var(--amber-300); }
+.chip--micro { background: rgba(206,122,46,0.22); color: var(--terra-100); }
 .agenda-note {
   margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
