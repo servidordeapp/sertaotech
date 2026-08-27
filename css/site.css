@@ -468,9 +468,15 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .logo-wall > li { display: flex; flex: 0 1 var(--logo-min, 200px); min-width: 0; }
 /* Tier sizing: gold reads first, bronze/apoio sit quieter. --logo-h drives the
  * tile height so every logo in a row optically matches regardless of its own
- * aspect ratio. */
-.logo-wall--gold   { --logo-min: 320px; --logo-h: 116px; --logo-wall-max: 860px; }
-.logo-wall--silver { --logo-min: 260px; --logo-h: 96px; }
+ * aspect ratio.
+ *
+ * Os números são folgados de propósito: arquivo oficial de marca costuma trazer
+ * a área de respiro embutida no viewBox (o do Programe Studio gasta um terço da
+ * altura com isso), então o desenho renderiza menor que a caixa. Sem essa folga
+ * uma cota alta acaba parecendo menor que uma cota abaixo dela. Ao trocar um
+ * logo, confira a hierarquia no olho, não só o número. */
+.logo-wall--gold   { --logo-min: 380px; --logo-h: 140px; --logo-wall-max: 860px; }
+.logo-wall--silver { --logo-min: 300px; --logo-h: 116px; }
 .logo-wall--bronze { --logo-min: 210px; --logo-h: 78px; }
 .logo-wall--apoio  { --logo-min: 190px; --logo-h: 72px; --logo-wall-max: 900px; }
 
@@ -636,8 +642,8 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
      squeezed below a readable size */
   .logo-wall { gap: 12px; }
   .logo-wall > li { flex-basis: var(--logo-min-sm, 130px); }
-  .logo-wall--gold { --logo-min-sm: 100%; --logo-h: 92px; }
-  .logo-wall--silver { --logo-min-sm: 100%; --logo-h: 78px; }
+  .logo-wall--gold { --logo-min-sm: 100%; --logo-h: 116px; }
+  .logo-wall--silver { --logo-min-sm: 100%; --logo-h: 100px; }
   .logo-wall--bronze { --logo-min-sm: 200px; }
   .logo-wall--apoio { --logo-min-sm: 150px; }
   .logo-card { padding: 14px 16px; }

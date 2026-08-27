@@ -20,15 +20,18 @@ Só trate a arte quando a empresa autorizar, e mesmo assim confirme que o
 resultado bate com uma versão oficial que eles já usam.
 
 > Foi o que aconteceu com o Programe Studio: a arte veio em cima do bloco
-> amarelo da marca e o fundo foi removido sem perguntar. Deu certo por acaso —
-> eles têm uma versão oficial em fundo claro, idêntica ao resultado. Podia ter
-> dado errado.
+> amarelo da marca e o fundo foi removido sem perguntar. O resultado passava
+> por certo, mas estava errado — no arquivo oficial pra fundo claro o `</>`
+> dentro do hexágono é **amarelo**, e na arte de fundo amarelo ele é branco.
+> Recortar o fundo trocou a cor do símbolo sem ninguém notar. O arquivo no ar
+> hoje é o oficial que a empresa mandou depois.
 
 ## 1. Preparar o arquivo do logo
 
 - **Formato**: `.svg` quando a empresa mandar vetor — é o melhor caso, fica
-  nítido em qualquer tamanho e pesa menos (o do Retake tem 3 KB contra 25 KB do
-  WebP do Programe Studio). Sem vetor, `.webp`. Nada de `.png`/`.jpg` direto.
+  nítido em qualquer tamanho e pesa menos (3 a 7 KB nos dois logos atuais, contra
+  25 KB de um WebP equivalente). Sem vetor, `.webp`. Nada de `.png`/`.jpg`
+  direto.
 - **SVG**: confira que o arquivo só tem `<path>`/`<g>` e cores literais, sem
   `<script>`, `<image>` ou `xlink:href` — ele é servido como está.
 - **Fundo transparente**, na versão oficial da empresa. Fundo branco fica com
@@ -37,10 +40,15 @@ resultado bate com uma versão oficial que eles já usam.
 - **Versão do logo**: horizontal, colorida ou escura. O card tem fundo claro
   (`--surface-card`), então logo branco/claro some — peça a versão pra fundo
   claro.
-- **Tamanho**: altura mínima de 200px no arquivo original (a exibição é menor,
-  mas telas retina precisam da folga). Sem margem sobrando em volta — recorte
-  no limite do desenho, o card já dá o respiro.
-- **Nome do arquivo**: `kebab-case` sem acento. Ex.: `agencia-delta.webp`.
+- **Tamanho** (só pra raster): altura mínima de 200px no arquivo original, que
+  a exibição é menor mas tela retina precisa da folga. SVG não tem esse
+  problema.
+- **Área de respiro**: arquivo oficial costuma trazer a margem de segurança
+  embutida no viewBox — o do Programe Studio gasta um terço da altura com isso.
+  Não recorte pra "aproveitar melhor o card": essa margem é parte do manual de
+  marca. Se o logo ficou pequeno demais no tile, aumente `--logo-min` /
+  `--logo-h` da cota no CSS, não mexa no arquivo.
+- **Nome do arquivo**: `kebab-case` sem acento. Ex.: `agencia-delta.svg`.
 
 Converter: o `cwebp` não está instalado nesta máquina. O caminho testado é o
 script do repositório, que só precisa de Node — ele serve tanto pra logo já
@@ -78,7 +86,7 @@ Ouro → Prata → Bronze → Apoio.
   <ul class="logo-wall logo-wall--gold" aria-labelledby="tier-ouro">
     <li>
       <a class="logo-card logo-card--gold" href="https://empresa.com.br" target="_blank" rel="noopener sponsored">
-        <img src="/assets/patrocinadores/nome-da-empresa.webp" alt="Nome da Empresa" width="320" height="120" loading="lazy" decoding="async">
+        <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="664" height="222" loading="lazy" decoding="async">
       </a>
     </li>
   </ul>
@@ -97,7 +105,7 @@ Ouro → Prata → Bronze → Apoio.
   <ul class="logo-wall logo-wall--silver" aria-labelledby="tier-prata">
     <li>
       <a class="logo-card" href="https://empresa.com.br" target="_blank" rel="noopener sponsored">
-        <img src="/assets/patrocinadores/nome-da-empresa.webp" alt="Nome da Empresa" width="640" height="158" loading="lazy" decoding="async">
+        <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="664" height="222" loading="lazy" decoding="async">
       </a>
     </li>
   </ul>
@@ -131,7 +139,7 @@ Empresa **sem site** — sem o `<a>`:
 
 ```html
 <li class="logo-card">
-  <img src="/assets/patrocinadores/nome-da-empresa.webp" alt="Nome da Empresa" width="240" height="90" loading="lazy" decoding="async">
+  <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="424" height="133" loading="lazy" decoding="async">
 </li>
 ```
 
