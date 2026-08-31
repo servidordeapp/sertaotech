@@ -190,6 +190,44 @@ Dois detalhes que quebram se ignorados:
 O JSON-LD **não** leva UTM: lá vai a URL institucional limpa, que é o
 identificador da empresa pro Google, não um link de clique.
 
+## 2.2. Medição de cliques (GA4)
+
+As duas páginas mandam dois eventos por logo pro GA4 `G-62RC94ZH1Z`, num bloco
+no fim do `<script>` de cada arquivo:
+
+| Evento | Quando dispara |
+| --- | --- |
+| `sponsor_impression` | metade do tile entrou na viewport, uma vez por pageview |
+| `sponsor_click` | clique no logo (só nos que têm `<a>`) |
+
+Ambos carregam `sponsor_name`, `sponsor_tier` e `sponsor_page`.
+
+A impressão existe pra dar denominador ao clique. Sozinho, "47 cliques" não diz
+nada; contra a impressão vira "47 de 1.203 que viram o logo", que é o número que
+o patrocinador consegue usar.
+
+**Patrocinador novo não exige mexer no script.** `sponsor_name` sai do `alt` da
+imagem (ou do texto do `.logo-card__name`, quando não há arte) e `sponsor_tier`
+sai do `aria-labelledby` do `.logo-wall`. Ou seja: `alt` errado ou vazio vira
+nome errado no relatório — é mais um motivo pra preencher direito.
+
+### Antes de contar com o dado
+
+Duas configurações do GA4 que **não são retroativas** — feitas depois, o período
+anterior fica vazio pra sempre:
+
+1. **Custom definitions** (Admin → Custom definitions): registre `sponsor_name`,
+   `sponsor_tier` e `sponsor_page` como dimensões personalizadas com escopo de
+   evento. Sem isso os parâmetros chegam mas não aparecem em relatório.
+2. **Data retention** (Admin → Data settings → Data retention): o padrão é 2
+   meses. Suba pra 14 meses, senão o relatório pós-evento não alcança o período
+   da divulgação.
+
+Confira no DebugView que os dois eventos chegam antes de prometer número a
+alguém. Bloqueador de anúncio derruba parte dos hits — o total daqui sempre vai
+ser maior que o que o patrocinador vê no analytics dele, e vale dizer isso no
+relatório em vez de deixar a diferença aparecer sozinha.
+
 ## 3. Atualizar o JSON-LD
 
 No `<head>` do `/index.html`, adicione a empresa no array `"sponsor"`:

@@ -942,6 +942,62 @@
       if (e.target === modal) closeModal();
     });
   })();
+
+  // Métricas de patrocinador — alimentam o relatório pós-evento.
+  // Dois eventos por logo: sponsor_impression (o logo apareceu na tela) e
+  // sponsor_click. A impressão é o denominador: sem ela "47 cliques" não tem
+  // com o que ser comparado, com ela vira "47 de 1.203 que viram o logo".
+  //
+  // Nome e cota saem do próprio HTML — o alt da imagem e o id do tier — então
+  // patrocinador novo passa a ser medido sem ninguém tocar neste script.
+  (function () {
+    var cards = document.querySelectorAll('.logo-wall .logo-card');
+    if (!cards.length) return;
+
+    var PAGE = location.pathname.indexOf('/patrocinio') === 0 ? 'patrocinio' : 'home';
+
+    function sponsorName(card) {
+      var img = card.querySelector('img');
+      if (img && img.alt) return img.alt;
+      var name = card.querySelector('.logo-card__name');
+      return name ? name.textContent.trim() : 'desconhecido';
+    }
+
+    function sponsorTier(card) {
+      var wall = card.closest('.logo-wall');
+      var id = wall && wall.getAttribute('aria-labelledby');
+      return id ? id.replace('tier-', '') : 'desconhecida';
+    }
+
+    function send(event, card) {
+      // gtag some quando bloqueador de anúncio derruba o GA — a página segue.
+      if (typeof gtag !== 'function') return;
+      gtag('event', event, {
+        sponsor_name: sponsorName(card),
+        sponsor_tier: sponsorTier(card),
+        sponsor_page: PAGE
+      });
+    }
+
+    cards.forEach(function (card) {
+      if (card.tagName === 'A') {
+        card.addEventListener('click', function () { send('sponsor_click', card); });
+      }
+    });
+
+    if (!('IntersectionObserver' in window)) return;
+    // Uma impressão por logo por pageview: metade do tile visível conta, e o
+    // card sai da observação logo depois pra não contar de novo no scroll.
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        observer.unobserve(entry.target);
+        send('sponsor_impression', entry.target);
+      });
+    }, { threshold: 0.5 });
+
+    cards.forEach(function (card) { observer.observe(card); });
+  })();
 </script>
 
 </body>
