@@ -85,7 +85,7 @@ Ouro → Prata → Bronze → Apoio.
   </div>
   <ul class="logo-wall logo-wall--gold" aria-labelledby="tier-ouro">
     <li>
-      <a class="logo-card logo-card--gold" href="https://empresa.com.br" target="_blank" rel="noopener sponsored">
+      <a class="logo-card logo-card--gold" href="https://empresa.com.br/?utm_source=osertaotech.com.br&amp;utm_medium=referral&amp;utm_campaign=sertaotech-2026&amp;utm_content=PAGINA-COTA" target="_blank" rel="noopener sponsored">
         <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="664" height="222" loading="lazy" decoding="async">
       </a>
     </li>
@@ -104,7 +104,7 @@ Ouro → Prata → Bronze → Apoio.
   </div>
   <ul class="logo-wall logo-wall--silver" aria-labelledby="tier-prata">
     <li>
-      <a class="logo-card" href="https://empresa.com.br" target="_blank" rel="noopener sponsored">
+      <a class="logo-card" href="https://empresa.com.br/?utm_source=osertaotech.com.br&amp;utm_medium=referral&amp;utm_campaign=sertaotech-2026&amp;utm_content=PAGINA-COTA" target="_blank" rel="noopener sponsored">
         <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="664" height="222" loading="lazy" decoding="async">
       </a>
     </li>
@@ -123,7 +123,7 @@ Ouro → Prata → Bronze → Apoio.
   </div>
   <ul class="logo-wall logo-wall--bronze" aria-labelledby="tier-bronze">
     <li>
-      <a class="logo-card" href="https://empresa.com.br" target="_blank" rel="noopener sponsored">
+      <a class="logo-card" href="https://empresa.com.br/?utm_source=osertaotech.com.br&amp;utm_medium=referral&amp;utm_campaign=sertaotech-2026&amp;utm_content=PAGINA-COTA" target="_blank" rel="noopener sponsored">
         <img src="/assets/patrocinadores/nome-da-empresa.svg" alt="Nome da Empresa" width="424" height="133" loading="lazy" decoding="async">
       </a>
     </li>
@@ -160,6 +160,35 @@ define o tamanho na tela.
 
 Cota sem nenhum patrocinador: não deixe o `.logo-tier` vazio, apague o bloco
 inteiro dela.
+
+## 2.1. Parâmetros UTM no link
+
+Todo link de logo carrega UTM para o patrocinador conseguir medir, no próprio
+analytics dele, quantos cliques vieram daqui. Sem isso ele vê só "referral de
+osertaotech.com.br" agregado, sem separar por página nem por cota.
+
+| Parâmetro | Valor | Por quê |
+| --- | --- | --- |
+| `utm_source` | `osertaotech.com.br` | Quem mandou o tráfego. |
+| `utm_medium` | `referral` | Link editorial, não anúncio pago. |
+| `utm_campaign` | `sertaotech-2026` | Mesma campanha do CTA da Sympla. |
+| `utm_content` | `PAGINA-COTA` | Onde o clique nasceu. |
+
+`utm_content` é o único que muda por bloco. `PAGINA` é `home` (`/index.html`) ou
+`patrocinio` (`/patrocinio/index.html`); `COTA` é `ouro`, `prata`, `bronze` ou
+`apoio`. Então o mesmo patrocinador na Bronze das duas páginas fica
+`home-bronze` num arquivo e `patrocinio-bronze` no outro — é o que deixa ele ver
+se o clique veio da home ou da página de cotas.
+
+Dois detalhes que quebram se ignorados:
+
+- Dentro do HTML o separador é `&amp;`, não `&` cru. É o mesmo que o CTA da
+  Sympla já usa. O navegador manda `&` normal na requisição.
+- O `?` só vale se a URL da empresa não tiver query string própria. Se tiver
+  (`https://empresa.com.br/?ref=x`), emende com `&amp;` no lugar do `?`.
+
+O JSON-LD **não** leva UTM: lá vai a URL institucional limpa, que é o
+identificador da empresa pro Google, não um link de clique.
 
 ## 3. Atualizar o JSON-LD
 
