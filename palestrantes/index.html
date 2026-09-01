@@ -220,18 +220,24 @@
             </div>
           </article>
           <article class="speaker card">
-            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">AF</div>
+            <div class="speaker__photo"><img src="/assets/palestrantes/alessandro-feitoza-384x480.webp" srcset="/assets/palestrantes/alessandro-feitoza-384x480.webp 384w, /assets/palestrantes/alessandro-feitoza-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
             <div class="speaker__meta">
               <span class="tag tag--amber">Keynote · 20h20</span>
               <h4 class="speaker__name">Alessandro Feitoza</h4>
               <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
-              <p class="speaker__role"></p>
+              <p class="speaker__role">Senior Software Engineer · Bússola Social / PHP com Rapadura</p>
               <p class="speaker__talk">Revolução Programacional: a IA na era das mudanças</p>
               <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
-              <p class="speaker__bio"></p>
+              <p class="speaker__bio">Bacharel em Sistemas de Informações, Especialista em Engenharia de Software, com mais de 15 anos de experiência em desenvolvimento web.
+
+Professor universitário e de Computarias no mei do mundo.
+
+Senior Software Engineer e Techlead na Bússola social.
+
+Fundador da comunidade PHP com Rapadura</p>
               <div class="speaker__actions">
                 <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
-                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/alessandrofeitoza/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
               </div>
             </div>
           </article>
@@ -919,7 +925,8 @@
       var role = roleEl ? roleEl.textContent.trim() : '';
       card.dataset.role = role;
       if (roleEl && !role) roleEl.remove();
-      var bio = bioEl ? bioEl.textContent.trim().replace(/\s+/g, ' ') : '';
+      var bio = bioEl ? bioEl.textContent.trim().replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n') : '';
+      var flatBio = bio.replace(/\s+/g, ' ');
       var href = linkEl ? (linkEl.getAttribute('href') || '').trim() : '';
 
       card.dataset.bio = bio;
@@ -931,8 +938,8 @@
       if (!bioEl) return;
       if (!bio) { bioEl.remove(); return; }
 
-      bioEl.textContent = truncate(bio, BIO_LIMIT);
-      if (bio.length <= BIO_LIMIT) return;
+      bioEl.textContent = truncate(flatBio, BIO_LIMIT);
+      if (flatBio.length <= BIO_LIMIT) return;
 
       var more = document.createElement('button');
       more.type = 'button';
