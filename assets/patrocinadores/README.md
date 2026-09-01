@@ -68,6 +68,17 @@ colar no `<img>`.
 Confira o resultado sobre o cream do card antes de subir: logo branco some no
 fundo claro, e sobra de fundo aparece como retângulo.
 
+**Logo já transparente numa canvas grande** — o caso do export em 16:9, com o
+logo pequeno no meio de uma tela de slide. O mesmo script resolve: quando o
+canto já vem com alpha 0 ele não toca em cor nenhuma, só corta a sobra de
+canvas. Sem isso o logo renderiza minúsculo no tile, porque o `<img>` se ajusta
+à canvas inteira e não ao desenho. Foi o caso da ParaDevs: arte de 925x204
+dentro de 1600x900.
+
+Não force o modo de cor num arquivo desses. O RGB do canto transparente costuma
+ser `rgb(0,0,0)`, então o recorte por cor comeria todo traço preto do próprio
+logo — na ParaDevs, o contorno inteiro do cubo.
+
 ## 2. Colar o bloco da cota
 
 Cada cota é um `.logo-tier`. Cole o bloco inteiro **acima** do bloco
