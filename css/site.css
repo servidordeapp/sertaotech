@@ -591,6 +591,78 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
 }
 .social a:hover { background: var(--sand-50); color: var(--espresso-800); }
 
+/* ---------- steps — passo a passo numerado (página /caravanas) ---------- */
+.steps { counter-reset: step; list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 18px; max-width: 780px; }
+.step {
+  position: relative;
+  display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 20px; align-items: start;
+  padding: 24px 26px;
+  background: var(--surface-card); border: 2px solid var(--border-ink);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-badge-sm);
+}
+/* A linha liga um passo ao seguinte: deixa claro que é sequência, não lista solta. */
+.step::after {
+  content: ""; position: absolute; left: 47px; top: 100%; width: 2px; height: 18px;
+  background: var(--border-default);
+}
+.step:last-child::after { display: none; }
+.step__num {
+  counter-increment: step;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 44px; height: 44px; border-radius: var(--radius-pill);
+  background: var(--surface-brand); color: var(--text-on-brand);
+  border: 2px solid var(--border-ink);
+  font-family: var(--font-display); font-size: 20px; font-weight: 800; line-height: 1;
+}
+.step__num::before { content: counter(step); }
+.step__title {
+  font-family: var(--font-display); font-size: 20px; color: var(--text-strong);
+  margin: 8px 0 6px; display: flex; flex-wrap: wrap; align-items: center; gap: 10px;
+}
+.step__text { font-size: 15px; line-height: 1.6; color: var(--text-body); margin: 0 0 10px; }
+.step__text:last-child { margin-bottom: 0; }
+.step__text a { color: var(--text-link); text-decoration: underline; }
+.step__text a:hover { color: var(--text-link-hover); }
+.step__hint {
+  display: flex; align-items: flex-start; gap: 10px;
+  padding: 12px 14px; margin-top: 12px;
+  background: var(--surface-sunken); border-radius: var(--radius-md);
+  font-size: 14px; line-height: 1.5; color: var(--text-muted);
+}
+.step__hint svg { flex: none; margin-top: 2px; color: var(--terra-600); }
+
+/* ---------- range de participantes (mínimo / máximo da caravana) ---------- */
+.range-facts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin: 24px 0 0; }
+.range-fact {
+  padding: 22px 24px; text-align: center;
+  background: var(--surface-card); border: 2px solid var(--border-ink);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-badge-sm);
+}
+.range-fact__k { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+.range-fact__v { font-family: var(--font-display); font-size: clamp(34px, 6vw, 48px); line-height: 1; color: var(--text-strong); margin: 8px 0 4px; }
+.range-fact__note { font-size: 14px; color: var(--text-muted); margin: 0; }
+
+/* ---------- FAQ ---------- */
+.faq { max-width: 780px; display: flex; flex-direction: column; gap: 12px; }
+.faq details {
+  background: var(--surface-card); border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card); box-shadow: var(--shadow-sm); overflow: hidden;
+}
+.faq summary {
+  cursor: pointer; list-style: none;
+  padding: 18px 22px; font-family: var(--font-display); font-size: 17px; color: var(--text-strong);
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+"; font-family: var(--font-mono); font-size: 20px; color: var(--terra-600); flex: none;
+}
+.faq details[open] summary::after { content: "\2013"; }
+.faq summary:hover { background: var(--surface-hover); }
+.faq summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: -2px; }
+.faq p { padding: 0 22px 20px; margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-body); }
+.faq p a { color: var(--text-link); text-decoration: underline; }
+
 /* ============================================================
  * Responsive — the design canvas is desktop-only (1200px);
  * these breakpoints are the site's own adaptation.
@@ -658,6 +730,12 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
   .agenda-row__inner { grid-template-columns: 1fr; gap: 8px; padding: 16px 18px; }
   .agenda-row__desc { max-width: none; }
   .agenda-row__inner .chip { justify-self: start; }
+
+  .step { grid-template-columns: 44px minmax(0, 1fr); gap: 14px; padding: 20px; }
+  .step::after { left: 37px; }
+  .step__num { width: 36px; height: 36px; font-size: 17px; }
+  .step__title { font-size: 18px; margin-top: 4px; }
+  .range-facts { grid-template-columns: 1fr; }
 
   /* sponsor table: narrow tier columns, benefit label keeps the first column */
   .sponsor-grid { grid-template-columns: minmax(0, 1fr) repeat(3, 56px); }
