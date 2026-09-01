@@ -113,16 +113,341 @@
   </div>
 
   <!-- PALESTRANTES CONFIRMADOS -->
-  <section class="section">
+  <section class="section" id="confirmados">
     <div class="container">
       <span class="eyebrow">// no palco</span>
       <h2 class="section-title" style="margin-bottom: 14px;">Palestrantes confirmados</h2>
-      <p class="prose" style="max-width: 640px;">A grade da 2ª edição ainda está sendo montada. Assim que cada nome for confirmado, ele aparece aqui e no <a href="/#agenda">cronograma</a>. Pra saber primeiro, acompanha o <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">@osertaotech</a>.</p>
-      <div class="feature-row" style="margin-top: 24px; padding: 22px 24px;">
-        <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
-        <div>
-          <h3>Anúncio em breve</h3>
-          <p>São 7 palestras, 1 roda de conversa e 1 keynote de encerramento. A chamada segue aberta até fecharmos a grade.</p>
+      <p class="prose" style="max-width: 680px;">São 19 pessoas no palco da 2ª edição: 7 palestras, 6 microtalks, 2 minicursos em trilha paralela e uma roda de conversa. Os horários de cada sessão estão no <a href="/#agenda">cronograma</a>.</p>
+
+      <div class="speaker-group" id="palestras">
+        <span class="eyebrow">// palestras</span>
+        <h3 class="speaker-group__title">Palestras</h3>
+        <div class="grid-3 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">AK</div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 14h40</span>
+              <h4 class="speaker__name">Adryanne Kelly</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Privacidade estrutural: como o Privacy by Design muda a forma de projetar software</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">VN</div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 15h40</span>
+              <h4 class="speaker__name">Vitoria Neris</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Antes do Gráfico: os Bastidores de um Dashboard</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">SG</div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 16h25</span>
+              <h4 class="speaker__name">Sandro Daniel Garcia</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">SA</div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 18h10</span>
+              <h4 class="speaker__name">Silvia Azevedo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">O Gerente de Projetos de Software na Era da IA</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">JS</div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 18h55</span>
+              <h4 class="speaker__name">Jacson Santos Silva</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/sebastiao-galeno-384x480.webp" srcset="/assets/palestrantes/sebastiao-galeno-384x480.webp 384w, /assets/palestrantes/sebastiao-galeno-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 44vw, 340px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 19h40</span>
+              <h4 class="speaker__name">Sebastião Galeno</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Software Engineer · Parnaíba-PI</p>
+              <p class="speaker__talk">Além do Código: Como usar IA para faturar antes de se formar</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Sebastião Galeno é mestre em ciência da computação, com especialização em Inteligência Artificial e também em redes de computadores e segurança corporativa. Atualmente, trabalha como engenheiro de software e possui mais de 10 anos de experiência profissional desenvolvendo sistemas web para empresas nacionais e internacionais.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/sebastiaogaleno/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">AF</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">Keynote · 20h20</span>
+              <h4 class="speaker__name">Alessandro Feitoza</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Revolução Programacional: a IA na era das mudanças</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="microtalks">
+        <span class="eyebrow">// microtalks</span>
+        <h3 class="speaker-group__title">MicroTalks</h3>
+        <div class="grid-3 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">FM</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 15h10</span>
+              <h4 class="speaker__name">Fernando Melo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Além do Código: Carreira, Product Management e Empreendedorismo</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">KV</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 15h25</span>
+              <h4 class="speaker__name">Kauê Victor</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">IC</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 16h10</span>
+              <h4 class="speaker__name">Isaac Costa</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Suporte, a chave do sucesso de uma aplicação</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">DB</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 17h55</span>
+              <h4 class="speaker__name">Dione Bastos</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Como lidar com a síndrome do impostor</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">VS</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 18h40</span>
+              <h4 class="speaker__name">Vilmar Aguiar de Paula Segundo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Do terminal ao mercado: como transformar seu código em um negócio real</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">AT</div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 19h25</span>
+              <h4 class="speaker__name">Ariel Teles</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="minicursos">
+        <span class="eyebrow">// minicursos · trilha paralela</span>
+        <h3 class="speaker-group__title">Minicursos</h3>
+        <div class="grid-3 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">GG</div>
+            <div class="speaker__meta">
+              <span class="tag tag--agave">Minicurso · 15h00</span>
+              <h4 class="speaker__name">Germano Gomes</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Cardinal — um simulador de mundos para desenvolvedores de jogos</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">RC</div>
+            <div class="speaker__meta">
+              <span class="tag tag--agave">Minicurso · 15h00</span>
+              <h4 class="speaker__name">Rodrigo Castro</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="roda-de-conversa">
+        <span class="eyebrow">// roda de conversa</span>
+        <h3 class="speaker-group__title">Roda de Conversa</h3>
+        <div class="grid-3 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">MK</div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Maria Katriane</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Transição de Carreira para Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">BT</div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Bia Thereza</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Transição de Carreira para Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">SA</div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Samyla Alves</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Transição de Carreira para Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo speaker__photo--initials" aria-hidden="true">CS</div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Celeny Sousa</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role"></p>
+              <p class="speaker__talk">Transição de Carreira para Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio"></p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </div>
@@ -408,6 +733,29 @@
   </div>
 </div>
 
+<!-- MODAL: perfil do palestrante -->
+<div class="modal-overlay" id="speakerModal" hidden>
+  <div class="modal modal--speaker" role="dialog" aria-modal="true" aria-labelledby="speakerModalTitle">
+    <button class="modal__close" type="button" id="speakerModalClose" aria-label="Fechar">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="speaker__head">
+      <div class="speaker__photo" id="speakerModalPhoto" aria-hidden="true"></div>
+      <div>
+        <h2 class="modal__title" id="speakerModalTitle"></h2>
+        <span class="tag" id="speakerModalTag"></span>
+        <p class="speaker__role" id="speakerModalRole"></p>
+      </div>
+    </div>
+    <p class="speaker__talk" id="speakerModalTalk"></p>
+    <p class="modal__text" id="speakerModalBio"></p>
+    <div class="modal__actions">
+      <a class="btn btn--outline btn--md" id="speakerModalLinkedin" href="" target="_blank" rel="noopener">Ver LinkedIn</a>
+      <button class="btn btn--primary btn--md" type="button" id="speakerModalOk">Fechar</button>
+    </div>
+  </div>
+</div>
+
 <script>
   // Mobile nav toggle.
   (function () {
@@ -472,6 +820,128 @@
           openModal(link);
         }
       });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  })();
+
+  // Palestrantes: minibio cortada em BIO_LIMIT caracteres, com modal pro texto completo.
+  (function () {
+    var BIO_LIMIT = 220;
+    var cards = document.querySelectorAll('.speaker');
+    var modal = document.getElementById('speakerModal');
+    if (!cards.length || !modal) return;
+
+    var closeBtn = document.getElementById('speakerModalClose');
+    var okBtn = document.getElementById('speakerModalOk');
+    var elPhoto = document.getElementById('speakerModalPhoto');
+    var elRole = document.getElementById('speakerModalRole');
+    var elTitle = document.getElementById('speakerModalTitle');
+    var elTag = document.getElementById('speakerModalTag');
+    var elTalk = document.getElementById('speakerModalTalk');
+    var elBio = document.getElementById('speakerModalBio');
+    var elLinkedin = document.getElementById('speakerModalLinkedin');
+    var lastFocused = null;
+
+    // Corta no espaço anterior ao limite pra não quebrar palavra no meio.
+    function truncate(text, limit) {
+      if (text.length <= limit) return text;
+      var cut = text.slice(0, limit);
+      var space = cut.lastIndexOf(' ');
+      if (space > limit * 0.6) cut = cut.slice(0, space);
+      return cut.replace(/[\s.,;:!?—-]+$/, '') + '…';
+    }
+
+    function openModal(card, trigger) {
+      lastFocused = trigger || document.activeElement;
+      var photo = card.querySelector('.speaker__photo');
+      elPhoto.className = photo.className;
+      elPhoto.replaceChildren();
+      Array.prototype.forEach.call(photo.childNodes, function (node) {
+        elPhoto.appendChild(node.cloneNode(true));
+      });
+
+      var role = card.dataset.role || '';
+      elRole.textContent = role;
+      elRole.hidden = !role;
+      elTitle.textContent = card.querySelector('.speaker__name').textContent;
+
+      var tag = card.querySelector('.tag');
+      elTag.textContent = tag ? tag.textContent : '';
+      elTag.className = tag ? tag.className : 'tag';
+
+      elTalk.textContent = card.querySelector('.speaker__talk').textContent;
+      elBio.textContent = card.dataset.bio || '';
+
+      var href = card.dataset.linkedin || '';
+      if (href) {
+        elLinkedin.href = href;
+        elLinkedin.hidden = false;
+      } else {
+        elLinkedin.removeAttribute('href');
+        elLinkedin.hidden = true;
+      }
+
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('button, a[href]:not([hidden])');
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    cards.forEach(function (card) {
+      var bioEl = card.querySelector('.speaker__bio');
+      var roleEl = card.querySelector('.speaker__role');
+      var linkEl = card.querySelector('.speaker__linkedin');
+      var actionsEl = card.querySelector('.speaker__actions');
+
+      var role = roleEl ? roleEl.textContent.trim() : '';
+      card.dataset.role = role;
+      if (roleEl && !role) roleEl.remove();
+      var bio = bioEl ? bioEl.textContent.trim().replace(/\s+/g, ' ') : '';
+      var href = linkEl ? (linkEl.getAttribute('href') || '').trim() : '';
+
+      card.dataset.bio = bio;
+      card.dataset.linkedin = href;
+
+      // Sem URL preenchida o link vira ruído — some do card.
+      if (linkEl && !href) linkEl.remove();
+
+      if (!bioEl) return;
+      if (!bio) { bioEl.remove(); return; }
+
+      bioEl.textContent = truncate(bio, BIO_LIMIT);
+      if (bio.length <= BIO_LIMIT) return;
+
+      var more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'speaker__more';
+      more.textContent = 'Ler mais';
+      more.setAttribute('aria-label', 'Ler a bio completa de ' + card.querySelector('.speaker__name').textContent);
+      more.addEventListener('click', function () { openModal(card, more); });
+      if (actionsEl) actionsEl.prepend(more);
+      else bioEl.insertAdjacentElement('afterend', more);
     });
 
     closeBtn.addEventListener('click', closeModal);

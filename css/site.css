@@ -106,6 +106,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .tag--terra  { background: var(--terra-100);  color: var(--terra-700); }
 .tag--amber  { background: var(--amber-100);  color: var(--terra-700); } /* amber-600 only hit 3.65:1 on amber-100 */
 .tag--cactus { background: var(--cactus-100); color: var(--cactus-600); }
+.tag--agave  { background: var(--agave-100);  color: var(--agave-600); }
 
 /* ---------- Badge (DS: components/display/Badge.jsx) ---------- */
 .badge {
@@ -356,6 +357,33 @@ section[id], div[id] { scroll-margin-top: 84px; }
 }
 .agenda-row__title { font-family: var(--font-display); font-size: 19px; margin: 0; color: var(--sand-50); line-height: 1.2; }
 .agenda-row__desc { margin: 6px 0 0; font-size: 14px; line-height: 1.5; color: var(--text-on-ink-muted); max-width: 640px; }
+.agenda-row__who {
+  margin: 6px 0 0; font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+  letter-spacing: 0.03em; color: var(--amber-300);
+}
+
+/* parallel track (minicursos running alongside the main stage) */
+.agenda-track {
+  border: 1px dashed rgba(246,197,108,0.45);
+  border-radius: var(--radius-lg);
+  background: rgba(46,122,111,0.10);
+  padding: 18px 24px 20px;
+}
+.agenda-track__head { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 14px; }
+.agenda-track__note { margin: 0; flex: 1 1 260px; font-size: 13px; line-height: 1.5; color: var(--text-on-ink-muted); }
+.agenda-track__items { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+.agenda-track__item {
+  background: rgba(245,234,208,0.05);
+  border: 1px solid var(--border-on-ink);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+}
+.agenda-track__tag {
+  display: block; margin-bottom: 8px;
+  font-family: var(--font-mono); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em; color: var(--agave-100);
+}
+.agenda-track__item .agenda-row__title { font-size: 17px; }
 .chip {
   font-family: var(--font-mono); font-size: 11px; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em; padding: 4px 11px;
@@ -368,6 +396,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .card .chip--gold { background: var(--amber-100); color: var(--terra-700); }
 .chip--sponsor { background: rgba(216,125,14,0.2); color: var(--amber-300); }
 .chip--micro { background: rgba(206,122,46,0.22); color: var(--terra-100); }
+.chip--course { background: rgba(46,122,111,0.35); color: var(--agave-100); }
 .agenda-note {
   margin-top: 18px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   font-family: var(--font-mono); font-size: 12px; text-transform: uppercase;
@@ -728,6 +757,8 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
   .agenda-head { padding: 44px 20px 24px; }
   .agenda-body { padding: 8px 20px 48px; }
   .agenda-row__inner { grid-template-columns: 1fr; gap: 8px; padding: 16px 18px; }
+  .agenda-track { padding: 16px 18px; }
+  .agenda-track__items { grid-template-columns: 1fr; }
   .agenda-row__desc { max-width: none; }
   .agenda-row__inner .chip { justify-self: start; }
 
@@ -753,6 +784,77 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
   .site-footer { padding: 40px 20px 28px; }
   .site-footer__cols { gap: 32px; }
 }
+
+/* ---------- speakers (palestrantes confirmados) ---------- */
+.speaker-group { margin-top: 44px; }
+.speaker-group__title {
+  font-family: var(--font-display); font-size: 24px; margin: 8px 0 20px;
+  color: var(--text-strong);
+}
+.speaker-grid { gap: 22px; align-items: start; }
+
+/* O retrato manda no card: 4:5, sangrando até a borda, com a moldura do card
+   por cima (o mesmo enquadramento do card de divulgação das palestras). */
+.speaker { display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+.speaker__photo {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  background: var(--terra-100);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.speaker__photo img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.speaker__photo--initials {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: clamp(52px, 9vw, 72px);
+  font-weight: var(--fw-semibold); letter-spacing: 0.04em;
+  color: var(--terra-700);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.5), transparent 60%),
+    var(--terra-100);
+}
+
+.speaker__meta { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px 22px; flex: 1; }
+.speaker__meta .tag { align-self: flex-start; font-size: 12px; padding: 4px 11px; }
+.speaker__name {
+  font-family: var(--font-display); font-size: 21px; line-height: 1.15;
+  margin: 0; color: var(--text-strong);
+}
+.speaker__role { margin: -4px 0 0; font-size: 14px; line-height: 1.4; color: var(--text-subtle); }
+/* o tema da palestra em destaque, como no card de divulgação */
+.speaker__talk {
+  margin: 4px 0 0; padding: 12px 14px;
+  background: var(--surface-sunken); border-radius: var(--radius-sm);
+  font-size: 15px; line-height: 1.45; color: var(--text-strong); font-weight: var(--fw-medium);
+}
+.speaker__bio { margin: 0; font-size: 14px; line-height: 1.6; color: var(--text-muted); }
+.speaker__actions {
+  margin-top: auto; padding-top: 6px;
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; flex-wrap: wrap;
+}
+.speaker__more {
+  padding: 0; border: 0; background: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 14px; font-weight: var(--fw-semibold);
+  color: var(--text-link); text-decoration: underline;
+}
+.speaker__more:hover { color: var(--text-link-hover); }
+.speaker__linkedin {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-size: 14px; font-weight: var(--fw-medium); color: var(--text-link);
+}
+.speaker__linkedin:hover { color: var(--text-link-hover); text-decoration: underline; }
+
+/* no modal o mesmo retrato vira um quadrado compacto ao lado do nome */
+.modal--speaker { max-width: 560px; }
+.modal--speaker .modal__title { margin: 0 0 8px; }
+.modal--speaker .speaker__head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; padding-right: 36px; }
+.modal--speaker .speaker__photo {
+  width: 96px; flex-shrink: 0; aspect-ratio: 1 / 1;
+  border: 0; border-radius: var(--radius-md); overflow: hidden;
+}
+.modal--speaker .speaker__photo--initials { font-size: 34px; }
+.modal--speaker .speaker__talk { margin: 0 0 14px; font-size: 16px; }
+.modal--speaker .modal__text { white-space: pre-line; }
 
 /* ---------- modal ---------- */
 body.modal-open { overflow: hidden; }
