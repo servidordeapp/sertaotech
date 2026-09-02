@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GUIA DE PERGUNTAS — MESA REDONDA</title>
+<style>
+  @page { size: A4 portrait; margin: 10mm; }
+
+  :root {
+    --ink: #16130f;
+    --muted: #5c554c;
+    --line: #d9d2c7;
+    --terra: #b4451f;
+    --amber: #b8860b;
+    --paper: #fff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #efece6;
+    color: var(--ink);
+    font: 400 10.5pt/1.45 "Georgia", "Iowan Old Style", serif;
+  }
+
+  .capa, .folha {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 8mm;
+    padding: 10mm;
+    background: var(--paper);
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .capa { justify-content: center; gap: 6mm; text-align: center; }
+  .capa h1 { font-size: 30pt; line-height: 1.1; margin: 0; letter-spacing: -.5pt; }
+  .capa .sub { font-size: 12pt; color: var(--muted); margin: 0; }
+  .capa .legenda {
+    margin: 6mm auto 0;
+    max-width: 130mm;
+    padding: 5mm;
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    font-size: 10pt;
+    color: var(--muted);
+    text-align: left;
+  }
+  .capa .legenda p { margin: 0 0 2mm; }
+  .capa .legenda p:last-child { margin: 0; }
+
+  /* duas metades por folha, com linha de corte no meio */
+  .folha { padding: 0; gap: 0; }
+  .bloco {
+    flex: 1 1 50%;
+    min-height: 138.5mm;
+    max-height: 138.5mm;
+    padding: 9mm 11mm;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .bloco + .bloco { border-top: 1px dashed var(--line); }
+
+  .bloco__head {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2mm;
+    margin-bottom: 3.5mm;
+  }
+  .bloco__num {
+    display: block;
+    font: 700 8pt/1 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1.5mm;
+  }
+  .bloco__title {
+    margin: 0;
+    font: 700 13pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -.2pt;
+  }
+
+  .bloco__body { flex: 1; min-height: 0; }
+  .bloco__body > :first-child { margin-top: 0; }
+  p { margin: 0 0 2.5mm; }
+
+  /* o que o cerimonialista fala em voz alta */
+  .fala {
+    margin: 0 0 3mm;
+    padding: 0 0 0 5mm;
+    border-left: 3px solid var(--amber);
+    font-size: 11pt;
+  }
+  .fala p { margin: 0 0 2.5mm; }
+  .fala p:last-child { margin: 0; }
+  .fala ul { margin: 0 0 2mm; padding-left: 5mm; }
+
+  .cue {
+    font: 700 8.5pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: .6pt;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1.5mm;
+  }
+
+  .alerta {
+    font: 400 9pt/1.35 "Helvetica Neue", Arial, sans-serif;
+    color: var(--terra);
+    margin: 0 0 1.5mm;
+  }
+
+  /* lacunas a preencher a mao antes de imprimir */
+  .fill {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.5pt;
+    background: #fdf3d3;
+    border-bottom: 1px solid var(--amber);
+    padding: 0 1mm;
+  }
+
+  h3 {
+    margin: 0 0 2mm;
+    font: 700 10pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .5pt;
+  }
+
+  ul { margin: 0 0 2.5mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font: 400 8pt/1.25 "Helvetica Neue", Arial, sans-serif;
+  }
+  th, td { padding: .8mm 1.5mm; text-align: left; border-bottom: .5px solid var(--line); }
+  th { text-transform: uppercase; font-size: 7pt; letter-spacing: .5pt; color: var(--muted); }
+  td:first-child, td:nth-child(2) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  @media print {
+    body { background: none; }
+    .capa, .folha {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      min-height: auto;
+      height: 277mm;
+      page-break-after: always;
+      break-after: page;
+    }
+    .capa { padding: 30mm 15mm; }
+    .bloco { min-height: 138.5mm; max-height: 138.5mm; padding: 8mm 6mm; }
+    .folha:last-child { page-break-after: auto; break-after: auto; }
+  }
+</style>
+</head>
+<body>
+<section class="capa">
+  <h1>GUIA DE PERGUNTAS — MESA REDONDA</h1>
+  <p class="sub"><strong>Sertão Tech 2026 · 2ª edição</strong> — Roda de Conversa: Transição de Carreira para Tecnologia · 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 16h55 às 17h25</p>
+  <div class="legenda"><p><strong>Legenda:</strong> 🎤 pergunta feita em voz alta · ⏱️ horário previsto · ⚠️ atenção do mediador</p><p>Textos entre <span class="fill">[colchetes]</span> devem ser confirmados com a organização antes do evento.</p>
+    <p><strong>Como imprimir:</strong> A4, retrato, margens padrão, sem redimensionar. Cada folha traz dois blocos — corte ou dobre na linha tracejada do meio.</p>
+    <p>Os campos destacados em amarelo precisam ser preenchidos com a organização antes de imprimir.</p>
+  </div>
+</section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 00</span><h2 class="bloco__title">NOTAS RÁPIDAS (não ler)</h2></header><div class="bloco__body"><ul><li><strong>Duração total: 30 min</strong>, das 16h55 às 17h25. Os tempos já incluem as perguntas do público.</li><li>A apresentação das convidadas já foi feita pelo cerimonialista. <strong>Não reapresentar</strong> — entrar direto na primeira pergunta.</li><li><strong>Regra de ouro:</strong> ninguém responde tudo. Cada rodada tem uma pergunta-âncora para todas e perguntas dirigidas a uma convidada específica.</li><li><strong>Tempo de resposta:</strong> 60 a 90 segundos por convidada. Se passar de 2 min, cortar com educação: <em>&quot;Perfeito — quero ouvir as outras nesse mesmo ponto.&quot;</em></li><li>Sempre <strong>nomear quem responde primeiro</strong>. Pergunta jogada ao ar gera silêncio.</li><li>Alternar a ordem de quem começa a cada rodada, para não sobrecarregar sempre a mesma pessoa.</li><li>Pronúncias: <strong>Sâmyla</strong> (Sâmila) · <strong>Celenny</strong> (Selêni) · <strong>Katriane</strong> (Katriâne).</li><li>Se uma rodada estourar, <strong>cortar a Rodada 4</strong> — as perguntas do público são prioridade.</li></ul></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 00-B</span><h2 class="bloco__title">GRADE DE TEMPO (não ler)</h2></header><div class="bloco__body"><p>Referência rápida de início e fim de cada rodada.</p>
+<table><thead><tr><th>Início</th><th>Fim</th><th>Rodada</th><th>Duração</th></tr></thead><tbody><tr><td>16h55</td><td>16h58</td><td>Abertura da roda e enquadramento do tema</td><td>3 min</td></tr><tr><td>16h58</td><td>17h03</td><td>Rodada 1 — O ponto de partida</td><td>5 min</td></tr><tr><td>17h03</td><td>17h08</td><td>Rodada 2 — O ponto de virada</td><td>5 min</td></tr><tr><td>17h08</td><td>17h13</td><td>Rodada 3 — O mercado por dentro</td><td>5 min</td></tr><tr><td>17h13</td><td>17h17</td><td>Rodada 4 — Mitos, erros e o que ninguém conta</td><td>4 min</td></tr><tr><td>17h17</td><td>17h22</td><td>Perguntas do público</td><td>5 min</td></tr><tr><td>17h22</td><td>17h25</td><td>Fechamento — uma frase de cada convidada</td><td>3 min</td></tr></tbody></table>
+<p class="alerta">⚠️ Microfone volante posicionado na plateia a partir das 17h13.</p>
+<p class="alerta">⚠️ Cartaz de tempo: sinalizar 17h20 (faltam 5) e 17h24 (faltam 60 segundos).</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 00-C</span><h2 class="bloco__title">QUEM É QUEM (não ler)</h2></header><div class="bloco__body"><p>Colinha de contexto para direcionar as perguntas certas para a pessoa certa.</p>
+<ul><li><strong>Maria Katriane</strong> — Product Manager na PlayDevs, pós-graduanda em Digital Product Management (FIAP), representante do PHP Women no Piauí, organizadora de PHPPI, PHPeste e Sertão Tech. → <strong>produto, comunidade, liderança</strong>.</li><li><strong>Bia Thereza</strong> — mestranda em Biotecnologia pela UFDPar, Embaixadora Estudantil Google, formação em Ciências Biológicas e Informática, estuda IA e Visão Computacional aplicadas à saúde. → <strong>academia, pesquisa, migração de outra ciência</strong>.</li><li><strong>Sâmyla Alves</strong> — Tech Recruiter da Beyond Soluções, recrutamento ponta a ponta para BTG Pactual, XP Investimentos e Banco Itaú. → <strong>o outro lado da mesa: currículo, entrevista, o que a empresa procura</strong>.</li><li><strong>Celenny Sousa</strong> — Analista de Garantia de Qualidade na Serasa Experian, bacharela em Ciência da Computação (UESPI), passou por BTG Pactual, FTeam e Lojas Quero-Quero, criou o <strong>@celycodes</strong> e coorganiza o <strong>GDG Parnaíba</strong>. → <strong>QA, primeiro emprego, produção de conteúdo</strong>.</li></ul></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 01</span><h2 class="bloco__title">⏱️ 16h55 → 16h58 · ABERTURA DA RODA</h2></header><div class="bloco__body"><p><strong>Duração: 3 min</strong> · próxima etapa: Rodada 1, 16h58.</p>
+<p class="cue"><strong>Enquadramento do tema:</strong></p>
+<blockquote class="fala"><p>Essa roda tem um endereço muito claro: quem está aqui pensando em mudar de área — ou já começou a mudar e não sabe se está no caminho certo.</p><p>Temos quatro trajetórias diferentes no palco: produto, pesquisa, recrutamento e qualidade de software. Nenhuma delas foi uma linha reta.</p><p>A regra é simples: são quatro rodadas de perguntas e, a partir das <strong>17h17</strong>, o microfone abre para o público. Já vá preparando a sua pergunta — vale pergunta prática, vale pergunta difícil.</p></blockquote>
+<p class="alerta">⚠️ Confirmar que as 4 convidadas estão com microfone testado antes de iniciar.</p>
+<p class="alerta">⚠️ Não reapresentar as convidadas — isso já foi feito na chamada ao palco.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 02</span><h2 class="bloco__title">⏱️ 16h58 → 17h03 · RODADA 1 · O PONTO DE PARTIDA</h2></header><div class="bloco__body"><p><strong>Duração: 5 min</strong> · até 75 segundos por convidada · próxima etapa: Rodada 2, 17h03.</p>
+<p class="cue"><strong>Pergunta-âncora (todas respondem — começar pela Bia Thereza):</strong></p>
+<blockquote class="fala"><p>Em uma frase: <strong>de onde você veio e onde você está hoje?</strong> E, logo depois, me conta qual foi a primeira vez que você pensou &quot;isso aqui é pra mim&quot;.</p></blockquote>
+<p class="cue"><strong>Dirigida — Bia Thereza:</strong></p>
+<blockquote class="fala"><p>Você veio das Ciências Biológicas para a Biotecnologia com Inteligência Artificial. O que da sua formação original virou vantagem — e não peso — quando você chegou na tecnologia?</p></blockquote>
+<p class="cue"><strong>Dirigida — Celenny Sousa:</strong></p>
+<blockquote class="fala"><p>Você fez Ciência da Computação e mesmo assim escolheu qualidade de software, que não é o caminho que a maioria imagina. Como você chegou em QA?</p></blockquote>
+<p class="alerta">⚠️ Ordem sugerida: Bia → Celenny → Katriane → Sâmyla.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 03</span><h2 class="bloco__title">⏱️ 17h03 → 17h08 · RODADA 2 · O PONTO DE VIRADA</h2></header><div class="bloco__body"><p><strong>Duração: 5 min</strong> · até 75 segundos por convidada · próxima etapa: Rodada 3, 17h08.</p>
+<p class="cue"><strong>Pergunta-âncora (todas respondem — começar pela Maria Katriane):</strong></p>
+<blockquote class="fala"><p>Toda transição tem um momento em que a coisa fica concreta: a primeira entrevista, o primeiro projeto, o primeiro &quot;sim&quot;. <strong>Qual foi o seu?</strong> E o que abriu essa porta: curso, comunidade, indicação ou insistência pura?</p></blockquote>
+<p class="cue"><strong>Dirigida — Maria Katriane:</strong></p>
+<blockquote class="fala"><p>Você organiza comunidade há anos — PHPPI, PHP Women, PHPeste, esse evento aqui. Na prática, o que a comunidade te deu que nenhum curso daria?</p></blockquote>
+<p class="cue"><strong>Dirigida — Celenny Sousa:</strong></p>
+<blockquote class="fala"><p>Entre a faculdade e a Serasa você passou por BTG, FTeam e Lojas Quero-Quero. Olhando pra trás, qual dessas passagens mais mudou o seu jeito de trabalhar?</p></blockquote>
+<p class="alerta">⚠️ Se alguém estender demais, cortar com: <em>&quot;Guarda esse detalhe — ele vai voltar na próxima pergunta.&quot;</em></p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 04</span><h2 class="bloco__title">⏱️ 17h08 → 17h13 · RODADA 3 · O MERCADO POR DENTRO</h2></header><div class="bloco__body"><p><strong>Duração: 5 min</strong> · rodada ancorada na Sâmyla · próxima etapa: Rodada 4, 17h13.</p>
+<p class="cue"><strong>Dirigida — Sâmyla Alves (começar por ela, até 2 min):</strong></p>
+<blockquote class="fala"><p>Você recruta para BTG, XP e Itaú — você vê os dois lados da mesa. Quando chega o currículo de alguém em transição, <strong>o que faz esse currículo avançar?</strong> E o que faz ele parar na primeira triagem?</p></blockquote>
+<p class="cue"><strong>Follow-up — Sâmyla Alves:</strong></p>
+<blockquote class="fala"><p>A pergunta que todo mundo aqui quer fazer: <strong>falta de experiência formal elimina o candidato?</strong> Projeto pessoal, freela e comunidade contam de verdade?</p></blockquote>
+<p class="cue"><strong>Abrir para as demais (60 segundos cada):</strong></p>
+<blockquote class="fala"><p>Do lado de dentro da empresa: <strong>o que realmente pesou</strong> na hora de te contratarem — ou de você contratar alguém?</p></blockquote>
+<p class="alerta">⚠️ Esta é a rodada mais útil para o público. Se o tempo apertar, roubar minutos da Rodada 4, nunca desta.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 05</span><h2 class="bloco__title">⏱️ 17h13 → 17h17 · RODADA 4 · MITOS, ERROS E O QUE NINGUÉM CONTA</h2></header><div class="bloco__body"><p><strong>Duração: 4 min</strong> · resposta curta, até 45 segundos cada · próxima etapa: perguntas do público, 17h17.</p>
+<p class="cue"><strong>Pergunta-âncora (rodada rápida — começar pela Celenny):</strong></p>
+<blockquote class="fala"><p>Rodada relâmpago: <strong>qual é a maior mentira que contam sobre entrar na área de tecnologia?</strong></p></blockquote>
+<p class="cue"><strong>Segunda volta (rápida, começar pela Sâmyla):</strong></p>
+<blockquote class="fala"><p>E o erro que você cometeu na sua transição e que faria diferente hoje?</p></blockquote>
+<p class="cue"><strong>Dirigida — Bia Thereza:</strong></p>
+<blockquote class="fala"><p>Você concilia mestrado e tecnologia. Para quem está estudando e trabalhando ao mesmo tempo: <strong>o que você largou</strong> para conseguir dar conta?</p></blockquote>
+<p class="alerta">⚠️ Rodada de ritmo acelerado. Cobrar concisão: <em>&quot;Em uma frase.&quot;</em></p>
+<p class="alerta">⚠️ Às 17h16, avisar a plateia: <em>&quot;Vamos abrir o microfone — levantem a mão.&quot;</em></p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 06</span><h2 class="bloco__title">⏱️ 17h17 → 17h22 · PERGUNTAS DO PÚBLICO</h2></header><div class="bloco__body"><p><strong>Duração: 5 min</strong> · 3 a 4 perguntas · próxima etapa: fechamento, 17h22.</p>
+<p class="cue"><strong>Abertura do microfone:</strong></p>
+<blockquote class="fala"><p>Microfone aberto. Duas combinações: <strong>pergunta curta</strong> e diga <strong>para quem</strong> é a pergunta. Se for para todas, avise também.</p></blockquote>
+<p class="cue"><strong>Se ninguém levantar a mão (usar imediatamente, sem esperar):</strong></p>
+<blockquote class="fala"><p>Enquanto o microfone chega, deixo uma que sempre aparece nos bastidores: <strong>quanto tempo leva, de verdade, entre decidir mudar e receber o primeiro salário na área?</strong></p></blockquote>
+<p class="cue"><strong>Encerrando as perguntas:</strong></p>
+<blockquote class="fala"><p>Vamos pegar mais uma última pergunta e partir para o fechamento.</p></blockquote>
+<p class="alerta">⚠️ Repetir a pergunta no microfone antes de passar para a convidada — quem está no fundo do auditório não escuta.</p>
+<p class="alerta">⚠️ Se a pergunta virar depoimento longo, resumir: <em>&quot;Entendi — a sua pergunta é <span class="fill">[reformular em uma frase]</span>, certo?&quot;</em></p>
+<p class="alerta">⚠️ Cortar o microfone às 17h22, mesmo com mãos levantadas. Convidar a continuar a conversa no coffee break.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 07</span><h2 class="bloco__title">⏱️ 17h22 → 17h25 · FECHAMENTO</h2></header><div class="bloco__body"><p><strong>Duração: 3 min</strong> · fim da roda às 17h25 · próxima atividade: coffee break, 17h25.</p>
+<p class="cue"><strong>Volta final (uma frase por convidada — começar pela Sâmyla, terminar na Katriane):</strong></p>
+<blockquote class="fala"><p>Última pergunta, e a resposta é <strong>uma frase só</strong>: para a pessoa que está sentada aí na plateia hoje pensando em mudar de área — <strong>o que ela faz na segunda-feira de manhã?</strong></p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Fica registrado: nenhuma das quatro trajetórias aqui foi linear, e nenhuma delas começou pronta.</p><p>Muito obrigado, <strong>Maria Katriane</strong>, <strong>Bia Thereza</strong>, <strong>Sâmyla</strong> e <strong>Celenny</strong>. Uma salva de palmas para as nossas convidadas!</p><p>Elas continuam por aqui no coffee break — quem ficou com pergunta na mão, é a hora.</p></blockquote>
+<p class="alerta">⚠️ Devolver o palco ao cerimonialista para o anúncio do coffee break.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 08</span><h2 class="bloco__title">CORINGA · PERGUNTAS RESERVA</h2></header><div class="bloco__body"><p>Usar se sobrar tempo, se uma rodada morrer rápido ou se o público não perguntar.</p>
+<p class="cue"><strong>Para todas:</strong></p>
+<blockquote class="fala"><ul><li>Quanto tempo, na sua conta, levou da decisão até o primeiro trabalho pago na área?</li><li>O que você estudou que <strong>não</strong> serviu para nada?</li><li>Como você lidou com quem disse que era tarde demais para mudar?</li><li>Trabalho remoto de Parnaíba: o que muda de verdade no dia a dia?</li><li>Qual foi a pior entrevista que você fez — e o que aprendeu com ela?</li></ul></blockquote>
+<p class="cue"><strong>Dirigidas:</strong></p>
+<blockquote class="fala"><ul><li><strong>Katriane:</strong> o que uma Product Manager faz numa segunda-feira, na prática?</li><li><strong>Bia:</strong> dá para fazer pesquisa em IA aqui no Piauí, ou tem que sair?</li><li><strong>Sâmyla:</strong> quanto o LinkedIn realmente importa na triagem?</li><li><strong>Celenny:</strong> o <span class="fill">@celycodes</span> abriu porta profissional? Produzir conteúdo compensa?</li></ul></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 09</span><h2 class="bloco__title">CORINGA · CONDUÇÃO, ATRASOS E IMPREVISTOS</h2></header><div class="bloco__body"><p class="cue"><strong>Se a resposta fugir do tema:</strong></p>
+<blockquote class="fala"><p>Ótimo ponto — trazendo de volta para a transição: <span class="fill">[repetir a pergunta original em uma frase]</span>.</p></blockquote>
+<p class="cue"><strong>Se ninguém quiser começar:</strong></p>
+<blockquote class="fala"><p><span class="fill">[nome]</span>, começa por você.</p></blockquote>
+<p class="cue"><strong>Se a roda começar atrasada:</strong></p>
+<blockquote class="fala"><p>Cortar a <strong>Rodada 4</strong> inteira e reduzir a Rodada 1 para uma frase por convidada. Preservar sempre a Rodada 3 e as perguntas do público.</p></blockquote>
+<p class="cue"><strong>Se uma convidada faltar:</strong></p>
+<blockquote class="fala"><p>Não anunciar a ausência. Redistribuir as perguntas dirigidas dela entre as demais e seguir normalmente.</p></blockquote>
+<p class="alerta">⚠️ Nunca fazer pergunta sobre salário específico de empresa, sobre motivo de saída de emprego anterior ou qualquer coisa que exponha ex-empregador.</p>
+<p class="alerta">⚠️ Evitar pergunta com resposta de &quot;sim ou não&quot; — sempre começar com <em>como</em>, <em>o que</em> ou <em>qual</em>.</p></div></article></section>
+</body>
+</html>

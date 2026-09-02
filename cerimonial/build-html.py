@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Gera a versao HTML de impressao a partir do roteiro em markdown.
+"""Gera a versao HTML de impressao a partir de um roteiro em markdown.
 
 Cada bloco (## BLOCO ...) vira um cartao de meia folha A4; dois cartoes
-por folha. Uso: python3 cerimonial/build-html.py
+por folha. O HTML e gravado ao lado do markdown de origem.
+
+Uso: python3 cerimonial/build-html.py [caminho/do/roteiro.md]
+Padrao: cerimonial/roteiro-cerimonialista.md
 """
 import html
 import re
+import sys
 from pathlib import Path
 
 BASE = Path(__file__).resolve().parent
-SRC = BASE / "roteiro-cerimonialista.md"
-OUT = BASE / "roteiro-cerimonialista.html"
+DEFAULT_SRC = BASE / "roteiro-cerimonialista.md"
 
 
 def inline(text):
@@ -111,8 +114,13 @@ def cabecalho(head):
     return titulo, " ".join(sub), legenda
 
 
-def main():
-    head, blocos = parse(SRC.read_text(encoding="utf-8"))
+def main(argv):
+    src = Path(argv[1]).resolve() if len(argv) > 1 else DEFAULT_SRC
+    if not src.is_file():
+        sys.exit(f"arquivo nao encontrado: {src}")
+    out = src.with_suffix(".html")
+
+    head, blocos = parse(src.read_text(encoding="utf-8"))
     titulo, sub, legenda = cabecalho(head)
 
     cards = []
@@ -131,13 +139,13 @@ def main():
         folhas.append('<section class="folha">' + "".join(cards[i:i + 2]) + "</section>")
 
     legenda_html = "".join(f"<p>{inline(l)}</p>" for l in legenda)
-    OUT.write_text(TEMPLATE.format(
+    out.write_text(TEMPLATE.format(
         titulo=html.escape(titulo),
         sub=inline(sub),
         legenda=legenda_html,
         folhas="\n".join(folhas),
     ), encoding="utf-8")
-    print(f"{OUT} — {len(blocos)} blocos em {len(folhas)} folhas A4")
+    print(f"{out} — {len(blocos)} blocos em {len(folhas)} folhas A4")
 
 
 TEMPLATE = """<!doctype html>
@@ -315,4 +323,4 @@ TEMPLATE = """<!doctype html>
 """
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv)
