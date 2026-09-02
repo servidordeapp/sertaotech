@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ROTEIRO — CERIMONIALISTA</title>
+<style>
+  @page { size: A4 portrait; margin: 10mm; }
+
+  :root {
+    --ink: #16130f;
+    --muted: #5c554c;
+    --line: #d9d2c7;
+    --terra: #b4451f;
+    --amber: #b8860b;
+    --paper: #fff;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #efece6;
+    color: var(--ink);
+    font: 400 10.5pt/1.45 "Georgia", "Iowan Old Style", serif;
+  }
+
+  .capa, .folha {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto 8mm;
+    padding: 10mm;
+    background: var(--paper);
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .capa { justify-content: center; gap: 6mm; text-align: center; }
+  .capa h1 { font-size: 30pt; line-height: 1.1; margin: 0; letter-spacing: -.5pt; }
+  .capa .sub { font-size: 12pt; color: var(--muted); margin: 0; }
+  .capa .legenda {
+    margin: 6mm auto 0;
+    max-width: 130mm;
+    padding: 5mm;
+    border: 1px solid var(--line);
+    border-radius: 3mm;
+    font-size: 10pt;
+    color: var(--muted);
+    text-align: left;
+  }
+  .capa .legenda p { margin: 0 0 2mm; }
+  .capa .legenda p:last-child { margin: 0; }
+
+  /* duas metades por folha, com linha de corte no meio */
+  .folha { padding: 0; gap: 0; }
+  .bloco {
+    flex: 1 1 50%;
+    min-height: 138.5mm;
+    max-height: 138.5mm;
+    padding: 9mm 11mm;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .bloco + .bloco { border-top: 1px dashed var(--line); }
+
+  .bloco__head {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 2mm;
+    margin-bottom: 3.5mm;
+  }
+  .bloco__num {
+    display: block;
+    font: 700 8pt/1 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: 1.2pt;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin-bottom: 1.5mm;
+  }
+  .bloco__title {
+    margin: 0;
+    font: 700 13pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: -.2pt;
+  }
+
+  .bloco__body { flex: 1; min-height: 0; }
+  .bloco__body > :first-child { margin-top: 0; }
+  p { margin: 0 0 2.5mm; }
+
+  /* o que o cerimonialista fala em voz alta */
+  .fala {
+    margin: 0 0 3mm;
+    padding: 0 0 0 5mm;
+    border-left: 3px solid var(--amber);
+    font-size: 11pt;
+  }
+  .fala p { margin: 0 0 2.5mm; }
+  .fala p:last-child { margin: 0; }
+  .fala ul { margin: 0 0 2mm; padding-left: 5mm; }
+
+  .cue {
+    font: 700 8.5pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    letter-spacing: .6pt;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 1.5mm;
+  }
+
+  .alerta {
+    font: 400 9pt/1.35 "Helvetica Neue", Arial, sans-serif;
+    color: var(--terra);
+    margin: 0 0 1.5mm;
+  }
+
+  /* lacunas a preencher a mao antes de imprimir */
+  .fill {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-size: 9.5pt;
+    background: #fdf3d3;
+    border-bottom: 1px solid var(--amber);
+    padding: 0 1mm;
+  }
+
+  h3 {
+    margin: 0 0 2mm;
+    font: 700 10pt/1.2 "Helvetica Neue", Arial, sans-serif;
+    text-transform: uppercase;
+    letter-spacing: .5pt;
+  }
+
+  ul { margin: 0 0 2.5mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font: 400 8pt/1.25 "Helvetica Neue", Arial, sans-serif;
+  }
+  th, td { padding: .8mm 1.5mm; text-align: left; border-bottom: .5px solid var(--line); }
+  th { text-transform: uppercase; font-size: 7pt; letter-spacing: .5pt; color: var(--muted); }
+  td:first-child, td:nth-child(2) { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  @media print {
+    body { background: none; }
+    .capa, .folha {
+      margin: 0;
+      padding: 0;
+      box-shadow: none;
+      min-height: auto;
+      height: 277mm;
+      page-break-after: always;
+      break-after: page;
+    }
+    .capa { padding: 30mm 15mm; }
+    .bloco { min-height: 138.5mm; max-height: 138.5mm; padding: 8mm 6mm; }
+    .folha:last-child { page-break-after: auto; break-after: auto; }
+  }
+</style>
+</head>
+<body>
+<section class="capa">
+  <h1>ROTEIRO — CERIMONIALISTA</h1>
+  <p class="sub"><strong>Sertão Tech 2026 · 2ª edição</strong> — 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 14h às 21h30</p>
+  <div class="legenda"><p><strong>Legenda:</strong> 🎤 fala em voz alta · ⏱️ horário previsto · ⚠️ atenção da produção</p><p>Textos entre <span class="fill">[colchetes]</span> devem ser confirmados com a organização antes do evento.</p>
+    <p><strong>Como imprimir:</strong> A4, retrato, margens padrão, sem redimensionar. Cada folha traz dois blocos — corte ou dobre na linha tracejada do meio.</p>
+    <p>Os campos destacados em amarelo precisam ser preenchidos com a organização antes de imprimir.</p>
+  </div>
+</section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 00</span><h2 class="bloco__title">NOTAS RÁPIDAS (não ler)</h2></header><div class="bloco__body"><ul><li><strong>Tempos (já incluem as perguntas):</strong> Palestra 30 min · MicroTalk 15 min · Roda de conversa 30 min · Keynote 40 min · Minicurso 2h em trilha paralela.</li><li>Cada bloco traz <strong>início → fim</strong> e qual é a próxima atividade. Se uma sessão estourar o tempo, o horário de fim é a referência: cortar perguntas e seguir.</li><li>Sempre que anunciar alguém: <strong>nome → cargo/empresa → título da fala</strong>. Nessa ordem.</li><li>Ao encerrar cada fala: agradecer pelo nome, pedir palmas, emendar no próximo horário.</li><li>Se atrasar: cortar o comentário livre, manter só nome, cargo e título.</li><li>Pronúncias: <strong>Adryanne</strong> (Ádriane) · <strong>Sâmyla</strong> (Sâmila) · <strong>Celenny</strong> (Selêni) · <strong>Katriane</strong> (Katriâne) · <strong>Feitoza</strong> (Feitóza).</li><li>Minicursos são <strong>em salas separadas</strong>, em paralelo ao palco principal. Reforçar isso 3 vezes ao longo da tarde.</li></ul></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 00-B</span><h2 class="bloco__title">GRADE HORÁRIA (não ler)</h2></header><div class="bloco__body"><p>Referência rápida de início e fim de cada atividade. Os tempos já incluem as perguntas.</p>
+<table><thead><tr><th>Início</th><th>Fim</th><th>Atividade</th><th>Duração</th></tr></thead><tbody><tr><td>14h00</td><td>14h30</td><td>Credenciamento e networking</td><td>30 min</td></tr><tr><td>14h30</td><td>14h40</td><td>Abertura oficial</td><td>10 min</td></tr><tr><td>14h40</td><td>15h10</td><td>Palestra — Adryanne Kelly</td><td>30 min</td></tr><tr><td>15h00</td><td>17h00</td><td>Minicursos 1 e 2 (salas separadas, em paralelo)</td><td>2h</td></tr><tr><td>15h10</td><td>15h25</td><td>MicroTalk — Fernando Melo</td><td>15 min</td></tr><tr><td>15h25</td><td>15h40</td><td>MicroTalk — Kauê Victor</td><td>15 min</td></tr><tr><td>15h40</td><td>16h10</td><td>Palestra — Vitoria Neris</td><td>30 min</td></tr><tr><td>16h10</td><td>16h25</td><td>MicroTalk — Isaac Costa</td><td>15 min</td></tr><tr><td>16h25</td><td>16h55</td><td>Palestra — Sandro Daniel Garcia</td><td>30 min</td></tr><tr><td>16h55</td><td>17h25</td><td>Roda de conversa — 4 convidadas</td><td>30 min</td></tr><tr><td>17h25</td><td>17h55</td><td>Coffee break e networking</td><td>30 min</td></tr><tr><td>17h55</td><td>18h10</td><td>MicroTalk — Dione Bastos</td><td>15 min</td></tr><tr><td>18h10</td><td>18h40</td><td>Palestra — Silvia Azevedo</td><td>30 min</td></tr><tr><td>18h40</td><td>18h55</td><td>MicroTalk — Vilmar Aguiar</td><td>15 min</td></tr><tr><td>18h55</td><td>19h25</td><td>Palestra — Jacson Santos Silva</td><td>30 min</td></tr><tr><td>19h25</td><td>19h40</td><td>MicroTalk — Ariel Teles</td><td>15 min</td></tr><tr><td>19h40</td><td>20h10</td><td>Palestra — Sebastião Galeno</td><td>30 min</td></tr><tr><td>20h10</td><td>20h20</td><td>Momento Patrocinador Ouro + sorteio</td><td>10 min</td></tr><tr><td>20h20</td><td>21h00</td><td>Keynote — Alessandro Feitoza</td><td>40 min</td></tr><tr><td>21h00</td><td>21h15</td><td>Sorteio de brindes e agradecimentos</td><td>15 min</td></tr><tr><td>21h15</td><td>21h30</td><td>Encerramento oficial e foto</td><td>15 min</td></tr></tbody></table></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 01</span><h2 class="bloco__title">⏱️ 14h00 → 14h30 · CREDENCIAMENTO E NETWORKING</h2></header><div class="bloco__body"><p><strong>Duração: 30 min</strong> · próxima atividade: Abertura Oficial, 14h30.</p>
+<p class="cue"><em>(microfone de ambiente, tom leve, pode repetir ao longo dos 30 minutos)</em></p>
+<blockquote class="fala"><p>Boa tarde, Parnaíba! Sejam muito bem-vindas e bem-vindos ao <strong>Sertão Tech 2026</strong>, aqui na Universidade Federal do Delta do Parnaíba.</p><p>Quem ainda não fez o credenciamento, procure a nossa equipe na entrada — é rápido, é só o seu nome.</p><p>Aproveitem esses minutos pra conhecer gente nova. Esse evento é feito de conversa: ao seu lado tem estudante, tem profissional, tem quem tá começando agora e tem quem já roda há anos. Puxe assunto.</p><p>Nossa programação começa pontualmente às <strong>14h30</strong>. Peço que, até lá, todo mundo já esteja acomodado no auditório.</p></blockquote>
+<p class="alerta">⚠️ Avisar a produção quando o auditório estiver com ~70% de ocupação.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 02</span><h2 class="bloco__title">⏱️ 14h30 → 14h40 · ABERTURA OFICIAL</h2></header><div class="bloco__body"><p><strong>Duração: 10 min</strong> · próxima atividade: palestra da Adryanne Kelly, 14h40.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>Boa tarde a todas e a todos! Está oficialmente aberta a <strong>segunda edição do Sertão Tech</strong>.</p><p>Meu nome é <span class="fill">[nome do cerimonialista]</span> e eu vou conduzir a nossa programação até as 21h30 de hoje.</p><p>O Sertão Tech nasceu de uma ideia simples: <strong>tecnologia de ponta também se faz no interior</strong>. Aqui, no norte do Piauí, com gente daqui, com histórias daqui. Hoje somos um dia inteiro de palestras, microtalks, minicursos e roda de conversa — pra estudante, pra profissional e pra quem tá migrando de carreira.</p><p>Esta edição é realizada com o apoio do <strong>PHP PI</strong>, da <strong>PHPWomen PI</strong> e do <strong>Bacharelado em Inteligência Artificial da UFDPar</strong>, que nos recebe nesta casa. Uma salva de palmas pra eles!</p><p>Agradeço também aos nossos <strong>patrocinadores</strong> — <span class="fill">[ler nomes por cota: Ouro, Prata, Bronze]</span> —, que tornaram este evento possível.</p><p>Convido agora <span class="fill">[nome da organização / autoridade]</span> pra dar as boas-vindas oficiais.</p></blockquote>
+<p class="alerta">⚠️ Fala institucional: até 5 minutos. Sinalizar com o cartaz de tempo.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 03</span><h2 class="bloco__title">⏱️ 14h40 → 15h10 · PALESTRA · ADRYANNE KELLY</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade no palco: MicroTalk do Fernando Melo, 15h10.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Pra abrir o nosso palco, um tema que toca todo mundo que escreve código hoje: privacidade.</p><p>Recebo aqui a <strong>Adryanne Kelly</strong>, Fullstack Developer na <strong>Livvie</strong>, empresa sediada na Flórida. Ela é pós-graduada em Engenharia de Software com Métodos Ágeis, trabalha com Laravel e Flutter, e é organizadora da comunidade <strong>Flutterando</strong>, além de administrar a <strong>PHPPB</strong> e ser membra ativa da <strong>He4rt Developers</strong>.</p><p>A palestra dela se chama <strong>&quot;Privacidade estrutural: como o Privacy by Design muda a forma de projetar software&quot;</strong>.</p><p>Com vocês, Adryanne Kelly!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Adryanne! Uma salva de palmas.</p><p>Fica o recado: privacidade não é etapa final, é decisão de arquitetura.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 04</span><h2 class="bloco__title">⏱️ 15h00 → 17h00 · MINICURSOS · TRILHA PARALELA</h2></header><div class="bloco__body"><p><strong>Duração: 2h</strong>, em salas separadas · o palco principal segue normalmente durante todo esse tempo.</p>
+<p class="alerta">⚠️ Ler este bloco por volta das <strong>14h55</strong>, antes da palestra da Adryanne terminar, para dar tempo do deslocamento.</p>
+<p class="cue"><em>(aviso importante — falar devagar e repetir)</em></p>
+<blockquote class="fala"><p>Atenção, pessoal! Neste momento começam os nossos <strong>dois minicursos</strong>, que acontecem <strong>ao mesmo tempo, em salas separadas</strong>, em paralelo à programação do palco principal. Eles vão das <strong>15h às 17h</strong>.</p><p><strong>Minicurso 1</strong> — com <strong>Germano Gomes</strong>, engenheiro de software, desenvolvedor há 8 anos e hobbista em jogos há 12, CEO de uma empresa de tecnologia e professor. Tema: <strong>&quot;Cardinal — um simulador de mundos para desenvolvedores de jogos&quot;</strong>. Sala <span class="fill">[número]</span>.</p><p><strong>Minicurso 2</strong> — com <strong>Rodrigo Castro</strong>, o &quot;RED&quot; das comunidades, Desenvolvedor Full Stack Sênior na <strong>LWSA</strong>, especializado em Flutter e Laravel, ativo na PHP com Rapadura, He4rt Developers e Flutterando. Tema: <strong>&quot;O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA&quot;</strong>. Sala <span class="fill">[número]</span>.</p><p>Quem se inscreveu num minicurso, dirija-se agora à sala correspondente. Nossa equipe está na porta pra orientar. Quem fica no auditório, continuamos com a programação do palco em instantes.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 05</span><h2 class="bloco__title">⏱️ 15h10 → 15h25 · MICROTALK · FERNANDO MELO</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: MicroTalk do Kauê Victor, 15h25.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Seguimos no palco principal com o nosso primeiro <strong>MicroTalk</strong> — quinze minutos, direto ao ponto.</p><p>Recebo o <strong>Fernando Melo</strong>, fundador e Product Owner do <strong>DOMUS</strong>. Ele começou com formação técnica em Informática e experiência em suporte, evoluiu de atendente a gerente de onboarding na Foxinline, e hoje desenvolve o DOMUS, um SaaS para o mercado imobiliário.</p><p>O tema é <strong>&quot;Além do Código: Carreira, Product Management e Empreendedorismo&quot;</strong>.</p><p>Com vocês, Fernando Melo!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Obrigado, Fernando! Palmas pra ele.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 06</span><h2 class="bloco__title">⏱️ 15h25 → 15h40 · MICROTALK · KAUÊ VICTOR</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: palestra da Vitoria Neris, 15h40.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Nosso próximo MicroTalk fala de uma coisa que quase ninguém ensina na faculdade: como você se posiciona.</p><p>Recebo o <strong>Kauê Victor</strong>, embaixador da <strong>Stellar in Brazil</strong> e da <strong>Porto Indie</strong>. Estudante de Análise e Desenvolvimento de Sistemas, estuda Back-End com Laravel, Blockchain e desenvolvimento de jogos, participa de comunidades em todo o Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.</p><p>O tema é <strong>&quot;Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais&quot;</strong>.</p><p>Com vocês, Kauê Victor!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Valeu, Kauê! Uma salva de palmas.</p><p>E fica a dica: sigam o Kauê e os nossos palestrantes nas redes. Networking também é depois do evento.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 07</span><h2 class="bloco__title">⏱️ 15h40 → 16h10 · PALESTRA · VITORIA NERIS</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade: MicroTalk do Isaac Costa, 16h10.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Todo mundo já viu um dashboard bonito. Poucos sabem o que tem por trás dele.</p><p>Recebo a <strong>Vitoria Neris</strong>, Analista de Dados Pleno na <strong>GIF International</strong>. Bacharela em Ciência da Computação pela UESPI e pós-graduada em Ciência de Dados pela UTFPR, ela lidera uma iniciativa de documentação no setor de Tecnologia da empresa e é coorganizadora da <strong>PyLadies Parnaíba</strong>, incentivando a participação de mulheres na tecnologia.</p><p>A palestra é <strong>&quot;Antes do Gráfico: os Bastidores de um Dashboard&quot;</strong>.</p><p>Com vocês, Vitoria Neris!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Vitoria! Palmas.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 08</span><h2 class="bloco__title">⏱️ 16h10 → 16h25 · MICROTALK · ISAAC COSTA</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: palestra do Sandro Daniel Garcia, 16h25.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Agora um tema que costuma ficar invisível — até o dia em que o sistema cai.</p><p>Recebo o <strong>Isaac Costa</strong>, Tech Config II na <strong>UL Solutions</strong>. Bacharel em Sistemas de Informação, especialista em gestão de projetos, trabalha com suporte de sistemas há mais de 15 anos, sendo os últimos 6 em sistemas de larga escala. É Yellow Belt em Lean Six Sigma.</p><p>O tema é <strong>&quot;Suporte, a chave do sucesso de uma aplicação&quot;</strong>.</p><p>Com vocês, Isaac Costa!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Obrigado, Isaac! Uma salva de palmas.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 09</span><h2 class="bloco__title">⏱️ 16h25 → 16h55 · PALESTRA · SANDRO DANIEL GARCIA</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade: Roda de Conversa, 16h55.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Nossa próxima palestra vai fundo em inteligência artificial e arquitetura distribuída.</p><p>Recebo o <strong>Sandro Daniel Garcia</strong>, Co-Founder e CTO da <strong>IA Automations</strong>. Arquiteto de soluções com mais de 20 anos de experiência em sistemas bancários, distribuídos e IA aplicada. É arquiteto de software do <strong>UnitHOS</strong>, projeto acelerado pelo Startup Piauí, e criador do protocolo open source <strong>IRC-A</strong>, o Internet Relay Chat for Agents.</p><p>O tema é <strong>&quot;Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A&quot;</strong>.</p><p>Com vocês, Sandro Daniel Garcia!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Sandro! Palmas pra ele.</p></blockquote>
+<p class="alerta">⚠️ Confirmar com a produção: 4 cadeiras no palco para a roda de conversa a seguir.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 10</span><h2 class="bloco__title">⏱️ 16h55 → 17h25 · RODA DE CONVERSA (parte 1 — chamada)</h2></header><div class="bloco__body"><p><strong>Roda de conversa: 30 min</strong> no total, incluindo as perguntas do público · próxima atividade: coffee break, 17h25.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>Chegamos a um dos momentos mais esperados do dia: a nossa <strong>Roda de Conversa sobre Transição de Carreira para Tecnologia</strong>.</p><p>São quatro convidadas de áreas diferentes contando como foi migrar pra tecnologia: os desafios, os aprendizados e as oportunidades. E o mais importante: <strong>as perguntas ficam abertas ao público</strong>. Se você tá pensando em mudar de área, essa conversa é pra você — já vai preparando sua pergunta.</p><p>Chamo ao palco as nossas convidadas:</p></blockquote>
+<p><em>(chamar uma a uma, com pausa para aplausos — texto no bloco seguinte)</em></p>
+<p class="alerta">⚠️ Microfone volante disponível a partir dos 15 minutos finais.</p>
+<p class="alerta">⚠️ Sinalizar os 5 minutos finais da roda, às 17h20.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 11</span><h2 class="bloco__title">⏱️ 16h55 → 17h25 · RODA DE CONVERSA (parte 2 — apresentação das convidadas)</h2></header><div class="bloco__body"><p>Mesma sessão do bloco anterior · ler na sequência, sem pausa.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p><strong>Maria Katriane</strong> — Product Manager na <strong>PlayDevs</strong>, pós-graduanda em Digital Product Management pela FIAP, representante do <strong>PHP Women no Piauí</strong> e organizadora de comunidades e eventos como PHPPI, PHPeste e o próprio Sertão Tech.</p><p><strong>Bia Thereza</strong> — mestranda em Biotecnologia pela <strong>UFDPar</strong> e Embaixadora Estudantil Google. Tem formação em Ciências Biológicas e Informática e estuda Inteligência Artificial e Visão Computacional aplicadas à saúde.</p><p><strong>Sâmyla Alves</strong> — Tech Recruiter da <strong>Beyond Soluções</strong>, consultoria que atende o mercado financeiro. Atua no recrutamento de ponta a ponta para empresas como BTG Pactual, XP Investimentos e Banco Itaú. Ela sabe, em detalhes, o que as empresas de ponta procuram.</p><p><strong>Celenny Sousa</strong> — Analista de Garantia de Qualidade na <strong>Serasa Experian</strong>. Bacharela em Ciência da Computação pela UESPI, já passou por BTG Pactual, FTeam e Lojas Quero-Quero. Criou o <strong>@celycodes</strong> e é coorganizadora do <strong>GDG Parnaíba</strong>.</p><p>Uma salva de palmas pras nossas convidadas!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Que conversa! Obrigado, Maria Katriane, Bia Thereza, Sâmyla e Celenny. Palmas mais uma vez!</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 12</span><h2 class="bloco__title">⏱️ 17h25 → 17h55 · COFFEE BREAK &amp; NETWORKING</h2></header><div class="bloco__body"><p><strong>Duração: 30 min</strong> · próxima atividade: MicroTalk do Dione Bastos, 17h55.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>Chegou a hora do respiro: nosso <strong>coffee break</strong> está servido <span class="fill">[local]</span>.</p><p>São <strong>30 minutos</strong>. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.</p><p>Quem está nos minicursos, eles terminam agora às 17h e vocês podem se juntar a nós.</p><p>Voltamos <strong>pontualmente às 17h55</strong> com a segunda metade da programação. Não se percam por aí — a noite ainda tem muita coisa boa, incluindo a nossa keynote e o sorteio de brindes.</p></blockquote>
+<p class="alerta">⚠️ Passar na produção: conferir sorteios, brindes e a lista dos patrocinadores para o Momento Ouro.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 13</span><h2 class="bloco__title">⏱️ 17h55 → 18h10 · MICROTALK · DIONE BASTOS</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: palestra da Silvia Azevedo, 18h10.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>De volta ao palco! E a gente retoma com um tema que quase todo mundo aqui já sentiu na pele.</p><p>Recebo o <strong>Dione Bastos</strong>, Blockchain Engineer na <strong>Nearx</strong>. Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. É Mentor Técnico e Embaixador da rede <strong>Stellar na América Latina</strong>.</p><p>O tema é <strong>&quot;Como lidar com a síndrome do impostor&quot;</strong>.</p><p>Com vocês, Dione Bastos!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Obrigado, Dione! Palmas.</p><p>Se você se reconheceu nessa fala, saiba que você não é o único no auditório.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 14</span><h2 class="bloco__title">⏱️ 18h10 → 18h40 · PALESTRA · SILVIA AZEVEDO</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade: MicroTalk do Vilmar Aguiar, 18h40.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>A inteligência artificial mudou o jeito de escrever código. E o jeito de gerenciar projetos?</p><p>Recebo a <strong>Silvia Azevedo</strong>, Product Owner no <strong>Grupo Stefanini</strong>. São mais de 20 anos de experiência em transformação ágil nos setores de TIC, Financeiro, GovTech e BPO. É formada em Ciência da Computação, tem MBA em Gestão de Projetos pela FGV e as certificações PSPO I e PSPO II.</p><p>A palestra é <strong>&quot;O Gerente de Projetos de Software na Era da IA&quot;</strong>.</p><p>Com vocês, Silvia Azevedo!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Silvia! Uma salva de palmas.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 15</span><h2 class="bloco__title">⏱️ 18h40 → 18h55 · MICROTALK · VILMAR AGUIAR</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: palestra do Jacson Santos, 18h55.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>E se aquele seu projeto parado no terminal virasse negócio?</p><p>Recebo o <strong>Vilmar Aguiar de Paula Segundo</strong>, CEO do <strong>Clube Charger</strong>. Economista de formação com mente de desenvolvedor, atua na intersecção entre tecnologia, regulação e transição energética. Fundou e desenvolve o Clube Charger, plataforma implementada em eletropostos por todo o país. Tem MBA em Gestão de Energia, Petróleo e Gás e extensão em Mobilidade Elétrica pela Unicamp.</p><p>O tema é <strong>&quot;Do terminal ao mercado: como transformar seu código em um negócio real&quot;</strong>.</p><p>Com vocês, Vilmar Aguiar!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Obrigado, Vilmar! Palmas pra ele.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 16</span><h2 class="bloco__title">⏱️ 18h55 → 19h25 · PALESTRA · JACSON SANTOS SILVA</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade: MicroTalk do professor Ariel Teles, 19h25.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Dá pra construir solução profissional sem depender de software proprietário? A próxima palestra responde.</p><p>Recebo o <strong>Jacson Santos Silva</strong>, desenvolvedor sênior na <strong>Intelia</strong> e fundador da <strong>Simples Diário</strong>. São mais de 10 anos desenvolvendo aplicações web, APIs, soluções SaaS e integrações com tecnologias open source. Hoje trabalha com Conversation Intelligence e é entusiasta de Linux, Docker, Laravel, IA, WebRTC e telefonia IP.</p><p>A palestra é <strong>&quot;Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário&quot;</strong>.</p><p>Com vocês, Jacson Santos!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Jacson! Uma salva de palmas.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 17</span><h2 class="bloco__title">⏱️ 19h25 → 19h40 · MICROTALK · ARIEL TELES</h2></header><div class="bloco__body"><p><strong>MicroTalk: 15 min</strong>, conteúdo + perguntas · próxima atividade: palestra do Sebastião Galeno, 19h40.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Agora um MicroTalk pra quem tá na plateia se perguntando &quot;e depois da graduação?&quot;.</p><p>Recebo o professor <strong>Ariel Teles</strong>, Professor de Inteligência Artificial na <strong>UFDPar</strong>, Campus Ministro Reis Velloso — a casa que nos recebe hoje. Doutor em Ciência da Computação pela UFMA, com doutorado sanduíche na PUC-Rio e na Universidade do Porto, e pós-doutorado no <strong>King&#x27;s College London</strong>. Coordena o grupo de pesquisa e laboratório <strong>DeltaIA</strong> e é bolsista de produtividade do CNPq.</p><p>O tema é <strong>&quot;Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar&quot;</strong>.</p><p>Com vocês, professor Ariel Teles!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, professor Ariel! Palmas. E palmas também pra UFDPar, que abriu as portas pro Sertão Tech.</p></blockquote></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 18</span><h2 class="bloco__title">⏱️ 19h40 → 20h10 · PALESTRA · SEBASTIÃO GALENO</h2></header><div class="bloco__body"><p><strong>Palestra: 30 min</strong>, conteúdo + perguntas · próxima atividade: Momento Patrocinador Ouro, 20h10.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>A próxima palestra tem um título provocativo — e é pra estudante prestar muita atenção.</p><p>Recebo o <strong>Sebastião Galeno</strong>, Software Engineer aqui de Parnaíba. Mestre em Ciência da Computação, com especialização em Inteligência Artificial e em redes de computadores e segurança corporativa. São mais de 10 anos desenvolvendo sistemas web para empresas nacionais e internacionais.</p><p>A palestra é <strong>&quot;Além do Código: Como usar IA para faturar antes de se formar&quot;</strong>.</p><p>Com vocês, Sebastião Galeno!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Muito obrigado, Sebastião! Uma salva de palmas.</p></blockquote></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 19</span><h2 class="bloco__title">⏱️ 20h10 → 20h20 · MOMENTO PATROCINADOR OURO</h2></header><div class="bloco__body"><p><strong>Duração: 10 min</strong> (até 3 min de apresentação institucional + sorteio) · próxima atividade: keynote, 20h20.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>Esse evento é gratuito e comunitário — e ele só acontece porque tem gente que acredita nele e coloca a mão no bolso pra apoiar.</p><p>Chamo agora ao palco <span class="fill">[nome da empresa / representante]</span>, nosso patrocinador <strong>Cota Ouro</strong>, pra uma apresentação institucional. Uma salva de palmas!</p></blockquote>
+<p><em>(após a apresentação — até 3 minutos)</em></p>
+<blockquote class="fala"><p>Muito obrigado, <span class="fill">[nome]</span>! E agora vamos ao que interessa: <strong>sorteio de brindes</strong>!</p><p><span class="fill">[realizar o sorteio conforme a mecânica definida — QR code / cupom / número de inscrição]</span></p><p>Parabéns aos sorteados! Quem não ganhou agora, calma: tem mais sorteio às 21h.</p></blockquote>
+<p class="alerta">⚠️ Apresentação institucional: <strong>máximo 3 minutos</strong>. Sinalizar com cartaz.</p>
+<p class="alerta">⚠️ Ter em mãos: lista de inscritos / mecânica do sorteio / brindes separados.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 20</span><h2 class="bloco__title">⏱️ 20h20 → 21h00 · KEYNOTE · ALESSANDRO FEITOZA</h2></header><div class="bloco__body"><p><strong>Keynote: 40 min</strong>, conteúdo + perguntas · próxima atividade: sorteio e agradecimentos, 21h00.</p>
+<p class="cue"><strong>Abertura:</strong></p>
+<blockquote class="fala"><p>Senhoras e senhores, chegamos à <strong>keynote de encerramento</strong> do Sertão Tech 2026.</p><p>Recebo o <strong>Alessandro Feitoza</strong>, Senior Software Engineer e Tech Lead na <strong>Bússola Social</strong> e fundador da comunidade <strong>PHP com Rapadura</strong>. Bacharel em Sistemas de Informação, especialista em Engenharia de Software, com mais de 15 anos de experiência em desenvolvimento web. É também professor universitário e de &quot;Computarias no mei do mundo&quot;.</p><p>O tema é <strong>&quot;Revolução Programacional: a IA na era das mudanças&quot;</strong>.</p><p>Com vocês, o grande <strong>Alessandro Feitoza</strong>!</p></blockquote>
+<p class="cue"><strong>Encerramento:</strong></p>
+<blockquote class="fala"><p>Que aula! Muito obrigado, Alessandro. Uma salva de palmas de pé pra ele!</p></blockquote>
+<p class="alerta">⚠️ Sinalizar os 5 minutos finais da keynote, às 20h55.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 21</span><h2 class="bloco__title">⏱️ 21h00 → 21h15 · SORTEIO DE BRINDES E AGRADECIMENTOS</h2></header><div class="bloco__body"><p><strong>Duração: 15 min</strong> · próxima atividade: encerramento oficial, 21h15.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>E agora, o momento que todo mundo tava esperando: o <strong>sorteio final de brindes</strong> dos nossos patrocinadores!</p><p><span class="fill">[realizar os sorteios — anunciar patrocinador e brinde a cada rodada]</span></p><p>Parabéns aos sorteados! E o agradecimento mais importante da noite vai pra quem bancou esse dia:</p><p><span class="fill">[ler nomes dos patrocinadores — Ouro, Prata e Bronze]</span></p><p>E às nossas comunidades e apoiadores: <strong>PHP PI</strong>, <strong>PHPWomen PI</strong> e o <strong>Bacharelado em Inteligência Artificial da UFDPar</strong>. Palmas pra eles!</p><p>Obrigado também a cada pessoa da <strong>equipe de organização e voluntariado</strong> — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.</p></blockquote>
+<p class="alerta">⚠️ Chamar a equipe de organização pro palco ao final deste bloco.</p></div></article><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 22</span><h2 class="bloco__title">⏱️ 21h15 → 21h30 · ENCERRAMENTO OFICIAL</h2></header><div class="bloco__body"><p><strong>Duração: 15 min</strong> · fim do evento às 21h30.</p>
+<p class="cue"></p>
+<blockquote class="fala"><p>Pessoal, foram sete horas e meia de programação: <strong>7 palestras, 6 microtalks, 2 minicursos, uma roda de conversa</strong> e 19 pessoas no palco. Tudo isso aqui, no norte do Piauí.</p><p>O Sertão Tech existe pra provar uma coisa: <strong>não precisa sair daqui pra fazer tecnologia de verdade</strong>. Se você chegou hoje sem conhecer ninguém e sai com um contato novo, uma ideia nova ou a coragem de mandar a sua primeira proposta de palestra — a gente fez o nosso trabalho.</p><p>Fica o convite: continuem nas comunidades, apareçam nos encontros, e nos vemos no <strong>PHPeste</strong>.</p><p>Não esqueçam do <strong>certificado de participação</strong> — as instruções estão <span class="fill">[canal / link]</span>.</p><p>Pra fechar, peço que todo mundo venha pra frente do palco: vamos tirar a <strong>foto oficial do Sertão Tech 2026</strong>!</p><p>Muito obrigado, boa noite, e até a próxima edição!</p></blockquote>
+<p class="alerta">⚠️ Foto oficial: fotógrafo posicionado antes da chamada.</p></div></article></section>
+<section class="folha"><article class="bloco"><header class="bloco__head"><span class="bloco__num">BLOCO 23</span><h2 class="bloco__title">CORINGA · ATRASOS, IMPREVISTOS E AVISOS</h2></header><div class="bloco__body"><p class="cue"><strong>Se a programação atrasar:</strong></p>
+<blockquote class="fala"><p>Pessoal, um instante — estamos com um pequeno ajuste técnico. Aproveitem pra esticar as pernas, mas sem sair do auditório. Já voltamos.</p></blockquote>
+<p class="cue"><strong>Se o palestrante atrasar:</strong></p>
+<blockquote class="fala"><p>Enquanto nosso próximo convidado se prepara, deixo dois recados: <span class="fill">[avisos da produção]</span>. E quem ainda não seguiu o Sertão Tech nas redes, aproveita agora.</p></blockquote>
+<p class="cue"><strong>Avisos gerais (usar entre blocos):</strong></p>
+<blockquote class="fala"><ul><li>Os banheiros ficam <span class="fill">[local]</span>.</li><li>A área de networking e o painel de oportunidades estão <span class="fill">[local]</span>.</li><li>O certificado de participação será emitido pra todo mundo — <span class="fill">[como acessar]</span>.</li><li>Marquem a gente nas fotos: <strong>@sertaotech</strong> <span class="fill">[confirmar @]</span>.</li><li>Silenciem os celulares, por favor.</li></ul></blockquote>
+<p class="cue"><strong>Se precisar cortar tempo:</strong> anunciar só <strong>nome → cargo/empresa → título</strong>. Cortar o comentário de abertura.</p></div></article></section>
+</body>
+</html>
