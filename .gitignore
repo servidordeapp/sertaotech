@@ -1,3 +1,6 @@
 # Fotos e artes originais (alta resolução) usadas só para gerar os assets
 # otimizados em assets/. Ficam locais, fora do versionamento.
 /originais/
+
+# Dependências instaladas sob demanda pelos scripts de geração de arte
+/node_modules/
