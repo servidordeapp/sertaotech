@@ -246,7 +246,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤
 
-> Chegamos a um dos momentos mais esperados do dia: a nossa **Roda de Conversa sobre Transição de Carreira para Tecnologia**.
+> Chegamos a um dos momentos mais esperados do dia: a nossa **Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia**.
 >
 > São quatro convidadas de áreas diferentes contando como foi migrar pra tecnologia: os desafios, os aprendizados e as oportunidades. E o mais importante: **as perguntas ficam abertas ao público**. Se você tá pensando em mudar de área, essa conversa é pra você — já vai preparando sua pergunta.
 >

@@ -6,7 +6,7 @@ Gerar o HTML de impressão: python3 cerimonial/build-html.py mesa-redonda/guia-p
 -->
 
 # GUIA DE PERGUNTAS — MESA REDONDA
-**Sertão Tech 2026 · 2ª edição** — Roda de Conversa: Transição de Carreira para Tecnologia · 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 16h55 às 17h25
+**Sertão Tech 2026 · 2ª edição** — Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia · 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 16h55 às 17h25
 
 > **Legenda:** 🎤 pergunta feita em voz alta · ⏱️ horário previsto · ⚠️ atenção do mediador
 > Textos entre `[colchetes]` devem ser confirmados com a organização antes do evento.
