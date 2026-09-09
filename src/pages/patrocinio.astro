@@ -1,94 +1,28 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-62RC94ZH1Z"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { graph, organization, website, webpage, breadcrumb } from '../lib/schema';
 
-    gtag('config', 'G-62RC94ZH1Z');
-  </script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Patrocínio — Sertão Tech 2026 | cotas Ouro, Prata e Bronze</title>
-<meta name="description" content="Cotas de patrocínio do Sertão Tech 2026, na UFDPar, Parnaíba - PI. Compare os benefícios de Ouro, Prata e Bronze e conecte sua marca a talentos da região.">
-<meta name="theme-color" content="#3C210B">
-<link rel="canonical" href="https://osertaotech.com.br/patrocinio">
-<link rel="icon" href="/assets/logo-96.webp">
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+const title = 'Patrocínio — Sertão Tech 2026 | cotas Ouro, Prata e Bronze';
+const description =
+  'Cotas de patrocínio do Sertão Tech 2026, na UFDPar, Parnaíba - PI. Compare os benefícios de Ouro, Prata e Bronze e conecte sua marca a talentos da região.';
 
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Sertão Tech">
-<meta property="og:url" content="https://osertaotech.com.br/patrocinio">
-<meta property="og:title" content="Patrocínio — Sertão Tech 2026 | cotas Ouro, Prata e Bronze">
-<meta property="og:description" content="Compare as cotas Ouro, Prata e Bronze e conecte sua marca a talentos de tecnologia na UFDPar, em Parnaíba - PI. 09 de outubro de 2026.">
-<meta property="og:image" content="https://osertaotech.com.br/assets/og-patrocinio.jpg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Cotas de patrocínio do Sertão Tech 2026">
-<meta property="og:locale" content="pt_BR">
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Patrocínio — Sertão Tech 2026 | cotas Ouro, Prata e Bronze">
-<meta name="twitter:description" content="Compare as cotas Ouro, Prata e Bronze e conecte sua marca a talentos de tecnologia na UFDPar, em Parnaíba - PI. 09 de outubro de 2026.">
-<meta name="twitter:image" content="https://osertaotech.com.br/assets/og-patrocinio.jpg">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/ds/styles.css">
-<link rel="stylesheet" href="/css/site.css">
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" media="print" onload="this.media='all'">
-<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"></noscript>
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebPage",
-      "@id": "https://osertaotech.com.br/patrocinio#webpage",
-      "url": "https://osertaotech.com.br/patrocinio",
-      "name": "Patrocínio — Sertão Tech 2026 | cotas Ouro, Prata e Bronze",
-      "description": "Cotas de patrocínio do Sertão Tech 2026, na UFDPar, em Parnaíba - PI. Benefícios das cotas Ouro, Prata e Bronze.",
-      "inLanguage": "pt-BR",
-      "about": { "@id": "https://osertaotech.com.br/#event" },
-      "isPartOf": { "@id": "https://osertaotech.com.br/#website" },
-      "primaryImageOfPage": "https://osertaotech.com.br/assets/og-patrocinio.jpg"
-    },
-    {
-      "@type": "BreadcrumbList",
-      "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "Sertão Tech 2026", "item": "https://osertaotech.com.br/" },
-        { "@type": "ListItem", "position": 2, "name": "Patrocínio", "item": "https://osertaotech.com.br/patrocinio" }
-      ]
-    }
-  ]
-}
-</script>
-</head>
-<body>
-
-<header class="site-header">
-  <div class="site-header__inner">
-    <a class="brand" href="/">
-      <img src="/assets/logo-96.webp" alt="Sertão Tech" width="96" height="96" decoding="async" style="width: 40px; height: auto; max-width: 100%; object-fit: contain;">
-      <span class="brand__word">Sertão Tech</span>
-    </a>
-    <button class="nav-toggle" type="button" id="navToggle" aria-controls="siteNav" aria-expanded="false" aria-label="Abrir menu"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/></svg></button>
-    <nav class="site-nav" id="siteNav" aria-label="Navegação principal">
-      <a class="site-nav__link" href="/#sobre">Sobre</a>
-      <a class="site-nav__link" href="/#agenda">Cronograma</a>
-      <a class="site-nav__link" href="/palestrantes">Palestrantes</a>
-      <a class="site-nav__link" href="/caravanas">Caravanas</a>
-      <a class="site-nav__link" href="/patrocinio" aria-current="page">Patrocínio</a>
-      <span class="site-nav__sep" aria-hidden="true"></span>
-      <a class="btn btn--primary btn--sm" href="/#inscricao">Inscreva-se<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
-    </nav>
-  </div>
-</header>
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({ path: '/patrocinio', name: title, description, image: '/assets/og-patrocinio.jpg' }),
+  breadcrumb([{ name: 'Patrocínio', path: '/patrocinio' }]),
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path="/patrocinio"
+  nav="patrocinio"
+  ogDescription="Compare as cotas Ouro, Prata e Bronze e conecte sua marca a talentos de tecnologia na UFDPar, em Parnaíba - PI. 09 de outubro de 2026."
+  ogImage="/assets/og-patrocinio.jpg"
+  ogImageAlt="Cotas de patrocínio do Sertão Tech 2026"
+  jsonLd={jsonLd}
+>
 
 <main>
 
@@ -399,70 +333,7 @@
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="site-footer__top">
-      <div class="site-footer__about">
-        <span class="brand">
-          <img src="/assets/logo-96.webp" alt="" width="96" height="96" loading="lazy" decoding="async" style="width: 44px; height: auto; max-width: 100%; object-fit: contain;">
-          <span class="site-footer__word">Sertão Tech</span>
-        </span>
-        <p>09 de outubro de 2026 · UFDPar, Parnaíba - PI. Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia.</p>
-      </div>
-      <div class="site-footer__cols">
-        <div>
-          <h3><span aria-hidden="true">// </span>evento</h3>
-          <a href="/#sobre">Sobre</a>
-          <a href="/#trilhas">Conteúdo</a>
-          <a href="/#agenda">Cronograma</a>
-          <a href="/palestrantes">Palestrantes</a>
-          <a href="/caravanas">Caravanas</a>
-          <a href="/patrocinio">Patrocínio</a>
-          <a href="/#inscricao">Inscrição</a>
-        </div>
-        <div>
-          <h3><span aria-hidden="true">// </span>contato</h3>
-          <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">Instagram @osertaotech</a>
-          <a href="https://wa.me/5586999202231" target="_blank" rel="noopener">WhatsApp +55 (86) 99920-2231</a>
-        </div>
-        <div>
-          <h3><span aria-hidden="true">// </span>apoio</h3>
-          <div class="static">PHP PI</div>
-          <div class="static">PHPWomen PI</div>
-        </div>
-      </div>
-    </div>
-    <div class="site-footer__bottom">
-      <span>#sertaotech · © 2026</span>
-      <div class="social">
-        <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener" aria-label="Instagram do Sertão Tech"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg></a>
-        <a href="https://wa.me/5586999202231" target="_blank" rel="noopener" aria-label="WhatsApp da organização"><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg></a>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<script>
-  // Mobile nav toggle — the only behaviour the page needs.
-  (function () {
-    var toggle = document.getElementById('navToggle');
-    var nav = document.getElementById('siteNav');
-    if (!toggle || !nav) return;
-    toggle.addEventListener('click', function () {
-      var open = nav.classList.toggle('is-open');
-      toggle.setAttribute('aria-expanded', String(open));
-      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
-    });
-    nav.addEventListener('click', function (e) {
-      if (e.target.closest('a')) {
-        nav.classList.remove('is-open');
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Abrir menu');
-      }
-    });
-  })();
-
+<script is:inline slot="scripts">
   // Métricas de patrocinador — alimentam o relatório pós-evento.
   // Dois eventos por logo: sponsor_impression (o logo apareceu na tela) e
   // sponsor_click. A impressão é o denominador: sem ela "47 cliques" não tem
@@ -520,5 +391,4 @@
   })();
 </script>
 
-</body>
-</html>
+</BaseLayout>

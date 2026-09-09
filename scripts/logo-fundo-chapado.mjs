@@ -46,7 +46,7 @@ const TOL = 60; // distância máx. por canal pra considerar o pixel como fundo
 const ALPHA_MIN = 10; // no modo alpha, abaixo disso o pixel é canvas vazia
 const OUT_W = Number(widthArg) || 640;
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const out = path.join(repoRoot, 'assets/patrocinadores', `${slug}.webp`);
+const out = path.join(repoRoot, 'public/assets/patrocinadores', `${slug}.webp`);
 
 const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 const { width: W, height: H, channels: C } = info;

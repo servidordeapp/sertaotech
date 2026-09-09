@@ -1,0 +1,160 @@
+---
+/**
+ * Shell de toda página do site. Reproduz exatamente o <head> que as páginas
+ * estáticas tinham (mesma ordem de tags), agora numa fonte só.
+ *
+ * Detalhes que NÃO podem mudar, porque foram medidos num audit de PageSpeed:
+ *  - ds/styles.css é um arquivo concatenado (nunca @import de tokens);
+ *  - as fontes do Google entram com preload + media="print" onload swap, pra
+ *    não bloquear o primeiro paint (ver public/ds/tokens/fonts.css);
+ *  - o gtag fica inline no topo do head (is:inline impede o Astro de mover).
+ */
+import { SITE, abs, FONTS_HREF } from '../lib/site';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Caminho do site, sem domínio. Ex.: '/blog/meu-post'. */
+  path: string;
+  ogType?: 'website' | 'article';
+  ogImage?: string;
+  ogImageAlt?: string;
+  /** Descrição curta usada só nos cards sociais. Cai pra `description`. */
+  ogDescription?: string;
+  /** Grafo JSON-LD já montado por src/lib/schema.ts. */
+  jsonLd?: unknown;
+  noindex?: boolean;
+  /** Item ativo do menu, pra marcar aria-current="page". */
+  nav?: string;
+  /** Override do botão de inscrição do menu (ver SiteHeader). */
+  ctaHref?: string;
+  ctaClass?: string;
+  ctaExternal?: boolean;
+  /** Metadados de artigo (og:type article). */
+  article?: {
+    publishedTime: string;
+    modifiedTime?: string;
+    author?: string;
+    section?: string;
+    tags?: string[];
+  };
+  bodyClass?: string;
+}
+
+const {
+  title,
+  description,
+  path,
+  ogType = 'website',
+  ogImage = SITE.defaultOgImage,
+  ogImageAlt = SITE.defaultOgImageAlt,
+  ogDescription,
+  jsonLd,
+  noindex = false,
+  nav,
+  ctaHref,
+  ctaClass,
+  ctaExternal,
+  article,
+  bodyClass,
+} = Astro.props;
+
+const canonical = abs(path);
+const ogImageUrl = abs(ogImage);
+const socialDescription = ogDescription ?? description;
+---
+<!DOCTYPE html>
+<html lang={SITE.lang}>
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.gaId}`}></script>
+  <script is:inline set:html={`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', '${SITE.gaId}');
+  `} />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{title}</title>
+<meta name="description" content={description}>
+<meta name="theme-color" content={SITE.themeColor}>
+<link rel="canonical" href={canonical}>
+{noindex && <meta name="robots" content="noindex, follow">}
+<link rel="icon" href="/assets/logo-96.webp">
+<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png">
+<link rel="alternate" type="application/rss+xml" title="Blog do Sertão Tech" href={abs('/blog/feed.xml')}>
+
+<meta property="og:type" content={ogType}>
+<meta property="og:site_name" content={SITE.name}>
+<meta property="og:url" content={canonical}>
+<meta property="og:title" content={title}>
+<meta property="og:description" content={socialDescription}>
+<meta property="og:image" content={ogImageUrl}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content={ogImageAlt}>
+<meta property="og:locale" content={SITE.locale}>
+{article && (
+  <>
+    <meta property="article:published_time" content={article.publishedTime}>
+    {article.modifiedTime && <meta property="article:modified_time" content={article.modifiedTime}>}
+    {article.author && <meta property="article:author" content={article.author}>}
+    {article.section && <meta property="article:section" content={article.section}>}
+    {article.tags?.map((tag) => <meta property="article:tag" content={tag}>)}
+  </>
+)}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content={title}>
+<meta name="twitter:description" content={socialDescription}>
+<meta name="twitter:image" content={ogImageUrl}>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="/ds/styles.css">
+<link rel="stylesheet" href="/css/site.css">
+<link rel="stylesheet" href="/css/article.css">
+<link rel="preload" as="style" href={FONTS_HREF}>
+<link rel="stylesheet" href={FONTS_HREF} media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href={FONTS_HREF}></noscript>
+{jsonLd && (
+  <script type="application/ld+json" is:inline set:html={JSON.stringify(jsonLd, null, 2)} />
+)}
+</head>
+<body class={bodyClass}>
+
+<SiteHeader active={nav} ctaHref={ctaHref} ctaClass={ctaClass} ctaExternal={ctaExternal} />
+
+<slot />
+
+<SiteFooter />
+
+<slot name="after-footer" />
+
+<script is:inline>
+  // Mobile nav toggle — the only behaviour the page needs.
+  (function () {
+    var toggle = document.getElementById('navToggle');
+    var nav = document.getElementById('siteNav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', function () {
+      var open = nav.classList.toggle('is-open');
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Fechar menu' : 'Abrir menu');
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.closest('a')) {
+        nav.classList.remove('is-open');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menu');
+      }
+    });
+  })();
+</script>
+<slot name="scripts" />
+</body>
+</html>

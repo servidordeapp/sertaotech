@@ -1,0 +1,37 @@
+---
+/**
+ * Cabeçalho de página interna: faixa escura com trilha de navegação,
+ * eyebrow, h1 e chamada. Mesmo bloco que /patrocinio, /caravanas e
+ * /palestrantes já usavam (css/site.css: .page-head, .breadcrumb).
+ */
+export interface Props {
+  /** Trilha sem a home — ela entra sempre como primeiro item. */
+  trail: { name: string; href?: string }[];
+  eyebrow: string;
+  title: string;
+  lead?: string;
+}
+const { trail, eyebrow, title, lead } = Astro.props;
+---
+<!-- CABEÇALHO DA PÁGINA -->
+<div class="band-ink">
+  <section class="page-head">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Trilha de navegação">
+        <a href="/">Sertão Tech 2026</a>
+        {trail.map((item, i) => (
+          <>
+            <span aria-hidden="true">/</span>
+            {item.href && i < trail.length - 1
+              ? <a href={item.href}>{item.name}</a>
+              : <span>{item.name}</span>}
+          </>
+        ))}
+      </nav>
+      <span class="eyebrow eyebrow--ink">{eyebrow}</span>
+      <h1 class="page-head__title">{title}</h1>
+      {lead && <p class="section-lead" style="color: var(--text-on-ink-muted); max-width: 640px;">{lead}</p>}
+      <slot />
+    </div>
+  </section>
+</div>

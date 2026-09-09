@@ -203,9 +203,9 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${L}" height="${A}" 
 
 // O logo vem com folga transparente em volta; sem o trim ele entraria pequeno
 // demais dentro da caixa.
-const logo = await sharp(path.join(raiz, 'assets/logo.png')).trim().resize({ width: fmt.logo.largura }).toBuffer();
+const logo = await sharp(path.join(raiz, 'public/assets/logo.png')).trim().resize({ width: fmt.logo.largura }).toBuffer();
 const alturaLogo = (await sharp(logo).metadata()).height;
-const saida = path.join(raiz, 'assets', fmt.arquivo);
+const saida = path.join(raiz, 'public/assets', fmt.arquivo);
 await sharp(Buffer.from(svg))
   .composite([{ input: logo, left: fmt.logo.x, top: Math.round((A - alturaLogo) / 2) }])
   .jpeg({ quality: 88, chromaSubsampling: '4:4:4' })

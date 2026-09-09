@@ -1,0 +1,82 @@
+[
+  {
+    "@type": "HowTo",
+    "name": "Como inscrever uma caravana no Sertão Tech 2026",
+    "description": "Passo a passo para inscrever um grupo de 20 a 50 pessoas no Sertão Tech 2026.",
+    "inLanguage": "pt-BR",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Acesse o site do Sertão Tech",
+        "text": "Entre em osertaotech.com.br. Se você está lendo esta página, já está no site.",
+        "url": "https://osertaotech.com.br/caravanas#passo-1"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Clique em Inscreva-se",
+        "text": "O botão de inscrição leva você para o Sympla, a plataforma oficial de inscrições do evento.",
+        "url": "https://osertaotech.com.br/caravanas#passo-2"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Selecione o ingresso Caravana",
+        "text": "Na página do evento no Sympla, escolha o ingresso Caravana na lista de ingressos.",
+        "url": "https://osertaotech.com.br/caravanas#passo-3"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Escolha a quantidade de membros",
+        "text": "Informe quantas pessoas vão na caravana: no mínimo 20 e no máximo 50.",
+        "url": "https://osertaotech.com.br/caravanas#passo-4"
+      },
+      {
+        "@type": "HowToStep",
+        "position": 5,
+        "name": "Finalize a inscrição",
+        "text": "Preencha os dados do responsável, conclua o pagamento e guarde o comprovante enviado por e-mail.",
+        "url": "https://osertaotech.com.br/caravanas#passo-5"
+      }
+    ]
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Qual o número mínimo e máximo de pessoas em uma caravana?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A caravana vai de 20 a 50 pessoas. Abaixo de 20, a inscrição é feita pelo ingresso individual; acima de 50, fale com a organização pelo WhatsApp."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Preciso informar o nome de todos os participantes na hora da inscrição?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Quem faz a inscrição é o responsável pela caravana. A lista com o nome de cada participante pode ser enviada depois, combinada com a organização pelo WhatsApp."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Grupos com menos de 20 pessoas podem participar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sim. Nesse caso cada pessoa faz a inscrição individual pelo Sympla, pelo mesmo botão de inscrição do site."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "A organização ajuda com o transporte da caravana?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "O transporte é responsabilidade de quem organiza a caravana, mas a organização do evento ajuda com material de divulgação e com a articulação junto à instituição de ensino."
+        }
+      }
+    ]
+  }
+]
