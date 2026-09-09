@@ -1,4 +1,9 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://osertaotech.com.br/sitemap.xml
+# Documentos internos de produção (roteiro do cerimonialista, guia de perguntas
+# da mesa redonda). São páginas de trabalho, não conteúdo do site.
+Disallow: /cerimonial/
+Disallow: /mesa-redonda/
+
+Sitemap: https://osertaotech.com.br/sitemap-index.xml

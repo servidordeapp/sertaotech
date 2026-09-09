@@ -5,6 +5,7 @@ import { unified } from '@astrojs/markdown-remark';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import rehypeExternalLinks from 'rehype-external-links';
+import { rehypeTableWrap } from './src/lib/rehype-table-wrap.mjs';
 
 // Vercel serve o site com cleanUrls + trailingSlash: false, ou seja /patrocinio
 // (sem barra no fim) responde a partir de patrocinio/index.html. build.format
@@ -43,6 +44,7 @@ export default defineConfig({
         rehypeSlug,
         [rehypeAutolinkHeadings, { behavior: 'wrap', properties: { className: ['heading-anchor'] } }],
         [rehypeExternalLinks, { target: '_blank', rel: ['noopener'] }],
+        rehypeTableWrap,
       ],
     }),
   },

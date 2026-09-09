@@ -1,0 +1,117 @@
+---
+/**
+ * Índice do blog. Já nasce paginado (12 por página): com 6 posts o Astro
+ * gera só /blog, então não há URL vazia hoje — e não vai precisar renomear
+ * a rota quando chegar o 13º post.
+ */
+import type { GetStaticPaths, Page } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import PostCard from '../../components/PostCard.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { getPosts, type Post } from '../../lib/blog';
+import { graph, organization, website, webpage, breadcrumb, blog, itemList } from '../../lib/schema';
+
+export const getStaticPaths: GetStaticPaths = async ({ paginate }) => {
+  const posts = await getPosts();
+  return paginate(posts, { pageSize: 12 });
+};
+
+const { page } = Astro.props as { page: Page<Post> };
+const primeira = page.currentPage === 1;
+const path = primeira ? '/blog' : `/blog/${page.currentPage}`;
+
+const title = primeira
+  ? 'Blog do Sertão Tech — tecnologia no norte do Piauí'
+  : `Blog do Sertão Tech — página ${page.currentPage}`;
+const description =
+  'Eventos de tecnologia, carreira e comunidades no norte do Piauí. Guias práticos pra quem quer começar ou crescer na área morando no interior.';
+
+const destaque = page.data.find((p) => p.data.featured) ?? page.data[0];
+const resto = page.data.filter((p) => p !== destaque);
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  blog(),
+  webpage({ path, name: title, description, image: '/assets/og-blog.jpg', aboutEvent: false }),
+  breadcrumb([{ name: 'Blog', path: '/blog' }]),
+  itemList({
+    name: 'Posts do blog do Sertão Tech',
+    items: page.data.map((p) => ({ name: p.data.title, path: `/blog/${p.id}` })),
+  }),
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  nav="blog"
+  ogImage="/assets/og-blog.jpg"
+  ogImageAlt="Blog do Sertão Tech — evento de tecnologia em Parnaíba, PI"
+  jsonLd={jsonLd}
+  noindex={!primeira}
+>
+  <main>
+    <PageHead
+      trail={[{ name: 'Blog' }]}
+      eyebrow="// blog"
+      title="A cena tech do norte do Piauí, escrita por quem tá aqui."
+      lead="Guia de eventos, caminho pra quem tá começando, mapa das comunidades e os bastidores de quem organiza o Sertão Tech."
+    >
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/eventos-de-tecnologia-parnaiba"><Icon name="pin" />Eventos em Parnaíba</a>
+        <a class="btn btn--outline-ink btn--lg" href="/blog/feed.xml"><Icon name="rss" />Assinar o RSS</a>
+      </div>
+    </PageHead>
+
+    <section class="section">
+      <div class="container">
+        {destaque && (
+          <>
+            <span class="eyebrow">// comece por aqui</span>
+            <div class="post-grid" style="margin-top: 16px; margin-bottom: 40px;">
+              <PostCard
+                href={`/blog/${destaque.id}`}
+                title={destaque.data.title}
+                description={destaque.data.description}
+                category={destaque.data.category}
+                pubDate={destaque.data.pubDate}
+                featured
+              />
+            </div>
+          </>
+        )}
+        <span class="eyebrow">// todos os posts</span>
+        <div class="post-grid post-grid--3" style="margin-top: 16px;">
+          {resto.map((post) => (
+            <PostCard
+              href={`/blog/${post.id}`}
+              title={post.data.title}
+              description={post.data.description}
+              category={post.data.category}
+              pubDate={post.data.pubDate}
+            />
+          ))}
+        </div>
+
+        {(page.url.prev || page.url.next) && (
+          <nav class="hero__actions" style="margin-top: 40px;" aria-label="Paginação do blog">
+            {page.url.prev && <a class="btn btn--outline btn--md" href={page.url.prev}>Página anterior</a>}
+            {page.url.next && <a class="btn btn--outline btn--md" href={page.url.next}>Próxima página</a>}
+          </nav>
+        )}
+      </div>
+    </section>
+
+    <CtaBand
+      eyebrow="// bora participar?"
+      title="O blog é conversa. O evento é presencial."
+      lead="09 de outubro de 2026, das 14h às 21h30, na UFDPar em Parnaíba - PI. Inscrição a partir de R$ 20."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/#agenda"><Icon name="calendar" />Ver cronograma</a>
+    </CtaBand>
+  </main>
+</BaseLayout>

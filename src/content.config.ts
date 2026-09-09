@@ -1,4 +1,5 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 /**
@@ -31,8 +32,8 @@ const blog = defineCollection({
       description: z.string().min(80).max(165),
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
-      author: z.string().default('Sertão Tech'),
-      authorUrl: z.string().url().optional(),
+      author: z.string().default('Bruno Oliveira'),
+      authorUrl: z.string().url().default('https://osertaotech.com.br/sobre'),
       category: z.enum(CATEGORIAS),
       tags: z.array(z.string()).default([]),
       keywords: z.array(z.string()).min(1),
