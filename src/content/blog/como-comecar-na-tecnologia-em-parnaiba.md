@@ -45,7 +45,7 @@ O erro mais comum de quem começa é abrir vinte abas: front-end, back-end, dado
 Escolhe **uma** e vai fundo por uns seis meses. Se você não sabe qual, dois critérios que funcionam melhor que ranking da internet:
 
 1. **Qual delas te dá curiosidade de abrir o computador num sábado?** Motivação é combustível, e você vai precisar.
-2. **Qual delas tem gente perto de você?** Isso é o critério subestimado. Aprender uma tecnologia que a comunidade da sua cidade usa significa ter alguém pra perguntar quando travar. No norte do Piauí, PHP e JavaScript são bons exemplos — tem comunidade viva, com o **PHP PI** e a **PHPWomen PI**, gente que responde mensagem e organiza encontro.
+2. **Qual delas tem gente perto de você?** Isso é o critério subestimado. Aprender uma tecnologia que a comunidade da sua cidade usa significa ter alguém pra perguntar quando travar. No Piauí isso é fácil de checar: tem comunidade viva de **JavaScript/TypeScript**, **PHP**, **Java**, **Flutter**, **Python** e **cloud/AWS**, com grupo aberto e gente que responde mensagem. O [mapa de todas elas](/blog/comunidades-de-tecnologia-no-norte-do-piaui) tem os links.
 
 O caminho mais curto pra sair do zero e ter algo que funciona na tela é geralmente **HTML, CSS e JavaScript** — porque o retorno é visual e imediato, e isso segura a motivação nas primeiras semanas. Depois disso, escolhe se você quer ir pro back-end, pra dados ou pra mobile.
 

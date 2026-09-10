@@ -1,6 +1,6 @@
 ---
 title: "Comunidades de tecnologia no norte do Piauí: o mapa"
-description: "As comunidades de tecnologia do Piauí, uma por uma: PHP PI, PHPWomen PI, GDG Parnaíba e outras. O que cada uma faz e como entrar sem timidez."
+description: "As comunidades de tecnologia do Piauí, uma por uma: PHP PI, GDG Parnaíba, PyLadies, Flutter, Java, JS/TS e AWS. O que cada uma faz e como entrar sem timidez."
 pubDate: 2026-09-17
 author: "Bruno Oliveira"
 category: "comunidade"
@@ -17,7 +17,7 @@ faq:
   - pergunta: "Preciso saber programar pra entrar numa comunidade de tecnologia?"
     resposta: "Não. Comunidade de tecnologia não é clube fechado e ninguém pede credencial na entrada. A maioria dos grupos tem gente em todos os níveis, incluindo quem nunca escreveu uma linha de código."
   - pergunta: "As comunidades do Piauí são só de Teresina?"
-    resposta: "Não. Comunidades como PHP PI e PHPWomen PI atuam no estado inteiro e têm presença no norte do Piauí, e Parnaíba tem grupos próprios, como o GDG Parnaíba."
+    resposta: "Não. Comunidades como PHP PI, PHPWomen PI, Flutter Piauí, Java Piauí, JS/TS Piauí e o AWS User Group Piauí atuam no estado inteiro, e Parnaíba tem grupos próprios, como o GDG Parnaíba e as PyLadies Parnaíba."
   - pergunta: "Comunidade custa dinheiro?"
     resposta: "Participar de comunidade é gratuito. O que às vezes é pago são eventos maiores organizados por elas — e mesmo aí o valor costuma ser simbólico, pra cobrir custo de estrutura."
   - pergunta: "Minha comunidade não está nessa lista. Como incluir?"
@@ -38,17 +38,23 @@ Três coisas que só acontecem em grupo:
 
 **Você entra no circuito das oportunidades.** Boa parte da contratação em tecnologia nunca vira anúncio público. Começa com alguém perguntando no grupo: "conhecem alguém pra uma vaga júnior?". Você só é lembrado se você existe pra aquelas pessoas.
 
-## PHP PI
+<ul class="logo-wall logo-wall--comunidades" style="margin-bottom: 8px;">
+  <li><span class="logo-card"><p class="logo-card__name">PHP PI &amp; PHPWomen PI</p></span></li>
+  <li><span class="logo-card"><p class="logo-card__name">GDG Parnaíba</p></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/pyladies-parnaiba.webp" alt="PyLadies Parnaíba" width="319" height="320" loading="lazy" decoding="async"></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/flutter-piaui.webp" alt="Flutter Piauí" width="640" height="442" loading="lazy" decoding="async"></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/java-piaui.webp" alt="Java Piauí" width="480" height="645" loading="lazy" decoding="async"></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/js-ts-piaui.webp" alt="JS/TS Piauí" width="321" height="320" loading="lazy" decoding="async"></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/aws-user-group-piaui.webp" alt="AWS User Group Piauí" width="322" height="320" loading="lazy" decoding="async"></span></li>
+</ul>
 
-A comunidade PHP do Piauí. Reúne quem trabalha ou estuda com PHP no estado, organiza encontros e é uma das apoiadoras do [Sertão Tech](/).
+## PHP PI e PHPWomen PI
 
-PHP tem uma característica que importa pra quem tá começando por aqui: é uma linguagem com **mercado real no Brasil** — muita empresa média rodando sistema em PHP, muita vaga — e uma comunidade brasileira historicamente acolhedora. Se você quer aprender algo que tem gente perto de você pra perguntar, é uma escolha inteligente.
+As duas comunidades PHP do Piauí, que dividem o mesmo perfil: [@php.piaui](https://www.instagram.com/php.piaui/). São apoiadoras do [Sertão Tech](/) desde a 2ª edição.
 
-## PHPWomen PI
+O PHP tem uma característica que importa pra quem tá começando por aqui: é uma linguagem com **mercado real no Brasil** — muita empresa média rodando sistema em PHP, muita vaga — e uma comunidade brasileira historicamente acolhedora. Se você quer aprender algo que tem gente perto de você pra perguntar, é uma escolha inteligente.
 
-O capítulo piauiense da PHPWomen, focado em aumentar e apoiar a participação de mulheres na tecnologia. Também apoiadora do Sertão Tech.
-
-Vale dizer por que um grupo assim existe e por que ele é útil: a área de tecnologia tem uma distorção de gênero grande, e essa distorção se sustenta em parte por falta de referência e de rede. Grupo específico não fecha porta — abre uma que estava emperrada. Se você é mulher e tá começando na área no Piauí, é o primeiro lugar pra bater.
+A **PHPWomen PI** existe com um foco a mais: aumentar e apoiar a participação de mulheres na tecnologia. Vale dizer por que um grupo assim existe e por que ele é útil — a área tem uma distorção de gênero grande, e essa distorção se sustenta em parte por falta de referência e de rede. Grupo específico não fecha porta, abre uma que estava emperrada. Se você é mulher e tá começando na área no Piauí, é um bom primeiro lugar pra bater.
 
 ## GDG Parnaíba
 
@@ -56,15 +62,43 @@ O Google Developer Group de Parnaíba — capítulo local da rede mundial de GDG
 
 GDG costuma ser uma boa porta de entrada porque a rede tem formato consolidado: encontros, estudo em grupo e eventos abertos, sem exigência de nível técnico.
 
-## PHP com Rapadura
+**Onde encontrar:** [@gdgparnaiba](https://www.instagram.com/gdgparnaiba/).
 
-Comunidade nordestina em torno de PHP, fundada pelo Jacson Santos Silva — que também [sobe no palco do Sertão Tech 2026](/palestrantes), falando de open source na prática.
+## PyLadies Parnaíba
 
-Vale a menção porque escala regional importa: comunidade de cidade te dá presença, comunidade regional te dá alcance. Estar nas duas é o combo.
+Capítulo parnaibano das PyLadies, a rede internacional que trabalha pra aumentar a presença de mulheres na comunidade Python. Também é comunidade daqui, não filial de Teresina.
 
-## ParaDevs
+Python é, hoje, a porta de entrada mais comum pra quem chega na programação por dados, automação ou inteligência artificial — e a UFDPar ter curso de IA em Parnaíba torna essa combinação particularmente útil pra quem estuda na cidade.
 
-Comunidade e iniciativa voltada a pessoas desenvolvedoras, e patrocinadora do Sertão Tech 2026. Aparece aqui porque parte do ecossistema que sustenta evento no interior não é comunidade de bairro — é gente e empresa que decide investir na região. Saber quem faz isso é útil pra quem procura vaga e pra quem procura parceiro.
+**Onde encontrar:** [@pyladiesparnaiba](https://www.instagram.com/pyladiesparnaiba/).
+
+## Flutter Piauí
+
+Comunidade estadual em torno do Flutter, o framework do Google pra construir app de Android e iOS com uma base de código só. É a comunidade mais bem equipada da lista pra quem tá começando: além dos grupos, ela aponta pro **roadmap do Flutterando**, que é um caminho de estudo estruturado e gratuito, em português.
+
+Se você quer desenvolvimento mobile e mora no Piauí, começa por aqui — e note que o Lucas Souza, que palestrou sobre arquitetura Flutter na [1ª edição do Sertão Tech](/edicoes/2025), é de Parnaíba.
+
+**Onde encontrar:** [grupo no WhatsApp](https://chat.whatsapp.com/DuqIGiftjhC4bKZUl9OTJE) · [servidor no Discord](https://discord.gg/pbcrHndeQw) · [@flutter_piaui](https://www.instagram.com/flutter_piaui/) · [roadmap de estudo](https://github.com/Flutterando/roadmap).
+
+## Java Piauí
+
+Comunidade estadual de Java. Java é a linguagem que sustenta boa parte dos sistemas de banco, seguradora, governo e empresa grande no Brasil — não é a linguagem da moda, é a linguagem que paga folha. Pra quem quer trabalho remoto com estabilidade, é um mercado grande e menos disputado por gente iniciante do que o front-end.
+
+**Onde encontrar:** [grupo no WhatsApp](https://chat.whatsapp.com/FbvVGvxgtcs1XRrjQIFmDN).
+
+## JS/TS Piauí
+
+Comunidade de pessoas desenvolvedoras JavaScript e TypeScript do Piauí.
+
+Se você tá no primeiro passo e ainda não escolheu trilha, essa é provavelmente a comunidade mais útil pra entrar hoje: JavaScript é o caminho mais curto entre "nunca programei" e "tem uma coisa minha rodando na tela", e TypeScript é o que o mercado passou a pedir por cima dele.
+
+**Onde encontrar:** [grupo no WhatsApp](https://chat.whatsapp.com/FaQb96FBbL918kHQyahW03).
+
+## AWS User Group Piauí
+
+Comunidade local dedicada a reunir entusiastas, profissionais e estudantes de tecnologia interessados em aprender e explorar o universo da **Amazon Web Services**. O grupo se propõe a ser um espaço acolhedor e colaborativo pra todos os níveis, de iniciante a especialista, com encontros regulares, palestras com profissionais de cloud, workshops práticos e networking.
+
+Cloud é uma das nove áreas do palco do [Sertão Tech 2026](/#agenda), e é um dos caminhos de carreira em que morar longe dos grandes centros pesa menos: infraestrutura é remota por definição.
 
 ## O que rola dentro da UFDPar
 

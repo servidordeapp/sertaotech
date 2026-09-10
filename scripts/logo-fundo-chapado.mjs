@@ -29,6 +29,15 @@
 //   npm i sharp        # não é dependência do site, instale sob demanda
 //   node scripts/logo-fundo-chapado.mjs "arte-original.png" nome-da-empresa [largura]
 //
+// Por padrão grava em public/assets/patrocinadores/. Para outra pasta de
+// assets (comunidades, por exemplo), passe --dir=<pasta>.
+//
+// --tol=<n> ajusta a distância por canal que ainda conta como fundo (padrão
+// 60). Baixe quando o logo tiver um tom claro perto do fundo: o mapa cinza
+// (222,222,221) do Flutter Piauí fica a 33 do branco, então com a tolerância
+// padrão ele sumia junto com o fundo. Depois de mudar a tolerância, confira a
+// arte — é exatamente esse o tipo de perda que passa despercebida.
+//
 // Depois confira o resultado sobre o cream do card antes de subir: fundo claro
 // esconde logo branco, e sobra de fundo aparece como retângulo colorido.
 
@@ -36,17 +45,20 @@ import sharp from 'sharp';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const [src, slug, widthArg] = process.argv.slice(2);
+const args = process.argv.slice(2);
+const dirArg = args.find((a) => a.startsWith('--dir='))?.slice('--dir='.length);
+const tolArg = Number(args.find((a) => a.startsWith('--tol='))?.slice('--tol='.length));
+const [src, slug, widthArg] = args.filter((a) => !a.startsWith('--'));
 if (!src || !slug) {
-  console.error('uso: node scripts/logo-fundo-chapado.mjs <arte-original> <slug> [largura]');
+  console.error('uso: node scripts/logo-fundo-chapado.mjs <arte-original> <slug> [largura] [--dir=pasta]');
   process.exit(1);
 }
 
-const TOL = 60; // distância máx. por canal pra considerar o pixel como fundo
+const TOL = Number.isFinite(tolArg) && tolArg > 0 ? tolArg : 60; // distância máx. por canal pra considerar o pixel como fundo
 const ALPHA_MIN = 10; // no modo alpha, abaixo disso o pixel é canvas vazia
 const OUT_W = Number(widthArg) || 640;
 const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const out = path.join(repoRoot, 'public/assets/patrocinadores', `${slug}.webp`);
+const out = path.join(repoRoot, 'public/assets', dirArg || 'patrocinadores', `${slug}.webp`);
 
 const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 const { width: W, height: H, channels: C } = info;
@@ -101,5 +113,5 @@ await sharp(data, { raw: { width: W, height: H, channels: C } })
 const m = await sharp(out).metadata();
 console.log(jaTransparente
   ? `arte já transparente, só cortei a canvas vazia | ${out} — ${m.width}x${m.height}`
-  : `fundo removido: rgb(${bg}) | ${out} — ${m.width}x${m.height}`);
+  : `fundo removido: rgb(${bg}) com tol ${TOL} | ${out} — ${m.width}x${m.height}`);
 console.log(`no HTML: width="${m.width}" height="${m.height}"`);

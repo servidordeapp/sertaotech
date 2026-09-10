@@ -528,6 +528,10 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .logo-wall--silver { --logo-min: 300px; --logo-h: 116px; }
 .logo-wall--bronze { --logo-min: 210px; --logo-h: 78px; }
 .logo-wall--apoio  { --logo-min: 190px; --logo-h: 72px; --logo-wall-max: 900px; }
+/* mural de comunidades dentro de um post: a coluna de leitura tem 760px, e
+ * logo de comunidade é ilustrado (mapa, mascote), não wordmark — precisa de
+ * mais altura que uma cota de apoio pra continuar legível */
+.logo-wall--comunidades { --logo-min: 168px; --logo-h: 108px; --logo-wall-max: 760px; }
 
 .logo-card {
   flex: 1;
