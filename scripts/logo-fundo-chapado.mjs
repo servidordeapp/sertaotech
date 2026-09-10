@@ -62,14 +62,44 @@ const out = path.join(repoRoot, 'public/assets', dirArg || 'patrocinadores', `${
 
 const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
 const { width: W, height: H, channels: C } = info;
-const bg = [data[0], data[1], data[2]];
+
+// A cor de fundo sai do voto dos quatro cantos, recuados alguns pixels, e não
+// do pixel (0,0): print de tela costuma trazer 1px de borda escura, e ler ela
+// como fundo faz o script apagar tudo que for perto de preto — ou seja, o
+// contorno do próprio logo. Foi o que aconteceu com o logo do GDG, cuja
+// primeira linha inteira é rgb(22,23,23).
+const INSET = Math.max(2, Math.round(Math.min(W, H) * 0.02));
+const pixel = (x, y) => {
+  const i = (y * W + x) * C;
+  return [data[i], data[i + 1], data[i + 2], data[i + 3]];
+};
+const cantos = [
+  pixel(INSET, INSET),
+  pixel(W - 1 - INSET, INSET),
+  pixel(INSET, H - 1 - INSET),
+  pixel(W - 1 - INSET, H - 1 - INSET),
+];
+const votos = new Map();
+for (const c of cantos) {
+  const chave = c.join(',');
+  votos.set(chave, (votos.get(chave) ?? 0) + 1);
+}
+const [vencedor, apoio] = [...votos.entries()].sort((a, b) => b[1] - a[1])[0];
+if (apoio < 3) {
+  console.warn(
+    `aviso: os cantos não concordam sobre a cor de fundo (${[...votos.keys()].join(' | ')}). ` +
+    `Usando ${vencedor}. Confira o resultado — arte com fundo em degradê não é caso pra este script.`,
+  );
+}
+const cantoRef = vencedor.split(',').map(Number);
+const bg = cantoRef.slice(0, 3);
 
 // Arte já transparente (export com canvas grande, tipo 16:9 de slide): o canto
 // tem alpha 0, então não há fundo pra remover — só sobra de canvas pra cortar.
 // Nesse caso keying por cor seria destrutivo: o RGB do canto costuma ser
 // rgb(0,0,0) sob alpha 0, e apagar "todo pixel perto de preto" comeria o traço
 // preto do próprio logo. Aqui o recorte sai do alpha que já veio no arquivo.
-const jaTransparente = data[3] === 0;
+const jaTransparente = cantoRef[3] === 0;
 
 let minX = W, minY = H, maxX = -1, maxY = -1;
 for (let y = 0; y < H; y++) {
