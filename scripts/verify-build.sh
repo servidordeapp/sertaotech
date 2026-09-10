@@ -153,6 +153,32 @@ else
 fi
 
 echo
+echo "== links externos =="
+
+python3 - <<'PY_EXT'
+import re, pathlib, sys
+# /links é um stub de redirecionamento: o link dele TEM que trocar a página.
+# /cerimonial e /mesa-redonda são documentos de impressão, fora do padrão.
+IGNORA = ('dist/links/', 'dist/cerimonial/', 'dist/mesa-redonda/')
+falhas = []
+for f in sorted(pathlib.Path('dist').rglob('*.html')):
+    if str(f).startswith(IGNORA):
+        continue
+    for tag in re.findall(r'<a\b[^>]*href="https?://[^"]*"[^>]*>', f.read_text(encoding='utf-8')):
+        if 'osertaotech.com.br' in tag:
+            continue
+        if 'target="_blank"' not in tag:
+            falhas.append(f'{f}: {tag[:110]}')
+        elif 'rel="noopener"' not in tag and 'noopener' not in tag:
+            falhas.append(f'{f}: target sem rel=noopener — {tag[:90]}')
+if falhas:
+    print('\n'.join('  \033[31mFALHA\033[0m link externo na mesma aba: ' + x for x in falhas))
+    sys.exit(1)
+print('  \033[32mok\033[0m   todo link externo abre em aba nova, com rel=noopener')
+PY_EXT
+[ $? -ne 0 ] && falhas=$((falhas + 1))
+
+echo
 echo "== links internos =="
 
 python3 - <<'PY'
