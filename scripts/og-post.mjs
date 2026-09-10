@@ -43,7 +43,7 @@ const MAX_LINHAS = 3;
 // Instrument Sans, de onde sai o corpo a partir do `cap` desejado.
 let CAP_HEIGHT = 0;
 
-const DOMINIO = 'osertaotech.com.br/blog';
+const DOMINIO_PADRAO = 'osertaotech.com.br/blog';
 
 // Amostradas do selo; correspondem a public/ds/tokens/colors.css.
 const COR = {
@@ -55,6 +55,25 @@ const COR = {
   barra:    '#BC5E1A',
   dominio:  '#C2661D',
 };
+
+// Páginas fora do blog que usam a mesma arte de card.
+const PAGINAS_EXTRA = [
+  {
+    arquivo: 'og-blog.jpg',
+    chapeu: '// BLOG',
+    titulo: 'A cena tech do norte do Piauí.',
+    apoio: 'BLOG DO SERTÃO TECH',
+    detalhe: 'Eventos, carreira e comunidade em Parnaíba - PI',
+  },
+  {
+    arquivo: 'og-edicoes-2025.jpg',
+    chapeu: '// 1ª EDIÇÃO · 22 AGO 2025',
+    titulo: 'Como foi o Sertão Tech 2025.',
+    apoio: '191 INSCRITOS · 91 PRESENTES',
+    detalhe: 'Faculdade Maurício de Nassau · Parnaíba - PI',
+    dominio: 'osertaotech.com.br/edicoes/2025',
+  },
+];
 
 const CATEGORIA_LABEL = {
   eventos: 'EVENTOS',
@@ -161,7 +180,7 @@ function leFrontmatter(arquivo) {
   return dados;
 }
 
-function svgArte({ chapeu, linhas, cap, corpo, tracking, apoio, detalhe, f }) {
+function svgArte({ chapeu, linhas, cap, corpo, tracking, apoio, detalhe, dominio, f }) {
   const partes = [];
   const capChapeu = 20;
 
@@ -211,7 +230,7 @@ function svgArte({ chapeu, linhas, cap, corpo, tracking, apoio, detalhe, f }) {
   partes.push(caminhoTexto(f['is-400'], detalhe, 18 / CAP_HEIGHT, X, y,
     { tracking: -0.2, cor: COR.apagado }).path);
 
-  partes.push(caminhoTexto(f['is-500'], DOMINIO, 20, X, A - 50,
+  partes.push(caminhoTexto(f['is-500'], dominio ?? DOMINIO_PADRAO, 20, X, A - 50,
     { tracking: 1.2, cor: COR.dominio }).path);
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${L}" height="${A}" viewBox="0 0 ${L} ${A}">
@@ -238,7 +257,7 @@ function svgArte({ chapeu, linhas, cap, corpo, tracking, apoio, detalhe, f }) {
 </svg>`;
 }
 
-async function gera({ arquivoSaida, chapeu, titulo, apoio, detalhe, f }) {
+async function gera({ arquivoSaida, chapeu, titulo, apoio, detalhe, dominio, f }) {
   const ajuste = ajustaTitulo(f['is-700'], titulo);
   if (!ajuste) {
     throw new Error(
@@ -247,7 +266,7 @@ async function gera({ arquivoSaida, chapeu, titulo, apoio, detalhe, f }) {
       `Encurta o título, ou define um titleSeo mais curto no frontmatter.`,
     );
   }
-  const svg = svgArte({ chapeu, ...ajuste, apoio, detalhe, f });
+  const svg = svgArte({ chapeu, ...ajuste, apoio, detalhe, dominio, f });
 
   // O logo vem com folga transparente em volta; sem o trim ele entraria
   // pequeno demais dentro da caixa.
@@ -279,7 +298,9 @@ if (arg === '--check') {
   const faltando = postsPublicados()
     .map(p => p.slug)
     .filter(slug => !fs.existsSync(path.join(SAIDA_DIR, `og-blog-${slug}.jpg`)));
-  if (!fs.existsSync(path.join(SAIDA_DIR, 'og-blog.jpg'))) faltando.push('(card do /blog)');
+  for (const extra of PAGINAS_EXTRA) {
+    if (!fs.existsSync(path.join(SAIDA_DIR, extra.arquivo))) faltando.push(`(${extra.arquivo})`);
+  }
   if (faltando.length) {
     console.error(`faltam cards de OG:\n  ${faltando.join('\n  ')}\n\nrode: node scripts/og-post.mjs --all`);
     process.exit(1);
@@ -302,14 +323,11 @@ if (arg === '--all') {
       f,
     });
   }
-  await gera({
-    arquivoSaida: path.join(SAIDA_DIR, 'og-blog.jpg'),
-    chapeu: '// BLOG',
-    titulo: 'A cena tech do norte do Piauí.',
-    apoio: 'BLOG DO SERTÃO TECH',
-    detalhe: 'Eventos, carreira e comunidade em Parnaíba - PI',
-    f,
-  });
+  // Cards das páginas que não são post mas usam a mesma arte.
+  for (const extra of PAGINAS_EXTRA) {
+    const { arquivo, ...conteudo } = extra;
+    await gera({ arquivoSaida: path.join(SAIDA_DIR, arquivo), ...conteudo, f });
+  }
 } else if (arg) {
   const arquivo = path.join(POSTS_DIR, `${arg}.md`);
   if (!fs.existsSync(arquivo)) {

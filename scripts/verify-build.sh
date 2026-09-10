@@ -202,7 +202,9 @@ for f in sorted(pathlib.Path('src/content/blog').glob('*.md')):
     bruto = f.read_text(encoding='utf-8')
     fm, corpo = bruto.split('---', 2)[1], bruto.split('---', 2)[2]
     campo = lambda k: (re.search(rf'^{k}: "(.*)"$', fm, re.M) or [None, None])[1]
-    titulo, desc = campo('title'), campo('description')
+    # o <title> publicado é o titleSeo quando existe; o `title` é o h1
+    titulo = campo('titleSeo') or campo('title')
+    desc = campo('description')
     kws = re.findall(r'^\s+- "(.+)"$', fm, re.M)
     principal = kws[0] if kws else None
 

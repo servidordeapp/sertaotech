@@ -1,7 +1,7 @@
 ---
 title: "Comunidades de tecnologia no norte do Piauí: o mapa"
 description: "As comunidades de tecnologia do Piauí, uma por uma: PHP PI, PHPWomen PI, GDG Parnaíba e outras. O que cada uma faz e como entrar sem timidez."
-pubDate: 2026-09-09
+pubDate: 2026-09-17
 author: "Bruno Oliveira"
 category: "comunidade"
 tags: ["comunidade", "php pi", "phpwomen", "parnaíba", "piauí"]

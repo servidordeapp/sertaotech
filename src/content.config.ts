@@ -33,7 +33,7 @@ const blog = defineCollection({
       pubDate: z.coerce.date(),
       updatedDate: z.coerce.date().optional(),
       author: z.string().default('Bruno Oliveira'),
-      authorUrl: z.string().url().default('https://osertaotech.com.br/sobre'),
+      authorUrl: z.string().url().default('https://www.linkedin.com/in/bruno-oliveira/'),
       category: z.enum(CATEGORIAS),
       tags: z.array(z.string()).default([]),
       keywords: z.array(z.string()).min(1),

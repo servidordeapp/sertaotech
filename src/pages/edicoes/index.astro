@@ -24,9 +24,12 @@ const description =
 // O Intl em pt-BR devolve "09 de out.", que não cabe bem numa coluna de data
 // estreita. A coluna usa o formato curto das artes do evento: "09 out".
 const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+// Lê o dia e o mês direto da string ISO em vez de passar por Date: o
+// getDate() é no fuso da máquina que faz o build, e viraria o dia seguinte
+// numa máquina a leste de Greenwich.
 const diaMes = (iso: string) => {
-  const d = new Date(iso);
-  return `${String(d.getDate()).padStart(2, '0')} ${MESES[d.getMonth()]}`;
+  const [, mes, dia] = iso.slice(0, 10).split('-');
+  return `${dia} ${MESES[Number(mes) - 1]}`;
 };
 
 const jsonLd = graph(

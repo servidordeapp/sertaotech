@@ -213,22 +213,27 @@ certa pra essa busca.
 
 ---
 
-## 7. Dados que faltam no repositório
+## 7. Peça indexação das páginas da 1ª edição
 
-Duas coisas que só você tem:
+A 1ª edição (22 de agosto de 2025, Faculdade Maurício de Nassau) já está no
+site, em duas páginas que disputam buscas diferentes:
 
-- **A 1ª edição.** Não existe nada sobre ela no repositório. Se você tem data,
-  local, público, palestrantes e fotos, é só adicionar uma entrada em
-  `src/data/edicoes.ts` e criar a página da retrospectiva — a busca por
-  "sertão tech <ano da 1ª edição>" hoje não tem destino. Sem esses dados, é
-  melhor não ter a página: retrospectiva de 150 palavras é pior que nenhuma.
-- **Seu LinkedIn.** Os posts estão assinados por "Bruno Oliveira", e o
-  `authorUrl` aponta pra `/sobre` como padrão. Com a URL do seu LinkedIn no
-  campo `authorUrl` do frontmatter (ou como novo padrão em
-  `src/content.config.ts`), a autoria fica associada a uma entidade real —
-  que é o que o Google usa como sinal de autoria.
+- `/edicoes/2025` — a ficha da edição, com `Event` marcado como
+  `EventCompleted`. É o destino de quem busca **"sertão tech 2025"**.
+- `/blog/como-foi-a-primeira-edicao-do-sertao-tech` — a retrospectiva com os
+  números e os aprendizados. Pega buscas mais longas, do tipo "como foi o
+  sertão tech".
 
----
+Peça indexação das duas no Search Console assim que publicar, e mande o link
+da retrospectiva pros três palestrantes de 2025 (Alessandro Feitoza, Lucas
+Souza e Liam Hoffman) — palestrante costuma compartilhar, e um deles volta na
+keynote de 2026.
+
+Os números publicados são os que a organização mediu: 191 inscritos, 91
+presentes, 3 palestras e 3.938 visualizações no Instagram no período. Publicar
+taxa de comparecimento é raro justamente porque costuma decepcionar — nesse
+caso ela funciona como prova de honestidade, e é o tipo de dado que gera
+citação de outros sites.
 
 ## 8. Como medir se está funcionando
 

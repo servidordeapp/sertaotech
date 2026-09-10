@@ -1,7 +1,7 @@
 ---
 title: "Vale a pena patrocinar evento de tecnologia regional?"
 description: "O que uma empresa realmente leva ao patrocinar um evento de tecnologia no interior: alcance, contratação e marca num lugar sem concorrência — e como medir se valeu."
-pubDate: 2026-09-09
+pubDate: 2026-09-24
 author: "Bruno Oliveira"
 category: "bastidores"
 tags: ["patrocínio", "empresas", "marketing", "contratação"]

@@ -13,7 +13,11 @@ export interface Props {
 }
 const { pubDate, updatedDate, author, authorUrl, category, readingMinutes, onInk = false } = Astro.props;
 
-const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+// pubDate vem do frontmatter como data pura (2026-09-11), que o zod
+// interpreta como meia-noite UTC. Sem fixar o fuso aqui, a data
+// renderizada mudaria conforme o fuso da máquina que faz o build —
+// no Brasil sairia o dia anterior.
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 const iso = (d: Date) => d.toISOString().slice(0, 10);
 ---
 <div class:list={['post-meta', onInk && 'post-meta--on-ink']}>

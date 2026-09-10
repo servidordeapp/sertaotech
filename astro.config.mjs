@@ -29,6 +29,8 @@ export default defineConfig({
           '/caravanas': { changefreq: 'monthly', priority: 0.8 },
           '/patrocinio': { changefreq: 'monthly', priority: 0.8 },
           '/edicoes': { changefreq: 'yearly', priority: 0.6 },
+          '/edicoes/2025': { changefreq: 'yearly', priority: 0.7 },
+          '/sobre': { changefreq: 'yearly', priority: 0.6 },
         };
         return { ...item, ...(tune[path] ?? { changefreq: 'monthly', priority: 0.7 }) };
       },

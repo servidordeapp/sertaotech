@@ -1,7 +1,7 @@
 ---
 title: "Sua primeira palestra em evento de tecnologia: o guia"
 description: "Como escolher o tema, escrever a proposta que passa na curadoria e sobreviver aos 30 minutos de palco na sua primeira palestra em um evento de tecnologia."
-pubDate: 2026-09-09
+pubDate: 2026-09-22
 author: "Bruno Oliveira"
 category: "carreira"
 tags: ["palestras", "carreira", "comunidade", "call for papers"]

@@ -1,0 +1,209 @@
+---
+/**
+ * Retrospectiva da 1ª edição. URL permanente pra busca "sertão tech 2025" —
+ * a home é sempre a edição vigente, então sem essa página essa busca ficaria
+ * sem destino.
+ *
+ * O Event daqui tem @id próprio (/edicoes/2025#event) e eventStatus
+ * EventCompleted. O @id #event, sem caminho, continua significando a edição
+ * corrente e mora na home.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { EDICAO_2025 as E } from '../../data/edicao-2025';
+import { graph, organization, website, webpage, breadcrumb, ID } from '../../lib/schema';
+import { abs } from '../../lib/site';
+
+const path = '/edicoes/2025';
+const title = 'Sertão Tech 2025 — como foi a 1ª edição';
+const description =
+  'A 1ª edição do Sertão Tech, em 22 de agosto de 2025, em Parnaíba - PI: 191 inscritos, 91 presentes, três palestras e uma noite inteira de conteúdo pra quem estava começando.';
+
+const evento2025 = {
+  '@type': 'Event',
+  '@id': `${abs(path)}#event`,
+  name: E.nome,
+  description:
+    'Primeira edição do Sertão Tech: uma noite de palestras e networking sobre tecnologia em Parnaíba - PI, gratuita e voltada a quem estava começando na área.',
+  startDate: E.inicio,
+  endDate: E.fim,
+  eventStatus: 'https://schema.org/EventCompleted',
+  eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  url: abs(path),
+  inLanguage: 'pt-BR',
+  isAccessibleForFree: true,
+  organizer: { '@id': ID.organization },
+  location: {
+    '@type': 'Place',
+    name: E.local.nome,
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: E.local.cidade,
+      addressRegion: E.local.uf,
+      addressCountry: 'BR',
+    },
+  },
+  performer: E.palestras.map((p) => ({
+    '@type': 'Person',
+    name: p.palestrante,
+    jobTitle: p.cargo,
+  })),
+  subEvent: E.palestras.map((p) => ({
+    '@type': 'Event',
+    name: p.titulo,
+    startDate: E.inicio,
+    endDate: E.fim,
+    eventStatus: 'https://schema.org/EventCompleted',
+    eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+    location: { '@type': 'Place', name: E.local.nome },
+    performer: { '@type': 'Person', name: p.palestrante, jobTitle: p.cargo },
+  })),
+};
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({
+    path,
+    name: title,
+    description,
+    image: '/assets/og-edicoes-2025.jpg',
+    aboutEvent: false,
+  }),
+  breadcrumb([{ name: 'Edições', path: '/edicoes' }, { name: 'Sertão Tech 2025', path }]),
+  evento2025,
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  ogImage="/assets/og-edicoes-2025.jpg"
+  ogImageAlt="Sertão Tech 2025 — 1ª edição, 22 de agosto, Parnaíba - PI"
+  ogDescription="191 inscritos, 91 presentes e três palestras numa noite de agosto em Parnaíba. Como foi a 1ª edição do Sertão Tech."
+  jsonLd={jsonLd}
+>
+  <main>
+    <PageHead
+      trail={[{ name: 'Edições', href: '/edicoes' }, { name: 'Sertão Tech 2025' }]}
+      eyebrow="// 1ª edição · 22 de agosto de 2025"
+      title="Como foi o Sertão Tech 2025."
+      lead="Uma sexta-feira à noite, quatro horas, três palestras e uma sala cheia numa cidade que nunca tinha tido um evento assim. Foi essa noite que provou que dava pra fazer."
+    >
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/">Ver a edição de 2026<Icon name="arrow" /></a>
+        <a class="btn btn--outline-ink btn--lg" href="/blog/como-foi-a-primeira-edicao-do-sertao-tech"><Icon name="book" />Os bastidores</a>
+      </div>
+    </PageHead>
+
+    <!-- NÚMEROS -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">// a 1ª edição em números</span>
+        <h2 class="section-title" style="margin-bottom: 14px;">O que aconteceu, sem arredondar.</h2>
+        <p class="prose" style="max-width: 700px; margin-bottom: 32px;">Todo evento novo publica número inflado. Esses são os que a organização mediu de verdade — inclusive o de comparecimento, que é o número que quase ninguém mostra.</p>
+        <div class="grid-4">
+          {E.numeros.map((n) => (
+            <div class="card card--badge" style="padding: 26px;">
+              <div style="font-family: var(--font-display); font-size: clamp(34px, 5vw, 46px); font-weight: 700; line-height: 1; color: var(--terra-600);">{n.valor}</div>
+              <div style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-strong); margin-top: 10px;">{n.rotulo}</div>
+              <p class="card-text" style="margin-top: 10px;">{n.nota}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- A NOITE -->
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container two-col">
+          <div>
+            <span class="eyebrow">// a noite</span>
+            <h2 class="section-title">Quatro horas, de graça, num campus emprestado.</h2>
+            <p class="prose">A 1ª edição foi numa <strong>sexta-feira, 22 de agosto de 2025, das 18h às 22h</strong>, na <strong>Faculdade Maurício de Nassau</strong>, em Parnaíba - PI. Inscrição gratuita, formato de noite única, três palestras e networking.</p>
+            <p class="prose">Não teve mídia paga, patrocinador de peso nem histórico pra mostrar. A divulgação foi inteira pelo <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">@osertaotech</a> — que somou <strong>3.938 visualizações</strong> no período do evento.</p>
+            <p class="prose">O que ficou dessa noite foi a resposta pra pergunta que trava qualquer evento no interior: será que aparece gente? Apareceu.</p>
+          </div>
+          <div class="card" style="padding: 28px;">
+            <span class="eyebrow">// ficha técnica</span>
+            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
+              <div class="feature-row" style="padding: 16px 18px;">
+                <span class="chip-icon chip-icon--terra-sm"><Icon name="calendar" /></span>
+                <div><h3>22 de agosto de 2025</h3><p>sexta-feira, das 18h às 22h</p></div>
+              </div>
+              <div class="feature-row" style="padding: 16px 18px;">
+                <span class="chip-icon chip-icon--terra-sm"><Icon name="pin" /></span>
+                <div><h3>Faculdade Maurício de Nassau</h3><p>Parnaíba - PI</p></div>
+              </div>
+              <div class="feature-row" style="padding: 16px 18px;">
+                <span class="chip-icon chip-icon--terra-sm"><Icon name="ticket" /></span>
+                <div><h3>Inscrição gratuita</h3><p>191 inscritos, 91 presentes</p></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- PALESTRAS -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">// quem subiu no palco</span>
+        <h2 class="section-title" style="margin-bottom: 28px;">As três palestras de 2025</h2>
+        <div class="grid-3">
+          {E.palestras.map((p) => (
+            <article class="card card--badge" style="padding: 26px;">
+              <span class="badge">{p.de}</span>
+              <h3 class="card-title" style="margin-top: 14px; font-size: 20px; line-height: 1.3;">{p.titulo}</h3>
+              <p style="font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--terra-700); margin: 12px 0 0;">{p.palestrante}</p>
+              <p class="card-text" style="margin-top: 4px;">{p.cargo}</p>
+              <p class="card-text" style="margin-top: 12px;">{p.sobre}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- O QUE MUDOU -->
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container">
+          <span class="eyebrow">// de 2025 pra 2026</span>
+          <h2 class="section-title" style="margin-bottom: 14px;">O que a 2ª edição virou</h2>
+          <p class="prose" style="max-width: 720px; margin-bottom: 28px;">A comparação diz mais sobre o crescimento do que qualquer adjetivo:</p>
+          <div class="table-wrap">
+            <table style="width: 100%; border-collapse: collapse; font-size: 16px;">
+              <thead>
+                <tr>
+                  <th style="text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--border-strong); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);"></th>
+                  <th style="text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--border-strong); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);">2025 · 1ª edição</th>
+                  <th style="text-align: left; padding: 12px 16px; border-bottom: 2px solid var(--border-strong); font-family: var(--font-mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted);">2026 · 2ª edição</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">Duração</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">4 horas, das 18h às 22h</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">7h30, das 14h às 21h30</td></tr>
+                <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">Palco</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">3 palestras</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">19 pessoas, entre palestras, microtalks, minicursos e roda de conversa</td></tr>
+                <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">Local</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">Faculdade Maurício de Nassau</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">UFDPar — Campus Ministro Reis Velloso</td></tr>
+                <tr><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">Inscrição</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">gratuita</td><td style="padding: 12px 16px; border-bottom: 1px solid var(--border-subtle);">R$ 20, com condição pra caravana</td></tr>
+                <tr><td style="padding: 12px 16px;">Apoio</td><td style="padding: 12px 16px;">nenhum patrocinador</td><td style="padding: 12px 16px;">7 patrocinadores, PHP PI e PHPWomen PI</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="prose" style="max-width: 720px; margin-top: 28px;">Os bastidores dessa passagem — o que funcionou, o que a gente errou e o que os 48% de comparecimento ensinaram — estão <a href="/blog/como-foi-a-primeira-edicao-do-sertao-tech">no blog</a>.</p>
+        </div>
+      </section>
+    </div>
+
+    <CtaBand
+      eyebrow="// a próxima"
+      title="A 2ª edição é 09 de outubro de 2026."
+      lead="Na UFDPar, em Parnaíba - PI, das 14h às 21h30. Muito maior que a primeira, pelo mesmo motivo: gente daqui."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/edicoes"><Icon name="book" />Todas as edições</a>
+    </CtaBand>
+  </main>
+</BaseLayout>

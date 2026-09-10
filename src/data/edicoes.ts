@@ -51,4 +51,23 @@ export const EDICOES: Edicao[] = [
       'Apoio do PHP PI e da PHPWomen PI',
     ],
   },
+  {
+    ano: '2025',
+    ordinal: '1ª',
+    titulo: 'Sertão Tech 2025',
+    inicio: '2025-08-22T18:00:00-03:00',
+    fim: '2025-08-22T22:00:00-03:00',
+    local: 'Faculdade Maurício de Nassau — Parnaíba',
+    cidade: 'Parnaíba - PI',
+    resumo:
+      'A primeira edição: uma noite de 18h às 22h, gratuita, com três palestras voltadas a quem estava começando. 191 inscritos e 91 presentes, sem histórico e sem mídia paga.',
+    href: '/edicoes/2025',
+    vigente: false,
+    destaques: [
+      '191 inscritos e 91 presentes — 48% de comparecimento num evento gratuito',
+      'Três palestras: arquitetura Flutter, diversidade no mercado tech e programação dialética',
+      'Alessandro Feitoza abriu a edição e voltou em 2026, agora na keynote',
+      'Divulgação só pelo @osertaotech, com 3.938 visualizações no período',
+    ],
+  },
 ];

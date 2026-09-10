@@ -1,7 +1,7 @@
 ---
 title: "Como organizar uma caravana pra um evento de tecnologia"
 description: "Como organizar caravana pra evento de tecnologia com 20 a 50 alunos: convencer a coordenação, ratear o ônibus, cuidar da lista e não perder ninguém."
-pubDate: 2026-09-09
+pubDate: 2026-09-19
 author: "Bruno Oliveira"
 category: "bastidores"
 tags: ["caravana", "professores", "estudantes", "logística"]

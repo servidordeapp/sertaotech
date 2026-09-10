@@ -2,7 +2,7 @@
 title: "Eventos de tecnologia no Piauí: como achar todos em 2026"
 titleSeo: "Eventos de tecnologia no Piauí em 2026: o guia"
 description: "Onde procurar eventos de tecnologia no Piauí em 2026, de Parnaíba a Teresina: as fontes que realmente avisam antes, o que já tem data e como ir gastando pouco."
-pubDate: 2026-09-09
+pubDate: 2026-09-13
 author: "Bruno Oliveira"
 category: "eventos"
 tags: ["eventos", "piauí", "parnaíba", "teresina", "agenda"]

@@ -1,7 +1,7 @@
 ---
 title: "Como começar na tecnologia em Parnaíba (mesmo do zero)"
 description: "Um caminho realista pra começar na tecnologia morando em Parnaíba: o que aprender primeiro, onde estudar de graça e como é o mercado remoto daqui."
-pubDate: 2026-09-09
+pubDate: 2026-09-15
 author: "Bruno Oliveira"
 category: "carreira"
 tags: ["carreira", "primeiro emprego", "parnaíba", "ufdpar"]
