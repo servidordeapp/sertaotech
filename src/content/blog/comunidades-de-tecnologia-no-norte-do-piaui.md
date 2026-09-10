@@ -39,7 +39,8 @@ Três coisas que só acontecem em grupo:
 **Você entra no circuito das oportunidades.** Boa parte da contratação em tecnologia nunca vira anúncio público. Começa com alguém perguntando no grupo: "conhecem alguém pra uma vaga júnior?". Você só é lembrado se você existe pra aquelas pessoas.
 
 <ul class="logo-wall logo-wall--comunidades" style="margin-bottom: 8px;">
-  <li><span class="logo-card"><p class="logo-card__name">PHP PI &amp; PHPWomen PI</p></span></li>
+  <li><span class="logo-card"><img src="/assets/comunidades/php-piaui.webp" alt="PHP PI" width="180" height="200" loading="lazy" decoding="async"></span></li>
+  <li><span class="logo-card"><p class="logo-card__name">PHPWomen PI</p></span></li>
   <li><span class="logo-card"><img src="/assets/comunidades/gdg-parnaiba.webp" alt="GDG Parnaíba" width="300" height="166" loading="lazy" decoding="async"></span></li>
   <li><span class="logo-card"><img src="/assets/comunidades/pyladies-parnaiba.webp" alt="PyLadies Parnaíba" width="319" height="320" loading="lazy" decoding="async"></span></li>
   <li><span class="logo-card"><img src="/assets/comunidades/flutter-piaui.webp" alt="Flutter Piauí" width="320" height="221" loading="lazy" decoding="async"></span></li>
