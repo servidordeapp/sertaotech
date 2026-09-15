@@ -1,0 +1,16 @@
+---
+/** Índice do post, montado a partir dos headings que o Astro extrai do markdown. */
+export interface Props {
+  headings: { depth: number; slug: string; text: string }[];
+}
+const { headings } = Astro.props;
+const h2 = headings.filter((h) => h.depth === 2);
+---
+{h2.length >= 3 && (
+  <nav class="toc" aria-labelledby="tocTitle">
+    <p class="toc__title" id="tocTitle">Neste post</p>
+    <ol>
+      {h2.map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}
+    </ol>
+  </nav>
+)}

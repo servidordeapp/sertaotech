@@ -1,0 +1,123 @@
+---
+/**
+ * Página-âncora da entidade. É o `url` do nó #organization e o `authorUrl`
+ * dos posts do blog — o que dá ao Google uma página real pra associar à
+ * marca em vez da landing da edição, que é reescrita todo ano.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { graph, organization, website, webpage, breadcrumb, ID } from '../lib/schema';
+import { SITE } from '../lib/site';
+
+const path = '/sobre';
+const title = 'Sobre o Sertão Tech — quem organiza e por quê';
+const description =
+  'O Sertão Tech é um evento de tecnologia feito no norte do Piauí, em Parnaíba, pra quem quer dar o primeiro passo na área. Quem organiza, o que a gente quer e como falar com a gente.';
+
+const sobrePage = webpage({ path, name: title, description, aboutEvent: false });
+const jsonLd = graph(
+  organization(),
+  website(),
+  { ...sobrePage, '@type': 'AboutPage', mainEntity: { '@id': ID.organization } },
+  breadcrumb([{ name: 'Sobre', path }]),
+);
+---
+<BaseLayout title={title} description={description} path={path} jsonLd={jsonLd}>
+  <main>
+    <PageHead
+      trail={[{ name: 'Sobre' }]}
+      eyebrow="// quem faz"
+      title="Tecnologia também é coisa de quem vem do interior."
+      lead="O Sertão Tech nasceu de uma constatação simples: tem talento no norte do Piauí, e faltava um lugar pra esse talento se encontrar."
+    />
+
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">// o que é</span>
+          <h2 class="section-title">Um evento de tecnologia feito onde ele faz falta.</h2>
+          <p class="prose">O <strong>Sertão Tech</strong> é um evento anual de tecnologia realizado em <strong>Parnaíba - PI</strong>, na UFDPar — Universidade Federal do Delta do Parnaíba. Reúne estudantes, profissionais, empresas e comunidades do norte do Piauí num só dia, com programação que vai de quem nunca programou a quem trabalha na área há dez anos.</p>
+          <p class="prose">A 2ª edição acontece em <strong>09 de outubro de 2026</strong>, das 14h às 21h30, com apoio do <strong>PHP PI</strong> e da <strong>PHPWomen PI</strong>.</p>
+          <p class="prose">O objetivo declarado é consolidar o evento como o principal encontro de tecnologia do norte do Piauí e preparar o público da região pra eventos maiores, como o PHPeste.</p>
+        </div>
+        <div class="card card--badge" style="padding: 32px;">
+          <span class="eyebrow">// pra todo mundo</span>
+          <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Um evento para todos os gêneros</h3>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 20px;">Inclusão não é detalhe, é o ponto de partida. Aqui você chega do jeito que é — e sai codando.</p>
+          <div class="pill-row">
+            <span class="tag tag--terra"><Icon name="heart" size={14} />Inclusivo</span>
+            <span class="tag tag--amber"><Icon name="pin" size={14} />Presencial</span>
+            <span class="tag tag--cactus"><Icon name="users" size={14} />Comunidade</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container">
+          <span class="eyebrow">// no que a gente acredita</span>
+          <h2 class="section-title" style="margin-bottom: 28px;">Três decisões que definem o evento</h2>
+          <div class="grid-3">
+            <div class="card">
+              <span class="chip-icon chip-icon--terra"><Icon name="ticket" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Barato de propósito</h3>
+              <p class="card-text">Inscrição a partir de R$ 20 e condição pra grupo. Se o preço decide quem entra, o evento perde exatamente quem ele quer alcançar.</p>
+            </div>
+            <div class="card">
+              <span class="chip-icon chip-icon--amber"><Icon name="mic" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Palco aberto</h3>
+              <p class="card-text">A chamada de palestras é aberta à comunidade, em nove áreas. Primeira palestra da vida conta — e é assim que nasce palestrante daqui.</p>
+            </div>
+            <div class="card">
+              <span class="chip-icon chip-icon--agave"><Icon name="users" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Sem jargão que assusta</h3>
+              <p class="card-text">Metade da programação é pensada pra quem tá começando ou migrando de carreira. Conteúdo técnico sim, arrogância técnica não.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">// quem organiza</span>
+          <h2 class="section-title">Gente daqui, com apoio de comunidade.</h2>
+          <p class="prose">A organização é local e voluntária, com apoio das comunidades <strong>PHP PI</strong> e <strong>PHPWomen PI</strong> e de empresas patrocinadoras que decidiram investir na região. Quem apoia cada edição está listado na <a href="/patrocinio">página de patrocínio</a>.</p>
+          <p class="prose">Os textos do <a href="/blog">blog</a> são escritos por quem organiza o evento — não é conteúdo terceirizado. Se algo estiver errado ou desatualizado, é falha nossa e a gente corrige: manda mensagem.</p>
+          <p class="prose">Também mantemos um guia da cena local que não depende de edição nenhuma: <a href="/eventos-de-tecnologia-parnaiba">eventos de tecnologia em Parnaíba e no norte do Piauí</a>.</p>
+        </div>
+        <div class="card" style="padding: 28px;">
+          <span class="eyebrow">// falar com a gente</span>
+          <h3 style="font-family: var(--font-display); font-size: 22px; margin: 12px 0 16px; color: var(--text-strong);">Contato direto</h3>
+          <div class="next-links">
+            <a href={SITE.whatsapp} target="_blank" rel="noopener">
+              <Icon name="arrow" size={20} />
+              <span><strong>WhatsApp {SITE.whatsappLabel}</strong><span>O canal mais rápido. Palestra, caravana, patrocínio ou dúvida.</span></span>
+            </a>
+            <a href={SITE.instagram} target="_blank" rel="noopener">
+              <Icon name="arrow" size={20} />
+              <span><strong>@osertaotech no Instagram</strong><span>Onde os avisos e as datas saem primeiro.</span></span>
+            </a>
+            <a href="/edicoes">
+              <Icon name="book" size={20} />
+              <span><strong>Edições do evento</strong><span>O histórico, edição por edição.</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <CtaBand
+      eyebrow="// vem com a gente"
+      title="A próxima edição é 09 de outubro de 2026."
+      lead="Na UFDPar, em Parnaíba - PI, das 14h às 21h30. Inscrição a partir de R$ 20."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/palestrantes"><Icon name="mic" />Quero palestrar</a>
+    </CtaBand>
+  </main>
+</BaseLayout>

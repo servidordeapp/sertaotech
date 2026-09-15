@@ -180,8 +180,8 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" v
 
 // O logo vem com folga transparente em volta; sem o trim ele entraria pequeno
 // demais dentro da caixa de 254px.
-const logo = await sharp(path.join(raiz, 'assets/logo.png')).trim().resize({ width: 254 }).toBuffer();
-const saida = path.join(raiz, 'assets', `og-${slug}.jpg`);
+const logo = await sharp(path.join(raiz, 'public/assets/logo.png')).trim().resize({ width: 254 }).toBuffer();
+const saida = path.join(raiz, 'public/assets', `og-${slug}.jpg`);
 await sharp(Buffer.from(svg))
   .composite([{ input: logo, left: 151, top: 135 }])
   .jpeg({ quality: 82, chromaSubsampling: '4:4:4' })

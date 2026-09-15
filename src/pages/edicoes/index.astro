@@ -1,0 +1,93 @@
+---
+/**
+ * Hub de edições. Existe pra dar destino permanente a cada ano — a home é
+ * sempre a edição vigente, então sem esse hub a busca por "sertão tech
+ * <ano>" fica sem página quando a home for reescrita.
+ *
+ * Nota de SEO: a edição vigente NÃO tem página própria aqui, o card dela
+ * aponta pra home. Criar /edicoes/2026 agora significaria duas URLs
+ * disputando "sertão tech 2026" — e a que o Google escolhesse podia ser a
+ * que não tem botão de inscrição.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHead from '../../components/PageHead.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { EDICOES } from '../../data/edicoes';
+import { graph, organization, website, webpage, breadcrumb, itemList } from '../../lib/schema';
+
+const path = '/edicoes';
+const title = 'Edições do Sertão Tech — o histórico do evento';
+const description =
+  'Todas as edições do Sertão Tech, o evento de tecnologia do norte do Piauí realizado na UFDPar, em Parnaíba - PI. Programação, palestrantes e destaques de cada ano.';
+
+// O Intl em pt-BR devolve "09 de out.", que não cabe bem numa coluna de data
+// estreita. A coluna usa o formato curto das artes do evento: "09 out".
+const MESES = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+// Lê o dia e o mês direto da string ISO em vez de passar por Date: o
+// getDate() é no fuso da máquina que faz o build, e viraria o dia seguinte
+// numa máquina a leste de Greenwich.
+const diaMes = (iso: string) => {
+  const [, mes, dia] = iso.slice(0, 10).split('-');
+  return `${dia} ${MESES[Number(mes) - 1]}`;
+};
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  { ...webpage({ path, name: title, description, aboutEvent: false }), '@type': 'CollectionPage' },
+  breadcrumb([{ name: 'Edições', path }]),
+  itemList({
+    name: 'Edições do Sertão Tech',
+    items: EDICOES.map((e) => ({ name: e.titulo, path: e.href })),
+  }),
+);
+---
+<BaseLayout title={title} description={description} path={path} jsonLd={jsonLd}>
+  <main>
+    <PageHead
+      trail={[{ name: 'Edições' }]}
+      eyebrow="// histórico"
+      title="Todas as edições do Sertão Tech."
+      lead="Cada ano tem programação, palestrantes e patrocinadores próprios. Aqui fica o registro — e o destino permanente de cada edição."
+    />
+
+    <section class="section">
+      <div class="container">
+        <div class="event-list">
+          {EDICOES.map((e) => (
+            <div class:list={['event-item', e.vigente && 'event-item--destaque']}>
+              <div class="event-item__when">{diaMes(e.inicio)}<br>{e.ano}</div>
+              <div>
+                <h2 class="event-item__name">
+                  <a href={e.href} style="color: inherit;">{e.titulo} — {e.ordinal} edição</a>
+                  {e.vigente && <span class="badge" style="margin-left: 10px; vertical-align: middle;">próxima</span>}
+                </h2>
+                <p class="event-item__desc">{e.resumo}</p>
+                <ul class="event-item__meta" style="list-style: none; padding: 0; margin-top: 12px;">
+                  {e.destaques.map((d) => <li style="margin-bottom: 4px;">· {d}</li>)}
+                </ul>
+                <p class="event-item__meta">{e.local} · {e.cidade} · <a href={e.href}>{e.vigente ? 'ver programação e se inscrever' : 'ver como foi'}</a></p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <div class="card" style="margin-top: 32px; padding: 26px 28px;">
+          <span class="eyebrow">// o que vem depois</span>
+          <p class="prose" style="margin-top: 10px;">Depois de cada edição, esta página ganha a retrospectiva dela: números finais, programação como aconteceu, palestrantes e patrocinadores. Assim a home fica livre pra anunciar a edição seguinte sem apagar a anterior.</p>
+          <p class="prose">Enquanto isso, o guia da cena local que não depende de edição fica em <a href="/eventos-de-tecnologia-parnaiba">eventos de tecnologia em Parnaíba</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <CtaBand
+      eyebrow="// a próxima"
+      title="Sertão Tech 2026, dia 09 de outubro."
+      lead="Na UFDPar, em Parnaíba - PI, das 14h às 21h30. Inscrição a partir de R$ 20."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/#agenda"><Icon name="calendar" />Ver cronograma</a>
+    </CtaBand>
+  </main>
+</BaseLayout>

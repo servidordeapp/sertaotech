@@ -1,0 +1,30 @@
+---
+import Icon from './Icon.astro';
+import { CATEGORIA_LABEL } from '../content.config';
+
+export interface Props {
+  href: string;
+  title: string;
+  description: string;
+  category: keyof typeof CATEGORIA_LABEL;
+  pubDate: Date;
+  featured?: boolean;
+}
+const { href, title, description, category, pubDate, featured = false } = Astro.props;
+// pubDate vem do frontmatter como data pura (2026-09-11), que o zod
+// interpreta como meia-noite UTC. Sem fixar o fuso aqui, a data
+// renderizada mudaria conforme o fuso da máquina que faz o build —
+// no Brasil sairia o dia anterior.
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' });
+---
+<article class:list={['post-card', featured && 'post-card--featured']}>
+  <span class="eyebrow">// {CATEGORIA_LABEL[category].toLowerCase()}</span>
+  <h3 class="post-card__title"><a href={href}>{title}</a></h3>
+  <p class="post-card__excerpt">{description}</p>
+  <div class="post-card__foot">
+    <div class="post-meta">
+      <time datetime={pubDate.toISOString().slice(0, 10)}>{fmt.format(pubDate)}</time>
+    </div>
+    <a class="post-card__more" href={href}>Ler o post<Icon name="arrow" size={16} /></a>
+  </div>
+</article>

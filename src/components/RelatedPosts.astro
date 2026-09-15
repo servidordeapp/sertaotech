@@ -1,0 +1,30 @@
+---
+import PostCard from './PostCard.astro';
+import type { CollectionEntry } from 'astro:content';
+
+export interface Props {
+  posts: CollectionEntry<'blog'>[];
+}
+const { posts } = Astro.props;
+---
+{posts.length > 0 && (
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container">
+        <span class="eyebrow">// continue lendo</span>
+        <h2 class="section-title" style="margin-bottom: 28px;">Posts relacionados</h2>
+        <div class:list={['post-grid', posts.length >= 3 ? 'post-grid--3' : 'post-grid--2']}>
+          {posts.map((post) => (
+            <PostCard
+              href={`/blog/${post.id}`}
+              title={post.data.title}
+              description={post.data.description}
+              category={post.data.category}
+              pubDate={post.data.pubDate}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+)}

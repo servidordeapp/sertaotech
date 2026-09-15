@@ -16,8 +16,8 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-tokens_dir="$repo_root/ds/tokens"
-out_file="$repo_root/ds/styles.css"
+tokens_dir="$repo_root/public/ds/tokens"
+out_file="$repo_root/public/ds/styles.css"
 
 # Order matters only for cascade/override intent, not correctness here (each
 # token file only declares custom properties on :root, plus base.css sets a

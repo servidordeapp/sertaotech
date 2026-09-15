@@ -1,0 +1,28 @@
+---
+/**
+ * Bloco de perguntas frequentes. Mesmo markup de /caravanas (css/site.css: .faq),
+ * e o JSON-LD FAQPage sai do mesmo array — sem duas cópias pra divergir.
+ */
+export interface Props {
+  titulo?: string;
+  eyebrow?: string;
+  itens: { pergunta: string; resposta: string }[];
+}
+const { titulo = 'Perguntas frequentes', eyebrow = '// dúvidas', itens } = Astro.props;
+---
+{itens.length > 0 && (
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">{eyebrow}</span>
+      <h2 class="section-title" style="margin-bottom: 28px;">{titulo}</h2>
+      <div class="faq">
+        {itens.map((item) => (
+          <details>
+            <summary>{item.pergunta}</summary>
+            <p>{item.resposta}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+)}

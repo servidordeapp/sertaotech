@@ -1,0 +1,252 @@
+---
+/**
+ * Página-âncora de SEO local. É a única página do site que NÃO fala de uma
+ * edição específica: ela é sobre a cena de eventos de tecnologia da região e
+ * sobrevive à troca de ano. Por isso o slug é sem edição e sem acento — ela
+ * acumula link e idade enquanto a home é reescrita todo ano.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Faq from '../components/Faq.astro';
+import Icon from '../components/Icon.astro';
+import PostCard from '../components/PostCard.astro';
+import { getPosts } from '../lib/blog';
+import { graph, organization, website, webpage, breadcrumb, faqPage, itemList } from '../lib/schema';
+import evento from '../data/evento-2026.json';
+
+const path = '/eventos-de-tecnologia-parnaiba';
+const title = 'Eventos de tecnologia em Parnaíba e no norte do Piauí';
+const description =
+  'Quais eventos de tecnologia acontecem em Parnaíba - PI, onde eles rolam, quanto custam e como ficar sabendo dos próximos. Guia atualizado da cena tech do norte do Piauí.';
+
+const faqItens = [
+  {
+    pergunta: 'Tem evento de tecnologia em Parnaíba?',
+    resposta:
+      'Tem. O maior é o Sertão Tech, que acontece na UFDPar — Campus Ministro Reis Velloso. A 2ª edição é em 09 de outubro de 2026, das 14h às 21h30. Além dele, comunidades locais como PHP PI, PHPWomen PI e GDG Parnaíba organizam encontros ao longo do ano.',
+  },
+  {
+    pergunta: 'Quanto custa participar de um evento de tecnologia em Parnaíba?',
+    resposta:
+      'Encontro de comunidade normalmente é gratuito. Eventos maiores têm valor simbólico: a inscrição individual do Sertão Tech 2026 é de R$ 20, e grupos de 20 a 50 pessoas entram como caravana.',
+  },
+  {
+    pergunta: 'Preciso trabalhar com tecnologia pra participar?',
+    resposta:
+      'Não. O público desses eventos inclui estudantes, pessoas em transição de carreira, gestores e curiosos. O Sertão Tech, especificamente, é desenhado pra quem quer dar o primeiro passo na área.',
+  },
+  {
+    pergunta: 'Onde acontecem os eventos de tecnologia em Parnaíba?',
+    resposta:
+      'A maior parte acontece na UFDPar — Universidade Federal do Delta do Parnaíba, no Campus Ministro Reis Velloso, na Av. São Sebastião, 2819, bairro Nossa Senhora de Fátima.',
+  },
+  {
+    pergunta: 'Como ficar sabendo dos próximos eventos?',
+    resposta:
+      'Entrando nos grupos das comunidades locais e seguindo o Instagram delas — é onde as datas saem primeiro, antes de aparecerem no Sympla ou no Meetup.',
+  },
+  {
+    pergunta: 'Tem evento de tecnologia em Teresina também?',
+    resposta:
+      'Sim. A capital concentra o maior volume de eventos do estado, por causa das instituições de ensino e das empresas de tecnologia. Para quem mora no norte do Piauí, vale organizar a ida em grupo pra dividir o custo do transporte.',
+  },
+];
+
+const posts = await getPosts();
+const destaques = posts.filter((p) =>
+  ['eventos-de-tecnologia-no-piaui-2026', 'comunidades-de-tecnologia-no-norte-do-piaui', 'sertao-tech-2026-guia-de-quem-vai'].includes(p.id),
+);
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({ path, name: title, description, image: '/assets/og-cover.jpg' }),
+  breadcrumb([{ name: 'Eventos de tecnologia em Parnaíba', path }]),
+  evento,
+  itemList({
+    name: 'Eventos de tecnologia em Parnaíba e no norte do Piauí',
+    description: 'Edições do Sertão Tech, o principal evento de tecnologia do norte do Piauí.',
+    items: [{ name: 'Sertão Tech 2026', path: '/' }],
+  }),
+  faqPage(faqItens),
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  ogDescription="O que acontece de tecnologia em Parnaíba - PI: eventos, onde rolam, quanto custam e como ficar sabendo dos próximos."
+  jsonLd={jsonLd}
+>
+  <main>
+    <PageHead
+      trail={[{ name: 'Eventos de tecnologia em Parnaíba' }]}
+      eyebrow="// guia da região"
+      title="Eventos de tecnologia em Parnaíba e no norte do Piauí."
+      lead="Acontece mais coisa por aqui do que parece — o problema é que quase nada disso chega até você. Esse guia é o mapa: o que rola, onde, quanto custa e como ficar sabendo antes de encher."
+    >
+      <div class="hero__actions">
+        <a class="btn btn--accent btn--lg" href="/">Sertão Tech 2026<Icon name="arrow" /></a>
+        <a class="btn btn--outline-ink btn--lg" href="/blog/eventos-de-tecnologia-no-piaui-2026"><Icon name="book" />Como achar os outros</a>
+      </div>
+    </PageHead>
+
+    <!-- O QUE TEM POR AQUI -->
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">// o que tem por aqui</span>
+          <h2 class="section-title">Tecnologia no interior não é promessa. Já está acontecendo.</h2>
+          <p class="prose">Parnaíba é o polo do norte do Piauí, e a cena de tecnologia daqui cresceu junto com a <strong>UFDPar</strong> — Universidade Federal do Delta do Parnaíba, que hoje forma gente em cursos da área, incluindo <strong>Inteligência Artificial</strong>, e mantém grupos de pesquisa em IA aplicada.</p>
+          <p class="prose">Ao redor disso existe um ecossistema pequeno mas ativo: comunidades como <strong>GDG Parnaíba</strong>, <strong>PyLadies Parnaíba</strong>, <strong>PHP PI</strong>, <strong>Flutter Piauí</strong>, <strong>Java Piauí</strong>, <strong>JS/TS Piauí</strong> e <strong>AWS User Group Piauí</strong>, empresas de tecnologia que contratam remoto e um evento anual que junta todo mundo no mesmo lugar.</p>
+          <p class="prose">Esse evento é o <a href="/">Sertão Tech</a>, e é sobre ele que a maior parte desta página fala — não por falta de opção, mas porque é o único com data firme, programação pública e inscrição aberta enquanto você lê isso.</p>
+        </div>
+        <div class="card card--badge" style="padding: 32px;">
+          <span class="eyebrow">// próximo evento</span>
+          <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Sertão Tech 2026</h3>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 20px;">2ª edição. Um dia inteiro de palestras, minicursos, roda de conversa e networking.</p>
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div class="feature-row" style="padding: 16px 18px;">
+              <span class="chip-icon chip-icon--terra-sm"><Icon name="calendar" /></span>
+              <div><h3>09 de outubro de 2026</h3><p>sexta-feira, das 14h às 21h30</p></div>
+            </div>
+            <div class="feature-row" style="padding: 16px 18px;">
+              <span class="chip-icon chip-icon--terra-sm"><Icon name="pin" /></span>
+              <div><h3>UFDPar · Campus Reis Velloso</h3><p>Av. São Sebastião, 2819 · Parnaíba - PI</p></div>
+            </div>
+            <div class="feature-row" style="padding: 16px 18px;">
+              <span class="chip-icon chip-icon--terra-sm"><Icon name="ticket" /></span>
+              <div><h3>A partir de R$ 20</h3><p>caravana de 20 a 50 pessoas tem condição própria</p></div>
+            </div>
+          </div>
+          <div style="margin-top: 22px;">
+            <a class="btn btn--primary btn--md" href="/">Ver a programação<Icon name="arrow" size={18} /></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUEM VAI -->
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container">
+          <span class="eyebrow">// pra quem é</span>
+          <h2 class="section-title" style="margin-bottom: 14px;">Quem aparece num evento de tecnologia em Parnaíba</h2>
+          <p class="prose" style="max-width: 700px; margin-bottom: 32px;">Não é uma sala cheia de gente sênior. É uma mistura — e é isso que faz o evento regional funcionar melhor que conferência grande pra quem tá começando.</p>
+          <div class="grid-4">
+            <div class="card">
+              <span class="chip-icon chip-icon--amber"><Icon name="book" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Estudantes</h3>
+              <p class="card-text">De cursos de tecnologia e de fora da área, querendo entender o mercado antes de escolher.</p>
+            </div>
+            <div class="card">
+              <span class="chip-icon chip-icon--terra"><Icon name="users" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Profissionais da área</h3>
+              <p class="card-text">Gente que já trabalha com tecnologia — boa parte remoto — buscando troca e rede local.</p>
+            </div>
+            <div class="card">
+              <span class="chip-icon chip-icon--agave"><Icon name="spark" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Transição de carreira</h3>
+              <p class="card-text">Quem tá migrando de área e quer ver de perto se o caminho faz sentido.</p>
+            </div>
+            <div class="card">
+              <span class="chip-round-cactus"><Icon name="heart" /></span>
+              <h3 class="card-title" style="margin-top: 14px;">Empresas e gestores</h3>
+              <p class="card-text">Quem contrata, quem patrocina e quem quer marca num mercado com pouca disputa.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ONDE ACONTECEM -->
+    <section class="section">
+      <div class="container two-col">
+        <div>
+          <span class="eyebrow">// onde acontecem</span>
+          <h2 class="section-title">Quase tudo passa pela UFDPar.</h2>
+          <p class="prose">O <strong>Campus Ministro Reis Velloso</strong> é o endereço da maior parte do que acontece de tecnologia em Parnaíba. Fica na Av. São Sebastião, 2819, no bairro Nossa Senhora de Fátima — uma das avenidas principais da cidade, fácil de chegar de aplicativo, de carro ou de van intermunicipal.</p>
+          <p class="prose">Se você vem de fora — Teresina, Piripiri, Luís Correia, do lado do Maranhão — vale planejar a chegada com folga e, se estiver em grupo, considerar <a href="/caravanas">montar uma caravana</a>: de 20 a 50 pessoas, o custo por cabeça despenca.</p>
+          <p class="prose">O <a href="/blog/sertao-tech-2026-guia-de-quem-vai">guia de quem vai</a> tem a parte prática: como chegar, o que levar e como funciona o dia.</p>
+          <div class="hero__actions" style="margin-top: 24px;">
+            <a class="btn btn--outline btn--md" href="https://maps.app.goo.gl/yVJSv4X96VjH5xvC9" target="_blank" rel="noopener"><Icon name="pin" size={18} />Abrir no mapa</a>
+          </div>
+        </div>
+        <div class="card" style="padding: 28px;">
+          <span class="eyebrow">// comunidades da região</span>
+          <h3 style="font-family: var(--font-display); font-size: 22px; margin: 12px 0 16px; color: var(--text-strong);">Quem move a cena o ano todo</h3>
+          <div class="next-links">
+            <a href="/blog/comunidades-de-tecnologia-no-norte-do-piaui">
+              <Icon name="users" size={20} />
+              <span><strong>GDG Parnaíba e PyLadies Parnaíba</strong><span>As duas comunidades organizadas aqui na cidade.</span></span>
+            </a>
+            <a href="/blog/comunidades-de-tecnologia-no-norte-do-piaui">
+              <Icon name="users" size={20} />
+              <span><strong>PHP PI, Flutter, Java, JS/TS e AWS</strong><span>Comunidades estaduais, com grupo aberto pra entrar hoje.</span></span>
+            </a>
+            <a href="/blog/comunidades-de-tecnologia-no-norte-do-piaui">
+              <Icon name="book" size={20} />
+              <span><strong>O mapa completo</strong><span>Quem são, o que fazem e como entrar sem timidez.</span></span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FICAR SABENDO -->
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container">
+          <span class="eyebrow">// como ficar sabendo</span>
+          <h2 class="section-title" style="margin-bottom: 14px;">Buscar no Google uma vez por mês é o pior método.</h2>
+          <p class="prose" style="max-width: 720px; margin-bottom: 28px;">Evento de tecnologia no interior não tem verba de divulgação. A data é anunciada no grupo da comunidade e no Instagram — o Sympla vem depois, quando já tem gente inscrita. Quem descobre pela busca descobre por último.</p>
+          <div class="post-grid post-grid--3">
+            {destaques.map((post) => (
+              <PostCard
+                href={`/blog/${post.id}`}
+                title={post.data.title}
+                description={post.data.description}
+                category={post.data.category}
+                pubDate={post.data.pubDate}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- HISTÓRICO -->
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">// histórico</span>
+        <h2 class="section-title" style="margin-bottom: 14px;">Todas as edições do Sertão Tech</h2>
+        <p class="prose" style="max-width: 700px; margin-bottom: 28px;">Cada edição tem programação, palestrantes e patrocinadores próprios. O histórico completo fica em <a href="/edicoes">edições</a>.</p>
+        <div class="event-list">
+          <div class="event-item event-item--destaque">
+            <div class="event-item__when">09 out<br>2026</div>
+            <div>
+              <h3 class="event-item__name">Sertão Tech 2026 — 2ª edição</h3>
+              <p class="event-item__desc">Palestras, microtalks, dois minicursos em trilha paralela, roda de conversa sobre migração de carreira e keynote de encerramento. Nove áreas no palco, das 14h às 21h30, na UFDPar.</p>
+              <p class="event-item__meta">UFDPar · Parnaíba - PI · inscrição a partir de R$ 20 · <a href="/">ver programação</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Faq
+      itens={faqItens}
+      titulo="Perguntas frequentes sobre eventos de tecnologia em Parnaíba"
+    />
+
+    <CtaBand
+      eyebrow="// bora?"
+      title="O próximo é 09 de outubro."
+      lead="Sertão Tech 2026, na UFDPar, em Parnaíba - PI. Das 14h às 21h30, a partir de R$ 20."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/caravanas"><Icon name="bus" />Levar uma caravana</a>
+    </CtaBand>
+  </main>
+</BaseLayout>

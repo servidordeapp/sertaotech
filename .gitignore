@@ -4,3 +4,8 @@
 
 # Dependências instaladas sob demanda pelos scripts de geração de arte
 /node_modules/
+
+# Build do Astro e cache do dev server
+/dist/
+/.astro/
+/.vercel/

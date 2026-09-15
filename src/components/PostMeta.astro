@@ -1,0 +1,48 @@
+---
+/** Linha de metadados do post: data, atualização, autor e tempo de leitura. */
+import { CATEGORIA_LABEL } from '../content.config';
+
+export interface Props {
+  pubDate: Date;
+  updatedDate?: Date;
+  author: string;
+  authorUrl?: string;
+  category: keyof typeof CATEGORIA_LABEL;
+  readingMinutes?: number;
+  onInk?: boolean;
+}
+const { pubDate, updatedDate, author, authorUrl, category, readingMinutes, onInk = false } = Astro.props;
+
+// pubDate vem do frontmatter como data pura (2026-09-11), que o zod
+// interpreta como meia-noite UTC. Sem fixar o fuso aqui, a data
+// renderizada mudaria conforme o fuso da máquina que faz o build —
+// no Brasil sairia o dia anterior.
+const fmt = new Intl.DateTimeFormat('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+const iso = (d: Date) => d.toISOString().slice(0, 10);
+
+// A assinatura costuma apontar pro LinkedIn do autor. Link que sai do site
+// abre em aba nova, como todo link externo do resto das páginas — quem tá
+// lendo o post não deveria perder o post pra ver o perfil.
+const externo = !!authorUrl && !/^(\/|https?:\/\/(www\.)?osertaotech\.com\.br)/.test(authorUrl);
+---
+<div class:list={['post-meta', onInk && 'post-meta--on-ink']}>
+  <span>{CATEGORIA_LABEL[category]}</span>
+  <span class="post-meta__sep" aria-hidden="true">·</span>
+  <time datetime={iso(pubDate)}>{fmt.format(pubDate)}</time>
+  {updatedDate && (
+    <>
+      <span class="post-meta__sep" aria-hidden="true">·</span>
+      <span>atualizado em <time datetime={iso(updatedDate)}>{fmt.format(updatedDate)}</time></span>
+    </>
+  )}
+  <span class="post-meta__sep" aria-hidden="true">·</span>
+  <span>por {authorUrl
+    ? <a href={authorUrl} {...(externo ? { target: '_blank', rel: 'noopener' } : {})}>{author}</a>
+    : author}</span>
+  {readingMinutes && (
+    <>
+      <span class="post-meta__sep" aria-hidden="true">·</span>
+      <span>{readingMinutes} min de leitura</span>
+    </>
+  )}
+</div>

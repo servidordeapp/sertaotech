@@ -1,0 +1,57 @@
+---
+import { render } from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import { getPosts, resolveRelated, readingMinutes, type Post } from '../../lib/blog';
+import { graph, organization, website, webpage, breadcrumb, blog, blogPosting, faqPage } from '../../lib/schema';
+import { CATEGORIA_LABEL } from '../../content.config';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = await getPosts();
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post, todos: posts },
+  }));
+};
+
+const { post, todos } = Astro.props as { post: Post; todos: Post[] };
+const d = post.data;
+const path = `/blog/${post.id}`;
+const { Content, headings } = await render(post);
+const minutos = readingMinutes(post.body ?? '');
+const related = resolveRelated(post, todos);
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  blog(),
+  webpage({
+    path,
+    name: d.titleSeo ?? d.title,
+    description: d.description,
+    image: d.ogImage,
+    datePublished: d.pubDate.toISOString(),
+    dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+  }),
+  breadcrumb([{ name: 'Blog', path: '/blog' }, { name: d.title, path }]),
+  blogPosting({
+    path,
+    // schema.org corta headline em 110 caracteres; passar disso faz o Google
+    // ignorar o nó inteiro.
+    title: (d.titleSeo ?? d.title).slice(0, 110),
+    description: d.description,
+    datePublished: d.pubDate.toISOString(),
+    dateModified: (d.updatedDate ?? d.pubDate).toISOString(),
+    author: d.author,
+    authorUrl: d.authorUrl,
+    image: d.ogImage,
+    section: CATEGORIA_LABEL[d.category],
+    keywords: d.keywords,
+    wordCount: (post.body ?? '').trim().split(/\s+/).length,
+  }),
+  d.faq.length > 0 && faqPage(d.faq),
+);
+---
+<ArticleLayout post={post} headings={headings} related={related} readingMinutes={minutos} jsonLd={jsonLd}>
+  <Content />
+</ArticleLayout>

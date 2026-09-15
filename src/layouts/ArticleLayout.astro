@@ -1,0 +1,101 @@
+---
+/** Página de post. Cabeçalho escuro, coluna de leitura estreita, FAQ e relacionados. */
+import BaseLayout from './BaseLayout.astro';
+import PageHead from '../components/PageHead.astro';
+import PostMeta from '../components/PostMeta.astro';
+import Toc from '../components/Toc.astro';
+import Faq from '../components/Faq.astro';
+import NextLinks from '../components/NextLinks.astro';
+import RelatedPosts from '../components/RelatedPosts.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { CATEGORIA_LABEL } from '../content.config';
+import type { Post } from '../lib/blog';
+
+export interface Props {
+  post: Post;
+  headings: { depth: number; slug: string; text: string }[];
+  related: Post[];
+  readingMinutes: number;
+  jsonLd: unknown;
+}
+const { post, headings, related, readingMinutes, jsonLd } = Astro.props;
+const d = post.data;
+const path = `/blog/${post.id}`;
+---
+<BaseLayout
+  title={d.titleSeo ?? d.title}
+  description={d.description}
+  path={path}
+  nav="blog"
+  ogType="article"
+  ogImage={d.ogImage}
+  ogImageAlt={d.ogImageAlt}
+  jsonLd={jsonLd}
+  article={{
+    publishedTime: d.pubDate.toISOString(),
+    modifiedTime: (d.updatedDate ?? d.pubDate).toISOString(),
+    author: d.author,
+    section: CATEGORIA_LABEL[d.category],
+    tags: d.tags,
+  }}
+>
+  <main>
+    <PageHead
+      trail={[{ name: 'Blog', href: '/blog' }, { name: d.title }]}
+      eyebrow={`// ${CATEGORIA_LABEL[d.category].toLowerCase()}`}
+      title={d.title}
+      lead={d.description}
+    >
+      <div style="margin-top: 22px;">
+        <PostMeta
+          pubDate={d.pubDate}
+          updatedDate={d.updatedDate}
+          author={d.author}
+          authorUrl={d.authorUrl}
+          category={d.category}
+          readingMinutes={readingMinutes}
+          onInk
+        />
+      </div>
+    </PageHead>
+
+    <section class="section">
+      <div class="container container--narrow">
+        <Toc headings={headings} />
+        <div class="article" style="margin-top: 32px;">
+          <slot />
+        </div>
+      </div>
+    </section>
+
+    <div class="band-sunken">
+      <section class="section--tight">
+        <div class="container container--narrow">
+          <span class="eyebrow">// próximos passos</span>
+          <h2 class="section-title" style="font-size: clamp(24px, 3.4vw, 30px); margin-bottom: 20px;">Pra onde ir agora</h2>
+          <NextLinks
+            itens={[
+              { href: '/', titulo: 'Sertão Tech 2026', texto: '09 de outubro, UFDPar, Parnaíba - PI. Inscrição a partir de R$ 20.', icone: 'calendar' },
+              { href: '/eventos-de-tecnologia-parnaiba', titulo: 'Eventos de tecnologia em Parnaíba', texto: 'O que acontece por aqui, o ano todo.', icone: 'pin' },
+              { href: '/blog', titulo: 'Todos os posts', texto: 'Carreira, comunidade e a cena tech do norte do Piauí.', icone: 'book' },
+            ]}
+          />
+        </div>
+      </section>
+    </div>
+
+    <Faq itens={d.faq} />
+
+    <RelatedPosts posts={related} />
+
+    <CtaBand
+      eyebrow="// bora participar?"
+      title="Vem pro Sertão Tech 2026."
+      lead="Um dia inteiro de palestras, roda de conversa e networking na UFDPar, em Parnaíba - PI. 09 de outubro, das 14h às 21h30."
+    >
+      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="/#agenda"><Icon name="calendar" />Ver cronograma</a>
+    </CtaBand>
+  </main>
+</BaseLayout>
