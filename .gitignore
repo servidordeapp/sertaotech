@@ -1,11 +1,14 @@
 # Fotos e artes originais (alta resolução) usadas só para gerar os assets
 # otimizados em assets/. Ficam locais, fora do versionamento.
-/originais/
+originais/
 
 # Dependências instaladas sob demanda pelos scripts de geração de arte
-/node_modules/
+node_modules/
 
 # Build do Astro e cache do dev server
-/dist/
-/.astro/
-/.vercel/
+dist/
+.astro/
+.vercel/
+
+# Variáveis locais do docker compose (portas etc.)
+/.env

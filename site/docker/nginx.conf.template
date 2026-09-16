@@ -1,0 +1,39 @@
+# Template: o entrypoint da imagem nginx roda envsubst nos arquivos de
+# /etc/nginx/templates. Só ${PORT} é substituído (NGINX_ENVSUBST_FILTER=PORT),
+# senão o envsubst comeria os $uri das regras abaixo.
+server {
+    listen       ${PORT};
+    server_name  _;
+    root         /usr/share/nginx/html;
+
+    # A Vercel serve o site com cleanUrls + trailingSlash: false, e o Astro
+    # gera com build.format 'directory' — /patrocinio mora em
+    # patrocinio/index.html. Esse try_files reproduz as duas coisas.
+    location / {
+        try_files $uri $uri/index.html $uri.html =404;
+    }
+
+    # Mesmo rewrite declarado no vercel.json.
+    location = /sitemap.xml {
+        try_files /sitemap-index.xml =404;
+    }
+
+    # Mesmos Cache-Control do vercel.json. /assets e /_astro têm hash no nome.
+    location ^~ /assets/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    location ^~ /_astro/ {
+        add_header Cache-Control "public, max-age=31536000, immutable";
+    }
+
+    location ~ ^/(ds|css)/ {
+        add_header Cache-Control "public, max-age=86400, must-revalidate";
+    }
+
+    gzip              on;
+    gzip_vary         on;
+    gzip_min_length   1024;
+    gzip_types        text/plain text/css text/xml application/javascript
+                      application/json application/xml image/svg+xml;
+}

@@ -1,0 +1,43 @@
+# Stack local do Sertão Tech. Cada aplicação nova entra aqui como mais um
+# serviço; hoje só existe o site. `docker compose up -d` sobe tudo que não
+# estiver atrás de um profile.
+name: sertaotech
+
+services:
+  # Site do Sertão Tech em modo desenvolvimento (Astro dev + hot reload).
+  site:
+    build:
+      context: ./site
+      target: dev
+    container_name: sertaotech-site
+    ports:
+      - "${SITE_PORT:-4321}:4321"
+    volumes:
+      # O código vem do host para o hot reload funcionar...
+      - ./site:/app
+      # ...mas node_modules e o cache do Astro ficam em volume do container:
+      # sem isso o bind mount de cima esconde o node_modules da imagem, e o
+      # node_modules do host (Linux/WSL) nem sempre casa com o do container.
+      - site_node_modules:/app/node_modules
+      - site_astro_cache:/app/.astro
+    environment:
+      # No WSL2 os eventos de arquivo do host não chegam no container; sem
+      # polling o dev server não enxerga as edições.
+      CHOKIDAR_USEPOLLING: "true"
+    restart: unless-stopped
+
+  # Site já buildado, servido por nginx como a Vercel serve em produção.
+  # Fora do `up -d` padrão: `docker compose --profile prod up -d site-prod`.
+  site-prod:
+    profiles: ["prod"]
+    build:
+      context: ./site
+      target: prod
+    container_name: sertaotech-site-prod
+    ports:
+      - "${SITE_PROD_PORT:-8080}:80"
+    restart: unless-stopped
+
+volumes:
+  site_node_modules:
+  site_astro_cache:
