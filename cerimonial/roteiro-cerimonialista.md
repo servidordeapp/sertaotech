@@ -36,13 +36,13 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 | 14h40 | 15h10 | Palestra — Adryanne Kelly | 30 min |
 | 15h00 | 17h00 | Minicursos 1 e 2 (salas separadas, em paralelo) | 2h |
 | 15h10 | 15h25 | MicroTalk — Fernando Melo | 15 min |
-| 15h25 | 15h40 | MicroTalk — Kauê Victor | 15 min |
+| 15h25 | 15h40 | MicroTalk — Dione Bastos | 15 min |
 | 15h40 | 16h10 | Palestra — Vitoria Neris | 30 min |
 | 16h10 | 16h25 | MicroTalk — Isaac Costa | 15 min |
 | 16h25 | 16h55 | Palestra — Sandro Daniel Garcia | 30 min |
 | 16h55 | 17h25 | Roda de conversa — 4 convidadas | 30 min |
 | 17h25 | 17h55 | Coffee break e networking | 30 min |
-| 17h55 | 18h10 | MicroTalk — Dione Bastos | 15 min |
+| 17h55 | 18h10 | MicroTalk — Kauê Victor | 15 min |
 | 18h10 | 18h40 | Palestra — Silvia Azevedo | 30 min |
 | 18h40 | 18h55 | MicroTalk — Paula Barros | 15 min |
 | 18h55 | 19h25 | Palestra — Jacson Santos Silva | 30 min |
@@ -138,7 +138,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 ## BLOCO 05 — ⏱️ 15h10 → 15h25 · MICROTALK · FERNANDO MELO
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Kauê Victor, 15h25.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Dione Bastos, 15h25.
 
 🎤 **Abertura:**
 
@@ -156,25 +156,25 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 06 — ⏱️ 15h25 → 15h40 · MICROTALK · KAUÊ VICTOR
+## BLOCO 06 — ⏱️ 15h25 → 15h40 · MICROTALK · DIONE BASTOS
 
 **MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Vitoria Neris, 15h40.
 
 🎤 **Abertura:**
 
-> Nosso próximo MicroTalk fala de uma coisa que quase ninguém ensina na faculdade: como você se posiciona.
+> Seguimos com um tema que quase todo mundo aqui já sentiu na pele.
 >
-> Recebo o **Kauê Victor**, embaixador da **Stellar in Brazil** e da **Porto Indie**. Estudante de Análise e Desenvolvimento de Sistemas, estuda Back-End com Laravel, Blockchain e desenvolvimento de jogos, participa de comunidades em todo o Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.
+> Recebo o **Dione Bastos**, Blockchain Engineer na **Nearx**. Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. É Mentor Técnico e Embaixador da rede **Stellar na América Latina**.
 >
-> O tema é **"Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais"**.
+> O tema é **"Como lidar com a síndrome do impostor"**.
 >
-> Com vocês, Kauê Victor!
+> Com vocês, Dione Bastos!
 
 🎤 **Encerramento:**
 
-> Valeu, Kauê! Uma salva de palmas.
+> Obrigado, Dione! Palmas.
 >
-> E fica a dica: sigam o Kauê e os nossos palestrantes nas redes. Networking também é depois do evento.
+> Se você se reconheceu nessa fala, saiba que você não é o único no auditório.
 
 <div style="page-break-after: always"></div>
 
@@ -283,7 +283,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 ## BLOCO 12 — ⏱️ 17h25 → 17h55 · COFFEE BREAK & NETWORKING
 
-**Duração: 30 min** · próxima atividade: MicroTalk do Dione Bastos, 17h55.
+**Duração: 30 min** · próxima atividade: MicroTalk do Kauê Victor, 17h55.
 
 🎤
 
@@ -299,25 +299,25 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 13 — ⏱️ 17h55 → 18h10 · MICROTALK · DIONE BASTOS
+## BLOCO 13 — ⏱️ 17h55 → 18h10 · MICROTALK · KAUÊ VICTOR
 
 **MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Silvia Azevedo, 18h10.
 
 🎤 **Abertura:**
 
-> De volta ao palco! E a gente retoma com um tema que quase todo mundo aqui já sentiu na pele.
+> De volta ao palco! E a gente retoma com uma coisa que quase ninguém ensina na faculdade: como você se posiciona.
 >
-> Recebo o **Dione Bastos**, Blockchain Engineer na **Nearx**. Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. É Mentor Técnico e Embaixador da rede **Stellar na América Latina**.
+> Recebo o **Kauê Victor**, embaixador da **Stellar in Brazil** e da **Porto Indie**. Estudante de Análise e Desenvolvimento de Sistemas, estuda Back-End com Laravel, Blockchain e desenvolvimento de jogos, participa de comunidades em todo o Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.
 >
-> O tema é **"Como lidar com a síndrome do impostor"**.
+> O tema é **"Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais"**.
 >
-> Com vocês, Dione Bastos!
+> Com vocês, Kauê Victor!
 
 🎤 **Encerramento:**
 
-> Obrigado, Dione! Palmas.
+> Valeu, Kauê! Uma salva de palmas.
 >
-> Se você se reconheceu nessa fala, saiba que você não é o único no auditório.
+> E fica a dica: sigam o Kauê e os nossos palestrantes nas redes. Networking também é depois do evento.
 
 <div style="page-break-after: always"></div>
 
