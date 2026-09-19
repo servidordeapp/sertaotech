@@ -44,7 +44,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 | 17h25 | 17h55 | Coffee break e networking | 30 min |
 | 17h55 | 18h10 | MicroTalk — Dione Bastos | 15 min |
 | 18h10 | 18h40 | Palestra — Silvia Azevedo | 30 min |
-| 18h40 | 18h55 | MicroTalk — Vilmar Aguiar | 15 min |
+| 18h40 | 18h55 | MicroTalk — Paula Barros | 15 min |
 | 18h55 | 19h25 | Palestra — Jacson Santos Silva | 30 min |
 | 19h25 | 19h40 | MicroTalk — Ariel Teles | 15 min |
 | 19h40 | 20h10 | Palestra — Sebastião Galeno | 30 min |
@@ -323,7 +323,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 ## BLOCO 14 — ⏱️ 18h10 → 18h40 · PALESTRA · SILVIA AZEVEDO
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Vilmar Aguiar, 18h40.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk da Paula Barros, 18h40.
 
 🎤 **Abertura:**
 
@@ -341,23 +341,23 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 15 — ⏱️ 18h40 → 18h55 · MICROTALK · VILMAR AGUIAR
+## BLOCO 15 — ⏱️ 18h40 → 18h55 · MICROTALK · PAULA BARROS
 
 **MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Jacson Santos, 18h55.
 
 🎤 **Abertura:**
 
-> E se aquele seu projeto parado no terminal virasse negócio?
+> E se o caminho pra sua próxima vaga passasse por aprender a pensar como quem ataca?
 >
-> Recebo o **Vilmar Aguiar de Paula Segundo**, CEO do **Clube Charger**. Economista de formação com mente de desenvolvedor, atua na intersecção entre tecnologia, regulação e transição energética. Fundou e desenvolve o Clube Charger, plataforma implementada em eletropostos por todo o país. Tem MBA em Gestão de Energia, Petróleo e Gás e extensão em Mobilidade Elétrica pela Unicamp.
+> Recebo a **Paula Barros**, Analista de Segurança Sênior na **EXA**. Especializada em segurança ofensiva, atua em pentests, exercícios de red team e na sustentação de ferramentas de CTI e Attack Surface Management. É formada em Ciência da Computação pela UNICSUL e acumula certificações em segurança ofensiva e defensiva. Fora do trabalho, é mãe da Maya e do Anakin, e gosta de jogar videogame.
 >
-> O tema é **"Do terminal ao mercado: como transformar seu código em um negócio real"**.
+> O tema é **"Hackeando sua Carreira: Encontre Seu Caminho em Cibersegurança"**.
 >
-> Com vocês, Vilmar Aguiar!
+> Com vocês, Paula Barros!
 
 🎤 **Encerramento:**
 
-> Obrigado, Vilmar! Palmas pra ele.
+> Obrigado, Paula! Palmas pra ela.
 
 <div style="page-break-after: always"></div>
 
