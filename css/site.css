@@ -526,7 +526,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
  * logo, confira a hierarquia no olho, não só o número. */
 .logo-wall--gold   { --logo-min: 380px; --logo-h: 140px; --logo-wall-max: 860px; }
 .logo-wall--silver { --logo-min: 300px; --logo-h: 116px; }
-.logo-wall--bronze { --logo-min: 210px; --logo-h: 78px; }
+.logo-wall--bronze { --logo-min: 210px; --logo-h: 92px; }
 .logo-wall--apoio  { --logo-min: 190px; --logo-h: 72px; --logo-wall-max: 900px; }
 
 .logo-card {
