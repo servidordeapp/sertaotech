@@ -20,7 +20,7 @@ Sugestão: imprimir a partir do VS Code (Markdown PDF), Typora ou Pandoc — as 
 - Sempre que anunciar alguém: **nome → cargo/empresa → título da fala**. Nessa ordem.
 - Ao encerrar cada fala: agradecer pelo nome, pedir palmas, emendar no próximo horário.
 - Se atrasar: cortar o comentário livre, manter só nome, cargo e título.
-- Pronúncias: **Adryanne** (Ádriane) · **Sâmyla** (Sâmila) · **Celenny** (Selêni) · **Katriane** (Katriâne) · **Feitoza** (Feitóza).
+- Pronúncias: **Adryanne** (Adriane) · **Sâmyla** (Sâmila) · **Celenny** (Selêni) · **Katriane** (Katriâne) · **Feitoza** (Feitóza) · **Bea** (Bía).
 - Minicursos são **em salas separadas**, em paralelo ao palco principal. Reforçar isso 3 vezes ao longo da tarde.
 
 <div style="page-break-after: always"></div>
@@ -91,6 +91,8 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 > Esta edição é realizada com o apoio do **PHP PI**, da **PHPWomen PI** e do **Bacharelado em Inteligência Artificial da UFDPar**, que nos recebe nesta casa. Uma salva de palmas pra eles!
 >
 > Agradeço também aos nossos **patrocinadores** — `[ler nomes por cota: Ouro, Prata, Bronze]` —, que tornaram este evento possível.
+>
+> E já que vocês estão com o crachá aí: ele foi feito pela **Bea Studio Criativo**, parceira desta edição. A Bea montou uma lojinha aqui no hall, com bottons, stickers, chaveiros e papelaria. Vale uma passada no intervalo pra conhecer os produtos.
 >
 > Convido agora `[nome da organização / autoridade]` pra dar as boas-vindas oficiais.
 
@@ -291,6 +293,8 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 > Chegou a hora do respiro: nosso **coffee break** está servido `[local]`.
 >
 > São **25 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
+>
+> E aproveitem o intervalo pra conhecer a lojinha da **Bea Studio Criativo**, aqui no hall `[local exato]`, a mesma que fez os crachás de hoje. Tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela. `[se aceitar: Aceita Pix e cartão.]` Quem curtir, segue lá no Instagram: **@bea_studio_criativo**.
 >
 > Quem está nos minicursos, eles terminam agora às 17h e vocês podem se juntar a nós.
 >
@@ -499,13 +503,19 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > `[realizar os sorteios — anunciar patrocinador e brinde a cada rodada]`
 >
-> Parabéns aos sorteados! E o agradecimento mais importante da noite vai pra quem bancou esse dia:
+> Parabéns aos sorteados!
+>
+> Um agradecimento especial à **Bea Studio Criativo**, que produziu os 214 crachás desta edição. A lojinha dela fica no hall até o fim, então passem lá na saída.
+>
+> E o agradecimento mais importante da noite vai pra quem bancou esse dia:
 >
 > `[ler nomes dos patrocinadores — Ouro, Prata e Bronze]`
 >
 > E às nossas comunidades e apoiadores: **PHP PI**, **PHPWomen PI** e o **Bacharelado em Inteligência Artificial da UFDPar**. Palmas pra eles!
 >
 > Obrigado também a cada pessoa da **equipe de organização e voluntariado** — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.
+
+⚠️ Se a Bea doar um brinde, trocar a menção por: *"Esse próximo brinde é cortesia da Bea Studio Criativo, que fez os crachás de hoje e está com a lojinha aqui no hall!"* — e sortear na sequência.
 
 ⚠️ Chamar a equipe de organização pro palco ao final deste bloco.
 
