@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Verso dos cartões · Sertão Tech 2026</title>
+<meta name="robots" content="noindex">
+<style>
+  /* Mesmo @page e mesmas metades de 138.5mm do roteiro, pra casar com a
+     linha de corte da frente. Arte simétrica: serve pro roteiro do
+     cerimonialista e pro guia da mesa redonda. */
+  @page { size: A4 portrait; margin: 10mm; }
+
+  :root { --brown: #4b2e1b; --muted: #8a6a4f; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #efece6;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+  }
+
+  .folha {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto 8mm;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .verso {
+    height: 138.5mm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5mm;
+  }
+
+  .verso img { height: 105mm; width: auto; }
+
+  .verso p {
+    margin: 0;
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 2pt;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  @media print {
+    body { background: none; }
+    .folha { margin: 0; height: 277mm; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<section class="folha">
+  <div class="verso"><img src="../assets/logo.png" alt="Sertão Tech"><p>2ª edição · 09.10.2026 · Parnaíba - PI</p></div>
+  <div class="verso"><img src="../assets/logo.png" alt="Sertão Tech"><p>2ª edição · 09.10.2026 · Parnaíba - PI</p></div>
+</section>
+</body>
+</html>
