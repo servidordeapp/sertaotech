@@ -125,6 +125,7 @@ section[id], div[id] { scroll-margin-top: 84px; }
   border: 1px solid transparent;
 }
 .badge--success-soft { background: var(--cactus-100); color: var(--cactus-600); }
+.badge--danger-soft { background: var(--brick-100); color: var(--brick-600); }
 .badge__dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
 
 /* ---------- header ---------- */
