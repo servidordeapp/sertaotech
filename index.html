@@ -535,7 +535,7 @@
       <a class="site-nav__link" href="/caravanas">Caravanas</a>
       <a class="site-nav__link" href="/patrocinio">Patrocínio</a>
       <span class="site-nav__sep" aria-hidden="true"></span>
-      <a class="btn btn--primary btn--sm" href="#inscricao">Esgotado<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      <a class="btn btn--primary btn--sm" href="#inscricao" onclick="event.preventDefault(); document.getElementById('waitlistModal').showModal()">Esgotado<svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
     </nav>
   </div>
 </header>
@@ -1304,6 +1304,7 @@
           <h2 class="cta__title">Lotamos o<br>Sertão Tech.</h2>
           <p class="cta__lead">Atingimos a capacidade máxima do local e as inscrições estão encerradas. Obrigado a todo mundo que garantiu a vaga — a gente se vê no dia 09 de outubro, na UFDPar.</p>
           <div class="hero__actions">
+            <button class="btn btn--accent btn--lg" type="button" onclick="document.getElementById('waitlistModal').showModal()">Quero uma vaga</button>
             <a class="btn btn--outline-ink btn--lg" href="https://instagram.com/osertaotech" target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="20" x="2" y="2" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><path d="M17.5 6.5h.01"/></svg>Seguir no Instagram</a>
           </div>
         </div>
@@ -1327,6 +1328,21 @@
   </div>
 
 </main>
+
+<!-- MODAL: inscrições esgotadas → contato por WhatsApp pra checar desistências -->
+<dialog class="modal" id="waitlistModal" aria-labelledby="waitlistModalTitle" onclick="if (event.target === this) this.close()">
+  <form method="dialog">
+    <button class="modal__close" aria-label="Fechar">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+  </form>
+  <h2 class="modal__title" id="waitlistModalTitle">Inscrições esgotadas</h2>
+  <p class="modal__text">As vagas acabaram, mas às vezes rola desistência. Chama a organização no WhatsApp pra saber se alguma vaga foi liberada e garantir a sua inscrição.</p>
+  <div class="modal__actions">
+    <a class="btn btn--primary btn--md" href="https://wa.me/5586999202231?text=Ol%C3%A1%21%20Quero%20participar%20do%20Sert%C3%A3o%20Tech.%20Teve%20alguma%20desist%C3%AAncia%20com%20vaga%20liberada%3F" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <form method="dialog"><button class="btn btn--outline btn--md">Fechar</button></form>
+  </div>
+</dialog>
 
 <!-- FOOTER -->
 <footer class="site-footer">

@@ -894,6 +894,8 @@ body.modal-open { overflow: hidden; }
   backdrop-filter: blur(4px);
 }
 .modal-overlay[hidden] { display: none; }
+dialog.modal { width: calc(100% - 32px); margin: auto; color: inherit; }
+dialog.modal::backdrop { background: rgba(31,19,5,0.55); backdrop-filter: blur(4px); }
 
 .modal {
   position: relative;
