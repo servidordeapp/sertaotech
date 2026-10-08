@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lista de presença · Minicursos · Sertão Tech 2026</title>
+<meta name="robots" content="noindex">
+<style>
+  /* Uma folha A4 por página. Cada minicurso começa numa folha nova.
+     Folhas por minicurso: altere FOLHAS no script do fim do arquivo. */
+  @page { size: A4 portrait; margin: 10mm; }
+
+  :root { --brown: #4b2e1b; --muted: #8a6a4f; --line: #b9a48f; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: #efece6;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--brown);
+  }
+
+  .folha {
+    width: 210mm;
+    height: 297mm;
+    margin: 0 auto 8mm;
+    padding: 10mm;
+    background: #fff;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .cab { display: flex; align-items: center; gap: 5mm; border-bottom: 2px solid var(--brown); padding-bottom: 3mm; }
+  .cab img { height: 18mm; width: auto; }
+  .cab h1 { margin: 0; font-size: 15pt; text-transform: uppercase; letter-spacing: 1pt; }
+  .cab p { margin: 1mm 0 0; font-size: 9pt; color: var(--muted); }
+  .cab .pag { margin-left: auto; align-self: flex-start; font-size: 9pt; color: var(--muted); white-space: nowrap; }
+
+  .info { margin: 3mm 0; font-size: 10pt; line-height: 1.5; }
+  .info strong { font-size: 11pt; }
+  .info .sala { display: inline-block; min-width: 25mm; border-bottom: 1px solid var(--brown); }
+
+  table { width: 100%; border-collapse: collapse; font-size: 9pt; table-layout: fixed; }
+  th { text-align: left; text-transform: uppercase; font-size: 8pt; letter-spacing: .5pt; padding: 1.5mm 2mm; background: #f3ede6; border: 1px solid var(--line); }
+  td { height: 9mm; border: 1px solid var(--line); padding: 0 2mm; }
+  td.n { text-align: center; color: var(--muted); }
+  col.n { width: 10mm; }
+  col.nome { width: 72mm; }
+  col.email { width: 58mm; }
+
+  .rodape { margin-top: auto; padding-top: 3mm; font-size: 8pt; color: var(--muted); text-align: center; }
+
+  @media print {
+    body { background: none; }
+    .folha { margin: 0; width: auto; height: 277mm; padding: 0; box-shadow: none; break-after: page; }
+    .folha:last-child { break-after: auto; }
+  }
+</style>
+</head>
+<body>
+<main id="listas"></main>
+
+<script>
+  const FOLHAS = 2;   // folhas por minicurso
+  const LINHAS = 22;  // linhas por folha (cabe em A4 com 9mm por linha)
+
+  const MINICURSOS = [
+    { n: 1, titulo: 'Cardinal — um simulador de mundos para desenvolvedores de jogos', instrutor: 'Germano Gomes' },
+    { n: 2, titulo: 'O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA', instrutor: 'Rodrigo Castro' },
+  ];
+
+  let html = '';
+  for (const m of MINICURSOS) {
+    for (let f = 0; f < FOLHAS; f++) {
+      let linhas = '';
+      for (let i = 1; i <= LINHAS; i++) {
+        linhas += `<tr><td class="n">${f * LINHAS + i}</td><td></td><td></td><td></td></tr>`;
+      }
+      html += `
+<section class="folha">
+  <header class="cab">
+    <img src="../assets/logo.png" alt="Sertão Tech">
+    <div>
+      <h1>Lista de presença · Minicurso ${m.n}</h1>
+      <p>Sertão Tech 2026 · 2ª edição · 09.10.2026 · 15h às 17h · UFDPar, Parnaíba - PI</p>
+    </div>
+    <span class="pag">Folha ${f + 1}/${FOLHAS}</span>
+  </header>
+  <div class="info">
+    <strong>${m.titulo}</strong><br>
+    Instrutor: ${m.instrutor} · Sala: <span class="sala">&nbsp;</span>
+  </div>
+  <table>
+    <colgroup><col class="n"><col class="nome"><col class="email"><col></colgroup>
+    <thead><tr><th>Nº</th><th>Nome completo</th><th>E-mail</th><th>Assinatura</th></tr></thead>
+    <tbody>${linhas}</tbody>
+  </table>
+  <p class="rodape">Escreva o nome completo em letra de forma. A lista é usada para registrar a participação no minicurso.</p>
+</section>`;
+    }
+  }
+  document.getElementById('listas').innerHTML = html;
+</script>
+</body>
+</html>

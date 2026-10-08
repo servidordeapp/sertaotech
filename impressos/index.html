@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Impressos · Sertão Tech 2026</title>
+<meta name="robots" content="noindex">
+<style>
+  /* Página interna: atalhos pros materiais de impressão. Não linkada no site.
+     Material novo? Acrescente um <li> na lista. */
+  :root { --brown: #4b2e1b; --muted: #8a6a4f; --line: #e2d6c8; --bg: #efece6; --card: #fff; }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 32px 16px;
+    background: var(--bg);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    color: var(--brown);
+  }
+
+  main { max-width: 640px; margin: 0 auto; }
+
+  header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  header img { height: 56px; width: auto; }
+  h1 { margin: 0; font-size: 22px; text-transform: uppercase; letter-spacing: 1px; }
+  header p { margin: 4px 0 0; font-size: 14px; color: var(--muted); }
+
+  h2 { margin: 28px 0 10px; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+
+  ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+
+  a {
+    display: block;
+    padding: 16px 18px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    color: inherit;
+    text-decoration: none;
+  }
+  a:hover, a:focus-visible { border-color: var(--brown); }
+  a:focus-visible { outline: 2px solid var(--brown); outline-offset: 2px; }
+  a strong { display: block; font-size: 16px; }
+  a span { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); }
+
+  footer { margin-top: 32px; font-size: 13px; color: var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <img src="../assets/logo.png" alt="Sertão Tech">
+    <div>
+      <h1>Impressos</h1>
+      <p>Sertão Tech 2026 · 09.10.2026 · materiais internos da organização</p>
+    </div>
+  </header>
+
+  <h2>Cerimonial</h2>
+  <ul>
+    <li><a href="../cerimonial/roteiro-cerimonialista.html"><strong>Roteiro da cerimonialista</strong><span>Fichas de meia folha A4, dois blocos por folha.</span></a></li>
+    <li><a href="../cerimonial/verso-logo.html"><strong>Verso dos cartões</strong><span>Logo para o verso das fichas do roteiro e do guia da mesa redonda.</span></a></li>
+  </ul>
+
+  <h2>Mesa redonda</h2>
+  <ul>
+    <li><a href="../mesa-redonda/guia-perguntas.html"><strong>Guia de perguntas</strong><span>Fichas de meia folha A4 para a mediação da roda de conversa.</span></a></li>
+  </ul>
+
+  <h2>Minicursos</h2>
+  <ul>
+    <li><a href="../cerimonial/lista-presenca-minicursos.html"><strong>Lista de presença</strong><span>Uma lista por minicurso, 2 folhas A4 cada. Preencher a sala à mão.</span></a></li>
+  </ul>
+
+  <footer>Imprimir em A4, retrato. No Chrome: Ctrl+P, desmarcar "Cabeçalhos e rodapés".</footer>
+</main>
+</body>
+</html>

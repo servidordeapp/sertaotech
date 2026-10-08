@@ -6,7 +6,7 @@ Sugestão: imprimir a partir do VS Code (Markdown PDF), Typora ou Pandoc — as 
 -->
 
 # ROTEIRO — CERIMONIALISTA
-**Sertão Tech 2026 · 2ª edição** — 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 14h às 21h40
+**Sertão Tech 2026 · 2ª edição** — 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 14h às 21h10
 
 > **Legenda:** 🎤 fala em voz alta · ⏱️ horário previsto · ⚠️ atenção da produção
 > Textos entre `[colchetes]` devem ser confirmados com a organização antes do evento.
@@ -48,11 +48,10 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 | 18h45 | 19h15 | Palestra — Jacson Santos Silva | 30 min |
 | 19h15 | 19h30 | MicroTalk — Ariel Teles | 15 min |
 | 19h30 | 20h00 | Palestra — Thiago Monteiro | 30 min |
-| 20h00 | 20h30 | Palestra — Sebastião Galeno | 30 min |
-| 20h30 | 20h35 | Momento Patrocinador Ouro + sorteio | 5 min |
-| 20h35 | 21h15 | Keynote — Alessandro Feitoza | 40 min |
-| 21h15 | 21h25 | Sorteio de brindes e agradecimentos | 10 min |
-| 21h25 | 21h40 | Encerramento oficial e foto | 15 min |
+| 20h00 | 20h05 | Momento Patrocinador Ouro + sorteio | 5 min |
+| 20h05 | 20h45 | Keynote — Alessandro Feitoza | 40 min |
+| 20h45 | 20h55 | Sorteio de brindes e agradecimentos | 10 min |
+| 20h55 | 21h10 | Encerramento oficial e foto | 15 min |
 
 <div style="page-break-after: always"></div>
 
@@ -84,17 +83,31 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 > Boa tarde a todas e a todos! Está oficialmente aberta a **segunda edição do Sertão Tech**.
 >
-> Meu nome é `[nome do cerimonialista]` e eu vou conduzir a nossa programação até as 21h40 de hoje.
+> Meu nome é **Bia Thereza** e eu vou conduzir a nossa programação até as 21h10 de hoje.
 >
 > O Sertão Tech nasceu de uma ideia simples: **tecnologia de ponta também se faz no interior**. Aqui, no norte do Piauí, com gente daqui, com histórias daqui. Hoje somos um dia inteiro de palestras, microtalks, minicursos e roda de conversa — pra estudante, pra profissional e pra quem tá migrando de carreira.
 >
 > Esta edição é realizada com o apoio do **PHP PI**, da **PHPWomen PI** e do **Bacharelado em Inteligência Artificial da UFDPar**, que nos recebe nesta casa. Uma salva de palmas pra eles!
 >
-> Agradeço também aos nossos **patrocinadores** — `[ler nomes por cota: Ouro, Prata, Bronze]` —, que tornaram este evento possível.
+> Agradeço também aos nossos **patrocinadores** — na cota **Ouro**, **ParaDevs**; na cota **Prata**, **Programe Studio** e **Exa**; e na cota **Bronze**, **Retake Brasil**, **Bruno Neves Advogado**, **Cajutec** e **Cod3r** —, que tornaram este evento possível.
 >
 > E já que vocês estão com o crachá aí: ele foi feito pela **Bea Studio Criativo**, parceira desta edição. A Bea montou uma lojinha aqui no hall, com bottons, stickers, chaveiros e papelaria. Vale uma passada no intervalo pra conhecer os produtos.
+
+⚠️ Continua na próxima ficha (Bloco 02-B), sem pausa.
+
+<div style="page-break-after: always"></div>
+
+## BLOCO 02-B — ⏱️ 14h25 → 14h35 · ABERTURA OFICIAL (continuação)
+
+Continuação do bloco anterior · ler na sequência, sem pausa · próxima atividade: palestra da Adryanne Kelly, 14h35.
+
+🎤
+
+> Os momentos do Sertão Tech estão sendo registrados pela **Analice** — videomaker, storymaker e apaixonada por criar, ela transforma o que acontece aqui em histórias que ficam na memória e nas redes sociais. Quer ter o seu evento ou a sua marca registrados com olhar criativo? Procure ela e conheça o seu trabalho!
 >
-> Convido agora `[nome da organização / autoridade]` pra dar as boas-vindas oficiais.
+> Contato: 📞 **(86) 99549-3174** · 📩 **analicevideomaker@gmail.com**
+>
+> Convido agora a **Maria Katriane**, da organização do Sertão Tech e representante da **PHPWomen PI**, pra dar as boas-vindas oficiais.
 
 ⚠️ Fala institucional: até 5 minutos. Sinalizar com o cartaz de tempo.
 
@@ -116,26 +129,33 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Adryanne! Uma salva de palmas.
+> Muito obrigada, Adryanne! Uma salva de palmas.
 >
 > Fica o recado: privacidade não é etapa final, é decisão de arquitetura.
+
+⚠️ **Aviso dos minicursos (Bloco 04):** não interromper a palestra. Ler o aviso completo **na transição para as perguntas**, antes de abrir o microfone pro público. Depois das perguntas, logo após este encerramento, ler o **reforço curto** do Bloco 04.
 
 <div style="page-break-after: always"></div>
 
 ## BLOCO 04 — ⏱️ 15h00 → 17h00 · MINICURSOS · TRILHA PARALELA
 
 **Duração: 2h**, em salas separadas · o palco principal segue normalmente durante todo esse tempo.
-⚠️ Ler este bloco por volta das **14h50**, antes da palestra da Adryanne terminar, para dar tempo do deslocamento.
+⚠️ **Nunca interromper a palestrante.** Ler o aviso completo quando a Adryanne terminar o conteúdo, **antes de abrir as perguntas** (por volta das 14h55), para dar tempo do deslocamento. Depois das perguntas, ler o reforço curto.
+⚠️ Antes das 15h, entregar a **lista de presença impressa** (`cerimonial/lista-presenca-minicursos.html`) em cada sala e preencher o número da sala.
 
-🎤 *(aviso importante — falar devagar e repetir)*
+🎤 **Aviso completo** *(antes das perguntas — falar devagar)*
 
-> Atenção, pessoal! Neste momento começam os nossos **dois minicursos**, que acontecem **ao mesmo tempo, em salas separadas**, em paralelo à programação do palco principal. Eles vão das **15h às 17h**.
+> Antes de abrirmos as perguntas, um aviso importante! Às **15h** começam os nossos **dois minicursos**, que acontecem **ao mesmo tempo, em salas separadas**, em paralelo à programação do palco principal. Eles vão das **15h às 17h**.
 >
 > **Minicurso 1** — com **Germano Gomes**, engenheiro de software, desenvolvedor há 8 anos e hobbista em jogos há 12, CEO de uma empresa de tecnologia e professor. Tema: **"Cardinal — um simulador de mundos para desenvolvedores de jogos"**. Sala `[número]`.
 >
 > **Minicurso 2** — com **Rodrigo Castro**, o "RED" das comunidades, Desenvolvedor Full Stack Sênior na **LWSA**, especializado em Flutter e Laravel, ativo na PHP com Rapadura, He4rt Developers e Flutterando. Tema: **"O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA"**. Sala `[número]`.
 >
-> Quem se inscreveu num minicurso, dirija-se agora à sala correspondente. Nossa equipe está na porta pra orientar. Quem fica no auditório, continuamos com a programação do palco em instantes.
+> Os minicursos são abertos a todos os participantes, não precisa de inscrição separada: é só escolher um e se dirigir à sala. Lá dentro vai passar uma **lista de presença** — não esqueçam de assinar. Nossa equipe está na porta pra orientar. Quem fica no auditório, seguimos agora com as perguntas pra Adryanne.
+
+🎤 **Reforço** *(após as perguntas, logo depois do encerramento da Adryanne)*
+
+> Reforçando: os **minicursos** já começaram! **Germano Gomes** na sala `[número]` e **Rodrigo Castro** na sala `[número]`. Quem quiser participar, pode seguir agora e assinar a lista de presença na sala — a equipe está na porta pra orientar. Quem fica, continuamos aqui no palco principal.
 
 <div style="page-break-after: always"></div>
 
@@ -155,7 +175,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Obrigado, Fernando! Palmas pra ele.
+> Obrigada, Fernando! Palmas pra ele.
 
 <div style="page-break-after: always"></div>
 
@@ -175,7 +195,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Obrigado, Dione! Palmas.
+> Obrigada, Dione! Palmas.
 >
 > Se você se reconheceu nessa fala, saiba que você não é o único no auditório.
 
@@ -197,7 +217,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Vitoria! Palmas.
+> Muito obrigada, Vitoria! Palmas.
 
 <div style="page-break-after: always"></div>
 
@@ -217,7 +237,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Obrigado, Isaac! Uma salva de palmas.
+> Obrigada, Isaac! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
@@ -237,7 +257,7 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Sandro! Palmas pra ele.
+> Muito obrigada, Sandro! Palmas pra ele.
 
 ⚠️ Confirmar com a produção: 4 cadeiras no palco para a roda de conversa a seguir.
 
@@ -280,7 +300,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Que conversa! Obrigado, Maria Katriane, Bia Thereza, Sâmyla e Celenny. Palmas mais uma vez!
+> Que conversa! Obrigada, Maria Katriane, Bia Thereza, Sâmyla e Celenny. Palmas mais uma vez!
 
 <div style="page-break-after: always"></div>
 
@@ -342,7 +362,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Silvia! Uma salva de palmas.
+> Muito obrigada, Silvia! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
@@ -362,7 +382,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Obrigado, Paula! Palmas pra ela.
+> Obrigada, Paula! Palmas pra ela.
 
 <div style="page-break-after: always"></div>
 
@@ -382,7 +402,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Jacson! Uma salva de palmas.
+> Muito obrigada, Jacson! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
@@ -402,13 +422,13 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, professor Ariel! Palmas. E palmas também pra UFDPar, que abriu as portas pro Sertão Tech.
+> Muito obrigada, professor Ariel! Palmas. E palmas também pra UFDPar, que abriu as portas pro Sertão Tech.
 
 <div style="page-break-after: always"></div>
 
 ## BLOCO 18 — ⏱️ 19h30 → 20h00 · PALESTRA · THIAGO MONTEIRO
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: palestra do Sebastião Galeno, 20h00.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Momento Patrocinador Ouro, 20h00.
 
 🎤 **Abertura:**
 
@@ -422,35 +442,15 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Obrigado, Thiago! Uma salva de palmas.
+> Obrigada, Thiago! Uma salva de palmas.
 
 ⚠️ Pronúncia do apelido no ecossistema: **BrazillianCare** (brazilian care).
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 19 — ⏱️ 20h00 → 20h30 · PALESTRA · SEBASTIÃO GALENO
+## BLOCO 19 — ⏱️ 20h00 → 20h05 · MOMENTO PATROCINADOR OURO
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Momento Patrocinador Ouro, 20h30.
-
-🎤 **Abertura:**
-
-> A próxima palestra tem um título provocativo — e é pra estudante prestar muita atenção.
->
-> Recebo o **Sebastião Galeno**, Software Engineer aqui de Parnaíba. Mestre em Ciência da Computação, com especialização em Inteligência Artificial e em redes de computadores e segurança corporativa. São mais de 10 anos desenvolvendo sistemas web para empresas nacionais e internacionais.
->
-> A palestra é **"Além do Código: Como usar IA para faturar antes de se formar"**.
->
-> Com vocês, Sebastião Galeno!
-
-🎤 **Encerramento:**
-
-> Muito obrigado, Sebastião! Uma salva de palmas.
-
-<div style="page-break-after: always"></div>
-
-## BLOCO 20 — ⏱️ 20h30 → 20h35 · MOMENTO PATROCINADOR OURO
-
-**Duração: 5 min** (até 3 min de apresentação institucional + sorteio) · próxima atividade: keynote, 20h35.
+**Duração: 5 min** (até 3 min de apresentação institucional + sorteio) · próxima atividade: keynote, 20h05.
 
 🎤
 
@@ -460,20 +460,20 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 *(após a apresentação — até 3 minutos)*
 
-> Muito obrigado, `[nome]`! E agora vamos ao que interessa: **sorteio de brindes**!
+> Muito obrigada, `[nome]`! E agora vamos ao que interessa: **sorteio de brindes**!
 >
 > `[realizar o sorteio conforme a mecânica definida — QR code / cupom / número de inscrição]`
 >
-> Parabéns aos sorteados! Quem não ganhou agora, calma: tem mais sorteio às 21h15.
+> Parabéns aos sorteados! Quem não ganhou agora, calma: tem mais sorteio às 20h45.
 
 ⚠️ Apresentação institucional: **máximo 3 minutos**. Sinalizar com cartaz.
 ⚠️ Ter em mãos: lista de inscritos / mecânica do sorteio / brindes separados.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 21 — ⏱️ 20h35 → 21h15 · KEYNOTE · ALESSANDRO FEITOZA
+## BLOCO 20 — ⏱️ 20h05 → 20h45 · KEYNOTE · ALESSANDRO FEITOZA
 
-**Keynote: 40 min**, conteúdo + perguntas · próxima atividade: sorteio e agradecimentos, 21h15.
+**Keynote: 40 min**, conteúdo + perguntas · próxima atividade: sorteio e agradecimentos, 20h45.
 
 🎤 **Abertura:**
 
@@ -487,15 +487,15 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Que aula! Muito obrigado, Alessandro. Uma salva de palmas de pé pra ele!
+> Que aula! Muito obrigada, Alessandro. Uma salva de palmas de pé pra ele!
 
-⚠️ Sinalizar os 5 minutos finais da keynote, às 21h10.
+⚠️ Sinalizar os 5 minutos finais da keynote, às 20h40.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 22 — ⏱️ 21h15 → 21h25 · SORTEIO DE BRINDES E AGRADECIMENTOS
+## BLOCO 21 — ⏱️ 20h45 → 20h55 · SORTEIO DE BRINDES E AGRADECIMENTOS
 
-**Duração: 10 min** · próxima atividade: encerramento oficial, 21h25.
+**Duração: 10 min** · próxima atividade: encerramento oficial, 20h55.
 
 🎤
 
@@ -509,11 +509,11 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > E o agradecimento mais importante da noite vai pra quem bancou esse dia:
 >
-> `[ler nomes dos patrocinadores — Ouro, Prata e Bronze]`
+> Na cota **Ouro**, **ParaDevs**! Na cota **Prata**, **Programe Studio** e **Exa**! E na cota **Bronze**, **Retake Brasil**, **Bruno Neves Advogado**, **Cajutec** e **Cod3r**!
 >
 > E às nossas comunidades e apoiadores: **PHP PI**, **PHPWomen PI** e o **Bacharelado em Inteligência Artificial da UFDPar**. Palmas pra eles!
 >
-> Obrigado também a cada pessoa da **equipe de organização e voluntariado** — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.
+> Obrigada também a cada pessoa da **equipe de organização e voluntariado** — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.
 
 ⚠️ Se a Bea doar um brinde, trocar a menção por: *"Esse próximo brinde é cortesia da Bea Studio Criativo, que fez os crachás de hoje e está com a lojinha aqui no hall!"* — e sortear na sequência.
 
@@ -521,13 +521,13 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 23 — ⏱️ 21h25 → 21h40 · ENCERRAMENTO OFICIAL
+## BLOCO 22 — ⏱️ 20h55 → 21h10 · ENCERRAMENTO OFICIAL
 
-**Duração: 15 min** · fim do evento às 21h40.
+**Duração: 15 min** · fim do evento às 21h10.
 
 🎤
 
-> Pessoal, foram quase oito horas de programação: **8 palestras, 6 microtalks, 2 minicursos, uma roda de conversa** e 20 pessoas no palco. Tudo isso aqui, no norte do Piauí.
+> Pessoal, foram mais de sete horas de programação: **7 palestras, 6 microtalks, 2 minicursos, uma roda de conversa** e 19 pessoas no palco. Tudo isso aqui, no norte do Piauí.
 >
 > O Sertão Tech existe pra provar uma coisa: **não precisa sair daqui pra fazer tecnologia de verdade**. Se você chegou hoje sem conhecer ninguém e sai com um contato novo, uma ideia nova ou a coragem de mandar a sua primeira proposta de palestra — a gente fez o nosso trabalho.
 >
@@ -537,13 +537,13 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > Pra fechar, peço que todo mundo venha pra frente do palco: vamos tirar a **foto oficial do Sertão Tech 2026**!
 >
-> Muito obrigado, boa noite, e até a próxima edição!
+> Muito obrigada, boa noite, e até a próxima edição!
 
 ⚠️ Foto oficial: fotógrafo posicionado antes da chamada.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 24 — CORINGA · ATRASOS, IMPREVISTOS E AVISOS
+## BLOCO 23 — CORINGA · ATRASOS, IMPREVISTOS E AVISOS
 
 🎤 **Se a programação atrasar:**
 
