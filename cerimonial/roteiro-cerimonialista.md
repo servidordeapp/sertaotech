@@ -310,19 +310,21 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤
 
-> Chegou a hora do respiro: nosso **coffee break** está servido no hall, em frente ao auditório.
+> Antes de liberar vocês, uns recados rápidos.
 >
-> São **25 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
->
-> E aproveitem o intervalo pra conhecer as lojinhas aqui no hall. A **Bea Studio Criativo**, a mesma que fez os crachás de hoje, tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela, e aceita Pix e cartão. Instagram: **@bea_studio_criativo**.
+> No intervalo, aproveitem pra conhecer as lojinhas aqui no hall. A **Bea Studio Criativo**, a mesma que fez os crachás de hoje, tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela, e aceita Pix e cartão. Instagram: **@bea_studio_criativo**.
 >
 > A **Helen Crochê** traz bolsas, chaveiros, ligas e prendedores de cabelo, tudo em crochê. Instagram: **@jasminecroche**.
 >
 > E a lojinha da **Emily Horta** tem ecobags sustentáveis e personalizáveis. Instagram: **@parnaiba.eco**.
 >
-> Quem está nos minicursos, eles terminam agora às 17h e vocês podem se juntar a nós.
+> Quem estava nos minicursos, já pode se juntar a nós.
 >
-> Voltamos **pontualmente às 17h45** com a segunda metade da programação. Não se percam por aí — a noite ainda tem muita coisa boa, incluindo a nossa keynote e o sorteio de brindes.
+> Voltamos **pontualmente às 17h45** com a segunda metade da programação. Não se percam por aí — a noite ainda tem muita coisa boa, incluindo o nosso keynote e o sorteio de brindes.
+>
+> Agora sim, chegou a hora do respiro: nosso **coffee break** está servido no hall, em frente ao auditório.
+>
+> São **25 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
 
 ⚠️ Passar na produção: conferir sorteios, brindes e a lista dos patrocinadores para o Momento Ouro.
 
@@ -493,7 +495,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 > Que aula! Muito obrigada, Alessandro. Uma salva de palmas de pé pra ele!
 
-⚠️ Sinalizar os 5 minutos finais da keynote, às 20h40.
+⚠️ Sinalizar os 5 minutos finais do keynote, às 20h40.
 
 <div style="page-break-after: always"></div>
 
