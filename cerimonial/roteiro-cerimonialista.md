@@ -310,11 +310,15 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤
 
-> Chegou a hora do respiro: nosso **coffee break** está servido `[local]`.
+> Chegou a hora do respiro: nosso **coffee break** está servido no hall, em frente ao auditório.
 >
 > São **25 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
 >
-> E aproveitem o intervalo pra conhecer a lojinha da **Bea Studio Criativo**, aqui no hall `[local exato]`, a mesma que fez os crachás de hoje. Tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela. `[se aceitar: Aceita Pix e cartão.]` Quem curtir, segue lá no Instagram: **@bea_studio_criativo**.
+> E aproveitem o intervalo pra conhecer as lojinhas aqui no hall. A **Bea Studio Criativo**, a mesma que fez os crachás de hoje, tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela, e aceita Pix e cartão. Instagram: **@bea_studio_criativo**.
+>
+> A **Helen Crochê** traz bolsas, chaveiros, ligas e prendedores de cabelo, tudo em crochê. Instagram: **@jasminecroche**.
+>
+> E a lojinha da **Emily Horta** tem ecobags sustentáveis e personalizáveis. Instagram: **@parnaiba.eco**.
 >
 > Quem está nos minicursos, eles terminam agora às 17h e vocês podem se juntar a nós.
 >
@@ -505,7 +509,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > Parabéns aos sorteados!
 >
-> Um agradecimento especial à **Bea Studio Criativo**, que produziu os 214 crachás desta edição. A lojinha dela fica no hall até o fim, então passem lá na saída.
+> Um agradecimento especial à **Bea Studio Criativo**, que produziu os 214 crachás desta edição, e também à **Helen Crochê** e à **Emily Horta**. As lojinhas delas ficam no hall até o fim, então passem lá na saída.
 >
 > E o agradecimento mais importante da noite vai pra quem bancou esse dia:
 >
