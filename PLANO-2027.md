@@ -40,9 +40,14 @@ patrocinadores) e prova social da 2ª edição.
       não têm EXIF nem XMP.
 - [x] Apagar os originais (`SOUZ*.jpg`) depois de otimizar.
 - [x] Foto do hero: `foto-oficial`.
-- [ ] Ordem da galeria.
-- [ ] Revisar o `alt` de cada foto.
-- [ ] Confirmar o crédito do fotógrafo e a autorização de uso das imagens.
+- [x] Ordem da galeria: a mesma da tabela abaixo. Na galeria do participante
+      entram, nesta ordem, `abertura`, `minicurso` e `equipe-organizadora`. A
+      `foto-oficial` já está no hero e as fotos do After vão para os cards.
+- [x] `alt` de cada foto revisado: vale o texto da tabela.
+- [x] Autorização de uso: as fotos foram feitas por um fotógrafo profissional
+      contratado pela organização. A página não leva crédito do fotógrafo.
+
+**Fase 0 concluída.**
 
 Todas em paisagem, proporção 3:2. Todas com 640, 1280 e 1920 px de largura.
 
@@ -153,3 +158,4 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 - 2026-10-21 — Fase 0: fotos otimizadas em `assets/fotos/` e originais apagados.
 - 2026-10-21 — Fotos renomeadas por momento (abertura, After), foto da
   equipe organizadora adicionada e hero definido (`foto-oficial`).
+- 2026-10-21 — Fase 0 concluída: ordem da galeria, `alt` e autorização de uso definidos.
