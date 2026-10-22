@@ -107,24 +107,92 @@ Notas da execução:
 
 ## Fase 2 — Listas de espera (regras 4, 5 e 6)
 
-**Decisão pendente:** Google Forms (recomendado) ou formulário próprio no site.
+**Decisão:** Google Forms. É a ferramenta que o projeto já usa, não exige
+código e as respostas caem no Sheets. Contra: a pessoa sai do site. Os forms
+são criados à mão na conta Google da organização, com o conteúdo abaixo.
 
-- **Google Forms:** é a ferramenta que o projeto já usa, não exige código e as
-  respostas caem no Sheets. Desvantagem: a pessoa sai do site.
-- **Formulário no site enviando para o `formResponse` do Google Forms:** a
-  pessoa não sai do site, mas a integração quebra se o form mudar.
-- Uma função na Vercel com banco seria exagero para três listas.
+- [ ] Criar os 3 forms (conteúdo abaixo, pronto para colar).
+- [ ] Em cada form: **Configurações → Respostas → Coletar e-mails: "Não
+      coletar"** (o e-mail já é uma pergunta) e **"Limitar a 1 resposta":
+      desligado** (não exige login Google, que derruba a conversão).
+- [ ] Ligar cada form a uma planilha (**Respostas → Vincular ao Planilhas**).
+      Pode ser a mesma planilha, uma aba por form.
+- [ ] Testar cada form com uma resposta falsa e apagar depois.
+- [ ] Colar os 3 links `.../viewform` aqui. A Fase 3 usa esses links nos
+      cards, e a Fase 4 usa nos eventos `waitlist_click`.
+  - Participante: `<link>`
+  - Palestrante: `<link>`
+  - Patrocinador: `<link>`
 
-Campos:
+### Bloco LGPD (igual nos três)
 
-- [ ] **Participante:** nome, e-mail, WhatsApp, cidade, perfil (estudante,
-      profissional, curioso).
-- [ ] **Palestrante:** nome, e-mail, WhatsApp, tema ou área, link (LinkedIn ou
-      GitHub), já palestrou?
-- [ ] **Patrocinador:** empresa, nome do contato, e-mail, WhatsApp, cota de
-      interesse.
-- [ ] Os três forms com aviso de LGPD: para que o dado vai ser usado e como
-      pedir a remoção.
+Vai como a **última seção** de cada form: um bloco de texto seguido da
+pergunta de consentimento.
+
+> **Como usamos seus dados**
+>
+> Os dados deste formulário servem só para a organização do Sertão Tech
+> avisar você sobre a edição 2027: {FINALIDADE}. Só a organização tem acesso
+> a eles, e não vendemos nem repassamos para terceiros. Guardamos os dados
+> até o fim da edição 2027. Para corrigir ou apagar os seus dados a qualquer
+> momento, chame a organização no WhatsApp +55 (86) 99920-2231 ou no
+> Instagram @osertaotech.
+
+Troque `{FINALIDADE}` por:
+
+- Participante: "abertura das inscrições, data e local"
+- Palestrante: "abertura da chamada de palestras e próximos passos da curadoria"
+- Patrocinador: "cotas, valores e prazos de patrocínio"
+
+Pergunta (caixa de seleção, **obrigatória**, uma opção):
+"Li e concordo com o uso dos meus dados como descrito acima."
+
+### Form 1 — Participante
+
+- **Título:** Sertão Tech 2027 — Lista de espera
+- **Descrição:** A 2ª edição esgotou. Deixe seu contato e avisamos você
+  primeiro quando as inscrições de 2027 abrirem.
+
+| Pergunta | Tipo | Obrigatória | Opções / validação |
+| --- | --- | --- | --- |
+| Nome | Resposta curta | Sim | |
+| E-mail | Resposta curta | Sim | Validação: texto → e-mail |
+| WhatsApp (com DDD) | Resposta curta | Sim | Ajuda: "Ex.: (86) 99999-9999" |
+| Cidade | Resposta curta | Sim | |
+| Qual seu perfil? | Múltipla escolha | Sim | Estudante · Profissional de tecnologia · Migrando de carreira · Curioso(a) |
+| Bloco LGPD | | Sim | |
+
+### Form 2 — Palestrante
+
+- **Título:** Sertão Tech 2027 — Quero palestrar
+- **Descrição:** A chamada de palestras de 2027 ainda não abriu. Deixe seu
+  contato e o tema que você quer apresentar, e avisamos você quando abrir.
+
+| Pergunta | Tipo | Obrigatória | Opções / validação |
+| --- | --- | --- | --- |
+| Nome | Resposta curta | Sim | |
+| E-mail | Resposta curta | Sim | Validação: texto → e-mail |
+| WhatsApp (com DDD) | Resposta curta | Sim | |
+| Tema ou área da palestra | Parágrafo | Sim | Ajuda: "Pode ser só uma ideia, a gente ajuda a lapidar." |
+| LinkedIn ou GitHub | Resposta curta | Não | Validação: texto → URL |
+| Já palestrou antes? | Múltipla escolha | Sim | Nunca palestrei · Já palestrei em eventos menores · Já palestrei em eventos grandes |
+| Bloco LGPD | | Sim | |
+
+### Form 3 — Patrocinador
+
+- **Título:** Sertão Tech 2027 — Quero patrocinar
+- **Descrição:** Em 2026 o Sertão Tech reuniu a comunidade de tecnologia do
+  Piauí na UFDPar. Deixe seu contato e enviamos as cotas de 2027 assim que
+  saírem.
+
+| Pergunta | Tipo | Obrigatória | Opções / validação |
+| --- | --- | --- | --- |
+| Empresa | Resposta curta | Sim | |
+| Nome do contato | Resposta curta | Sim | |
+| E-mail | Resposta curta | Sim | Validação: texto → e-mail |
+| WhatsApp (com DDD) | Resposta curta | Sim | |
+| Cota de interesse | Múltipla escolha | Sim | Ouro · Prata · Bronze · Apoio (espaço, coffee break, brindes) · Ainda não sei |
+| Bloco LGPD | | Sim | |
 
 ## Fase 3 — Nova home `/` (regras 2, 3 e 7)
 
@@ -165,7 +233,7 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 
 ## Decisões em aberto
 
-- [ ] Formulários: Google Forms ou formulário no site?
+- [x] Formulários: Google Forms.
 - [ ] 2027 já tem data ou local, ou fica "em breve"?
 - [ ] Números de 2026 para a prova social.
 - [ ] "Apoio e comunidades" (PHP PI, PHPWomen PI, UFDPar) entra na prova social?
@@ -178,3 +246,4 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
   equipe organizadora adicionada e hero definido (`foto-oficial`).
 - 2026-10-21 — Fase 0 concluída: ordem da galeria, `alt` e autorização de uso definidos.
 - 2026-10-21 — Fase 1 concluída: edição 2026 arquivada em `/2026` com redirects.
+- 2026-10-21 — Fase 2: decidido Google Forms. Conteúdo dos 3 forms e do aviso de LGPD especificado.
