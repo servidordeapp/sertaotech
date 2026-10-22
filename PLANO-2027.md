@@ -69,23 +69,41 @@ ingresso não inclui.
 
 ## Fase 1 — Arquivar 2026 em `/2026`
 
-- [ ] `git mv index.html 2026/index.html`.
-- [ ] `git mv` de `palestrantes/`, `patrocinio/` e `caravanas/` para `2026/`,
+- [x] `git mv index.html 2026/index.html`.
+- [x] `git mv` de `palestrantes/`, `patrocinio/` e `caravanas/` para `2026/`,
       porque o conteúdo delas é todo de 2026.
-- [ ] Trocar os 9 caminhos relativos por absolutos (`/assets/...`, `/css/...`, `/ds/...`).
-- [ ] Atualizar os links internos `/palestrantes`, `/patrocinio` e
+- [x] Trocar os 9 caminhos relativos por absolutos (`/assets/...`, `/css/...`, `/ds/...`).
+- [x] Atualizar os links internos `/palestrantes`, `/patrocinio` e
       `/caravanas` para `/2026/...` nas páginas movidas (nav, footer e corpo).
-- [ ] Atualizar `canonical` e `og:url` para `/2026...`.
-- [ ] Colocar uma faixa "Edição encerrada" no topo das páginas de 2026, com
+- [x] Atualizar `canonical` e `og:url` para `/2026...`.
+- [x] Colocar uma faixa "Edição encerrada" no topo das páginas de 2026, com
       link para a home.
-- [ ] Os botões "Esgotado" e o modal do WhatsApp passam a levar para a lista de
+- [x] Os botões "Esgotado" e o modal do WhatsApp passam a levar para a lista de
       espera de 2027 na home.
-- [ ] Manter o JSON-LD do `Event` de 2026 (evento passado continua válido).
-- [ ] Em `vercel.json`, redirecionar `/palestrantes`, `/patrocinio` e
+- [x] Manter o JSON-LD do `Event` de 2026 (evento passado continua válido).
+- [x] Em `vercel.json`, redirecionar `/palestrantes`, `/patrocinio` e
       `/caravanas` para `/2026/...` com `permanent: false`. Os links já
       compartilhados continuam funcionando e as rotas ficam livres para 2027.
-- [ ] `impressos/`, `cerimonial/` e `mesa-redonda/` ficam onde estão
+- [x] `impressos/`, `cerimonial/` e `mesa-redonda/` ficam onde estão
       (são internas). Revisar os links de `links/index.html`.
+      Conferido: `links/` só redireciona para um link externo e `impressos/`
+      usa caminhos relativos entre pastas que não mudaram.
+
+Notas da execução:
+
+- Os botões "Esgotado" viraram "Lista de espera 2027" e apontam para
+  `/#lista-de-espera`. **A Fase 3 precisa criar esse `id` na nova home.**
+- O modal do WhatsApp (`#waitlistModal`) foi removido. Os dois botões que o
+  abriam agora são links diretos para a lista de espera.
+- Na home 2026 o `@id` do `Event` passou a ser `/2026#event`, e as páginas
+  internas apontam para ele. O `WebSite` continua em `/#website`.
+- O script de GA4 detectava a página com `pathname.indexOf('/patrocinio')`.
+  Agora usa `/2026/patrocinio`, para manter `utm_content` e os eventos certos.
+- Faixa: classe `.edition-banner` em `css/site.css`.
+- Até a Fase 3, `/` não tem `index.html` e retorna 404. Não publicar antes.
+
+**Fase 1 concluída.**
+
 
 ## Fase 2 — Listas de espera (regras 4, 5 e 6)
 
@@ -159,3 +177,4 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 - 2026-10-21 — Fotos renomeadas por momento (abertura, After), foto da
   equipe organizadora adicionada e hero definido (`foto-oficial`).
 - 2026-10-21 — Fase 0 concluída: ordem da galeria, `alt` e autorização de uso definidos.
+- 2026-10-21 — Fase 1 concluída: edição 2026 arquivada em `/2026` com redirects.

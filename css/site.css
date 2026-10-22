@@ -137,6 +137,9 @@ section[id], div[id] { scroll-margin-top: 84px; }
   backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--border-subtle);
 }
+/* faixa das páginas de edições passadas (ex.: /2026) */
+.edition-banner { background: var(--surface-accent); color: var(--text-on-accent); text-align: center; font-size: 14px; padding: 10px 16px; }
+.edition-banner a { color: inherit; font-weight: 700; text-decoration: underline; }
 .site-header__inner {
   max-width: 1120px;
   margin: 0 auto;
