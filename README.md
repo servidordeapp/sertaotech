@@ -24,3 +24,23 @@ Don't hand-edit `ds/styles.css` directly — the next build overwrites it.
 a comment explaining why Google Fonts is linked directly in each page's
 `<head>` (with a preload + `media="print"` swap, to keep it non-render-blocking)
 instead of imported from the design system.
+
+## Mídia kit (kit de patrocínio)
+
+One reveal.js deck per edition, loaded from CDN (no build step):
+
+```
+midia-kit/
+  midia-kit.css      # shared reveal theme, built only on /ds/styles.css tokens
+  2026/index.html    # 2ª edição — imported from Claude Design
+```
+
+To start a new edition (e.g. 2027):
+
+1. `cp -r midia-kit/2026 midia-kit/2027` and edit only the content of the `<section>`s.
+   Speaker notes live in `<aside class="notes">` (press `S` to open the speaker view).
+2. Point the `/midia-kit` redirect in `vercel.json` to the new year.
+   Old years stay online at `/midia-kit/<ano>`.
+
+Need a new layout? Add the class to `midia-kit/midia-kit.css` so later editions reuse it.
+Export to PDF: open `/midia-kit/<ano>?print-pdf` in Chrome and print to PDF.

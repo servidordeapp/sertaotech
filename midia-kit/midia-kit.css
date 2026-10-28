@@ -1,0 +1,186 @@
+/* ============================================================
+ * Sertão Tech — Mídia kit (tema reveal.js)
+ * Compartilhado por todas as edições em midia-kit/<ano>/index.html.
+ * Só usa tokens de /ds/styles.css — não declare cores ou fontes aqui.
+ *
+ * O palco do reveal é 1920x1080 e é escalado inteiro para a tela,
+ * por isso os tamanhos são em px de propósito.
+ * ============================================================ */
+
+/* reveal.css põe fundo branco e line-height 1 no <body> via .reveal-viewport */
+.reveal-viewport { background: var(--espresso-950); line-height: var(--leading-normal); }
+
+.reveal { font-family: var(--font-body); color: var(--text-body); }
+.reveal .controls, .reveal .progress { color: var(--amber-400); }
+.reveal .slide-number { background: transparent; font-family: var(--font-mono); color: var(--sand-400); }
+.reveal .slides { text-align: left; }
+.reveal .slides > section {
+  box-sizing: border-box;
+  height: 100%;
+  flex-direction: column; /* display:flex vem do config do reveal */
+  padding: 96px 110px 88px;
+  background: var(--surface-page);
+}
+.reveal p { margin: 0; }
+.reveal a { text-decoration: none; }
+
+/* ---------- Variantes de slide ---------- */
+.reveal .slides > section.dark { background: var(--espresso-800); color: var(--text-on-ink); }
+.reveal .slides > section.tight { padding: 88px 110px 80px; }
+.reveal .slides > section.split { padding: 0; flex-direction: row; }
+.between { justify-content: space-between; }
+
+/* ---------- Layout ---------- */
+.row { display: flex; justify-content: space-between; align-items: flex-start; }
+.row.end { align-items: flex-end; }
+.row.baseline { align-items: baseline; }
+.stack { display: flex; flex-direction: column; gap: 20px; }
+.push { margin-top: auto; }
+.grid { display: grid; gap: 32px; }
+.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.cols-3 { grid-template-columns: repeat(3, 1fr); }
+.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+/* ---------- Texto ---------- */
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+  color: var(--terra-600);
+}
+.dark .eyebrow { color: var(--amber-300); }
+.eyebrow.muted { color: var(--text-muted); }
+.dark .eyebrow.muted { color: var(--text-on-ink-muted); }
+
+.title {
+  margin-top: 28px;
+  font-family: var(--font-display);
+  font-weight: var(--fw-bold);
+  font-size: 72px;
+  line-height: 1.05;
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-strong);
+}
+.dark .title { color: var(--sand-100); }
+.title.sm { margin-top: 20px; font-size: 64px; }
+
+.lead { margin-top: 36px; font-size: 36px; line-height: 1.5; max-width: 1320px; }
+.text { font-size: 30px; line-height: 1.4; }
+.small { font-size: 26px; line-height: 1.35; }
+.display { font-family: var(--font-display); font-weight: var(--fw-bold); line-height: 1.2; }
+.num { font-family: var(--font-display); font-weight: var(--fw-bold); line-height: 1; letter-spacing: -0.02em; }
+
+.strong { color: var(--text-strong); }
+.dark .strong { color: var(--sand-100); }
+.muted { color: var(--text-muted); }
+.dark .muted { color: var(--text-on-ink-muted); }
+.gold { color: var(--amber-300); }
+.terra { color: var(--terra-600); }
+
+/* ---------- Componentes ---------- */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 40px;
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+}
+.card.badge { gap: 14px; padding: 44px; border: 2px solid var(--border-ink); box-shadow: var(--shadow-badge); }
+
+/* Capa e contato */
+.cover-brand { display: flex; align-items: center; gap: 72px; }
+.cover-brand img { width: 340px; height: 340px; object-fit: contain; flex: none; }
+.wordmark {
+  margin: 0;
+  font-family: var(--font-wordmark);
+  font-weight: 800;
+  font-size: 132px;
+  line-height: 0.92;
+  letter-spacing: var(--tracking-tight);
+  text-transform: uppercase;
+  color: var(--amber-300);
+}
+.tagline { font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: 42px; line-height: 1.25; color: var(--sand-100); max-width: 900px; }
+.footer { display: flex; gap: 64px; align-items: center; padding-top: 36px; border-top: 1px solid var(--border-on-ink); }
+.footer p { font-size: 28px; color: var(--text-on-ink-muted); }
+
+/* Números grandes em colunas com divisória */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); }
+.stats > div { display: flex; flex-direction: column; gap: 12px; padding: 0 48px; }
+.stats > div:first-child { padding-left: 0; }
+.stats > div:last-child { padding-right: 0; }
+.stats > div + div { border-left: 1px solid var(--border-on-ink); }
+.stats .num { font-size: 132px; color: var(--amber-300); }
+
+/* Slide dividido (texto + painel terracota) */
+.split-main { flex: 1; display: flex; flex-direction: column; padding: 96px 72px 88px 110px; }
+.split-panel {
+  width: 760px;
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 32px;
+  padding: 96px 88px 88px;
+  background: var(--terra-600);
+  color: var(--text-on-brand);
+}
+.split-panel .eyebrow { color: var(--terra-100); }
+
+/* Itens com filete no topo */
+.ruled { display: flex; flex-direction: column; gap: 12px; padding-top: 28px; border-top: 2px solid var(--amber-300); }
+.ruled-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px 72px; }
+.ruled-list p { font-size: 29px; line-height: 1.35; padding-top: 16px; border-top: 1px solid var(--border-on-ink); }
+
+/* Lista numerada (01, 02, 03) */
+.reasons > div { display: flex; gap: 56px; align-items: baseline; padding: 36px 0; border-top: 1px solid var(--border-default); }
+.reasons > div:last-child { border-bottom: 1px solid var(--border-default); }
+.reasons .num { flex: none; width: 96px; font-size: 64px; color: var(--amber-500); }
+.reasons h3 { flex: none; width: 520px; font-size: 42px; line-height: 1.2; }
+.reasons p { flex: 1; font-size: 30px; line-height: 1.45; color: var(--text-muted); }
+
+/* Tabela comparativa de cotas */
+.quota-table { width: 100%; margin-top: 36px; border-collapse: collapse; font-size: 26px; }
+.quota-table th { padding: 0 0 18px; font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 30px; }
+.quota-table th:first-child { text-align: left; font-family: var(--font-mono); font-weight: 400; font-size: 24px; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--text-muted); }
+.quota-table th span { display: block; font-family: var(--font-body); font-weight: 400; font-size: 24px; color: var(--text-muted); }
+.quota-table td { padding: 8px 0; border-top: 1px solid var(--border-subtle); }
+.quota-table td + td { width: 210px; text-align: center; font-size: 28px; color: var(--terra-600); }
+.quota-table td:nth-child(2) { background: var(--amber-100); }
+.quota-table td.no { color: var(--text-subtle); }
+.quota-table tbody tr:first-child td { border-top: 2px solid var(--border-ink); }
+.quota-table tbody tr:last-child td { border-bottom: 1px solid var(--border-subtle); }
+.tier-gold { color: var(--amber-600); }
+.tier-silver { color: var(--espresso-600); }
+.tier-bronze { color: var(--terra-700); }
+
+/* Cards de cota */
+.tier { gap: 24px; padding: 44px 40px; border-color: var(--border-default); }
+.tier .name { font-size: 44px; }
+.tier .price { font-size: 64px; }
+.tier .stack { gap: 14px; }
+.tier .stack p { font-size: 27px; line-height: 1.35; }
+.tier.featured { background: var(--espresso-800); color: var(--sand-100); border: 2px solid var(--border-ink); box-shadow: 6px 6px 0 var(--amber-500); }
+.tier.featured .name { color: var(--amber-300); }
+.tier.featured .muted { color: var(--text-on-ink-muted); }
+
+/* Colunas de benefícios (Prata e Bronze) */
+.benefits { gap: 22px; }
+.benefits .row { padding-bottom: 16px; border-bottom: 2px solid var(--border-ink); align-items: baseline; }
+.benefits .row p { font-size: 48px; }
+.benefits > p { font-size: 28px; line-height: 1.4; }
+
+/* Vagas */
+.slot { display: flex; flex-direction: column; gap: 10px; padding: 44px; border-radius: var(--radius-card); }
+.slot .num { font-size: 110px; }
+.slot .label { font-family: var(--font-display); font-weight: var(--fw-semibold); font-size: 36px; color: var(--text-strong); }
+.slot > p:last-child { font-size: 28px; color: var(--text-muted); }
+
+/* Contatos no rodapé */
+.contacts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; padding-top: 40px; border-top: 1px solid var(--border-on-ink); }
+.contacts > div { display: flex; flex-direction: column; gap: 8px; }
+.contacts .value { font-size: 30px; line-height: 1.3; }
