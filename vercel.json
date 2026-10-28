@@ -20,6 +20,6 @@
     { "source": "/palestrantes", "destination": "/2026/palestrantes", "permanent": false },
     { "source": "/patrocinio", "destination": "/2026/patrocinio", "permanent": false },
     { "source": "/caravanas", "destination": "/2026/caravanas", "permanent": false },
-    { "source": "/midia-kit", "destination": "/midia-kit/2026", "permanent": false }
+    { "source": "/midia-kit", "destination": "/midia-kit/2027", "permanent": false }
   ]
 }

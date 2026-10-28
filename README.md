@@ -27,20 +27,29 @@ instead of imported from the design system.
 
 ## Mídia kit (kit de patrocínio)
 
-One reveal.js deck per edition, loaded from CDN (no build step):
+One reveal.js deck per edition, loaded from CDN (no build step). `/midia-kit` redirects to the latest year.
 
 ```
 midia-kit/
   midia-kit.css      # shared reveal theme, built only on /ds/styles.css tokens
+  midia-kit.js       # shared init: reveal on desktop, scrolling page on phones, PDF export
+  icons.svg          # Lucide sprite (the DS icon set): <svg class="icon"><use href="/midia-kit/icons.svg#bot"/></svg>
   2026/index.html    # 2ª edição — imported from Claude Design
+  2027/index.html    # 3ª edição
 ```
 
-To start a new edition (e.g. 2027):
+To start a new edition (e.g. 2028):
 
-1. `cp -r midia-kit/2026 midia-kit/2027` and edit only the content of the `<section>`s.
+1. `cp -r midia-kit/2027 midia-kit/2028` and edit only the content of the `<section>`s.
    Speaker notes live in `<aside class="notes">` (press `S` to open the speaker view).
 2. Point the `/midia-kit` redirect in `vercel.json` to the new year.
    Old years stay online at `/midia-kit/<ano>`.
 
+In the 2027 kit, the traditional quota benefits are a `<div class="placeholder">` per quota;
+the comment above that slide says how to replace them. Contacts are in the last slide.
+
 Need a new layout? Add the class to `midia-kit/midia-kit.css` so later editions reuse it.
-Export to PDF: open `/midia-kit/<ano>?print-pdf` in Chrome and print to PDF.
+
+- **Phones** (≤ 900px): reveal is not started; slides become a scrolling page (`.mk-flow` in the CSS).
+- **PDF**: `/midia-kit/<ano>?print-pdf` lays out one 1920×1080 page per slide and opens the print
+  dialog ("Salvar como PDF"). The last slide of 2027 links to it. Hidden slides are left out.
