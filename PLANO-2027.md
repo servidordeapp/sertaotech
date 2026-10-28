@@ -109,7 +109,12 @@ Notas da execução:
 
 **Decisão:** Google Forms. É a ferramenta que o projeto já usa, não exige
 código e as respostas caem no Sheets. Contra: a pessoa sai do site. Os forms
-são criados à mão na conta Google da organização, com o conteúdo abaixo.
+são criados na conta Google da organização, com o conteúdo abaixo.
+
+**Atalho:** `scripts/listas-de-espera.gs` (Google Apps Script) cria os 3 forms
+de uma vez, já com as configurações e a planilha vinculada (uma aba por form).
+Passo a passo no topo do arquivo. Ele cobre os três primeiros itens abaixo.
+Sem o script, faça à mão com o conteúdo das seções seguintes.
 
 - [ ] Criar os 3 forms (conteúdo abaixo, pronto para colar).
 - [ ] Em cada form: **Configurações → Respostas → Coletar e-mails: "Não
@@ -117,6 +122,8 @@ são criados à mão na conta Google da organização, com o conteúdo abaixo.
       desligado** (não exige login Google, que derruba a conversão).
 - [ ] Ligar cada form a uma planilha (**Respostas → Vincular ao Planilhas**).
       Pode ser a mesma planilha, uma aba por form.
+- [ ] Abrir cada link `viewform` numa janela anônima: tem que abrir sem login
+      e o bloco LGPD tem que ser a última seção.
 - [ ] Testar cada form com uma resposta falsa e apagar depois.
 - [ ] Colar os 3 links `.../viewform` aqui. A Fase 3 usa esses links nos
       cards, e a Fase 4 usa nos eventos `waitlist_click`.
@@ -144,8 +151,8 @@ Troque `{FINALIDADE}` por:
 - Palestrante: "abertura da chamada de palestras e próximos passos da curadoria"
 - Patrocinador: "cotas, valores e prazos de patrocínio"
 
-Pergunta (caixa de seleção, **obrigatória**, uma opção):
-"Li e concordo com o uso dos meus dados como descrito acima."
+Pergunta "Consentimento" (caixa de seleção, **obrigatória**), com uma única
+opção: "Li e concordo com o uso dos meus dados como descrito acima."
 
 ### Form 1 — Participante
 
@@ -247,3 +254,4 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 - 2026-10-21 — Fase 0 concluída: ordem da galeria, `alt` e autorização de uso definidos.
 - 2026-10-21 — Fase 1 concluída: edição 2026 arquivada em `/2026` com redirects.
 - 2026-10-21 — Fase 2: decidido Google Forms. Conteúdo dos 3 forms e do aviso de LGPD especificado.
+- 2026-10-28 — Fase 2: script `scripts/listas-de-espera.gs` para criar os 3 forms e a planilha.
