@@ -57,6 +57,10 @@ Todas em paisagem, proporção 3:2. Todas com 640, 1280 e 1920 px de largura.
 | `abertura` | SOUZ6128 | Evento | Abertura: três convidados à mesa e o público no auditório, com o logo do Sertão Tech no telão. |
 | `minicurso` | SOUZ6152 | Evento | Minicurso: participantes atentos numa sala de aula. |
 | `equipe-organizadora` | SOUZ6313 | Evento | Equipe organizadora: dez pessoas com a camiseta do Sertão Tech, lado a lado no auditório. |
+| `palestra` | SOUZ6160 | Evento | Palestra: palestrante de microfone na mão, de costas, falando para o auditório cheio. |
+| `publico` | SOUZ6155 | Evento | Público: participantes sentados no auditório, atentos à palestra. |
+| `coffee-break` | SOUZ6305 | Evento | Coffee break: participantes e organização em volta da mesa de lanches. |
+| `organizacao-camiseta` | SOUZ6202 | Evento | Integrante da organização, de costas, com a camiseta do Sertão Tech, olhando para o auditório. |
 | `after-networking` | SOUZ6578 | After | Sertão Tech After: três convidados conversando. |
 | `after-petiscos` | SOUZ6573 | After | Sertão Tech After: convidados se servindo de petiscos. |
 | `after-bar` | SOUZ6575 | After | Sertão Tech After: bartender preparando drinks para os convidados. |
@@ -205,18 +209,45 @@ opção: "Li e concordo com o uso dos meus dados como descrito acima."
 
 Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 
-1. [ ] **Hero com foto da 2ª edição:** título "Sertão Tech 2027", subtítulo e
+1. [x] **Hero com foto da 2ª edição:** título "Sertão Tech 2027", subtítulo e
        um botão principal, "Entrar na lista de espera" (participante).
-2. [ ] **Números de 2026:** inscritos, palestras, caravanas, cidades.
-3. [ ] **Galeria:** de 4 a 6 fotos em grid CSS com `srcset`. Todas com
+2. [x] **Números de 2026:** 233 inscritos, 16 palestras e minicursos
+       (contado do JSON-LD de `/2026`), 4 caravanas e 4 cidades (Parnaíba,
+       Luís Correia, Buriti dos Lopes e Teresina).
+3. [x] **Galeria:** de 4 a 6 fotos em grid CSS com `srcset`. Todas com
        `loading="lazy"`, exceto a do hero, que leva `fetchpriority="high"`.
-4. [ ] **Três cards:** Participar, Palestrar e Patrocinar, cada um levando ao
+4. [x] **Três cards:** Participar, Palestrar e Patrocinar, cada um levando ao
        seu formulário.
-5. [ ] **"Quem apoiou em 2026" (regra 7):** cópia do bloco `#patrocinadores`
+5. [x] **"Quem apoiou em 2026" (regra 7):** cópia do bloco `#patrocinadores`
        com `utm_content=home2027-<cota>`.
-6. [ ] **Botão final** para a lista de espera, mais o link "Ver como foi a
+6. [x] **Botão final** para a lista de espera, mais o link "Ver como foi a
        edição 2026" apontando para `/2026`.
-7. [ ] **Nav enxuta:** "Edição 2026" e o botão da lista de espera.
+7. [x] **Nav enxuta:** "Edição 2026" e o botão da lista de espera.
+8. [ ] Trocar os marcadores `FORM_PARTICIPANTE`, `FORM_PALESTRANTE` e
+       `FORM_PATROCINADOR` em `index.html` pelos links da Fase 2.
+
+Notas da execução:
+
+- A seção dos cards tem `id="lista-de-espera"`, o destino dos botões de `/2026`.
+- Fotos: hero `foto-oficial`. Galeria com 7 fotos em 4 colunas (2 no
+  celular): `abertura` (2x2), `palestra`, `publico`, `minicurso`,
+  `coffee-break` e, na última linha, `organizacao-camiseta` e
+  `equipe-organizadora` (2 colunas cada). As quatro do meio foram
+  adicionadas em 2026-10-28, com o mesmo tratamento da Fase 0. Os cards ficaram só com ícone, para manter os três
+  iguais. As três fotos do After ficam numa faixa "Sertão Tech After" logo
+  abaixo dos cards, com o texto "quem palestra ou patrocina participa".
+- "Apoio e comunidades" entrou no mural, igual a `/2026`. Para tirar, apague
+  o `.logo-tier` de apoio em `index.html`.
+- O script de métricas de patrocinador foi copiado com `sponsor_page:
+  'home2027'`, para separar os cliques desta home dos da home de 2026.
+- CSS novo no bloco "home 2027" de `css/site.css`.
+- Hero sem data: "Data e local em breve".
+- `<title>`, `description` e `og:*` provisórios. O `og-cover` e o JSON-LD
+  continuam para a Fase 4.
+- Não deu para testar no navegador (o Chromium do ambiente não roda por
+  falta de libs do sistema). Conferido: todos os assets existem, as tags
+  estão balanceadas e os `id` são únicos. Falta conferir o visual no
+  desktop e no celular.
 
 ## Fase 4 — SEO e analytics
 
@@ -242,7 +273,7 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 
 - [x] Formulários: Google Forms.
 - [ ] 2027 já tem data ou local, ou fica "em breve"?
-- [ ] Números de 2026 para a prova social.
+- [x] Números de 2026 para a prova social.
 - [ ] "Apoio e comunidades" (PHP PI, PHPWomen PI, UFDPar) entra na prova social?
 
 ## Histórico
@@ -255,3 +286,5 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 - 2026-10-21 — Fase 1 concluída: edição 2026 arquivada em `/2026` com redirects.
 - 2026-10-21 — Fase 2: decidido Google Forms. Conteúdo dos 3 forms e do aviso de LGPD especificado.
 - 2026-10-28 — Fase 2: script `scripts/listas-de-espera.gs` para criar os 3 forms e a planilha.
+- 2026-10-28 — Fase 3: nova home em `index.html`, com marcadores no lugar dos links dos forms.
+- 2026-10-28 — Fase 3: números de 2026 preenchidos e 4 fotos novas (SOUZ6155, 6160, 6202 e 6305) na galeria.

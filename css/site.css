@@ -531,7 +531,8 @@ section[id], div[id] { scroll-margin-top: 84px; }
 .logo-wall--gold   { --logo-min: 380px; --logo-h: 140px; --logo-wall-max: 860px; }
 .logo-wall--silver { --logo-min: 300px; --logo-h: 116px; }
 .logo-wall--bronze { --logo-min: 210px; --logo-h: 92px; }
-.logo-wall--apoio  { --logo-min: 190px; --logo-h: 72px; --logo-wall-max: 900px; }
+/* 120px: os logos das comunidades são verticais (PHP PI 240x186, PHPWomen 240x309) */
+.logo-wall--apoio  { --logo-min: 190px; --logo-h: 120px; --logo-wall-max: 900px; }
 
 .logo-card {
   flex: 1;
@@ -631,6 +632,8 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
   font-size: 15px; padding: 5px 0;
 }
 .site-footer__cols a:hover { color: var(--amber-300); }
+.site-footer__apoio { display: flex; align-items: center; gap: 18px; }
+.site-footer__apoio img { height: 48px; width: auto; }
 .site-footer__bottom {
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
   gap: 16px; margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--border-on-ink);
@@ -716,6 +719,36 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
 .faq p { padding: 0 22px 20px; margin: 0; font-size: 15px; line-height: 1.65; color: var(--text-body); }
 .faq p a { color: var(--text-link); text-decoration: underline; }
 
+/* ---------- home 2027 (fotos da 2ª edição e listas de espera) ---------- */
+/* .hero__art img é feito pro selo (360px, drop-shadow); a foto ocupa a coluna toda. */
+.hero__art .hero__photo {
+  display: block; width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover;
+  border-radius: var(--radius-card); border: 2px solid var(--border-on-ink);
+  filter: none; box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+}
+.photo { display: block; width: 100%; height: 100%; aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--radius-card); }
+/* 4 colunas: a primeira foto ocupa 2x2 (a altura bate com as quatro pequenas
+   ao lado) e as .photo--wide ocupam 2 colunas cada, fechando a última linha. */
+.gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 34px 0 20px; }
+.gallery .photo:first-child { grid-column: span 2; grid-row: span 2; }
+.gallery .photo--wide { grid-column: span 2; }
+.photo-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 20px; }
+.waitlist-card { display: flex; flex-direction: column; }
+.waitlist-card .card-text { margin-bottom: 22px; }
+.waitlist-card .btn { margin-top: auto; align-self: flex-start; }
+/* After é à noite: painel escuro com o mesmo brilho do CTA final, pra não sumir
+ * abaixo dos cards claros das listas de espera. */
+.after {
+  position: relative; overflow: hidden; isolation: isolate;
+  margin-top: 64px; padding: 56px 48px; text-align: center;
+  background: var(--surface-ink); border-radius: var(--radius-card);
+}
+.after .cta__glow { z-index: -1; left: auto; right: -160px; top: -220px; bottom: auto; }
+.after .cta__lead { margin: 16px auto 0; max-width: 560px; }
+.after .photo-row { margin-top: 36px; }
+.after .photo { border: 2px solid var(--border-on-ink); }
+.after .hero__actions { justify-content: center; margin-top: 36px; }
+
 /* ============================================================
  * Responsive — the design canvas is desktop-only (1200px);
  * these breakpoints are the site's own adaptation.
@@ -776,6 +809,13 @@ a.logo-card--gold:hover, a.logo-card--gold:focus-visible {
 
   .section, .section--tight { padding: 48px 20px; }
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+  .photo-row { grid-template-columns: 1fr; }
+  /* celular: 2 colunas, as fotos grandes ocupam a linha inteira */
+  .gallery { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .gallery .photo:first-child { grid-row: auto; }
+  .waitlist-card .btn { align-self: stretch; }
+  .after { padding: 40px 20px; }
+  .after .hero__actions .btn { flex: 1 1 100%; justify-content: center; }
   .speaker-grid.grid-4 { grid-template-columns: 1fr; gap: 20px; }
   .section-head { align-items: flex-start; }
 
