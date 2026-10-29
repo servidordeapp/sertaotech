@@ -4,8 +4,8 @@ Documento de planejamento. Define a estrutura e o conteúdo do relatório que
 vai para os patrocinadores da 2ª edição. A versão final é um PDF por
 patrocinador: a base é igual para todos e a seção 6 muda conforme a cota.
 
-**Objetivo do relatório:** mostrar que o que foi prometido no kit de 2026 foi
-entregue (e superado), comprovar o retorno de marca de cada patrocinador e
+**Objetivo do relatório:** mostrar que as metas do kit de 2026 foram
+atingidas (e superadas), comprovar o retorno de marca de cada patrocinador e
 abrir a conversa de renovação para 2027.
 
 **Tom:** agradecimento + prestação de contas. Números com fonte e período,
@@ -52,7 +52,7 @@ Total: 12 a 16 páginas. Mais que isso o patrocinador não lê.
 Três parágrafos curtos, assinados pela organização (PHP PI & PHPWomen PI).
 
 1. Obrigado por acreditar numa edição que ainda não existia.
-2. O resultado em uma frase: "Prometemos 150 pessoas na sala. Vieram 176."
+2. O resultado em uma frase: "A meta era 150 pessoas presentes. Tivemos 176."
 3. O que o patrocínio tornou possível (coffee break, estrutura, brindes,
    foto profissional — confirmar o que se aplica) e o convite para 2027.
 
@@ -69,7 +69,7 @@ apresentação do kit e mostra o cumprimento.
 
 Compromissos do kit de 2026 e o que aconteceu:
 
-| Prometido no kit 2026 | Entregue |
+| Planejado no kit 2026 | Realizado |
 | --- | --- |
 | Meta de 150 presentes | **176 check-ins** (117% da meta) |
 | Local na UFDPar | Realizado na UFDPar, Parnaíba — PI |
@@ -195,7 +195,11 @@ LinkedIn e do GA4.
 
 Seção que justifica o investimento. Uma versão por patrocinador.
 
-### 6.1 Contrapartidas: prometido × entregue
+### 6.1 Contrapartidas: previsto × entregue
+
+**Fora do deck** (decisão de 2026-10-28): o slide de contrapartidas e o do
+Sertão Tech After saíram para enxugar o relatório. Fica aqui só como
+referência.
 
 Tabela com a lista da cota (kit 2026), coluna de status e coluna de
 evidência (foto, print ou link). Só marcar "Entregue" com evidência em mãos.
@@ -241,7 +245,7 @@ Bônus que não estava na cota (citar como "a mais"):
 
 - **Logo continua no site depois do evento**, na página `/2026` e no bloco
   "Quem apoiou em 2026" da home de 2027, que é a página de captação da 3ª
-  edição. Ou seja, a marca segue exposta durante toda a divulgação de 2027.
+  edição. O logo fica lá até o fim de 2026.
 - **Entrada no Sertão Tech After** para o patrocinador e convidados dele:
   encontro privado de networking com palestrantes e organização, com
   churrasco e drinks (com opções sem álcool). Não era aberto aos inscritos.
@@ -329,15 +333,15 @@ Resumo do kit 2027, sem repetir o kit inteiro. Uma página e o link.
   robótica.
 - Novidade: as trilhas de Robótica e Negócios viram programas no YouTube, com
   uma marca apresentadora cada ("Sertão Tech Robotics/Business, apresentado
-  por…"), R$ 10.000, 1 vaga cada.
-- Cotas tradicionais: Bronze R$ 1.000 · Prata R$ 2.500 · Ouro R$ 5.000.
+  por…"), 1 vaga cada. Sem valores no relatório.
+- Cotas tradicionais Bronze, Prata e Ouro, sem valores no relatório
+  (ficam no kit 2027).
 - Link: osertaotech.com.br/midia-kit
 - **Proposta para quem patrocinou em 2026** (decisão da organização):
   prioridade de escolha de cota até uma data, ou condição especial de
   renovação. Ex.: "Patrocinadores de 2026 têm prioridade até {{data}}".
 
-Cuidado: os preços de 2027 sobem de 2x a 5x. Abrir com o crescimento (seções
-3 a 5) antes de mostrar preço, para o aumento ter justificativa.
+Chamada do slide: "A <empresa> pode impulsionar ainda mais esse crescimento."
 
 ## 11. Sua opinião
 
@@ -373,10 +377,6 @@ relatório" do CSS, para reaproveitar em 2027).
   `exa`, `retake-brasil`, `bruno-neves-advogado`, `cajutec`, `cod3r`.
 - **Dados de cada patrocinador:** objeto `PATROCINADORES` no script do fim
   do HTML.
-  - `entregue`: chaves das contrapartidas já comprovadas. Hoje só `site`.
-    O resto aparece com o rótulo vermelho **"a confirmar"**. Chaves: `palco`,
-    `estande`, `sorteio`, `digital`, `impressos`, `banner`, `brindes`,
-    `site`, `mencao`, `redes` (cada cota usa só as suas).
   - `fotos`: `[{ src, legenda }]` com as fotos da marca no evento. Vazio
     esconde o slide "A <empresa> no Sertão Tech".
   - `FORM_FEEDBACK`: link do form da seção 11. Vazio esconde o card.
@@ -388,10 +388,10 @@ relatório" do CSS, para reaproveitar em 2027).
   3. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
      **Nenhuma**, **Gráficos de fundo** ligado. O nome do arquivo já vem como
      `Sertao-Tech-2026-Relatorio-<Empresa>`.
-  4. Antes de exportar, conferir que nenhuma contrapartida está "a confirmar".
-- PDF com 15 páginas (16 se tiver fotos da marca), ~16 MB.
-- Sem dados de perfil do público, sem o print do GA4 (os números do site
-  vão em texto) e sem a condição de renovação, que ainda não foi decidida.
+- PDF com 13 páginas (14 se tiver fotos da marca).
+- Ficaram de fora: contrapartidas por cota, Sertão Tech After, valores das
+  cotas de 2027, dados de perfil do público e o print do GA4 (os números do
+  site vão em texto).
 
 ### Envio por WhatsApp
 
@@ -422,8 +422,7 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
 - [x] LinkedIn: números do print aqui e no kit 2027 (9.272 / 482, 29 ago —
       27 out). Período do Instagram no kit também ajustado para 27 out.
 - [x] Período do Instagram na 1ª edição: 30 dias (nota na seção 5).
-- [ ] Confirmar, com foto ou print, cada contrapartida da seção 6.1 e
-      marcar em `entregue` no deck.
+- [x] Contrapartidas: fora do deck, não precisam mais de confirmação.
 - [ ] Separar as fotos em que cada marca aparece e listar em `fotos` no deck.
 - [x] Prints do Instagram, LinkedIn e GA4 (em `originais/relatorio-2026/`).
 - [x] Prints recortados em `relatorio/2026/prints/` (Instagram e LinkedIn).
@@ -436,7 +435,7 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
       cidade, faixa etária) no formulário da Sympla. É o dado que falta
       neste relatório.
 - [ ] Decidir a condição de renovação para patrocinadores de 2026 (se
-      houver, entra no slide de 2027).
+      houver, entra no slide de 2027, ainda sem valores).
 - [ ] Criar o form de feedback da seção 11 e colar em `FORM_FEEDBACK`.
 - [ ] Exportar os 7 PDFs e enviar por WhatsApp (até 08/11/2026).
 
@@ -451,3 +450,6 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
   atualizado com os mesmos números.
 - 2026-10-28 — Deck implementado em `relatorio/2026` (um por empresa via
   `?p=`), fora do deploy. Envio por WhatsApp.
+- 2026-10-28 — Deck enxuto: sem "prometemos" (era meta), sem os slides de
+  contrapartidas e do After, sem valores de cota; programas de 2027
+  explicados em uma frase.

@@ -336,7 +336,8 @@
 
 /* Logo do patrocinador: os arquivos são para fundo claro (assets/patrocinadores/README.md) */
 .sponsor-logo { display: grid; place-items: center; padding: 28px 48px; background: var(--surface-card); border-radius: var(--radius-card); }
-.sponsor-logo img { display: block; max-width: 420px; max-height: 120px; object-fit: contain; }
+/* altura fixa: SVG sem width/height (ex.: programe-studio.svg) some com só max-* */
+.sponsor-logo img { display: block; width: auto; height: 104px; max-width: 420px; object-fit: contain; }
 
 /* 1ª × 2ª edição */
 .compare { display: grid; grid-template-columns: 1fr 220px 260px 260px; align-items: baseline; }
@@ -348,14 +349,10 @@
 .compare .after { font-size: 80px; color: var(--terra-600); text-align: right; }
 .compare .delta { font-family: var(--font-display); font-weight: var(--fw-bold); font-size: 34px; color: var(--cactus-600); text-align: right; }
 
-/* Contrapartidas: entregue × a confirmar */
-.checklist { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 72px; }
+/* Linha com marcador (planejado × realizado) */
 .check { display: flex; gap: 20px; align-items: center; padding: 18px 0; border-top: 1px solid var(--border-subtle); font-size: 28px; line-height: 1.3; color: var(--text-strong); }
 .check .mark { display: grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 50%; background: var(--cactus-600); color: var(--sand-50); }
 .check .mark .icon { width: 28px; height: 28px; }
-.check.pending { color: var(--text-muted); }
-.check.pending .mark { background: transparent; border: 2px dashed var(--brick-500); }
-.check.pending::after { content: "a confirmar"; flex: none; margin-left: auto; white-space: nowrap; font-family: var(--font-mono); font-size: 18px; letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--brick-500); }
 .check .value { margin-left: auto; font-family: var(--font-display); font-weight: var(--fw-bold); color: var(--terra-600); }
 .dark .check { border-top-color: var(--border-on-ink); color: var(--sand-100); }
 .dark .check .value { color: var(--amber-300); }
@@ -399,7 +396,7 @@
 .mk-flow .quota-table td + td { width: 120px; }
 .mk-flow .platform .metrics { flex-wrap: wrap; gap: 32px; }
 .mk-flow .screen.lg .program { font-size: 112px; }
-.mk-flow .checklist, .mk-flow .photo-grid { grid-template-columns: 1fr; }
+.mk-flow .photo-grid { grid-template-columns: 1fr; }
 .mk-flow .compare { grid-template-columns: 1fr 140px 180px 160px; }
 
 /* ============================================================
