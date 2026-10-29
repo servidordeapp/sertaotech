@@ -242,8 +242,7 @@ Notas da execução:
   'home2027'`, para separar os cliques desta home dos da home de 2026.
 - CSS novo no bloco "home 2027" de `css/site.css`.
 - Hero sem data: "Data e local em breve".
-- `<title>`, `description` e `og:*` provisórios. O `og-cover` e o JSON-LD
-  continuam para a Fase 4.
+- `<title>`, `description` e `og:*` provisórios (viraram definitivos na Fase 4).
 - Não deu para testar no navegador (o Chromium do ambiente não roda por
   falta de libs do sistema). Conferido: todos os assets existem, as tags
   estão balanceadas e os `id` são únicos. Falta conferir o visual no
@@ -251,13 +250,20 @@ Notas da execução:
 
 ## Fase 4 — SEO e analytics
 
-- [ ] Novos `<title>`, `description` e `og:*` focados em 2027.
-- [ ] Novo `og-cover` gerado com `scripts/og-card.mjs`.
-- [ ] JSON-LD só com `Organization`. O `Event` de 2027 entra quando houver data.
-- [ ] `sitemap.xml`: entram `/` e `/2026`, saem as URLs antigas.
-- [ ] Evento GA4 `waitlist_click` com o parâmetro `tipo` (participante,
-      palestrante ou patrocinador), no mesmo padrão do `sponsor_click`.
-      Registrar `tipo` como custom dimension no GA4 antes de publicar.
+- [x] Novos `<title>`, `description` e `og:*` focados em 2027. Os textos
+      provisórios da Fase 3 ficaram como definitivos.
+- [x] Nova arte de compartilhamento gerada com `node scripts/og-card.mjs 2027`.
+      Sai em `assets/og-2027.jpg`, e não em `og-cover.jpg`, porque `/2026`
+      continua usando a `og-cover` e `/assets` tem cache `immutable` de 1 ano
+      (sobrescrever deixaria a arte velha nos caches).
+- [x] JSON-LD só com `Organization`. O `Event` de 2027 entra quando houver data.
+- [x] `sitemap.xml`: entram `/` e `/2026`, saem as URLs antigas.
+- [x] Evento GA4 `waitlist_click` com o parâmetro `tipo` (participante,
+      palestrante ou patrocinador). O `tipo` vem do atributo `data-waitlist`
+      de cada link de formulário. Link novo para um form só precisa do atributo.
+- [ ] **Manual, antes de publicar:** no GA4 (Admin → Custom definitions),
+      registrar `tipo` como dimensão personalizada com escopo de evento. Não é
+      retroativo. Conferir no DebugView que o `waitlist_click` chega.
 
 ## Fase 5 — Documentação e verificação
 
@@ -288,3 +294,4 @@ Notas da execução:
 - 2026-10-28 — Fase 2: script `scripts/listas-de-espera.gs` para criar os 3 forms e a planilha.
 - 2026-10-28 — Fase 3: nova home em `index.html`, com marcadores no lugar dos links dos forms.
 - 2026-10-28 — Fase 3: números de 2026 preenchidos e 4 fotos novas (SOUZ6155, 6160, 6202 e 6305) na galeria.
+- 2026-10-28 — Fase 4: arte `og-2027.jpg`, JSON-LD `Organization`, sitemap e evento `waitlist_click`.
