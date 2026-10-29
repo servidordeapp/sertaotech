@@ -362,22 +362,54 @@ As respostas viram depoimento (com autorização) para o kit de 2028.
 
 ## Formato de entrega
 
-**Decidido (2026-10-28):** o relatório usa o mesmo estilo do mídia kit.
-Ainda não foi implementado.
+**Implementado (2026-10-28):** deck reveal.js em `relatorio/2026/index.html`,
+no estilo do mídia kit (mesmos `midia-kit.css`, `midia-kit.js` e
+`icons.svg`; os componentes novos ficaram no bloco "Componentes do
+relatório" do CSS, para reaproveitar em 2027).
 
-- Deck reveal.js em `relatorio/2026/index.html`, reaproveitando
-  `midia-kit/midia-kit.css`, `midia-kit.js` e `icons.svg` (tema, versão
-  para celular e exportação em PDF já prontos). Ponto de partida:
-  `cp -r midia-kit/2027 relatorio/2026` e trocar o conteúdo das `<section>`.
-- **PDF**, uma versão por patrocinador, exportado com `?print-pdf` (uma
-  página 1920×1080 por slide). Nome do arquivo:
-  `Sertao-Tech-2026-Relatorio-{{empresa}}.pdf`.
-- Em aberto na implementação: como gerar a seção 6 de cada patrocinador
-  (um deck por empresa ou um deck só, trocando a seção antes de exportar).
-- O site publica tudo que está no repo: o relatório fica acessível a quem
-  tiver o link. Se não for desejado, deixar a pasta fora do deploy.
-- Envio por e-mail ou WhatsApp, com uma mensagem curta e o PDF anexo. Prazo
-  sugerido: até 30 dias depois do evento (até 08/11/2026).
+- **Um deck por empresa:** `/relatorio/2026?p=<id>`. Capa, carta, slides
+  de marca e contrapartidas trocam nome, cota e logo. Sem `?p=` abre um
+  índice interno com os links dos 7. Ids: `paradevs`, `programe-studio`,
+  `exa`, `retake-brasil`, `bruno-neves-advogado`, `cajutec`, `cod3r`.
+- **Dados de cada patrocinador:** objeto `PATROCINADORES` no script do fim
+  do HTML.
+  - `entregue`: chaves das contrapartidas já comprovadas. Hoje só `site`.
+    O resto aparece com o rótulo vermelho **"a confirmar"**. Chaves: `palco`,
+    `estande`, `sorteio`, `digital`, `impressos`, `banner`, `brindes`,
+    `site`, `mencao`, `redes` (cada cota usa só as suas).
+  - `fotos`: `[{ src, legenda }]` com as fotos da marca no evento. Vazio
+    esconde o slide "A <empresa> no Sertão Tech".
+  - `FORM_FEEDBACK`: link do form da seção 11. Vazio esconde o card.
+- **Fora do deploy:** `.vercelignore` exclui `/relatorio` e este arquivo.
+  O repositório no GitHub continua com tudo.
+- **Ver e exportar localmente** (como não vai para a Vercel):
+  1. Na raiz do repo: `python3 -m http.server 8000`
+  2. Abrir `http://localhost:8000/relatorio/2026/` e escolher o patrocinador.
+  3. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
+     **Nenhuma**, **Gráficos de fundo** ligado. O nome do arquivo já vem como
+     `Sertao-Tech-2026-Relatorio-<Empresa>`.
+  4. Antes de exportar, conferir que nenhuma contrapartida está "a confirmar".
+- PDF com 15 páginas (16 se tiver fotos da marca), ~16 MB.
+- Sem dados de perfil do público, sem o print do GA4 (os números do site
+  vão em texto) e sem a condição de renovação, que ainda não foi decidida.
+
+### Envio por WhatsApp
+
+PDF anexo como **documento** (não como foto/mídia, que comprime), com a
+mensagem abaixo. Prazo sugerido: até 08/11/2026 (30 dias depois do evento).
+
+> Oi, {{nome do contato}}! Tudo bem? Aqui é {{seu nome}}, da organização do
+> Sertão Tech.
+>
+> Passando para agradecer de novo o patrocínio da {{empresa}} na 2ª edição.
+> Preparamos um relatório com os resultados: a meta era 150 pessoas e
+> tivemos 176 check-ins, além de 88 mil visualizações no Instagram.
+>
+> No PDF estão os números do evento, as entregas da cota {{cota}} e uma
+> prévia do que vem em 2027. Qualquer dúvida, é só chamar por aqui!
+
+Se o form de feedback estiver pronto, mandar o link numa segunda mensagem,
+logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
 
 ---
 
@@ -390,10 +422,12 @@ Ainda não foi implementado.
 - [x] LinkedIn: números do print aqui e no kit 2027 (9.272 / 482, 29 ago —
       27 out). Período do Instagram no kit também ajustado para 27 out.
 - [x] Período do Instagram na 1ª edição: 30 dias (nota na seção 5).
-- [ ] Confirmar, com foto ou print, cada contrapartida da seção 6.1.
-- [ ] Separar as fotos em que cada marca aparece.
+- [ ] Confirmar, com foto ou print, cada contrapartida da seção 6.1 e
+      marcar em `entregue` no deck.
+- [ ] Separar as fotos em que cada marca aparece e listar em `fotos` no deck.
 - [x] Prints do Instagram, LinkedIn e GA4 (em `originais/relatorio-2026/`).
-- [ ] Recortar os prints (tabela na seção 5) e refazer o do Instagram.
+- [x] Prints recortados em `relatorio/2026/prints/` (Instagram e LinkedIn).
+- [ ] Opcional: refazer o print do Instagram com o card "Interações" inteiro.
 - [ ] **Para 2027:** descobrir por que `sponsor_click`/`sponsor_impression`
       não registraram (conferir no DebugView do GA4) e corrigir antes da
       divulgação, junto com o `waitlist_click` da Fase 4 do `PLANO-2027.md`.
@@ -401,8 +435,10 @@ Ainda não foi implementado.
 - [ ] **Para 2027:** incluir perguntas de perfil (ocupação, curso,
       cidade, faixa etária) no formulário da Sympla. É o dado que falta
       neste relatório.
-- [ ] Decidir a condição de renovação para patrocinadores de 2026.
-- [ ] Criar o form de feedback da seção 11.
+- [ ] Decidir a condição de renovação para patrocinadores de 2026 (se
+      houver, entra no slide de 2027).
+- [ ] Criar o form de feedback da seção 11 e colar em `FORM_FEEDBACK`.
+- [ ] Exportar os 7 PDFs e enviar por WhatsApp (até 08/11/2026).
 
 ## Histórico
 
@@ -413,3 +449,5 @@ Ainda não foi implementado.
 - 2026-10-28 — 7 patrocinadores, 18 pessoas no palco, nota dos períodos do
   Instagram (30 × 60 dias) e seção 7 sem dados de perfil. Kit 2027
   atualizado com os mesmos números.
+- 2026-10-28 — Deck implementado em `relatorio/2026` (um por empresa via
+  `?p=`), fora do deploy. Envio por WhatsApp.
