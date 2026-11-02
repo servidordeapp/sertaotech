@@ -278,7 +278,9 @@ Notas da execução:
 ## Decisões em aberto
 
 - [x] Formulários: Google Forms.
-- [ ] 2027 já tem data ou local, ou fica "em breve"?
+- [x] 2027 tem data e local: 15 e 16 de outubro de 2027, na UFDPar, em
+      parceria com o Bacharelado em Inteligência Artificial. Na home:
+      hero, CTA, rodapé, metas, JSON-LD `Event` e arte `og-2027-data.jpg`.
 - [x] Números de 2026 para a prova social.
 - [ ] "Apoio e comunidades" (PHP PI, PHPWomen PI, UFDPar) entra na prova social?
 
@@ -295,3 +297,5 @@ Notas da execução:
 - 2026-10-28 — Fase 3: nova home em `index.html`, com marcadores no lugar dos links dos forms.
 - 2026-10-28 — Fase 3: números de 2026 preenchidos e 4 fotos novas (SOUZ6155, 6160, 6202 e 6305) na galeria.
 - 2026-10-28 — Fase 4: arte `og-2027.jpg`, JSON-LD `Organization`, sitemap e evento `waitlist_click`.
+- 2026-11-02 — Data e local de 2027 definidos: 15 e 16 de outubro, UFDPar.
+- 2026-11-02 — Home com a data: hero, CTA, rodapé, metas, JSON-LD `Event` de 2027 e arte nova `og-2027-data.jpg` (nome novo por causa do cache immutable).

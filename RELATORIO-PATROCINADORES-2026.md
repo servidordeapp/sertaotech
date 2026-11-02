@@ -197,9 +197,10 @@ Seção que justifica o investimento. Uma versão por patrocinador.
 
 ### 6.1 Contrapartidas: previsto × entregue
 
-**Fora do deck** (decisão de 2026-10-28): o slide de contrapartidas e o do
-Sertão Tech After saíram para enxugar o relatório. Fica aqui só como
-referência.
+**Atualizado em 2026-11-01:** a checklist "a confirmar" saiu do deck em
+2026-10-28; voltou como **comprovação com evidências** (ver "Padrão de
+relatório pós-evento" abaixo). Só aparece para o patrocinador que tiver as
+contrapartidas preenchidas no deck.
 
 Tabela com a lista da cota (kit 2026), coluna de status e coluna de
 evidência (foto, print ou link). Só marcar "Entregue" com evidência em mãos.
@@ -328,12 +329,14 @@ Link para o álbum completo, se a organização tiver um.
 
 Resumo do kit 2027, sem repetir o kit inteiro. Uma página e o link.
 
-- 3ª edição, com 4 trilhas: Principal, Robótica, Negócios e Sênior+.
+- 3ª edição em 15 e 16 de outubro de 2027, na UFDPar, em parceria com o
+  Bacharelado em Inteligência Artificial. 4 trilhas: Principal, Robótica,
+  Negócios e Sênior+.
 - Público ampliado: profissionais experientes, empreendedores, equipes de
   robótica.
 - Novidade: as trilhas de Robótica e Negócios viram programas no YouTube, com
-  uma marca apresentadora cada ("Sertão Tech Robotics/Business, apresentado
-  por…"), 1 vaga cada. Sem valores no relatório.
+  uma marca apresentadora cada ("Sertão Tech - Robótica" e "Sertão Tech -
+  Negócios", "apresentado por…"), 1 vaga cada. Sem valores no relatório.
 - Cotas tradicionais Bronze, Prata e Ouro, sem valores no relatório
   (ficam no kit 2027).
 - Link: osertaotech.com.br/midia-kit
@@ -377,8 +380,11 @@ relatório" do CSS, para reaproveitar em 2027).
   `exa`, `retake-brasil`, `bruno-neves-advogado`, `cajutec`, `cod3r`.
 - **Dados de cada patrocinador:** objeto `PATROCINADORES` no script do fim
   do HTML.
-  - `fotos`: `[{ src, legenda }]` com as fotos da marca no evento. Vazio
-    esconde o slide "A <empresa> no Sertão Tech".
+  - `contrapartidas`: cada item da cota, com `status` (`entregue`,
+    `substituida`, `nao-entregue`), `nota` opcional e `evidencias`
+    (`src`, `legenda`, `data`, `link`, `metrica`). O formato com exemplo
+    está no comentário do script. Vazio esconde a comprovação inteira.
+    Evidências em `relatorio/2026/evidencias/<id>/`, em WebP.
   - `FORM_FEEDBACK`: link do form da seção 11. Vazio esconde o card.
 - **Fora do deploy:** `.vercelignore` exclui `/relatorio` e este arquivo.
   O repositório no GitHub continua com tudo.
@@ -388,10 +394,42 @@ relatório" do CSS, para reaproveitar em 2027).
   3. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
      **Nenhuma**, **Gráficos de fundo** ligado. O nome do arquivo já vem como
      `Sertao-Tech-2026-Relatorio-<Empresa>`.
-- PDF com 13 páginas (14 se tiver fotos da marca).
-- Ficaram de fora: contrapartidas por cota, Sertão Tech After, valores das
-  cotas de 2027, dados de perfil do público e o print do GA4 (os números do
+- PDF com 13 páginas, mais os slides de comprovação e o anexo de links
+  quando houver contrapartidas preenchidas.
+- Ficaram de fora: Sertão Tech After, valores das cotas de 2027, dados de perfil do público e o print do GA4 (os números do
   site vão em texto).
+
+### Padrão de relatório pós-evento (grandes empresas)
+
+Referência: contrato de patrocínio de uma grande empresa para outro evento
+de comunidade (2026). O relatório pós-evento é **obrigação contratual**, com
+prazo, e precisa comprovar cada contrapartida. O contrato pede:
+
+| Exigência | Onde fica no deck |
+| --- | --- |
+| Entrega em até **15 dias corridos** após o evento | Processo (ver abaixo) |
+| Registros fotográficos da exposição da marca | Evidências da contrapartida (`src`) |
+| Fotos da participação do palestrante do patrocinador | Evidências da contrapartida de palestra |
+| Prints das publicações | Evidências (`src` com o print) |
+| Links das publicações | `link` de cada evidência + slide "Anexo: links" |
+| Métricas de alcance e engajamento **por publicação** | `metrica` de cada evidência |
+| Presença da marca em materiais físicos e digitais | Evidências (banner, impressos, artes) |
+| Demais evidências | Qualquer evidência extra |
+
+Estrutura do deck com comprovação: capa → carta → meta → planejado ×
+realizado → **resumo das contrapartidas ("X de Y entregues")** → **um slide
+de evidências por contrapartida** → números da edição → presença digital →
+site → plateia → programação → registro → 2027 → contato → **anexo de links**.
+
+Regras:
+- Contrapartida trocada vira `substituida`, com a `nota` dizendo pelo quê e
+  quando foi combinado (por escrito). Não entregue vira `nao-entregue`, com
+  o motivo. Esconder uma falha é pior que explicar.
+- Métrica é da publicação em que a marca aparece, não do perfil inteiro.
+  Anotar no dia em que publicar (planilha), não só no fim.
+- 2026: **sem comprovação** (decidido em 2026-11-01). Os patrocinadores não
+  têm contrato e as evidências não foram juntadas durante o evento; os decks
+  saem com `contrapartidas: []`. A partir da 3ª edição vale para todos.
 
 ### Envio por WhatsApp
 
@@ -423,7 +461,8 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
       27 out). Período do Instagram no kit também ajustado para 27 out.
 - [x] Período do Instagram na 1ª edição: 30 dias (nota na seção 5).
 - [x] Contrapartidas: fora do deck, não precisam mais de confirmação.
-- [ ] Separar as fotos em que cada marca aparece e listar em `fotos` no deck.
+- [x] Relatórios de 2026 sem comprovação (fica para a 3ª edição, ver
+      seção abaixo).
 - [x] Prints do Instagram, LinkedIn e GA4 (em `originais/relatorio-2026/`).
 - [x] Prints recortados em `relatorio/2026/prints/` (Instagram e LinkedIn).
 - [ ] Opcional: refazer o print do Instagram com o card "Interações" inteiro.
@@ -439,6 +478,59 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
 - [ ] Criar o form de feedback da seção 11 e colar em `FORM_FEEDBACK`.
 - [ ] Exportar os 7 PDFs e enviar por WhatsApp (até 08/11/2026).
 
+## Para a 3ª edição (2027)
+
+Aprendizados do contrato de patrocínio de uma grande empresa (2026), aprovados
+para a 3ª edição. Não valem para os relatórios de 2026. Itens da Trilha de
+Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
+
+**Base (decisões da organização, antes de vender cotas):**
+
+- [ ] **CNPJ e nota fiscal.** Definir quem fatura pelo Sertão Tech. Empresa
+      grande paga por TED/boleto contra NF, pedida com antecedência (ex.: 10
+      dias úteis antes do vencimento, pagamento em dias fixos do mês).
+      Precisa estar resolvido antes de vender os programas de R$ 10.000.
+- [ ] **Contrato padrão de patrocínio**, revisado por advogado, com:
+  - contrapartidas detalhadas por cota (anexo);
+  - troca de contrapartida só por escrito, mantendo o valor;
+  - uso da marca pelo manual do patrocinador; peças enviadas para aprovação
+    48h antes; aprovação por e-mail vale; sem resposta no prazo, a
+    divulgação segue;
+  - pagamento: forma, vencimento e NF;
+  - obrigações de cada parte;
+  - relatório pós-evento em **30 dias corridos**, com comprovação (se o
+    patrocinador exigir prazo menor no contrato dele, vale o dele);
+  - exclusividade de segmento (padrão: não há);
+  - cancelamento, adiamento e devolução proporcional;
+  - prazo para corrigir falhas (ex.: 10 dias úteis);
+  - vigência, LGPD, confidencialidade, contato operacional e foro.
+
+**Kit 2027 (contrapartidas novas):**
+
+- [ ] **Credenciais por cota**, com o After incluído.
+- [ ] **Palestra do patrocinador** (cota maior ou troca de contrapartida):
+      divulgada como as demais, passa pela curadoria, custos do palestrante
+      por conta do patrocinador.
+- [ ] **Marca nos informativos às comunidades** (rede de grupos de WhatsApp)
+      e em matérias de veículos parceiros: barato e fácil de comprovar.
+- [ ] **Nome em um espaço** do evento: credenciamento, coffee break ou After.
+- [ ] **Hierarquia de logo por cota** em todas as peças (tamanho e ordem).
+- [ ] **Exclusividade de segmento** como opcional pago.
+
+**Operação (para o relatório sair em 30 dias):**
+
+- [ ] **Cadastro do patrocinador** ao fechar (form): logo vetorial, manual da
+      marca, contato operacional, dados para a NF, nomes para as
+      credenciais e, se houver palestra, dados do palestrante (nome, cargo,
+      mini bio, título, descrição, foto).
+- [ ] **Planilha de comprovação**: cada publicação com a marca entra no dia
+      em que sai (data, link, print e métricas da publicação).
+- [ ] **Lista de fotos para o fotógrafo** antes do evento: por marca, o que
+      precisa ser fotografado (banner, estande, sorteio, palestrante, espaço
+      nomeado).
+- [ ] **Relatório até D+30**: copiar `relatorio/2026` para `relatorio/2027`,
+      atualizar números e preencher `contrapartidas` de cada patrocinador.
+
 ## Histórico
 
 - 2026-10-28 — Primeira versão da estrutura.
@@ -453,3 +545,13 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
 - 2026-10-28 — Deck enxuto: sem "prometemos" (era meta), sem os slides de
   contrapartidas e do After, sem valores de cota; programas de 2027
   explicados em uma frase.
+- 2026-11-01 — Comprovação de contrapartidas no padrão de grandes empresas:
+  resumo com status, um slide de evidências por contrapartida (foto ou
+  print, data, métrica e link) e anexo de links. Substitui o slide de fotos
+  da marca.
+- 2026-11-01 — Relatórios de 2026 sem comprovação. Aprendizados do contrato
+  de uma grande empresa (CNPJ/NF, contrato padrão, novas contrapartidas,
+  processo de comprovação) registrados em "Para a 3ª edição (2027)".
+- 2026-11-02 — 3ª edição em 15 e 16/10/2027 na UFDPar, programas renomeados
+  (Sertão Tech - Robótica e Sertão Tech - Negócios) e relatório da 3ª edição
+  em 30 dias corridos (antes 15).

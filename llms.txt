@@ -7,7 +7,7 @@ Fatos principais:
 - Realização: PHP PI e PHPWomen PI. Origem: Parnaíba - PI.
 - 2ª edição: 09 de outubro de 2026, das 14h às 21h10, na UFDPar (Campus Ministro Reis Velloso, Av. São Sebastião, 2819, Parnaíba - PI). Ingresso de R$ 20, esgotado antes do evento.
 - Números da 2ª edição: 233 inscritos, 176 check-ins (76% de comparecimento), 16 palestras e minicursos, 19 pessoas no palco, 4 caravanas, público de 4 cidades (Parnaíba, Luís Correia, Buriti dos Lopes e Teresina), 6 patrocinadores.
-- 3ª edição (2027): quatro trilhas (Principal, Robótica, Negócios e Sênior+). As trilhas de Robótica e Negócios viram programas no YouTube (Sertão Tech Robotics e Sertão Tech Business), cada um com uma única marca apresentadora.
+- 3ª edição (2027): 15 e 16 de outubro de 2027, na UFDPar (Parnaíba - PI), em parceria com o Bacharelado em Inteligência Artificial da UFDPar. Meta de 350 inscritos. Quatro trilhas (Principal, Robótica, Negócios e Sênior+). As trilhas de Robótica e Negócios viram programas no YouTube (Sertão Tech - Robótica e Sertão Tech - Negócios), cada um com uma única marca apresentadora.
 - Há três listas de espera para 2027: participar, palestrar e patrocinar. Palestrantes e patrocinadores também participam do Sertão Tech After, um encontro privado com a organização.
 - Contato: WhatsApp +55 (86) 99920-2231 (https://wa.me/5586999202231), Instagram @osertaotech (https://instagram.com/osertaotech), LinkedIn (https://www.linkedin.com/company/osertaotech).
 - Idioma do site: português do Brasil.
@@ -15,7 +15,7 @@ Fatos principais:
 ## Edição 2027
 
 - [Sertão Tech 2027 — lista de espera](https://osertaotech.com.br/): página principal. Resumo da 2ª edição, as três listas de espera (participar, palestrar, patrocinar), o Sertão Tech After e os apoiadores de 2026.
-- [Kit de patrocínio 2027](https://osertaotech.com.br/midia-kit/2027): apresentação da 3ª edição com resultados de 2026, presença digital, as quatro trilhas, as propriedades de mídia Sertão Tech Robotics e Sertão Tech Business (R$ 10.000 cada, uma vaga) e as cotas tradicionais Bronze (R$ 1.000), Prata (R$ 2.500) e Ouro (R$ 5.000), com benefícios ainda em definição. Versão em PDF em https://osertaotech.com.br/midia-kit/2027?print-pdf.
+- [Kit de patrocínio 2027](https://osertaotech.com.br/midia-kit/2027): apresentação da 3ª edição com resultados de 2026, presença digital, as quatro trilhas, as cotas Master (R$ 15.000, uma vaga), Sertão Tech - Robótica e Sertão Tech - Negócios (R$ 10.000 cada, uma vaga), Trilha Sênior+ (R$ 7.500, uma vaga) e as cotas tradicionais Bronze (R$ 1.000), Prata (R$ 2.500) e Ouro (R$ 5.000), com benefícios, menu de ativações, itens avulsos e relatório de resultados em até 30 dias. Versão em PDF em https://osertaotech.com.br/midia-kit/2027?print-pdf.
 
 ## Edição 2026 (encerrada)
 
