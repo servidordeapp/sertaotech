@@ -376,6 +376,7 @@
 .mk-flow .reveal .slides section { display: flex; position: relative; height: auto; padding: 96px 48px; }
 .mk-flow .reveal .slides section.split { flex-direction: column; padding: 0; }
 .mk-flow .reveal .slides section[data-visibility="hidden"] { display: none; }
+.mk-flow .fragment { opacity: 1; visibility: visible; }
 .mk-flow .reveal .slides section.between { gap: 64px; }
 .mk-flow .push { margin-top: 64px; }
 .mk-flow .row { flex-wrap: wrap; gap: 24px; }
