@@ -1,0 +1,64 @@
+# Sertão Tech
+
+> Evento de tecnologia do norte do Piauí, realizado pelas comunidades PHP PI e PHPWomen PI em Parnaíba - PI. Feito pra quem quer dar o primeiro passo na tecnologia: estudantes, profissionais, pessoas em transição de carreira, gestores e entusiastas, de todos os gêneros. A 2ª edição (2026) esgotou; a 3ª edição acontece em 2027, com data e local ainda a definir e lista de espera aberta.
+
+Fatos principais:
+
+- Realização: PHP PI e PHPWomen PI. Origem: Parnaíba - PI.
+- 2ª edição: 09 de outubro de 2026, das 14h às 21h10, na UFDPar (Campus Ministro Reis Velloso, Av. São Sebastião, 2819, Parnaíba - PI). Ingresso de R$ 20, esgotado antes do evento.
+- Números da 2ª edição: 233 inscritos, 176 check-ins (76% de comparecimento), 16 palestras e minicursos, 19 pessoas no palco, 4 caravanas, público de 4 cidades (Parnaíba, Luís Correia, Buriti dos Lopes e Teresina), 6 patrocinadores.
+- 3ª edição (2027): quatro trilhas (Principal, Robótica, Negócios e Sênior+). As trilhas de Robótica e Negócios viram programas no YouTube (Sertão Tech Robotics e Sertão Tech Business), cada um com uma única marca apresentadora.
+- Há três listas de espera para 2027: participar, palestrar e patrocinar. Palestrantes e patrocinadores também participam do Sertão Tech After, um encontro privado com a organização.
+- Contato: WhatsApp +55 (86) 99920-2231 (https://wa.me/5586999202231), Instagram @osertaotech (https://instagram.com/osertaotech), LinkedIn (https://www.linkedin.com/company/osertaotech).
+- Idioma do site: português do Brasil.
+
+## Edição 2027
+
+- [Sertão Tech 2027 — lista de espera](https://osertaotech.com.br/): página principal. Resumo da 2ª edição, as três listas de espera (participar, palestrar, patrocinar), o Sertão Tech After e os apoiadores de 2026.
+- [Kit de patrocínio 2027](https://osertaotech.com.br/midia-kit/2027): apresentação da 3ª edição com resultados de 2026, presença digital, as quatro trilhas, as propriedades de mídia Sertão Tech Robotics e Sertão Tech Business (R$ 10.000 cada, uma vaga) e as cotas tradicionais Bronze (R$ 1.000), Prata (R$ 2.500) e Ouro (R$ 5.000), com benefícios ainda em definição. Versão em PDF em https://osertaotech.com.br/midia-kit/2027?print-pdf.
+
+## Edição 2026 (encerrada)
+
+- [Sertão Tech 2026](https://osertaotech.com.br/2026): página da 2ª edição. Sobre o evento, público, áreas de conteúdo, cronograma completo do dia, experiência, patrocinadores, parcerias com instituições de ensino (UFDPar, IFPI, IFMA) e inscrição.
+- [Palestrantes 2026](https://osertaotech.com.br/2026/palestrantes): chamada de palestras (encerrada) e as 19 pessoas que subiram ao palco: 7 palestras, 6 microtalks, 2 minicursos em trilha paralela, uma roda de conversa e o keynote de encerramento, com mini-biografia e LinkedIn de cada uma.
+- [Patrocínio 2026](https://osertaotech.com.br/2026/patrocinio): tabela comparativa das cotas Ouro, Prata e Bronze, patrocinadores que fecharam cota e outras formas de apoio (espaço, coffee break, brindes, transporte de caravanas, serviços).
+- [Caravanas 2026](https://osertaotech.com.br/2026/caravanas): como funciona a inscrição em grupo (de 20 a 50 pessoas, valor por pessoa menor que o ingresso individual), próximos passos para caravanas inscritas e perguntas frequentes.
+- [Kit de patrocínio 2026](https://osertaotech.com.br/midia-kit/2026): apresentação comercial da 2ª edição, com números da 1ª edição, público, cotas e vagas de patrocínio.
+
+## Programação da 2ª edição (09/10/2026)
+
+- 14h00 Credenciamento e networking
+- 14h25 Abertura oficial
+- 14h35 Palestra: Privacidade estrutural: como o Privacy by Design muda a forma de projetar software (Adryanne Kelly)
+- 15h00–17h00 Minicurso: Cardinal — um simulador de mundos para desenvolvedores de jogos (Germano Gomes)
+- 15h00–17h00 Minicurso: O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA (Rodrigo Castro)
+- 15h05 Microtalk: Além do Código: Carreira, Product Management e Empreendedorismo (Fernando Melo)
+- 15h20 Microtalk: Como lidar com a síndrome do impostor (Dione Bastos)
+- 15h35 Palestra: Antes do Gráfico: os Bastidores de um Dashboard (Vitoria Neris)
+- 16h05 Microtalk: Suporte, a chave do sucesso de uma aplicação (Isaac Costa)
+- 16h20 Palestra: Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A (Sandro Daniel Garcia)
+- 16h50 Roda de conversa: ALT + TAB: Migrando para a área da Tecnologia (Maria Katriane, Bia Thereza, Sâmyla Alves e Celenny Sousa)
+- 17h20 Coffee break e networking
+- 17h45 Microtalk: Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais (Kauê Victor)
+- 18h00 Palestra: O Gerente de Projetos de Software na Era da IA (Silvia Azevedo)
+- 18h30 Microtalk: Hackeando sua Carreira: Encontre Seu Caminho em Cibersegurança (Paula Barros)
+- 18h45 Palestra: Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário (Jacson Santos Silva)
+- 19h15 Microtalk: Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar (Ariel Teles)
+- 19h30 Palestra: Ser grande é entender conceitos e acompanhar tendências: o que significa ser DEV em um mundo comandado por prompts (Thiago Monteiro)
+- 20h00 Momento patrocinador Ouro
+- 20h05 Keynote: Revolução Programacional: a IA na era das mudanças (Alessandro Feitoza)
+- 20h45 Sorteio de brindes e agradecimentos
+- 20h55 Encerramento oficial e foto oficial
+
+## Patrocinadores e apoio da 2ª edição
+
+- Cota Ouro: [ParaDevs](https://www.paradevs.io/)
+- Cota Prata: [Programe Studio](https://programe.studio/), [Exa](https://www.exa.com.br/)
+- Cota Bronze: [Retake Brasil](https://www.retake.com.br/), [Bruno Neves Advogado](https://brunonevesadv.com.br/), [Cajutec](https://app.cajutec.com.br/), [Cod3r](https://www.formacao.dev/)
+- Apoio e comunidades: PHP PI, PHPWomen PI, Bacharelado em Inteligência Artificial - UFDPar
+
+## Optional
+
+- [Links](https://osertaotech.com.br/links): redireciona para a página de links do Sertão Tech.
+- [Sitemap](https://osertaotech.com.br/sitemap.xml)
+- Atalhos: /palestrantes, /patrocinio e /caravanas redirecionam para as páginas de 2026; /midia-kit redireciona para o kit de 2027.
