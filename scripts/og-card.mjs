@@ -30,14 +30,14 @@ const raiz = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // Cada arte: chapéu, título em duas linhas (com uma palavra em destaque âmbar),
 // um par de linhas de apoio e o domínio no rodapé.
 const ROTAS = {
-  // Home. Sai em og-2027.jpg, e não em og-cover.jpg: /2026 continua usando a
-  // og-cover, e /assets é servido com cache immutable de 1 ano.
-  2027: {
+  // Home. Sai em og-2027-data.jpg, e não em og-cover.jpg nem og-2027.jpg:
+  // /assets é servido com cache immutable de 1 ano, então arte nova = nome novo.
+  '2027-data': {
     chapeu: '// 3ª EDIÇÃO · LISTA DE ESPERA',
     linha1: 'Vem aí o',
     linha2: ['Sertão', 'Tech', '2027.'],
     apoio: 'PARTICIPE · PALESTRE · PATROCINE',
-    detalhe: 'Data e local em breve · norte do Piauí',
+    detalhe: '15 e 16 out 2027 · UFDPar, Parnaíba',
   },
   caravanas: {
     chapeu: '// CARAVANAS · 2ª EDIÇÃO',

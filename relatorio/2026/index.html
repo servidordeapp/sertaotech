@@ -97,7 +97,21 @@
   </div>
 </section>
 
-<!-- 05 · A 2ª edição em números -->
+<!-- 05 · Comprovação das contrapartidas: resumo.
+     O script gera, logo depois deste, um slide de evidências por contrapartida.
+     Some se o patrocinador não tiver contrapartidas preenchidas. -->
+<section class="compact" id="slide-contrapartidas">
+  <div class="row end" style="gap:48px">
+    <div class="stack">
+      <p class="eyebrow">// comprovação das contrapartidas</p>
+      <h2 class="title sm" style="margin:0" id="contrapartidas-total"></h2>
+    </div>
+    <div class="sponsor-logo" style="border:1px solid var(--border-subtle)"><img data-logo></div>
+  </div>
+  <div class="stack push" id="contrapartidas" style="gap:0"></div>
+</section>
+
+<!-- 06 · A 2ª edição em números -->
 <section>
   <p class="eyebrow">// resultados</p>
   <h2 class="title">A 2ª edição em números</h2>
@@ -111,7 +125,7 @@
   <p class="small muted" style="margin-top:32px">7 patrocinadores · 4 caravanas · 4 cidades · inscrição de R$ 20</p>
 </section>
 
-<!-- 06 · Instagram -->
+<!-- 07 · Instagram -->
 <section class="split dark">
   <div class="split-main">
     <p class="eyebrow">// presença digital · instagram</p>
@@ -131,7 +145,7 @@
   <aside class="notes">Visualizações contam exibições; contas alcançadas (visualizadores) são pessoas únicas. Períodos diferentes entre edições: por isso a nota da média diária.</aside>
 </section>
 
-<!-- 07 · LinkedIn -->
+<!-- 08 · LinkedIn -->
 <section class="split">
   <div class="split-main">
     <p class="eyebrow">// presença digital · linkedin</p>
@@ -150,7 +164,7 @@
   </div>
 </section>
 
-<!-- 08 · Sua marca no site -->
+<!-- 09 · Sua marca no site -->
 <section>
   <div class="row end">
     <div class="stack">
@@ -177,13 +191,6 @@
     </div>
   </div>
   <aside class="notes">Os eventos de clique no logo do nosso GA4 não registraram em 2026; por isso o número de cliques fica com o Analytics do patrocinador, via UTM.</aside>
-</section>
-
-<!-- 09 · Sua marca no evento (fotos; o slide some se não houver) -->
-<section id="slide-fotos-marca">
-  <p class="eyebrow">// sua marca no evento</p>
-  <h2 class="title">A <span data-f="nome"></span> no Sertão Tech</h2>
-  <div class="photo-grid push" id="fotos-marca" style="flex:1;margin-top:48px"></div>
 </section>
 
 <!-- 10 · Quem esteve na plateia -->
@@ -236,7 +243,7 @@
 
 <!-- 13 · O que vem em 2027 -->
 <section class="dark">
-  <p class="eyebrow">// 2027 · 3ª edição</p>
+  <p class="eyebrow">// 3ª edição · 15 e 16 de outubro de 2027 · UFDPar</p>
   <h2 class="title" style="font-size:88px">O Sertão Tech está crescendo.</h2>
   <p class="tagline" style="margin-top:20px;max-width:none;color:var(--amber-300)">A <span data-f="nome"></span> pode impulsionar ainda mais esse crescimento.</p>
   <div class="grid cols-3 push" style="gap:56px">
@@ -247,8 +254,8 @@
     </div>
     <div class="ruled">
       <p class="eyebrow">02 · programas</p>
-      <p class="display strong" style="font-size:40px">Robotics e Business no YouTube</p>
-      <p class="text muted">As trilhas de Robótica e Negócios viram programas gravados: batalhas e desafios de robôs no Robotics, pitches e mentorias com startups no Business. Cada programa tem uma única marca apresentadora.</p>
+      <p class="display strong" style="font-size:40px">Robótica e Negócios no YouTube</p>
+      <p class="text muted">As trilhas de Robótica e Negócios viram programas gravados: batalhas e desafios de robôs no Sertão&nbsp;Tech&nbsp;-&nbsp;Robótica, pitches e mentorias com startups no Sertão&nbsp;Tech&nbsp;-&nbsp;Negócios. Cada programa tem uma única marca apresentadora.</p>
     </div>
     <div class="ruled">
       <p class="eyebrow">03 · cotas</p>
@@ -282,6 +289,13 @@
   </figure>
 </section>
 
+<!-- 15 · Anexo: links das publicações (gerado; some se não houver links) -->
+<section class="compact" id="slide-anexo">
+  <p class="eyebrow">// anexo</p>
+  <h2 class="title sm">Links das publicações</h2>
+  <div class="stack push" id="anexo" style="gap:0"></div>
+</section>
+
 </div>
 </div>
 <script>
@@ -289,16 +303,24 @@
 (function () {
   var COTAS = { ouro: 'Ouro', prata: 'Prata', bronze: 'Bronze' };
 
-  // fotos: [{ src: '/caminho.webp', legenda: 'Banner' }] da marca no evento
-  //   (banner, estande, brindes, posts). Vazio esconde o slide.
+  var STATUS = { 'entregue': 'Entregue', 'substituida': 'Substituída', 'nao-entregue': 'Não entregue' };
+
+  // contrapartidas: cada item da cota com a prova da entrega (relatório pós-evento).
+  //   Vazio esconde a comprovação inteira. Formato:
+  //   { item: 'Logomarca no banner oficial', status: 'entregue',   // ou 'substituida' / 'nao-entregue'
+  //     nota: 'Trocado por 1 palestra, combinado em 10/08',        // opcional: substituição ou motivo
+  //     evidencias: [{ src: 'evidencias/paradevs/banner.webp',     // foto ou print (WebP)
+  //                    legenda: 'Banner no palco', data: '09/10/2026',
+  //                    link: 'https://instagram.com/p/...',          // opcional: vai para o anexo
+  //                    metrica: '2.340 visualizações · 112 interações' }] }  // opcional: da publicação
   var PATROCINADORES = {
-    'paradevs':             { nome: 'ParaDevs',             cota: 'ouro',   logo: 'paradevs.webp',             site: 'paradevs.io',          fotos: [] },
-    'programe-studio':      { nome: 'Programe Studio',      cota: 'prata',  logo: 'programe-studio.svg',       site: 'programe.studio',      fotos: [] },
-    'exa':                  { nome: 'Exa',                  cota: 'prata',  logo: 'exa.webp',                  site: 'exa.com.br',           fotos: [] },
-    'retake-brasil':        { nome: 'Retake Brasil',        cota: 'bronze', logo: 'retake-brasil.svg',         site: 'retake.com.br',        fotos: [] },
-    'bruno-neves-advogado': { nome: 'Bruno Neves Advogado', cota: 'bronze', logo: 'bruno-neves-advogado.webp', site: 'brunonevesadv.com.br', fotos: [] },
-    'cajutec':              { nome: 'Cajutec',              cota: 'bronze', logo: 'cajutec.webp',              site: 'app.cajutec.com.br',   fotos: [] },
-    'cod3r':                { nome: 'Cod3r',                cota: 'bronze', logo: 'cod3r.webp',                site: 'formacao.dev',         fotos: [] }
+    'paradevs':             { nome: 'ParaDevs',             cota: 'ouro',   logo: 'paradevs.webp',             site: 'paradevs.io',          contrapartidas: [] },
+    'programe-studio':      { nome: 'Programe Studio',      cota: 'prata',  logo: 'programe-studio.svg',       site: 'programe.studio',      contrapartidas: [] },
+    'exa':                  { nome: 'Exa',                  cota: 'prata',  logo: 'exa.webp',                  site: 'exa.com.br',           contrapartidas: [] },
+    'retake-brasil':        { nome: 'Retake Brasil',        cota: 'bronze', logo: 'retake-brasil.svg',         site: 'retake.com.br',        contrapartidas: [] },
+    'bruno-neves-advogado': { nome: 'Bruno Neves Advogado', cota: 'bronze', logo: 'bruno-neves-advogado.webp', site: 'brunonevesadv.com.br', contrapartidas: [] },
+    'cajutec':              { nome: 'Cajutec',              cota: 'bronze', logo: 'cajutec.webp',              site: 'app.cajutec.com.br',   contrapartidas: [] },
+    'cod3r':                { nome: 'Cod3r',                cota: 'bronze', logo: 'cod3r.webp',                site: 'formacao.dev',         contrapartidas: [] }
   };
 
   // Link do form de feedback (seção 11 do planejamento). Vazio esconde o card.
@@ -327,16 +349,79 @@
   document.querySelectorAll('[data-logo]').forEach(function (img) { img.src = '/assets/patrocinadores/' + p.logo; img.alt = p.nome; });
   document.querySelectorAll('[data-site]').forEach(function (a) { a.href = 'https://' + p.site; });
 
-  if (p.fotos.length) {
-    document.getElementById('fotos-marca').innerHTML = p.fotos.map(function (f) {
-      return '<figure><img src="' + f.src + '" alt="' + f.legenda + '"><figcaption class="photo-caption">' + f.legenda + '</figcaption></figure>';
-    }).join('');
-  } else {
-    document.getElementById('slide-fotos-marca').setAttribute('data-visibility', 'hidden');
-  }
+  comprovacao(p.contrapartidas);
 
   if (FORM_FEEDBACK) document.getElementById('feedback-link').href = FORM_FEEDBACK;
   else document.getElementById('feedback').remove();
+
+  // Resumo (8 por slide) + slides de evidências (3 por slide) + anexo com os links (12 por slide).
+  function comprovacao(cps) {
+    var resumo = document.getElementById('slide-contrapartidas');
+    var anexo = document.getElementById('slide-anexo');
+    if (!cps.length) {
+      resumo.setAttribute('data-visibility', 'hidden');
+      anexo.setAttribute('data-visibility', 'hidden');
+      return;
+    }
+
+    var ok = cps.filter(function (c) { return c.status !== 'nao-entregue'; }).length;
+    document.getElementById('contrapartidas-total').textContent = ok + ' de ' + cps.length + ' contrapartidas entregues';
+    var linhas = grupos(cps, 8).map(function (g) {
+      return g.map(function (c) {
+        var n = c.evidencias.length;
+        return '<div class="check"><span>' + c.item + (c.nota ? '<br><span class="small muted">' + c.nota + '</span>' : '') + '</span>' +
+          '<span class="small muted" style="margin-left:auto">' + (n === 1 ? '1 evidência' : n + ' evidências') + '</span>' + selo(c.status) + '</div>';
+      }).join('');
+    });
+    document.getElementById('contrapartidas').innerHTML = linhas[0];
+    var depois = resumo;
+    linhas.slice(1).forEach(function (html) {
+      depois = slide(depois, 'compact', '<p class="eyebrow">// comprovação das contrapartidas · continuação</p><div class="stack" style="gap:0;margin-top:40px">' + html + '</div>');
+    });
+
+    cps.forEach(function (c, i) {
+      grupos(c.evidencias, 3).forEach(function (evs) {
+        depois = slide(depois, 'compact',
+          '<p class="eyebrow">// comprovação · ' + (i + 1) + ' de ' + cps.length + '</p>' +
+          '<div class="row baseline" style="margin-top:20px;gap:32px"><h2 class="title sm" style="margin:0">' + c.item + '</h2>' + selo(c.status) + '</div>' +
+          (c.nota ? '<p class="small muted" style="margin-top:12px">' + c.nota + '</p>' : '') +
+          '<div class="evidence-grid push">' + evs.map(evidencia).join('') + '</div>');
+      });
+    });
+
+    var links = [];
+    cps.forEach(function (c) { c.evidencias.forEach(function (e) { if (e.link) links.push(e); }); });
+    if (!links.length) { anexo.setAttribute('data-visibility', 'hidden'); return; }
+    var lista = grupos(links, 12).map(function (g) {
+      return g.map(function (e) {
+        return '<div class="check" style="font-size:24px;padding:12px 0"><span class="period" style="flex:none;width:170px">' + (e.data || '') + '</span>' +
+          '<span>' + e.legenda + '</span><a class="terra" style="margin-left:auto" href="' + e.link + '">' + curto(e.link) + '</a></div>';
+      }).join('');
+    });
+    document.getElementById('anexo').innerHTML = lista[0];
+    var ultimo = anexo;
+    lista.slice(1).forEach(function (html) {
+      ultimo = slide(ultimo, 'compact', '<p class="eyebrow">// anexo · continuação</p><div class="stack" style="gap:0;margin-top:40px">' + html + '</div>');
+    });
+  }
+
+  function evidencia(e) {
+    return '<figure class="evidence">' + (e.src ? '<img src="' + e.src + '" alt="' + e.legenda + '">' : '') +
+      '<figcaption><strong>' + e.legenda + '</strong>' +
+      (e.data ? '<span>' + e.data + '</span>' : '') +
+      (e.metrica ? '<span>' + e.metrica + '</span>' : '') +
+      (e.link ? '<a href="' + e.link + '">' + curto(e.link) + '</a>' : '') + '</figcaption></figure>';
+  }
+  function selo(s) { return '<span class="status ' + s + '">' + STATUS[s] + '</span>'; }
+  function curto(url) { return url.replace(/^https?:\/\/(www\.)?/, ''); }
+  function grupos(lista, n) { var r = []; for (var i = 0; i < lista.length; i += n) r.push(lista.slice(i, i + n)); return r; }
+  function slide(depois, classe, html) {
+    var s = document.createElement('section');
+    s.className = classe;
+    s.innerHTML = html;
+    depois.after(s);
+    return s;
+  }
 })();
 </script>
 <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
