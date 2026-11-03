@@ -111,29 +111,35 @@ Notas da execução:
 
 ## Fase 2 — Listas de espera (regras 4, 5 e 6)
 
-**Decisão:** Google Forms. É a ferramenta que o projeto já usa, não exige
-código e as respostas caem no Sheets. Contra: a pessoa sai do site. Os forms
-são criados na conta Google da organização, com o conteúdo abaixo.
+> **Decisão revista em 2026-11-03: Google Forms está fora.** As três listas
+> vão virar **formulário próprio**, feito no site. Motivo: a pessoa não sai
+> mais do site e os dados ficam com a organização.
+>
+> O que continua valendo desta fase: o **conteúdo** — perguntas, tipos,
+> obrigatoriedade e o bloco de LGPD das seções abaixo. É a especificação do
+> formulário próprio, só muda a implementação.
+>
+> O que saiu: os passos de criar form no Google, vincular ao Planilhas e
+> coletar o `viewform`. `scripts/listas-de-espera.gs` ficou morto — apagar
+> quando o formulário próprio existir (ou antes, está no histórico do git).
+>
+> Em aberto, para a fase do formulário próprio: onde a resposta é gravada
+> (banco, planilha ou e-mail), e se precisa de `api/` — hoje o site é estático.
 
-**Atalho:** `scripts/listas-de-espera.gs` (Google Apps Script) cria os 3 forms
-de uma vez, já com as configurações e a planilha vinculada (uma aba por form).
-Passo a passo no topo do arquivo. Ele cobre os três primeiros itens abaixo.
-Sem o script, faça à mão com o conteúdo das seções seguintes.
+**Pendente, bloqueando os 11 botões de `index.html`:**
 
-- [ ] Criar os 3 forms (conteúdo abaixo, pronto para colar).
-- [ ] Em cada form: **Configurações → Respostas → Coletar e-mails: "Não
-      coletar"** (o e-mail já é uma pergunta) e **"Limitar a 1 resposta":
-      desligado** (não exige login Google, que derruba a conversão).
-- [ ] Ligar cada form a uma planilha (**Respostas → Vincular ao Planilhas**).
-      Pode ser a mesma planilha, uma aba por form.
-- [ ] Abrir cada link `viewform` numa janela anônima: tem que abrir sem login
-      e o bloco LGPD tem que ser a última seção.
-- [ ] Testar cada form com uma resposta falsa e apagar depois.
-- [ ] Colar os 3 links `.../viewform` aqui. A Fase 3 usa esses links nos
-      cards, e a Fase 4 usa nos eventos `waitlist_click`.
-  - Participante: `<link>`
-  - Palestrante: `<link>`
-  - Patrocinador: `<link>`
+- [ ] Definir e construir o formulário próprio (3 listas: participante,
+      palestrante, patrocinador), com o conteúdo das seções abaixo e o bloco
+      de LGPD como última seção.
+- [ ] Decidir onde as respostas caem e como a organização as lê.
+- [ ] Trocar os 3 marcadores `FORM_*` em `index.html` pelas URLs reais.
+      A Fase 4 continua medindo `waitlist_click` pelo `data-waitlist`, que não
+      depende do destino.
+
+**Decisão antiga (Google Forms), mantida só como registro:**
+
+- [x] ~~Criar os 3 forms no Google Forms.~~ Cancelado.
+- [x] ~~Vincular ao Planilhas, uma aba por form.~~ Cancelado.
 
 ### Bloco LGPD (igual nos três)
 
@@ -224,7 +230,8 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
        edição 2026" apontando para `/2026`.
 7. [x] **Nav enxuta:** "Edição 2026" e o botão da lista de espera.
 8. [ ] Trocar os marcadores `FORM_PARTICIPANTE`, `FORM_PALESTRANTE` e
-       `FORM_PATROCINADOR` em `index.html` pelos links da Fase 2.
+       `FORM_PATROCINADOR` em `index.html` pelas URLs do formulário próprio
+       (Fase 2). **Único item que falta para a Fase 3 fechar.**
 
 Notas da execução:
 
@@ -277,7 +284,7 @@ Notas da execução:
 
 ## Decisões em aberto
 
-- [x] Formulários: Google Forms.
+- [x] Formulários: ~~Google Forms~~ → formulário próprio (revisto em 2026-11-03, ver Fase 2).
 - [x] 2027 tem data e local: 15 e 16 de outubro de 2027, na UFDPar, em
       parceria com o Bacharelado em Inteligência Artificial. Na home:
       hero, CTA, rodapé, metas, JSON-LD `Event` e arte `og-2027-data.jpg`.
@@ -299,3 +306,8 @@ Notas da execução:
 - 2026-10-28 — Fase 4: arte `og-2027.jpg`, JSON-LD `Organization`, sitemap e evento `waitlist_click`.
 - 2026-11-02 — Data e local de 2027 definidos: 15 e 16 de outubro, UFDPar.
 - 2026-11-02 — Home com a data: hero, CTA, rodapé, metas, JSON-LD `Event` de 2027 e arte nova `og-2027-data.jpg` (nome novo por causa do cache immutable).
+- 2026-11-03 — Fase 2: Google Forms abandonado. As listas de espera vão virar
+  formulário próprio; o conteúdo das perguntas e o bloco de LGPD continuam
+  valendo como especificação. `scripts/listas-de-espera.gs` ficou morto.
+- 2026-11-03 — Comentário dos marcadores `FORM_*` em `index.html` atualizado:
+  os 11 botões seguem sem destino até o formulário próprio existir.

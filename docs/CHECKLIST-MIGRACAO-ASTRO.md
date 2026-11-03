@@ -4,27 +4,46 @@ Decisões, diagnóstico e riscos em [`MIGRACAO-ASTRO.md`](MIGRACAO-ASTRO.md).
 Este arquivo é só a execução, em ordem de dependência. Marque conforme avança e
 versione junto.
 
-Regra: **nenhuma fase começa antes da anterior fechar.** A Fase 0 em especial é
-bug em produção e não espera migração.
+Regra: **nenhuma fase começa antes da anterior fechar.** A Fase 0 é bug em
+produção e não espera migração — mas **não bloqueia** as fases seguintes: é um
+`href` em 11 lugares, trocado em um `sed` quando o destino existir.
 
 ---
 
 ## Fase 0 — Corrigir produção (não depende da migração)
 
-- [ ] Rodar `scripts/listas-de-espera.gs` no Google Apps Script (ou recuperar as
-      URLs dos 3 forms já criados) e anotar os 3 `viewform`.
+**Estado:** aberta, esperando o formulário próprio. Google Forms foi abandonado
+em 2026-11-03 (ver Fase 2 de [`PLANO-2027.md`](PLANO-2027.md)), então não existe
+URL para colocar nos marcadores. Os 11 botões da home continuam sem destino.
+
+Feito:
+
+- [x] Decisão registrada na Fase 2 de `docs/PLANO-2027.md`, com o conteúdo dos
+      3 forms preservado como especificação do formulário próprio.
+- [x] Comentário de marcadores em `index.html` reescrito: diz que os botões não
+      funcionam e por quê, em vez de mandar colar um `viewform`.
+- [x] `scripts/listas-de-espera.gs` marcado como morto no plano (apagar junto
+      com o formulário próprio; está no histórico do git).
+
+Esperando o formulário próprio:
+
+- [ ] Formulário próprio das 3 listas de espera, pelo conteúdo da Fase 2 de
+      `docs/PLANO-2027.md` (perguntas, obrigatoriedade e bloco de LGPD).
+      Em aberto lá: onde a resposta é gravada e se exige `api/`.
 - [ ] Trocar os 11 marcadores em `index.html`:
       ```bash
       sed -i 's|href="FORM_PARTICIPANTE"|href="<url-participante>"|g; \
               s|href="FORM_PALESTRANTE"|href="<url-palestrante>"|g; \
               s|href="FORM_PATROCINADOR"|href="<url-patrocinador>"|g' index.html
       ```
+      Se a migração já tiver passado da Fase 4.3, o arquivo é a home Astro,
+      não `index.html`.
 - [ ] Verificar que não sobrou nenhum: `grep -c 'href="FORM_' index.html` → `0`
-- [ ] Atualizar o comentário de marcadores em `index.html:93-98` (não faz mais
-      sentido depois da troca).
+- [ ] Apagar de novo o comentário de marcadores: depois da troca ele não tem
+      mais razão de existir.
 - [ ] Commit + deploy. Conferir os 11 botões na home em produção.
-- [ ] Marcar a Fase 2 de `docs/PLANO-2027.md` como realmente concluída e
-      registrar no Histórico dela.
+- [ ] Fechar a Fase 2 e o item 8 da Fase 3 de `docs/PLANO-2027.md`, e registrar
+      no Histórico dela.
 
 ---
 
@@ -145,7 +164,10 @@ Arquivo congelado primeiro: é porte 1:1 e serve de ensaio para a home.
 ### 4.3 — `/` (home 2027, 500 linhas)
 
 - [ ] Porte manual — é a página mais nova e não existe na branch.
-- [ ] Conferir que as URLs dos forms da Fase 0 vieram junto, não os marcadores.
+- [ ] Formulários: se a Fase 0 já fechou, conferir que as URLs reais vieram
+      junto, não os marcadores. Se não fechou, **carregar os 3 marcadores
+      `FORM_*` junto com o comentário que explica o porquê** — a migração não
+      inventa destino.
 - [ ] Galeria de fotos de 2026 (12 momentos × 3 larguras) como dado, não markup.
 - [ ] Evento `waitlist_click` lendo `data-waitlist`, igual hoje.
 
@@ -279,7 +301,8 @@ Decidido não migrar, por não ter dívida e ser de uso único:
 - os 4 decks reveal.js e o `relatorio/2026` — passthrough em `public/`
 - as 9 páginas internas `noindex`
 - `cerimonial/build-html.py`
-- `scripts/listas-de-espera.gs` (Google Apps Script, roda fora do repositório)
+- `scripts/listas-de-espera.gs` — morto desde 2026-11-03 (Google Forms fora).
+  Não migra: apaga, junto com o formulário próprio.
 
 Blog da `feat/blog`: decisão em aberto em `MIGRACAO-ASTRO.md`. Migrar a estrutura
 e publicar são coisas separadas.
