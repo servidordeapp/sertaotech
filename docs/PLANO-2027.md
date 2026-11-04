@@ -103,7 +103,9 @@ Notas da execução:
   internas apontam para ele. O `WebSite` continua em `/#website`.
 - O script de GA4 detectava a página com `pathname.indexOf('/patrocinio')`.
   Agora usa `/2026/patrocinio`, para manter `utm_content` e os eventos certos.
-- Faixa: classe `.edition-banner` em `css/site.css`.
+- Faixa: classe `.edition-banner` em `css/site.css` (hoje
+  `site/public/css/site.css`, com o markup em
+  `site/src/components/EditionBanner.astro`).
 - Até a Fase 3, `/` não tem `index.html` e retorna 404. Não publicar antes.
 
 **Fase 1 concluída.**
@@ -126,21 +128,28 @@ Notas da execução:
 > Em aberto, para a fase do formulário próprio: onde a resposta é gravada
 > (banco, planilha ou e-mail), e se precisa de `api/` — hoje o site é estático.
 
-**Pendente, bloqueando os 11 botões de `index.html`:**
+**Construído em 2026-11-04. O que falta é jurídico e de conteúdo:**
 
-- [ ] Definir e construir o formulário próprio (3 listas: participante,
-      palestrante, patrocinador), com o conteúdo das seções abaixo e o bloco
-      de LGPD como última seção.
-- [ ] Form 1: caixa opcional de compartilhamento com patrocinadores, com as 4
-      regras da seção "Bloco de compartilhamento" — principalmente gravar a
-      versão do texto aceita e não bloquear o envio.
+- [x] Formulário próprio das 3 listas: `/lista-de-espera/<tipo>` no site Astro
+      (`site/src/pages/lista-de-espera/[tipo].astro`), com o conteúdo das
+      seções abaixo e o bloco de LGPD como última seção. Os textos e as versões
+      aceitas vivem em `site/src/data/listas.ts`.
+- [x] Form 1: caixa opcional de compartilhamento com patrocinadores, com as 4
+      regras da seção "Bloco de compartilhamento". A versão do texto aceita
+      (`lgpd_versao` e `compartilhamento_versao`) vai no envio e é gravada; a
+      caixa não bloqueia o envio.
 - [ ] Página pública de patrocinadores e parceiros de 2027, citada no texto do
-      compartilhamento. Sem ela a finalidade fica indeterminada.
-- [ ] Revisão jurídica do bloco de LGPD e do de compartilhamento.
-- [ ] Decidir onde as respostas caem e como a organização as lê.
-- [ ] Trocar os 3 marcadores `FORM_*` em `index.html` pelas URLs reais.
-      A Fase 4 continua medindo `waitlist_click` pelo `data-waitlist`, que não
-      depende do destino.
+      compartilhamento. Sem ela a finalidade fica indeterminada. **Falta** —
+      e o texto do consentimento já promete a lista publicada no site.
+- [ ] Revisão jurídica do bloco de LGPD e do de compartilhamento. **Falta.**
+- [x] Onde as respostas caem: MySQL da `api/` (Laravel,
+      `POST /api/lista-de-espera/{tipo}`). A organização é avisada por e-mail a
+      cada inscrição (um por admin) e quem se inscreve recebe confirmação; os
+      dois saem pela fila, com o `queue:work` em cron na hospedagem.
+- [x] Marcadores `FORM_*`: a home Astro nasceu apontando para
+      `/lista-de-espera/<tipo>`, e o `index.html` da raiz foi apagado na Fase 10
+      da migração. A Fase 4 continua medindo `waitlist_click` pelo
+      `data-waitlist`, que não depende do destino.
 
 **Decisão antiga (Google Forms), mantida só como registro:**
 
@@ -286,9 +295,11 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 6. [x] **Botão final** para a lista de espera, mais o link "Ver como foi a
        edição 2026" apontando para `/2026`.
 7. [x] **Nav enxuta:** "Edição 2026" e o botão da lista de espera.
-8. [ ] Trocar os marcadores `FORM_PARTICIPANTE`, `FORM_PALESTRANTE` e
-       `FORM_PATROCINADOR` em `index.html` pelas URLs do formulário próprio
-       (Fase 2). **Único item que falta para a Fase 3 fechar.**
+8. [x] Trocar os marcadores `FORM_PARTICIPANTE`, `FORM_PALESTRANTE` e
+       `FORM_PATROCINADOR` pelas URLs do formulário próprio (Fase 2): a home
+       Astro já nasceu com `/lista-de-espera/<tipo>`, e o `index.html` da raiz,
+       o último arquivo com os marcadores, saiu na Fase 10 da migração
+       (2026-11-04). **Fase 3 fechada.**
 
 Notas da execução:
 
@@ -373,3 +384,9 @@ Notas da execução:
   nome, e-mail e WhatsApp. Consentimento obrigatório segue cobrindo apenas o uso
   interno — juntar os dois anularia o do repasse (LGPD art. 8 §4 e art. 7 §5).
   Depende de página pública de patrocinadores e de revisão jurídica.
+- 2026-11-04 — Fase 2 construída e Fase 3 fechada: formulário próprio das 3
+  listas em `/lista-de-espera/<tipo>`, gravando na `api/` Laravel, com
+  confirmação por e-mail e um aviso por admin na fila. Os marcadores `FORM_*`
+  morreram com o `index.html` da raiz, na Fase 10 da migração para Astro.
+  Seguem abertos: a página pública de patrocinadores e parceiros de 2027
+  (prometida no texto do consentimento) e a revisão jurídica dos dois blocos.

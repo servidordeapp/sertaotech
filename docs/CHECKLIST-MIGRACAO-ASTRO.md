@@ -8,40 +8,33 @@ Regra: **nenhuma fase começa antes da anterior fechar.** A Fase 0 é bug em
 produção e não espera migração — mas **não bloqueia** as fases seguintes: é um
 `href` em 11 lugares, trocado em um `sed` quando o destino existir.
 
+**Estado em 2026-11-04: migração concluída.** O Astro está em produção, a raiz
+do repositório não serve mais HTML, e o que sobrou aberto está marcado fase por
+fase: itens adiados de propósito (`Icon.astro`, palestrantes de 2026 como
+collection) e a parte da Fase 9 em suspenso.
+
 ---
 
 ## Fase 0 — Corrigir produção (não depende da migração)
 
-**Estado:** aberta, esperando o formulário próprio. Google Forms foi abandonado
-em 2026-11-03 (ver Fase 2 de [`PLANO-2027.md`](PLANO-2027.md)), então não existe
-URL para colocar nos marcadores. Os 11 botões da home continuam sem destino.
-
-Feito:
+**Fechada em 2026-11-04.** O formulário próprio entrou no lugar dos 3 Google
+Forms e os marcadores morreram com o `index.html` da raiz.
 
 - [x] Decisão registrada na Fase 2 de `docs/PLANO-2027.md`, com o conteúdo dos
       3 forms preservado como especificação do formulário próprio.
-- [x] Comentário de marcadores em `index.html` reescrito: diz que os botões não
-      funcionam e por quê, em vez de mandar colar um `viewform`.
-- [x] `scripts/listas-de-espera.gs` marcado como morto no plano (apagar junto
-      com o formulário próprio; está no histórico do git).
-
-Esperando o formulário próprio:
-
-- [ ] Formulário próprio das 3 listas de espera, pelo conteúdo da Fase 2 de
-      `docs/PLANO-2027.md` (perguntas, obrigatoriedade e bloco de LGPD).
-      Em aberto lá: onde a resposta é gravada e se exige `api/`.
-- [ ] Trocar os 11 marcadores em `index.html`:
-      ```bash
-      sed -i 's|href="FORM_PARTICIPANTE"|href="<url-participante>"|g; \
-              s|href="FORM_PALESTRANTE"|href="<url-palestrante>"|g; \
-              s|href="FORM_PATROCINADOR"|href="<url-patrocinador>"|g' index.html
-      ```
-      Se a migração já tiver passado da Fase 4.3, o arquivo é a home Astro,
-      não `index.html`.
-- [ ] Verificar que não sobrou nenhum: `grep -c 'href="FORM_' index.html` → `0`
-- [ ] Apagar de novo o comentário de marcadores: depois da troca ele não tem
-      mais razão de existir.
-- [ ] Commit + deploy. Conferir os 11 botões na home em produção.
+- [x] Formulário próprio das 3 listas de espera: `/lista-de-espera/<tipo>` no
+      site (`site/src/pages/lista-de-espera/[tipo].astro`) gravando pela
+      `POST /api/lista-de-espera/{tipo}` do Laravel, com confirmação por e-mail
+      para quem se inscreve e um aviso por admin, os dois na fila.
+- [x] Os 11 marcadores `FORM_*`: a home Astro nasceu com
+      `href="/lista-de-espera/<tipo>"` e `data-waitlist`, e o `index.html` da
+      raiz (o único arquivo que ainda tinha `FORM_`) saiu na limpeza da Fase 10.
+      `grep -rc 'FORM_' .` → `0` fora do histórico do git.
+- [x] Comentário de marcadores: saiu junto com o arquivo.
+- [x] `scripts/listas-de-espera.gs` apagado (Google Forms fora; está no
+      histórico do git).
+- [x] Deploy em produção: os 3 botões levam ao formulário e o e-mail de
+      confirmação chega (cron do `queue:work` na hospedagem, conferido à mão).
 - [ ] Fechar a Fase 2 e o item 8 da Fase 3 de `docs/PLANO-2027.md`, e registrar
       no Histórico dela.
 
@@ -289,9 +282,13 @@ ao vivo e mandadas por WhatsApp.
 
 - [x] 4 decks reveal.js para `site/public/`, byte a byte:
       `midia-kit/2026`, `midia-kit/2027`, `midia-kit/caravanas-2027`, `after/2026`.
-- [ ] `relatorio/2026` conforme a decisão em aberto (fora do deploy ou protegido).
-      Segue só na raiz; o hub `/apresentacoes` ainda linka `/relatorio/2026` e o
-      `verify` ignora esse destino até a decisão.
+- [x] `relatorio/2026` **dentro do deploy, fora do Google** (decisão de
+      2026-11-04): está em `site/public/relatorio/2026`, com
+      `noindex, nofollow` no HTML, `Disallow: /relatorio/` no `robots.txt`,
+      fora do sitemap e sem link em página pública — só no hub interno
+      `/apresentacoes`, que também é `noindex`. O link vai por WhatsApp a quem
+      patrocinou. O `verify` deixou de ignorar `/relatorio` (o destino existe) e
+      passou a tratar o deck como passthrough, igual aos outros.
 - [x] 9 páginas internas `noindex`: `apresentacoes`, `impressos`, `links`,
       `cerimonial/*`, `mesa-redonda/*`. `cerimonial/build-html.py` continua como
       está.
@@ -301,14 +298,18 @@ ao vivo e mandadas por WhatsApp.
       (sitemap-index, Disallow dos internos) e **não** foram sobrescritos.
 - [x] Trocar os links relativos dos hubs (`../midia-kit/2026/index.html`) por
       caminho absoluto sem `.html`, para não pagar redirect extra com `cleanUrls`.
-- [ ] Verificar as URLs sensíveis uma a uma, sem barra no fim e com a query:
-      - [ ] `/midia-kit/2027` e `/midia-kit/2027?print-pdf`
-      - [ ] `/midia-kit/caravanas-2027` e `?print-pdf`
-      - [ ] `/midia-kit/2026`
-      - [ ] `/after/2026`
-      - [ ] `/relatorio/2026`
-- [ ] Decidir o rename manual de `midia-kit.css` / `.js` (arquivo em `public/`
-      não é hasheado pelo Astro) ou mover os dois para `src/`.
+- [x] Verificar as URLs sensíveis uma a uma, sem barra no fim e com a query:
+      - [x] `/midia-kit/2027` e `/midia-kit/2027?print-pdf`
+      - [x] `/midia-kit/caravanas-2027` e `?print-pdf`
+      - [x] `/midia-kit/2026`
+      - [x] `/after/2026`
+      - [x] `/relatorio/2026` (entrou no deploy em 2026-11-04)
+- [x] `midia-kit.css` / `.js`: **hash no nome** (decisão de 2026-11-04). A fonte
+      foi para `site/src/midia-kit/` e o `scripts/hash-midia-kit.sh` publica
+      `public/midia-kit/midia-kit.<hash>.css|js`, reescrevendo a referência nos
+      5 HTML que os usam (4 decks + relatório). Roda dentro do `npm run build`,
+      é idempotente, e destrava a regra `immutable` do `vercel.json` para os
+      dois arquivos — que antes caíam no `max-age` curto do `/(ds|css)/`.
 
 ---
 
@@ -316,9 +317,9 @@ ao vivo e mandadas por WhatsApp.
 
 - [x] JSON-LD saindo de `lib/schema.ts` em todas as páginas públicas:
       `Organization`, `Event` 2027 e `Event` 2026.
-- [ ] `sitemap.xml` à mão **apagado**. `@astrojs/sitemap` assume.
-      `site/` já não tem o arquivo (`/sitemap.xml` reescreve para o index);
-      o da raiz sai na Fase 10, junto com o resto.
+- [x] `sitemap.xml` à mão **apagado**. `@astrojs/sitemap` assume.
+      `site/` nunca teve o arquivo (`/sitemap.xml` reescreve para o index) e o
+      da raiz saiu na limpeza da Fase 10.
 - [x] `filter` do sitemap excluindo **todas** as `noindex`: `/links`,
       `/relatorio`, `/apresentacoes`, `/impressos`, `/cerimonial/*`,
       `/mesa-redonda/*`, `/after/*`.
@@ -342,10 +343,10 @@ JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
 
 ## Fase 7 — Vercel
 
-- [ ] **Root Directory = `site/`** no dashboard do projeto. Não existe no
+- [x] **Root Directory = `site/`** no dashboard do projeto. Não existe no
       `vercel.json`. É a falha clássica: build passa local e quebra no deploy.
-- [ ] Confirmar o preset Astro detectado e `outputDirectory` = `dist`.
-- [ ] Node 24 na configuração do projeto, casando com `engines.node`.
+- [x] Confirmar o preset Astro detectado e `outputDirectory` = `dist`.
+- [x] Node 24 na configuração do projeto, casando com `engines.node`.
 - [x] `package-lock.json` commitado e em sincronia (`npm ci` tem que passar).
 - [x] `vercel.json` sem `buildCommand` de `cache-bust.sh` (já removido) e sem
       `services` / `runtime: container`.
@@ -353,7 +354,9 @@ JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
       → `/2026/*`, e `/midia-kit` → `/midia-kit/2027`, todos `permanent: false`.
 - [x] Manter `cleanUrls: true` e `trailingSlash: false`.
 - [x] Headers: manter `/assets/(.*)` com `immutable` e **adicionar
-      `/_astro/(.*)`** com `immutable` (caminho novo do Astro).
+      `/_astro/(.*)`** com `immutable` (caminho novo do Astro). Em 2026-11-04
+      entrou `/midia-kit/midia-kit.(.*)`, também `immutable`, que só casa com os
+      dois arquivos de tema hasheados — não com o `index.html` dos decks.
 - [x] Revisar a regra `/(ds|css)/(.*)` — se o Astro passar a hashear esses
       arquivos, ela fica obsoleta.
       **Continua valendo:** `ds/` e `css/` estão em `public/`, que o Astro não
@@ -366,84 +369,114 @@ JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
 - [x] `/relatorio`: aplicar a decisão (fora do deploy ou Deployment Protection).
       Fora do deploy por construção: não está em `site/public/`. Se um dia
       precisar ser acessível, aí sim vira Deployment Protection.
-- [ ] Deploy de preview antes de qualquer coisa em produção.
+- [x] Deploy de preview antes de qualquer coisa em produção. Os PRs #9 a #21
+      foram deploys de preview antes de cada merge.
 
 ---
 
-O que sobra aqui é só dashboard da Vercel (Root Directory `site/`, preset Astro,
-`dist`, Node 24) e o deploy de preview — não dá para fazer pelo repositório.
+**Fase 7 fechada em 2026-11-04**: o dashboard está com Root Directory `site/`,
+preset Astro, `dist` e Node 24, e a produção serve o Astro.
 
 ---
 
 ## Fase 8 — Cloudflare
 
-- [ ] Confirmar que **não** existe regra "Cache Everything" para HTML. Se existir:
-      ou remover, ou adicionar purge no deploy (o hash do Astro não cobre HTML).
-- [ ] Conferir que `/_astro/*` chega com `immutable` passando pelo Cloudflare.
-- [ ] Purge único no cutover, para limpar o CSS e JS de um ano de `max-age`
-      servido sob os nomes antigos.
+- [x] Confirmar que **não** existe regra "Cache Everything" para HTML.
+      Confirmado pelo dono da conta no painel (2026-11-04) e pela resposta do
+      ar: o HTML volta com
+      `cache-control: public, max-age=0, must-revalidate` e
+      `cf-cache-status: DYNAMIC`.
+- [x] Conferir que `/_astro/*` chega com `immutable` passando pelo Cloudflare:
+      `/_astro/page.<hash>.js` volta `max-age=31536000, immutable` com
+      `cf-cache-status: HIT`.
+- [x] Purge único no cutover. Não foi preciso purgar à mão: todo arquivo que
+      mudou de conteúdo mudou de nome (`/_astro/*`, e desde 2026-11-04 também
+      `midia-kit.<hash>.css|js`). `ds/styles.css` e `css/site.css` seguem com
+      `max-age=86400, must-revalidate`, que expira sozinho.
 
 ---
 
 ## Fase 9 — Verificação antes do cutover
 
-- [ ] `npm run build` e `npm run check` passam.
-- [ ] Diff de **texto renderizado** antes e depois, página por página. É o maior
-      risco da migração: 6.817 linhas com texto comercial, números de patrocínio
-      e bios revisadas. Revisão visual não pega troca silenciosa.
+Feito o que dava para medir pelo repositório e pelo ar; o resto ficou **em
+suspenso por decisão de 2026-11-04** (o cutover já tinha acontecido, página por
+página, nos PRs #9 a #21).
+
+- [x] `npm run build` e `npm run check` passam. `npm run verify` também, com as
+      7 verificações verdes — e duas delas foram consertadas em 2026-11-04: a de
+      `<script type=module>` acusava o bundle do `@sentry/astro` desde que o
+      Sentry entrou (agora libera só `/_astro/page.*` e barra o resto), e o
+      `paginas()` tinha um `-not -path dist/midia-kit/*` dentro de `$( )`, cujo
+      glob o shell expandia antes do `find` ver (virou filtro por `grep -vE`).
+- [x] Diff de **texto renderizado** antes e depois, página por página. Foi o que
+      pegou a única perda real da migração: as 4 páginas de `/2026` tinham
+      `<div class="edition-banner">` ("Edição 2026 encerrada…") no topo do
+      `<body>` e o porte não trouxe. Virou `EditionBanner.astro` no slot novo
+      `pre-header` do `BaseLayout`; depois disso o texto de `/2026`,
+      `/2026/palestrantes`, `/2026/patrocinio`, `/2026/caravanas` e `/` saiu
+      **idêntico** ao HTML da raiz.
+- [x] Inventário de URLs: as 9 rotas internas e os 5 decks respondem 200 em
+      produção, sem barra no fim, com e sem `?print-pdf`.
 - [ ] Conferir os números de 2026 na home e no kit 2027 contra
-      `docs/RELATORIO-PATROCINADORES-2026.md`: 233 inscritos, 176 check-ins,
-      16 palestras e minicursos, 19 pessoas no palco, 4 caravanas,
-      6 patrocinadores.
+      `docs/RELATORIO-PATROCINADORES-2026.md`. **Em suspenso.**
 - [ ] Conferir a escada de cotas do kit 2027 contra
-      `docs/ESTRATEGIA-PATROCINIO-2027.md`.
-- [ ] Inventário de URLs: toda rota que existe hoje responde 200 no preview, sem
-      barra no fim. Comparar com o `sitemap.xml` antigo mais os 9 `noindex` mais
-      os 5 decks.
-- [ ] GA4 no preview, com o DebugView aberto:
-      - [ ] `waitlist_click` nos 3 tipos
-      - [ ] `sponsor_impression` ao rolar até o mural
-      - [ ] `sponsor_click` no logo de um patrocinador
-- [ ] PageSpeed na home e em `/2026`, comparando com o número de hoje. O ganho do
-      `@import` colapsado em um request não pode ter sido perdido.
-- [ ] `?print-pdf` gerando 1920×1080 por slide nos 3 kits.
-- [ ] Clone limpo: `git clone` + `docker compose up` sobe o site sem nenhum
-      pré-requisito além do Docker.
+      `docs/ESTRATEGIA-PATROCINIO-2027.md`. **Em suspenso.**
+- [ ] GA4 no DebugView (`waitlist_click` nos 3 tipos, `sponsor_impression`,
+      `sponsor_click`). **Em suspenso** — o código dos 3 eventos veio do porte
+      1:1 e está no ar.
+- [ ] PageSpeed na home e em `/2026` comparando com o número de hoje.
+      **Em suspenso.**
+- [ ] `?print-pdf` gerando 1920×1080 por slide nos 3 kits (as URLs respondem
+      200; o render em si não foi conferido). **Em suspenso.**
+- [ ] Clone limpo: `git clone` + `docker compose up`. **Em suspenso.**
 
 ---
 
 ## Fase 10 — Cutover e limpeza
 
-- [ ] Merge de `feat/monorepo-astro` em `main`. Deploy de produção.
+- [x] Merge de `feat/monorepo-astro` em `main` e deploy de produção. Não foi um
+      merge só: os PRs #9 a #21 levaram a migração para `main` em fatias, e a
+      produção serve o Astro desde então (Root Directory `site/`).
 - [ ] Monitorar 404 no painel da Vercel por 48h — é onde URL perdida aparece.
-- [ ] Apagar as branches mortas. **Conferir antes de cada uma**, com a mesma
-      pergunta: a branch tem commit que não está em `origin/main`?
-      ```bash
-      git fetch origin
-      for b in plano-2027 feat/blog feat/patrocinadores; do
-        echo "== $b"; git log --oneline origin/$b ^origin/main
-      done
-      ```
-      Saída vazia = nada se perde, pode apagar. Saída com commits = **merge
-      primeiro**, ou o trabalho vai junto:
-      ```bash
-      git push origin --delete <branch>
-      ```
-      Estado em 2026-11-03: `plano-2027` **não** tem diff vazio contra `main` —
-      está 4 commits à frente de `origin/main` (docs e o relatório de 2026) e
-      zero atrás. Os únicos commits de `origin/main` fora dela são os merges
-      dos PRs #4 e #5, da própria branch. Diferença de conteúdo contra
-      `origin/main` fora desses 4: só os 5 renames para `docs/`, zero linhas.
-      É nela que esta migração está sendo planejada, então ela sai por último,
-      depois de `feat/monorepo-astro` entrar em `main`. (`feat/blog` já foi
-      aproveitada na Fase 2.)
-- [ ] Apagar da raiz os arquivos que viraram `site/public/` ou `site/src/`.
-- [ ] `scripts/` da raiz: ficou algo que não é do site? Se não, a pasta sai.
-- [ ] Atualizar `docs/MIGRACAO-ASTRO.md`: resolver as Decisões em aberto e
-      registrar no Histórico.
-- [ ] Anotar em `README.md` o que uma edição nova (2028) exige agora: era
-      `cp -r midia-kit/2027 midia-kit/2028`, agora depende de quanto virou
-      collection.
+      Vale a partir do deploy da limpeza (2026-11-04).
+- [x] Apagar as branches mortas, conferindo cada uma com
+      `git log --oneline origin/<branch> ^origin/main`:
+      `plano-2027` e `feat/patrocinadores` saíram com saída vazia (nada se
+      perde). `feat/blog` **fica**: tem 9 commits fora da `main` (o blog, que
+      está fora desta migração — `648438f` é a referência para restaurar o
+      pipeline de markdown).
+- [x] Apagar da raiz os arquivos que viraram `site/public/` ou `site/src/`:
+      `index.html`, `2026/`, `after/`, `apresentacoes/`, `assets/`,
+      `cerimonial/`, `css/`, `ds/`, `impressos/`, `links/`, `mesa-redonda/`,
+      `midia-kit/`, `relatorio/`, `llms.txt`, `robots.txt`, `sitemap.xml`,
+      `vercel.json` e `scripts/`. A raiz ficou com `site/`, `api/`, `docs/`,
+      `docker/`, `docker-compose.yml`, `package.json` (só husky), `README.md`,
+      `.github/`, `.husky/`, `.gitignore` e `.vercelignore`.
+      **Antes de apagar, cada arquivo foi comparado com a contraparte em
+      `site/`**, e a comparação achou coisa que estava só na raiz:
+      - 9 fotos (`paula-barros-*`, `thiago-monteiro-*`) que nunca foram
+        copiadas para `site/public/assets/palestrantes/` — davam 404 em
+        produção, nas 2 páginas de 2026 e no `image` do JSON-LD.
+      - O roteiro do cerimonial e o guia da mesa redonda: a cópia em `site/`
+        veio da `feat/blog` (grade antiga, 14h30 → 21h30), e a da raiz tinha a
+        revisão do dia do evento (14h25 → 21h10, pronúncias corrigidas). Ficou a
+        da raiz, com o `noindex, nofollow` que a cópia do site já tinha, e o
+        HTML foi regerado pelo `build-html.py` (sai igual ao da raiz).
+      - A faixa `edition-banner` das 4 páginas de `/2026` (ver Fase 9).
+      - Ficaram de fora de propósito, por serem versão superada: `og-2027.jpg`
+        (substituído por `og-2027-data.jpg`, nome novo por causa do
+        `immutable`), `phppi-vertical.svg` e `phppi-vertical-branco.svg`
+        (variantes que nenhuma página usa; as em uso são `phppi.svg` e
+        `phppi-branco.svg`). Estão no histórico do git. O `cajutec.webp` da
+        raiz também é o antigo — o de `site/public` é mais novo.
+- [x] `scripts/` da raiz: ficou algo que não é do site? Não — `site/scripts/`
+      já tinha os 4 (`build-ds.sh`, `og-card.mjs`, `linkedin-cover.mjs`,
+      `logo-fundo-chapado.mjs`), e o 5º (`listas-de-espera.gs`) estava morto.
+      A pasta saiu inteira.
+- [x] Atualizar `docs/MIGRACAO-ASTRO.md`: decisões em aberto resolvidas e
+      Histórico registrado.
+- [x] Anotar em `README.md` o que uma edição nova (2028) exige agora: seção
+      "Edição nova" na raiz, com o detalhe em `site/README.md`.
 
 ---
 
@@ -455,7 +488,8 @@ Decidido não migrar, por não ter dívida e ser de uso único:
 - as 9 páginas internas `noindex`
 - `cerimonial/build-html.py`
 - `scripts/listas-de-espera.gs` — morto desde 2026-11-03 (Google Forms fora).
-  Não migra: apaga, junto com o formulário próprio.
+  Apagado em 2026-11-04, junto com o resto de `scripts/` na Fase 10. Está no
+  histórico do git.
 
 Blog da `feat/blog`: decisão em aberto em `MIGRACAO-ASTRO.md`. Migrar a estrutura
 e publicar são coisas separadas.
