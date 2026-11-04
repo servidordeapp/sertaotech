@@ -56,15 +56,18 @@ Esperando o formulário próprio:
 - [x] Atualizar as 3 referências por nome nos comentários de HTML
       (`index.html`, `midia-kit/caravanas-2027/index.html`,
       `relatorio/2026/index.html`).
-- [ ] Branch nova a partir de `main`:
-      ```bash
-      git switch main && git pull && git switch -c feat/monorepo-astro
-      ```
-- [ ] Reescrever `README.md` da raiz como índice do monorepo: o que é cada pasta,
-      como subir (`docker compose up`), onde está a documentação. O detalhe de
-      cada aplicação vai no README dela.
-- [ ] `.gitignore` da raiz: `node_modules/`, `dist/`, `.astro/`, `.vercel/`,
-      mantendo `/originais/`.
+- [x] Branch nova: `feat/monorepo-astro`. Saiu de `plano-2027`, **não** de
+      `main`: os 3 itens acima desta fase (a pasta `docs/`, o `.vercelignore` e
+      os comentários de HTML) só existem em `plano-2027`, que já contém `main`.
+      Sair de `main` desfaria o que a fase tem como feito.
+- [x] `README.md` da raiz reescrito como índice do monorepo: mapa das pastas,
+      como subir (`docker compose up`, a partir da Fase 3) e índice de `docs/`.
+      As duas seções de detalhe (build do design system e mídia kit) ficaram no
+      fim do arquivo, marcadas para virar `site/README.md` na Fase 2 — sair
+      delas agora perderia a instrução até a pasta existir.
+- [x] `.gitignore` da raiz: `node_modules/`, `dist/`, `.astro/`, `.vercel/`,
+      mantendo `/originais/`. `node_modules/` e `dist/` sem barra inicial, para
+      pegar também `site/` e `api/`.
 
 ---
 

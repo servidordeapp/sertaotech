@@ -2,5 +2,12 @@
 # otimizados em assets/. Ficam locais, fora do versionamento.
 /originais/
 
-# Dependências instaladas sob demanda pelos scripts de geração de arte
-/node_modules/
+# Dependências de qualquer aplicação do monorepo (raiz, site/, api/…)
+node_modules/
+
+# Saída e cache do Astro (site/dist, site/.astro)
+dist/
+.astro/
+
+# Cache da CLI da Vercel
+.vercel/
