@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
+import sentry from '@sentry/astro';
 
 // Vercel serve o site com cleanUrls + trailingSlash: false, ou seja /patrocinio
 // (sem barra no fim) responde a partir de patrocinio/index.html. build.format
@@ -21,6 +22,7 @@ export default defineConfig({
     },
   },
   integrations: [
+    sentry({ sourceMapsUploadOptions: { enabled: false } }),
     sitemap({
       // Decks públicos em public/ (passthrough) não são páginas Astro, então o
       // integration não os enxerga. Os noindex (/links, /after, /relatorio,
