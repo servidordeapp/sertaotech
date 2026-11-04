@@ -346,19 +346,31 @@ JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
       `vercel.json`. É a falha clássica: build passa local e quebra no deploy.
 - [ ] Confirmar o preset Astro detectado e `outputDirectory` = `dist`.
 - [ ] Node 24 na configuração do projeto, casando com `engines.node`.
-- [ ] `package-lock.json` commitado e em sincronia (`npm ci` tem que passar).
-- [ ] `vercel.json` sem `buildCommand` de `cache-bust.sh` (já removido) e sem
+- [x] `package-lock.json` commitado e em sincronia (`npm ci` tem que passar).
+- [x] `vercel.json` sem `buildCommand` de `cache-bust.sh` (já removido) e sem
       `services` / `runtime: container`.
-- [ ] Manter os 4 `redirects`: `/palestrantes`, `/patrocinio`, `/caravanas`
+- [x] Manter os 4 `redirects`: `/palestrantes`, `/patrocinio`, `/caravanas`
       → `/2026/*`, e `/midia-kit` → `/midia-kit/2027`, todos `permanent: false`.
-- [ ] Manter `cleanUrls: true` e `trailingSlash: false`.
-- [ ] Headers: manter `/assets/(.*)` com `immutable` e **adicionar
+- [x] Manter `cleanUrls: true` e `trailingSlash: false`.
+- [x] Headers: manter `/assets/(.*)` com `immutable` e **adicionar
       `/_astro/(.*)`** com `immutable` (caminho novo do Astro).
-- [ ] Revisar a regra `/(ds|css)/(.*)` — se o Astro passar a hashear esses
+- [x] Revisar a regra `/(ds|css)/(.*)` — se o Astro passar a hashear esses
       arquivos, ela fica obsoleta.
-- [ ] `.vercelignore` revisado para os caminhos novos.
-- [ ] `/relatorio`: aplicar a decisão (fora do deploy ou Deployment Protection).
+      **Continua valendo:** `ds/` e `css/` estão em `public/`, que o Astro não
+      hasheia. Fica com `max-age=86400, must-revalidate`.
+- [x] `.vercelignore` revisado para os caminhos novos.
+      Com Root Directory `site/` o da raiz não vale mais (deploy por Git não lê
+      `.vercelignore`; só o CLI). `site/` não precisa de um: `relatorio/` nunca
+      foi copiado para `public/`. O da raiz sai na Fase 10.
+- [x] `/relatorio`: aplicar a decisão (fora do deploy ou Deployment Protection).
+      Fora do deploy por construção: não está em `site/public/`. Se um dia
+      precisar ser acessível, aí sim vira Deployment Protection.
 - [ ] Deploy de preview antes de qualquer coisa em produção.
+
+---
+
+O que sobra aqui é só dashboard da Vercel (Root Directory `site/`, preset Astro,
+`dist`, Node 24) e o deploy de preview — não dá para fazer pelo repositório.
 
 ---
 
