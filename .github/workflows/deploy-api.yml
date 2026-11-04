@@ -8,7 +8,7 @@
 # The pipeline is split into three jobs on purpose: quality → sync → post-deploy.
 # When one of them fails, "Re-run failed jobs" replays only that job (and what
 # depends on it), so an SSH hiccup no longer forces a full rebuild and re-upload.
-# The compiled assets travel from `quality` to `sync` as an artifact.
+# A aplicacao e API-only: nao ha build de front-end nem artefato entre jobs.
 #
 # Repository configuration this workflow expects:
 #   vars.FTP_HOST      hostname of the server (kept the name: same host as FTP)
@@ -87,14 +87,6 @@ jobs:
           # fails on every push.
           coverage: xdebug
 
-      - name: Setup Node
-        uses: actions/setup-node@v6
-        with:
-          node-version: '24'
-
-      - name: Install Node Dependencies
-        run: npm install
-
       - name: Copy .env
         run: php -r "file_exists('.env') || copy('.env.example', '.env');"
 
@@ -106,9 +98,6 @@ jobs:
 
       - name: Generate Application Key
         run: php artisan key:generate
-
-      - name: Build Assets
-        run: npm run build
 
       - name: Run Static Analysis
         run: composer stan
@@ -122,15 +111,6 @@ jobs:
       - name: Check coverage
         run: composer coverage
 
-      # Only the compiled bundle needs to survive the job: `sync` checks the
-      # source out again from git.
-      - name: Upload built assets
-        uses: actions/upload-artifact@v4
-        with:
-          name: public-build
-          path: api/public/build
-          if-no-files-found: error
-          retention-days: 1
 
   sync:
     name: rsync via SSH
@@ -144,12 +124,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Download built assets
-        uses: actions/download-artifact@v4
-        with:
-          name: public-build
-          path: api/public/build
 
       - name: Install rsync & sshpass
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync sshpass
