@@ -1,0 +1,14 @@
+# Espelha o job de qualidade do CI (pint + phpstan) só quando há PHP da api/ no commit.
+staged_php=$(git diff --cached --name-only --diff-filter=ACMR -- 'api/*.php' | sed 's#^api/##')
+
+if [ -n "$staged_php" ]; then
+  if [ ! -d api/vendor ]; then
+    echo "husky: api/vendor ausente, rode 'composer install' em api/. Pulando pint/stan." >&2
+    exit 0
+  fi
+  cd api || exit 1
+  echo "husky: pint (--test)"
+  echo "$staged_php" | xargs vendor/bin/pint --config=pint.json --test || exit 1
+  echo "husky: phpstan"
+  composer stan || exit 1
+fi

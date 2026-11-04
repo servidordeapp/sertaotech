@@ -1,0 +1,11 @@
+{
+  "name": "sertaotech-monorepo",
+  "private": true,
+  "description": "Raiz do monorepo: só hooks de git (husky). Dependências reais vivem em site/ e api/.",
+  "scripts": {
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

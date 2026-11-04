@@ -17,28 +17,29 @@ class WaitlistController extends Controller
     {
         abort_unless(in_array($tipo, WaitlistEntry::TIPOS, true), 404);
 
-        $campos = $request->validate([
+        $regras = [
             'email'       => ['required', 'email:rfc', 'max:254'],
             'whatsapp'    => self::WHATSAPP,
             'lgpd'        => ['accepted'],
             'lgpd_versao' => ['required', Rule::in([WaitlistEntry::LGPD_VERSAO])],
             ...$this->regras($tipo),
-        ]);
+        ];
+        $request->validate($regras);
 
         // Compartilhamento é opcional e só existe no participante. Desmarcado não pode barrar o envio.
         $compartilha = $tipo === 'participante'
             && $request->boolean('compartilhamento')
             && $request->input('compartilhamento_versao') === WaitlistEntry::COMPARTILHAMENTO_VERSAO;
 
-        $nome  = $campos['nome'] ?? $campos['contato'];
-        $dados = collect($campos)->except(['email', 'whatsapp', 'nome', 'lgpd', 'lgpd_versao'])->all();
+        $nome  = $request->string('nome')->toString() ?: $request->string('contato')->toString();
+        $dados = collect($request->only(array_keys($regras)))->except(['email', 'whatsapp', 'nome', 'lgpd', 'lgpd_versao'])->all();
 
         // Reenvio atualiza em vez de duplicar, e a resposta é a mesma: não revela se o e-mail já estava na lista.
         WaitlistEntry::updateOrCreate(
-            ['tipo' => $tipo, 'email' => mb_strtolower($campos['email'])],
+            ['tipo' => $tipo, 'email' => $request->string('email')->lower()->toString()],
             [
                 'nome'                       => $nome,
-                'whatsapp'                   => preg_replace('/\D/', '', $campos['whatsapp']),
+                'whatsapp'                   => $request->string('whatsapp')->replaceMatches('/\D/', '')->toString(),
                 'dados'                      => $dados,
                 'lgpd_versao'                => WaitlistEntry::LGPD_VERSAO,
                 'lgpd_aceito_em'             => now(),
