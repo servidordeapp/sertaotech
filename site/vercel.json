@@ -53,6 +53,15 @@
       ]
     },
     {
+      "source": "/midia-kit/midia-kit.(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    },
+    {
       "source": "/(ds|css)/(.*)",
       "headers": [
         {
