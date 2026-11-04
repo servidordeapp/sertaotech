@@ -117,4 +117,9 @@ return [
         'name'    => env('MAIL_FROM_NAME', env('APP_NAME', 'Laravel')),
     ],
 
+    /*
+    | Administradores que recebem aviso de cada nova inscrição (lista separada por vírgula).
+    */
+    'admins' => array_filter(array_map('trim', explode(',', (string) env('MAIL_ADMINS', '')))),
+
 ];

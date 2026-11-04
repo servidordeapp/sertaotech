@@ -2,8 +2,11 @@
 
 declare(strict_types=1);
 
+use App\Mail\InscricaoRecebida;
+use App\Mail\NovaInscricao;
 use App\Models\WaitlistEntry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Mail;
 
 uses(RefreshDatabase::class);
 
@@ -58,4 +61,28 @@ test('palestrante e patrocinador têm campos próprios', function () {
 
 test('tipo desconhecido dá 404', function () {
     $this->postJson('/api/lista-de-espera/outro', participante())->assertNotFound();
+});
+
+test('primeira inscrição enfileira confirmação e um e-mail por admin; reenvio não repete', function () {
+    Mail::fake();
+    config(['mail.admins' => ['a@adm.co', 'b@adm.co']]);
+
+    $this->postJson('/api/lista-de-espera/participante', participante())->assertCreated();
+    $this->postJson('/api/lista-de-espera/participante', participante())->assertCreated();
+
+    Mail::assertQueued(InscricaoRecebida::class, 1);
+    Mail::assertQueued(InscricaoRecebida::class, fn ($m) => $m->hasTo('ana@ex.com'));
+    Mail::assertQueued(NovaInscricao::class, 2);
+    Mail::assertQueued(NovaInscricao::class, fn ($m) => $m->hasTo('a@adm.co'));
+    Mail::assertQueued(NovaInscricao::class, fn ($m) => $m->hasTo('b@adm.co'));
+});
+
+test('e-mails renderizam', function () {
+    $e = WaitlistEntry::create([
+        'tipo'  => 'participante', 'nome' => 'Ana & Cia', 'email' => 'ana@ex.com', 'whatsapp' => '86999999999',
+        'dados' => ['cidade' => 'Parnaíba'], 'lgpd_versao' => 'v1', 'lgpd_aceito_em' => now(),
+    ]);
+
+    expect((new InscricaoRecebida($e))->render())->toContain('Ana & Cia')
+        ->and((new NovaInscricao($e))->render())->toContain('cidade: Parnaíba');
 });
