@@ -10,6 +10,7 @@
  *  - o gtag fica inline no topo do head (is:inline impede o Astro de mover).
  */
 import { SITE, abs, FONTS_HREF } from '../lib/site';
+import { CSS_DS, CSS_SITE, CSS_ARTICLE } from '../lib/css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import type { NavLink, NavCta } from '../data/nav';
@@ -123,9 +124,9 @@ const socialDescription = ogDescription ?? description;
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="/ds/styles.css">
-<link rel="stylesheet" href="/css/site.css">
-{articleCss && <link rel="stylesheet" href="/css/article.css">}
+<link rel="stylesheet" href={CSS_DS}>
+<link rel="stylesheet" href={CSS_SITE}>
+{articleCss && <link rel="stylesheet" href={CSS_ARTICLE}>}
 <link rel="preload" as="style" href={FONTS_HREF}>
 <link rel="stylesheet" href={FONTS_HREF} media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href={FONTS_HREF}></noscript>

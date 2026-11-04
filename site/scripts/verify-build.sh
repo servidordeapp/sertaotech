@@ -52,6 +52,16 @@ else
   ok "nenhum JS empacotado além do bundle do Sentry (o resto é inline e clássico)"
 fi
 
+# Os CSS de public/ têm nome fixo e o Cloudflare da frente devolve um ano de
+# cache pra eles. Sem o ?v=<hash> do src/lib/css.ts, quem já visitou o site fica
+# com o CSS velho depois do deploy e vê a página nova sem estilo.
+sem_hash=$(grep -rho $EXCL_GREP 'href="/\(ds\|css\)/[^"]*"' dist --include='*.html' | grep -cv '?v=' || true)
+if [ "$sem_hash" -gt 0 ]; then
+  erro "$sem_hash <link> pra /ds ou /css sem ?v=<hash> — volta o CSS velho em cache no navegador"
+else
+  ok "todo CSS de public/ entra com ?v=<hash> (cache-busting)"
+fi
+
 if grep -rq '@import' dist/ds/styles.css; then
   erro "ds/styles.css voltou a usar @import — rode ./scripts/build-ds.sh"
 else
