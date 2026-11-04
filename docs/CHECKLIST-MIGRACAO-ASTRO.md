@@ -279,11 +279,27 @@ ao vivo e mandadas por WhatsApp.
 
 - [ ] Merge de `feat/monorepo-astro` em `main`. Deploy de produção.
 - [ ] Monitorar 404 no painel da Vercel por 48h — é onde URL perdida aparece.
-- [ ] Apagar as branches mortas:
+- [ ] Apagar as branches mortas. **Conferir antes de cada uma**, com a mesma
+      pergunta: a branch tem commit que não está em `origin/main`?
       ```bash
-      git push origin --delete plano-2027 feat/blog feat/patrocinadores
+      git fetch origin
+      for b in plano-2027 feat/blog feat/patrocinadores; do
+        echo "== $b"; git log --oneline origin/$b ^origin/main
+      done
       ```
-      (`plano-2027` tem diff vazio contra `main`; `feat/blog` já foi aproveitada.)
+      Saída vazia = nada se perde, pode apagar. Saída com commits = **merge
+      primeiro**, ou o trabalho vai junto:
+      ```bash
+      git push origin --delete <branch>
+      ```
+      Estado em 2026-11-03: `plano-2027` **não** tem diff vazio contra `main` —
+      está 4 commits à frente de `origin/main` (docs e o relatório de 2026) e
+      zero atrás. Os únicos commits de `origin/main` fora dela são os merges
+      dos PRs #4 e #5, da própria branch. Diferença de conteúdo contra
+      `origin/main` fora desses 4: só os 5 renames para `docs/`, zero linhas.
+      É nela que esta migração está sendo planejada, então ela sai por último,
+      depois de `feat/monorepo-astro` entrar em `main`. (`feat/blog` já foi
+      aproveitada na Fase 2.)
 - [ ] Apagar da raiz os arquivos que viraram `site/public/` ou `site/src/`.
 - [ ] `scripts/` da raiz: ficou algo que não é do site? Se não, a pasta sai.
 - [ ] Atualizar `docs/MIGRACAO-ASTRO.md`: resolver as Decisões em aberto e
