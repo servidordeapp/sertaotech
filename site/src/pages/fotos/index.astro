@@ -1,0 +1,64 @@
+---
+/**
+ * Hub da galeria: um card por edição, da mais recente pra mais antiga.
+ * Hoje só 2026 está em `EDICOES`; edição nova entra lá e aparece aqui sozinha.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FooterCols2027 from '../../components/FooterCols2027.astro';
+import { graph, organization, website, webpage } from '../../lib/schema';
+import { NAV_2027, CTA_2027 } from '../../data/nav';
+import { EDICOES_RECENTES, foto, srcset } from '../../data/fotos';
+
+const path = '/fotos';
+const title = 'Fotos — Sertão Tech';
+const description =
+  'Galeria de fotos do Sertão Tech, o evento de tecnologia de Parnaíba, no norte do Piauí. Escolha a edição para ver e baixar as fotos.';
+
+const jsonLd = graph(organization(), website(), webpage({ path, name: title, description }));
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={jsonLd}
+  nav="fotos"
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main id="conteudo">
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// galeria</span>
+      <h1 class="section-title">Fotos do Sertão Tech</h1>
+      <p class="section-lead">Escolha a edição que você quer ver. Dentro da galeria dá pra ampliar cada foto e baixar em alta.</p>
+
+      <div class="grid-3" style="margin-top: 28px;">
+        {EDICOES_RECENTES.map((e) => (
+          <a class="card card--interactive edicao-card" href={`/fotos/${e.ano}`}>
+            <img
+              class="photo edicao-card__capa"
+              src={foto(e.fotos[0], e.fotos[0].src)}
+              srcset={srcset(e.fotos[0])}
+              sizes="(max-width: 760px) 100vw, 360px"
+              alt=""
+              width="1920"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            >
+            <h2 class="card-title">{e.titulo}</h2>
+            <p class="card-text">{e.descricao}</p>
+            <span class="eyebrow">{e.fotos.length} fotos</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</main>
+
+<Fragment slot="footer-cols">
+  <FooterCols2027 />
+</Fragment>
+</BaseLayout>

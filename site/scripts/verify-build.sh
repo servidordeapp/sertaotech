@@ -218,6 +218,29 @@ print('  \033[32mok\033[0m   nenhum link interno quebrado')
 PY
 [ $? -ne 0 ] && falhas=$((falhas + 1))
 
+# As fotos saem de src/data/fotos.ts: um slug errado ou uma largura que não
+# existe em disco vira <img> quebrada sem erro nenhum no build. O check de
+# links internos acima só olha href, então srcset/src precisam deste aqui.
+python3 - <<'PYIMG'
+import re, pathlib, sys
+raiz = pathlib.Path('dist')
+faltando = []
+for f in raiz.rglob('*.html'):
+    refs = set(re.findall(r'(?:src|srcset)="([^"]*)"', f.read_text(encoding='utf-8')))
+    for ref in refs:
+        for parte in ref.split(','):
+            url = parte.strip().split(' ')[0]
+            if not url.startswith('/') or url.startswith('//'):
+                continue
+            if not (raiz / url.lstrip('/')).exists():
+                faltando.append(f'{f} -> {url}')
+if faltando:
+    print('\n'.join('  \033[31mFALHA\033[0m imagem inexistente: ' + x for x in sorted(set(faltando))))
+    sys.exit(1)
+print('  \033[32mok\033[0m   todo src/srcset local aponta pra arquivo que existe')
+PYIMG
+[ $? -ne 0 ] && falhas=$((falhas + 1))
+
 echo
 if [ "$falhas" -gt 0 ]; then
   printf '\033[31m%s verificação(ões) falharam.\033[0m\n\n' "$falhas"

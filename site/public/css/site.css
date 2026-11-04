@@ -993,3 +993,136 @@ dialog.modal::backdrop { background: rgba(31,19,5,0.55); backdrop-filter: blur(4
   gap: 10px;
   margin-top: 18px;
 }
+
+/* ============================================================
+ * GALERIA DE FOTOS (/fotos e /fotos/<ano>)
+ * O lightbox é um <dialog> nativo: Esc, trava de foco e backdrop
+ * vêm do navegador, o JS da página só troca a foto.
+ * ============================================================ */
+
+/* Hub: o card inteiro é link. */
+.edicao-card { display: block; text-decoration: none; }
+
+/* `.photo` traz `height: 100%` porque na .gallery da home a primeira foto
+   precisa preencher duas linhas do grid. Aqui a foto é filha de um card que é
+   item de grid: o card é esticado pela linha, ganha altura definida, e o 100%
+   passa a valer a altura do card inteiro — a imagem cobria o título e o texto.
+   `height: auto` devolve o controle pro aspect-ratio. */
+.edicao-card__capa { height: auto; margin-bottom: 14px; }
+.edicao-card .eyebrow { display: block; margin-top: 12px; }
+
+/* Grade uniforme — ao contrário da .gallery da home, aqui nenhuma foto tem
+   destaque: a 1ª não é mais importante que a 10ª. */
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 16px;
+  margin: 34px 0 8px;
+}
+
+.gal-item { position: relative; margin: 0; }
+
+/* O thumbnail inteiro é o botão de ampliar. */
+.gal-open {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+  border-radius: var(--radius-card);
+}
+.gal-open:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 3px; }
+
+.gal-dl {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  color: var(--text-strong);
+  background: rgba(255,255,255,0.92);
+  border: 2px solid var(--border-ink);
+  border-radius: 999px;
+  box-shadow: var(--shadow-badge);
+  /* No touch não existe hover, então o ícone fica sempre visível; no desktop
+     ele aparece ao passar o mouse ou receber foco pelo teclado. */
+}
+.gal-dl:hover { background: #fff; transform: translateY(-1px); }
+.gal-dl:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+
+@media (hover: hover) {
+  .gal-dl { opacity: 0; transition: opacity 140ms ease, transform 140ms ease; }
+  .gal-item:hover .gal-dl,
+  .gal-item:focus-within .gal-dl { opacity: 1; }
+}
+
+/* Lightbox */
+dialog.lightbox {
+  width: min(96vw, 1200px);
+  max-width: none;
+  max-height: 94vh;
+  margin: auto;
+  padding: 0;
+  color: inherit;
+  background: var(--surface-card);
+  border: 2px solid var(--border-ink);
+  border-radius: var(--radius-card);
+  overflow: visible;
+}
+dialog.lightbox::backdrop { background: rgba(31,19,5,0.8); backdrop-filter: blur(4px); }
+
+.lightbox__img {
+  display: block;
+  width: 100%;
+  max-height: calc(94vh - 84px);
+  object-fit: contain;
+  border-radius: calc(var(--radius-card) - 2px) calc(var(--radius-card) - 2px) 0 0;
+  background: var(--surface-ink);
+}
+
+.lightbox__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 16px;
+}
+.lightbox__cap { margin: 0; font-size: 0.9rem; line-height: 1.4; }
+
+.lightbox__btn {
+  position: absolute;
+  z-index: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  color: var(--text-strong);
+  background: rgba(255,255,255,0.92);
+  border: 2px solid var(--border-ink);
+  border-radius: 999px;
+  cursor: pointer;
+}
+.lightbox__btn:hover { background: #fff; }
+.lightbox__btn:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
+
+.lightbox__close { top: -14px; right: -14px; }
+.lightbox__nav { top: 50%; transform: translateY(-50%); }
+.lightbox__nav--prev { left: -14px; }
+.lightbox__nav--next { right: -14px; }
+
+/* O <dialog> modal já bloqueia o clique, mas não a rolagem do fundo. */
+html:has(dialog[open]) { overflow: hidden; }
+
+@media (max-width: 760px) {
+  .gal-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  dialog.lightbox { width: calc(100vw - 28px); }
+  .lightbox__close { top: 8px; right: 8px; }
+  .lightbox__nav--prev { left: 8px; }
+  .lightbox__nav--next { right: 8px; }
+  .lightbox__bar { flex-direction: column; align-items: flex-start; }
+}

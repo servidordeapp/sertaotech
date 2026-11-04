@@ -4,7 +4,7 @@
  * É a página da edição vigente: o que muda de ano em ano mora aqui, e a
  * edição anterior fica congelada em `/2026`.
  *
- * Os 11 `<img>` da galeria e do After viraram dado em `data/fotos-2026.ts`.
+ * Os 11 `<img>` da galeria e do After viraram dado em `data/fotos.ts`.
  * Os botões das 3 listas de espera levam a `/lista-de-espera/<tipo>`. Os botões
  * genéricos ("Entrar na lista de espera") levam à seção `/#lista-de-espera`,
  * onde a pessoa escolhe o tipo, em vez de escolher participante por ela.
@@ -15,7 +15,7 @@ import LogoWall from '../components/LogoWall.astro';
 import FooterCols2027 from '../components/FooterCols2027.astro';
 import { graph, organization, website, webpage } from '../lib/schema';
 import { NAV_2027, CTA_2027 } from '../data/nav';
-import { GALERIA_2026, AFTER_2026, foto, srcset } from '../data/fotos-2026';
+import { GALERIA_2026, AFTER_2026, foto, srcset } from '../data/fotos';
 import evento from '../data/evento-2027.json';
 
 const path = '/';
@@ -107,7 +107,10 @@ const jsonLd = graph(
           <img class={f.classe ?? 'photo'} src={foto(f, f.src)} srcset={srcset(f)} sizes={f.sizes} alt={f.alt} width="1920" height="1280" loading="lazy" decoding="async">
         ))}
       </div>
-      <p class="section-lead"><a href="/2026">Ver como foi a edição 2026</a></p>
+      <div class="hero__actions">
+        <a class="btn btn--primary btn--lg" href="/fotos/2026">Ver todas as fotos da 2ª edição<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/></svg></a>
+      </div>
+      <p class="section-lead" style="margin-top: 18px;"><a href="/2026">Ver como foi a edição 2026</a></p>
     </div>
   </section>
 

@@ -13,6 +13,7 @@
     "preview": "astro preview",
     "check": "astro check",
     "verify": "npm run build && ./scripts/verify-build.sh",
+    "check:lightbox": "node scripts/check-lightbox.mjs",
     "ds": "./scripts/build-ds.sh",
     "midia-kit": "./scripts/hash-midia-kit.sh",
     "og": "node scripts/og-card.mjs"

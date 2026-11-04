@@ -1,7 +1,11 @@
 /**
- * Fotos da 2ª edição usadas na home de 2027. Eram 11 `<img>` escritas à mão,
- * com `src`, `srcset` e `sizes` repetidos; aqui são dado, e o markup sai de um
- * `.map()`. Os arquivos ficam em `public/assets/fotos/<slug>-<largura>.webp`.
+ * Fotos das edições. Os arquivos ficam em
+ * `public/assets/fotos/<slug>-<largura>.webp`.
+ *
+ * Duas leituras do mesmo dado: a home de 2027 usa as listas soltas
+ * (`GALERIA_2026`, `AFTER_2026`), que nasceram de 11 `<img>` escritas à mão
+ * com `src`, `srcset` e `sizes` repetidos; /fotos e /fotos/<ano> usam
+ * `EDICOES`, que agrupa as mesmas fotos por edição.
  */
 export interface Foto {
   /** Nome do arquivo sem a largura. Ex.: `2026-abertura`. */
@@ -105,3 +109,56 @@ export const AFTER_2026: Foto[] = [
     alt: 'Sertão Tech After: bartender preparando drinks para os convidados.',
   },
 ];
+
+/** Maior arquivo que existe em disco pra essa foto — o que o botão de baixar entrega. */
+export function maiorLargura(f: Foto): number {
+  return Math.max(...f.larguras);
+}
+
+/** Nome do arquivo salvo no computador de quem baixa. */
+export function nomeDownload(f: Foto): string {
+  return `sertao-tech-${f.slug}-${maiorLargura(f)}.webp`;
+}
+
+/**
+ * Foto oficial da 2ª edição. Fica fora de `GALERIA_2026` porque a home a usa
+ * no hero, não na grade — mas na galeria da edição ela é a capa.
+ */
+export const FOTO_OFICIAL_2026: Foto = {
+  slug: '2026-foto-oficial',
+  src: 1280,
+  larguras: [640, 1280, 1920],
+  sizes: '(max-width: 1024px) 100vw, 520px',
+  alt: 'Foto oficial: participantes e organização reunidos de pé no auditório da UFDPar.',
+};
+
+export interface Edicao {
+  /** Usado na URL: /fotos/<ano>. */
+  ano: string;
+  titulo: string;
+  descricao: string;
+  fotos: Foto[];
+}
+
+/**
+ * Galeria por edição. É a fonte de /fotos e /fotos/<ano>.
+ *
+ * Por enquanto é dado estático apontando pros arquivos que já estão em
+ * `public/assets/fotos/` — as mesmas fotos que a home usa. Edição nova = uma
+ * entrada aqui, sem tocar nas páginas. O cadastro de fotos (upload, API) ainda
+ * não existe; quando existir, troca a origem deste objeto e nada mais muda.
+ */
+export const EDICOES: Record<string, Edicao> = {
+  '2026': {
+    ano: '2026',
+    titulo: '2ª edição — 2026',
+    descricao:
+      'Um dia inteiro de tecnologia na UFDPar, em Parnaíba: palestras, minicursos, coffee break e o Sertão Tech After.',
+    fotos: [FOTO_OFICIAL_2026, ...GALERIA_2026, ...AFTER_2026],
+  },
+};
+
+/** Edições da mais recente pra mais antiga, que é como /fotos lista. */
+export const EDICOES_RECENTES: Edicao[] = Object.values(EDICOES).sort((a, b) =>
+  b.ano.localeCompare(a.ano),
+);

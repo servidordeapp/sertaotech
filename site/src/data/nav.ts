@@ -28,6 +28,7 @@ export const NAV_2026: NavLink[] = [
   { label: 'Palestrantes', href: '/2026/palestrantes', key: 'palestrantes' },
   { label: 'Caravanas', href: '/2026/caravanas', key: 'caravanas' },
   { label: 'Patrocínio', href: '/2026/patrocinio', key: 'patrocinio' },
+  { label: 'Fotos', href: '/fotos/2026', key: 'fotos' },
 ];
 
 /** O arquivo não vende mais inscrição: o CTA manda pra lista de espera de 2027. */
@@ -37,7 +38,10 @@ export const CTA_2026: NavCta = {
 };
 
 /** Edição vigente: a home é a própria página, então o menu é curto. */
-export const NAV_2027: NavLink[] = [{ label: 'Edição 2026', href: '/2026' }];
+export const NAV_2027: NavLink[] = [
+  { label: 'Fotos', href: '/fotos', key: 'fotos' },
+  { label: 'Edição 2026', href: '/2026' },
+];
 
 export const CTA_2027: NavCta = {
   label: 'Lista de espera',
