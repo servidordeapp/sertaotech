@@ -6,7 +6,7 @@ Gerar o HTML de impressão: python3 cerimonial/build-html.py mesa-redonda/guia-p
 -->
 
 # GUIA DE PERGUNTAS — MESA REDONDA
-**Sertão Tech 2026 · 2ª edição** — Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia · 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 16h55 às 17h25
+**Sertão Tech 2026 · 2ª edição** — Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia · 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 16h50 às 17h20
 
 > **Legenda:** 🎤 pergunta feita em voz alta · ⏱️ horário previsto · ⚠️ atenção do mediador
 > Textos entre `[colchetes]` devem ser confirmados com a organização antes do evento.
@@ -15,7 +15,7 @@ Gerar o HTML de impressão: python3 cerimonial/build-html.py mesa-redonda/guia-p
 
 ## BLOCO 00 — NOTAS RÁPIDAS (não ler)
 
-- **Duração total: 30 min**, das 16h55 às 17h25. Os tempos já incluem as perguntas do público.
+- **Duração total: 30 min**, das 16h50 às 17h20. Os tempos já incluem as perguntas do público.
 - A apresentação das convidadas já foi feita pelo cerimonialista. **Não reapresentar** — entrar direto na primeira pergunta.
 - **Regra de ouro:** ninguém responde tudo. Cada rodada tem uma pergunta-âncora para todas e perguntas dirigidas a uma convidada específica.
 - **Tempo de resposta:** 60 a 90 segundos por convidada. Se passar de 2 min, cortar com educação: *"Perfeito — quero ouvir as outras nesse mesmo ponto."*
@@ -32,16 +32,16 @@ Referência rápida de início e fim de cada rodada.
 
 | Início | Fim | Rodada | Duração |
 |---|---|---|---|
-| 16h55 | 16h58 | Abertura da roda e enquadramento do tema | 3 min |
-| 16h58 | 17h03 | Rodada 1 — O ponto de partida | 5 min |
-| 17h03 | 17h08 | Rodada 2 — O ponto de virada | 5 min |
-| 17h08 | 17h13 | Rodada 3 — O mercado por dentro | 5 min |
-| 17h13 | 17h17 | Rodada 4 — Mitos, erros e o que ninguém conta | 4 min |
-| 17h17 | 17h22 | Perguntas do público | 5 min |
-| 17h22 | 17h25 | Fechamento — uma frase de cada convidada | 3 min |
+| 16h50 | 16h53 | Abertura da roda e enquadramento do tema | 3 min |
+| 16h53 | 16h58 | Rodada 1 — O ponto de partida | 5 min |
+| 16h58 | 17h03 | Rodada 2 — O ponto de virada | 5 min |
+| 17h03 | 17h08 | Rodada 3 — O mercado por dentro | 5 min |
+| 17h08 | 17h12 | Rodada 4 — Mitos, erros e o que ninguém conta | 4 min |
+| 17h12 | 17h17 | Perguntas do público | 5 min |
+| 17h17 | 17h20 | Fechamento — uma frase de cada convidada | 3 min |
 
-⚠️ Microfone volante posicionado na plateia a partir das 17h13.
-⚠️ Cartaz de tempo: sinalizar 17h20 (faltam 5) e 17h24 (faltam 60 segundos).
+⚠️ Microfone volante posicionado na plateia a partir das 17h08.
+⚠️ Cartaz de tempo: sinalizar 17h15 (faltam 5) e 17h19 (faltam 60 segundos).
 
 <div style="page-break-after: always"></div>
 
@@ -56,9 +56,9 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 01 — ⏱️ 16h55 → 16h58 · ABERTURA DA RODA
+## BLOCO 01 — ⏱️ 16h50 → 16h53 · ABERTURA DA RODA
 
-**Duração: 3 min** · próxima etapa: Rodada 1, 16h58.
+**Duração: 3 min** · próxima etapa: Rodada 1, 16h53.
 
 🎤 **Enquadramento do tema:**
 
@@ -66,16 +66,16 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 >
 > Temos quatro trajetórias diferentes no palco: produto, pesquisa, recrutamento e qualidade de software. Nenhuma delas foi uma linha reta.
 >
-> A regra é simples: são quatro rodadas de perguntas e, a partir das **17h17**, o microfone abre para o público. Já vá preparando a sua pergunta — vale pergunta prática, vale pergunta difícil.
+> A regra é simples: são quatro rodadas de perguntas e, a partir das **17h12**, o microfone abre para o público. Já vá preparando a sua pergunta — vale pergunta prática, vale pergunta difícil.
 
 ⚠️ Confirmar que as 4 convidadas estão com microfone testado antes de iniciar.
 ⚠️ Não reapresentar as convidadas — isso já foi feito na chamada ao palco.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 02 — ⏱️ 16h58 → 17h03 · RODADA 1 · O PONTO DE PARTIDA
+## BLOCO 02 — ⏱️ 16h53 → 16h58 · RODADA 1 · O PONTO DE PARTIDA
 
-**Duração: 5 min** · até 75 segundos por convidada · próxima etapa: Rodada 2, 17h03.
+**Duração: 5 min** · até 75 segundos por convidada · próxima etapa: Rodada 2, 16h58.
 
 🎤 **Pergunta-âncora (todas respondem — começar pela Bia Thereza):**
 
@@ -93,9 +93,9 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 03 — ⏱️ 17h03 → 17h08 · RODADA 2 · O PONTO DE VIRADA
+## BLOCO 03 — ⏱️ 16h58 → 17h03 · RODADA 2 · O PONTO DE VIRADA
 
-**Duração: 5 min** · até 75 segundos por convidada · próxima etapa: Rodada 3, 17h08.
+**Duração: 5 min** · até 75 segundos por convidada · próxima etapa: Rodada 3, 17h03.
 
 🎤 **Pergunta-âncora (todas respondem — começar pela Maria Katriane):**
 
@@ -113,9 +113,9 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 04 — ⏱️ 17h08 → 17h13 · RODADA 3 · O MERCADO POR DENTRO
+## BLOCO 04 — ⏱️ 17h03 → 17h08 · RODADA 3 · O MERCADO POR DENTRO
 
-**Duração: 5 min** · rodada ancorada na Sâmyla · próxima etapa: Rodada 4, 17h13.
+**Duração: 5 min** · rodada ancorada na Sâmyla · próxima etapa: Rodada 4, 17h08.
 
 🎤 **Dirigida — Sâmyla Alves (começar por ela, até 2 min):**
 
@@ -133,9 +133,9 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 05 — ⏱️ 17h13 → 17h17 · RODADA 4 · MITOS, ERROS E O QUE NINGUÉM CONTA
+## BLOCO 05 — ⏱️ 17h08 → 17h12 · RODADA 4 · MITOS, ERROS E O QUE NINGUÉM CONTA
 
-**Duração: 4 min** · resposta curta, até 45 segundos cada · próxima etapa: perguntas do público, 17h17.
+**Duração: 4 min** · resposta curta, até 45 segundos cada · próxima etapa: perguntas do público, 17h12.
 
 🎤 **Pergunta-âncora (rodada rápida — começar pela Celenny):**
 
@@ -150,13 +150,13 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 > Você concilia mestrado e tecnologia. Para quem está estudando e trabalhando ao mesmo tempo: **o que você largou** para conseguir dar conta?
 
 ⚠️ Rodada de ritmo acelerado. Cobrar concisão: *"Em uma frase."*
-⚠️ Às 17h16, avisar a plateia: *"Vamos abrir o microfone — levantem a mão."*
+⚠️ Às 17h11, avisar a plateia: *"Vamos abrir o microfone — levantem a mão."*
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 06 — ⏱️ 17h17 → 17h22 · PERGUNTAS DO PÚBLICO
+## BLOCO 06 — ⏱️ 17h12 → 17h17 · PERGUNTAS DO PÚBLICO
 
-**Duração: 5 min** · 3 a 4 perguntas · próxima etapa: fechamento, 17h22.
+**Duração: 5 min** · 3 a 4 perguntas · próxima etapa: fechamento, 17h17.
 
 🎤 **Abertura do microfone:**
 
@@ -172,13 +172,13 @@ Colinha de contexto para direcionar as perguntas certas para a pessoa certa.
 
 ⚠️ Repetir a pergunta no microfone antes de passar para a convidada — quem está no fundo do auditório não escuta.
 ⚠️ Se a pergunta virar depoimento longo, resumir: *"Entendi — a sua pergunta é `[reformular em uma frase]`, certo?"*
-⚠️ Cortar o microfone às 17h22, mesmo com mãos levantadas. Convidar a continuar a conversa no coffee break.
+⚠️ Cortar o microfone às 17h17, mesmo com mãos levantadas. Convidar a continuar a conversa no coffee break.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 07 — ⏱️ 17h22 → 17h25 · FECHAMENTO
+## BLOCO 07 — ⏱️ 17h17 → 17h20 · FECHAMENTO
 
-**Duração: 3 min** · fim da roda às 17h25 · próxima atividade: coffee break, 17h25.
+**Duração: 3 min** · fim da roda às 17h20 · próxima atividade: coffee break, 17h20.
 
 🎤 **Volta final (uma frase por convidada — começar pela Sâmyla, terminar na Katriane):**
 
