@@ -1,0 +1,6 @@
+API-only: nao ha views. A pasta existe porque `artisan optimize` roda
+`view:cache`, que aborta se resource_path('views') nao existir.
+
+O arquivo nao se chama .gitkeep de proposito: o exclude `.git*` do rsync
+(.github/deploy-api-exclude.txt) o deixaria fora do deploy e a pasta sumiria
+de novo no servidor.
