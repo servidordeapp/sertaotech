@@ -122,4 +122,10 @@ return [
     */
     'admins' => array_filter(array_map('trim', explode(',', (string) env('MAIL_ADMINS', '')))),
 
+    /*
+    | Teto de e-mails por janela de 24h, igual ao do plano contratado no provedor de SMTP.
+    | Passar do teto não perde e-mail: o job volta para a fila e sai quando a janela abre.
+    */
+    'limite_diario' => (int) env('MAIL_LIMITE_DIARIO', 100),
+
 ];
