@@ -114,6 +114,7 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
     }
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
     fetch(form.dataset.api + '/api/lista-de-espera/' + form.dataset.tipo, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
@@ -133,6 +134,7 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
       msg.textContent = err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message;
       msg.hidden = false;
       btn.disabled = false;
+      btn.removeAttribute('aria-busy');
     });
   });
 </script>
@@ -151,5 +153,12 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
   .wl-box { border: 1px solid var(--border-subtle); border-radius: var(--radius-field); padding: var(--space-4); margin: 0 0 var(--space-5); background: var(--surface-card); }
   .wl-box p { margin: var(--space-2) 0 var(--space-3); font-size: .9em; color: var(--text-muted); }
   #wl-msg { color: #b3261e; font-weight: 600; }
+  button[aria-busy=true]::after {
+    content: ''; display: inline-block; width: 1em; height: 1em; margin-left: .6em; vertical-align: -.15em;
+    border: .15em solid currentColor; border-right-color: transparent; border-radius: 50%;
+    animation: wl-spin .7s linear infinite;
+  }
+  @keyframes wl-spin { to { transform: rotate(360deg); } }
+  @media (prefers-reduced-motion: reduce) { button[aria-busy=true]::after { animation-duration: 2s; } }
 </style>
 </BaseLayout>

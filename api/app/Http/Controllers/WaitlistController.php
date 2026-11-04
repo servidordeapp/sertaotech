@@ -4,9 +4,12 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Mail\InscricaoRecebida;
+use App\Mail\NovaInscricao;
 use App\Models\WaitlistEntry;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Validation\Rule;
 
 class WaitlistController extends Controller
@@ -35,7 +38,7 @@ class WaitlistController extends Controller
         $dados = collect($request->only(array_keys($regras)))->except(['email', 'whatsapp', 'nome', 'lgpd', 'lgpd_versao'])->all();
 
         // Reenvio atualiza em vez de duplicar, e a resposta é a mesma: não revela se o e-mail já estava na lista.
-        WaitlistEntry::updateOrCreate(
+        $entry = WaitlistEntry::updateOrCreate(
             ['tipo' => $tipo, 'email' => $request->string('email')->lower()->toString()],
             [
                 'nome'                       => $nome,
@@ -47,6 +50,14 @@ class WaitlistController extends Controller
                 'compartilhamento_aceito_em' => $compartilha ? now() : null,
             ],
         );
+
+        // E-mails só na primeira inscrição: reenvio do mesmo e-mail não vira spam para o participante nem para os admins.
+        if ($entry->wasRecentlyCreated) {
+            Mail::to($entry->email)->queue(new InscricaoRecebida($entry));
+            foreach ((array) config('mail.admins') as $admin) {
+                Mail::to($admin)->queue(new NovaInscricao($entry));
+            }
+        }
 
         return response()->json(['ok' => true], 201);
     }
