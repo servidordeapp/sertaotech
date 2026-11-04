@@ -1,13 +1,13 @@
 {
   "@type": "Event",
-  "@id": "https://osertaotech.com.br/#event",
+  "@id": "https://osertaotech.com.br/2026#event",
   "name": "Sertão Tech 2026",
   "description": "Sertão Tech, 2ª edição: um dia inteiro de palestras, roda de conversa e networking para estudantes, profissionais e quem está migrando de carreira. Realizado na UFDPar — Universidade Federal do Delta do Parnaíba, com apoio do PHP PI e da PHPWomen PI.",
   "startDate": "2026-10-09T14:00:00-03:00",
-  "endDate": "2026-10-09T21:30:00-03:00",
+  "endDate": "2026-10-09T21:10:00-03:00",
   "eventStatus": "https://schema.org/EventScheduled",
   "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-  "url": "https://osertaotech.com.br/",
+  "url": "https://osertaotech.com.br/2026",
   "image": [
     "https://osertaotech.com.br/assets/og-cover.jpg"
   ],
@@ -37,12 +37,17 @@
     "name": "Inscrição individual",
     "price": "20",
     "priceCurrency": "BRL",
-    "availability": "https://schema.org/InStock",
+    "availability": "https://schema.org/SoldOut",
     "url": "https://www.sympla.com.br/evento/sertao-tech/3549344",
     "validFrom": "2026-07-25"
   },
   "organizer": {
-    "@id": "https://osertaotech.com.br/#organization"
+    "@type": "Organization",
+    "name": "Sertão Tech",
+    "url": "https://osertaotech.com.br/",
+    "sameAs": [
+      "https://instagram.com/osertaotech"
+    ]
   },
   "sponsor": [
     {
@@ -93,8 +98,8 @@
     {
       "@type": "Event",
       "name": "Privacidade estrutural: como o Privacy by Design muda a forma de projetar software",
-      "startDate": "2026-10-09T14:40:00-03:00",
-      "endDate": "2026-10-09T15:10:00-03:00",
+      "startDate": "2026-10-09T14:35:00-03:00",
+      "endDate": "2026-10-09T15:05:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -118,8 +123,8 @@
     {
       "@type": "Event",
       "name": "Além do Código: Carreira, Product Management e Empreendedorismo",
-      "startDate": "2026-10-09T15:10:00-03:00",
-      "endDate": "2026-10-09T15:25:00-03:00",
+      "startDate": "2026-10-09T15:05:00-03:00",
+      "endDate": "2026-10-09T15:20:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -142,9 +147,9 @@
     },
     {
       "@type": "Event",
-      "name": "Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais",
-      "startDate": "2026-10-09T15:25:00-03:00",
-      "endDate": "2026-10-09T15:40:00-03:00",
+      "name": "Como lidar com a síndrome do impostor",
+      "startDate": "2026-10-09T15:20:00-03:00",
+      "endDate": "2026-10-09T15:35:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -154,22 +159,22 @@
       "performer": [
         {
           "@type": "Person",
-          "name": "Kauê Victor",
-          "jobTitle": "Embaixador",
+          "name": "Dione Bastos",
+          "jobTitle": "Blockchain Engineer",
           "affiliation": {
             "@type": "Organization",
-            "name": "Stellar in Brazil"
+            "name": "Nearx"
           },
-          "image": "https://osertaotech.com.br/assets/palestrantes/kaue-victor-384.webp",
-          "sameAs": "https://www.linkedin.com/in/kauevictor/"
+          "image": "https://osertaotech.com.br/assets/palestrantes/dione-bastos-384.webp",
+          "sameAs": "https://www.linkedin.com/in/dione-bastos/"
         }
       ]
     },
     {
       "@type": "Event",
       "name": "Antes do Gráfico: os Bastidores de um Dashboard",
-      "startDate": "2026-10-09T15:40:00-03:00",
-      "endDate": "2026-10-09T16:10:00-03:00",
+      "startDate": "2026-10-09T15:35:00-03:00",
+      "endDate": "2026-10-09T16:05:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -193,8 +198,8 @@
     {
       "@type": "Event",
       "name": "Suporte, a chave do sucesso de uma aplicação",
-      "startDate": "2026-10-09T16:10:00-03:00",
-      "endDate": "2026-10-09T16:25:00-03:00",
+      "startDate": "2026-10-09T16:05:00-03:00",
+      "endDate": "2026-10-09T16:20:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -218,8 +223,8 @@
     {
       "@type": "Event",
       "name": "Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A",
-      "startDate": "2026-10-09T16:25:00-03:00",
-      "endDate": "2026-10-09T16:55:00-03:00",
+      "startDate": "2026-10-09T16:20:00-03:00",
+      "endDate": "2026-10-09T16:50:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -243,8 +248,8 @@
     {
       "@type": "Event",
       "name": "Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia",
-      "startDate": "2026-10-09T16:55:00-03:00",
-      "endDate": "2026-10-09T17:25:00-03:00",
+      "startDate": "2026-10-09T16:50:00-03:00",
+      "endDate": "2026-10-09T17:20:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -300,9 +305,9 @@
     },
     {
       "@type": "Event",
-      "name": "Como lidar com a síndrome do impostor",
-      "startDate": "2026-10-09T17:55:00-03:00",
-      "endDate": "2026-10-09T18:10:00-03:00",
+      "name": "Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais",
+      "startDate": "2026-10-09T17:45:00-03:00",
+      "endDate": "2026-10-09T18:00:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -312,22 +317,22 @@
       "performer": [
         {
           "@type": "Person",
-          "name": "Dione Bastos",
-          "jobTitle": "Blockchain Engineer",
+          "name": "Kauê Victor",
+          "jobTitle": "Embaixador",
           "affiliation": {
             "@type": "Organization",
-            "name": "Nearx"
+            "name": "Stellar in Brazil"
           },
-          "image": "https://osertaotech.com.br/assets/palestrantes/dione-bastos-384.webp",
-          "sameAs": "https://www.linkedin.com/in/dione-bastos/"
+          "image": "https://osertaotech.com.br/assets/palestrantes/kaue-victor-384.webp",
+          "sameAs": "https://www.linkedin.com/in/kauevictor/"
         }
       ]
     },
     {
       "@type": "Event",
       "name": "O Gerente de Projetos de Software na Era da IA",
-      "startDate": "2026-10-09T18:10:00-03:00",
-      "endDate": "2026-10-09T18:40:00-03:00",
+      "startDate": "2026-10-09T18:00:00-03:00",
+      "endDate": "2026-10-09T18:30:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -346,9 +351,9 @@
     },
     {
       "@type": "Event",
-      "name": "Do terminal ao mercado: como transformar seu código em um negócio real",
-      "startDate": "2026-10-09T18:40:00-03:00",
-      "endDate": "2026-10-09T18:55:00-03:00",
+      "name": "Hackeando sua Carreira: Encontre Seu Caminho em Cibersegurança",
+      "startDate": "2026-10-09T18:30:00-03:00",
+      "endDate": "2026-10-09T18:45:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -358,22 +363,22 @@
       "performer": [
         {
           "@type": "Person",
-          "name": "Vilmar Aguiar de Paula Segundo",
-          "jobTitle": "CEO",
+          "name": "Paula Barros",
+          "jobTitle": "Analista de Segurança Sênior",
           "affiliation": {
             "@type": "Organization",
-            "name": "Clube Charger"
+            "name": "EXA"
           },
-          "image": "https://osertaotech.com.br/assets/palestrantes/vilmar-aguiar-384.webp",
-          "sameAs": "https://www.linkedin.com/in/vilmar-segundo/"
+          "image": "https://osertaotech.com.br/assets/palestrantes/paula-barros-384.webp",
+          "sameAs": "https://www.linkedin.com/in/paula-rs-barros/"
         }
       ]
     },
     {
       "@type": "Event",
       "name": "Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário",
-      "startDate": "2026-10-09T18:55:00-03:00",
-      "endDate": "2026-10-09T19:25:00-03:00",
+      "startDate": "2026-10-09T18:45:00-03:00",
+      "endDate": "2026-10-09T19:15:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -397,8 +402,8 @@
     {
       "@type": "Event",
       "name": "Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar",
-      "startDate": "2026-10-09T19:25:00-03:00",
-      "endDate": "2026-10-09T19:40:00-03:00",
+      "startDate": "2026-10-09T19:15:00-03:00",
+      "endDate": "2026-10-09T19:30:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -421,9 +426,9 @@
     },
     {
       "@type": "Event",
-      "name": "Além do Código: Como usar IA para faturar antes de se formar",
-      "startDate": "2026-10-09T19:40:00-03:00",
-      "endDate": "2026-10-09T20:10:00-03:00",
+      "name": "Ser grande é entender conceitos e acompanhar tendências: o que significa ser DEV em um mundo comandado por prompts",
+      "startDate": "2026-10-09T19:30:00-03:00",
+      "endDate": "2026-10-09T20:00:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -433,18 +438,22 @@
       "performer": [
         {
           "@type": "Person",
-          "name": "Sebastião Galeno",
-          "jobTitle": "Software Engineer",
-          "image": "https://osertaotech.com.br/assets/palestrantes/sebastiao-galeno-384.webp",
-          "sameAs": "https://www.linkedin.com/in/sebastiaogaleno/"
+          "name": "Thiago Monteiro",
+          "jobTitle": "Fundador",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Paradevs"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/thiago-monteiro-384.webp",
+          "sameAs": "https://www.linkedin.com/in/brazilliancare/"
         }
       ]
     },
     {
       "@type": "Event",
       "name": "Revolução Programacional: a IA na era das mudanças",
-      "startDate": "2026-10-09T20:20:00-03:00",
-      "endDate": "2026-10-09T21:00:00-03:00",
+      "startDate": "2026-10-09T20:05:00-03:00",
+      "endDate": "2026-10-09T20:45:00-03:00",
       "eventStatus": "https://schema.org/EventScheduled",
       "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
       "location": {
@@ -519,11 +528,11 @@
   "subjectOf": [
     {
       "@type": "WebPage",
-      "@id": "https://osertaotech.com.br/patrocinio#webpage"
+      "@id": "https://osertaotech.com.br/2026/patrocinio#webpage"
     },
     {
       "@type": "WebPage",
-      "@id": "https://osertaotech.com.br/palestrantes#webpage"
+      "@id": "https://osertaotech.com.br/2026/palestrantes#webpage"
     }
   ]
 }

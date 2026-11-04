@@ -5,6 +5,23 @@
   "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/palestrantes",
+      "destination": "/2026/palestrantes",
+      "permanent": false
+    },
+    {
+      "source": "/patrocinio",
+      "destination": "/2026/patrocinio",
+      "permanent": false
+    },
+    {
+      "source": "/caravanas",
+      "destination": "/2026/caravanas",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/sitemap.xml",

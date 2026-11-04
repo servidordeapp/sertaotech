@@ -6,12 +6,13 @@
  * acumula link e idade enquanto a home é reescrita todo ano.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FooterCols2027 from '../components/FooterCols2027.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Faq from '../components/Faq.astro';
 import Icon from '../components/Icon.astro';
 import { graph, organization, website, webpage, breadcrumb, faqPage, itemList } from '../lib/schema';
-import evento from '../data/evento-2026.json';
+import evento from '../data/evento-2027.json';
 
 const path = '/eventos-de-tecnologia-parnaiba';
 const title = 'Eventos de tecnologia em Parnaíba e no norte do Piauí';
@@ -71,6 +72,8 @@ const jsonLd = graph(
   path={path}
   ogDescription="O que acontece de tecnologia em Parnaíba - PI: eventos, onde rolam, quanto custam e como ficar sabendo dos próximos."
   jsonLd={jsonLd}
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
 >
   <main>
     <PageHead
@@ -159,7 +162,7 @@ const jsonLd = graph(
           <span class="eyebrow">// onde acontecem</span>
           <h2 class="section-title">Quase tudo passa pela UFDPar.</h2>
           <p class="prose">O <strong>Campus Ministro Reis Velloso</strong> é o endereço da maior parte do que acontece de tecnologia em Parnaíba. Fica na Av. São Sebastião, 2819, no bairro Nossa Senhora de Fátima — uma das avenidas principais da cidade, fácil de chegar de aplicativo, de carro ou de van intermunicipal.</p>
-          <p class="prose">Se você vem de fora — Teresina, Piripiri, Luís Correia, do lado do Maranhão — vale planejar a chegada com folga e, se estiver em grupo, considerar <a href="/caravanas">montar uma caravana</a>: de 20 a 50 pessoas, o custo por cabeça despenca.</p>
+          <p class="prose">Se você vem de fora — Teresina, Piripiri, Luís Correia, do lado do Maranhão — vale planejar a chegada com folga e, se estiver em grupo, considerar <a href="/2026/caravanas">montar uma caravana</a>: de 20 a 50 pessoas, o custo por cabeça despenca.</p>
           <div class="hero__actions" style="margin-top: 24px;">
             <a class="btn btn--outline btn--md" href="https://maps.app.goo.gl/yVJSv4X96VjH5xvC9" target="_blank" rel="noopener"><Icon name="pin" size={18} />Abrir no mapa</a>
           </div>
@@ -214,7 +217,11 @@ const jsonLd = graph(
       lead="Sertão Tech 2026, na UFDPar, em Parnaíba - PI. Das 14h às 21h30, a partir de R$ 20."
     >
       <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
-      <a class="btn btn--outline-ink btn--lg" href="/caravanas"><Icon name="bus" />Levar uma caravana</a>
+      <a class="btn btn--outline-ink btn--lg" href="/#lista-de-espera"><Icon name="bus" />Levar uma caravana</a>
     </CtaBand>
   </main>
+<Fragment slot="footer-cols">
+  <FooterCols2027 />
+</Fragment>
+
 </BaseLayout>

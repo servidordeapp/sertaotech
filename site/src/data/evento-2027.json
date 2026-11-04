@@ -1,0 +1,29 @@
+{
+  "@type": "Event",
+  "@id": "https://osertaotech.com.br/#event-2027",
+  "name": "Sertão Tech 2027",
+  "description": "Sertão Tech, 3ª edição: dois dias de tecnologia com quatro trilhas (Principal, Robótica, Negócios e Sênior+). Na UFDPar, em parceria com o Bacharelado em Inteligência Artificial, realizado pelo PHP PI e pela PHPWomen PI.",
+  "startDate": "2027-10-15",
+  "endDate": "2027-10-16",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "url": "https://osertaotech.com.br/",
+  "image": [
+    "https://osertaotech.com.br/assets/og-2027-data.jpg"
+  ],
+  "inLanguage": "pt-BR",
+  "location": {
+    "@type": "Place",
+    "name": "UFDPar — Universidade Federal do Delta do Parnaíba",
+    "sameAs": "https://www.ufdpar.edu.br/",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Parnaíba",
+      "addressRegion": "PI",
+      "addressCountry": "BR"
+    }
+  },
+  "organizer": {
+    "@id": "https://osertaotech.com.br/#organization"
+  }
+}

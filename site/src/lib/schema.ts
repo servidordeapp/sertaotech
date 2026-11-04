@@ -7,7 +7,8 @@
  *   #organization  → quem organiza (uma vez, em todas as páginas)
  *   #website       → o site
  *   #webpage       → a página atual (canonical + '#webpage')
- *   #event         → a edição corrente do evento (definida na home)
+ *   #event-2027     → a edição corrente do evento (definida na home)
+ *   /2026#event     → a edição arquivada (definida em /2026)
  *
  * Sobre LocalBusiness: o Sertão Tech não tem endereço comercial próprio nem
  * atendimento no local, então LocalBusiness seria uma declaração falsa (e o
@@ -22,7 +23,10 @@ type Json = Record<string, unknown>;
 export const ID = {
   organization: `${SITE.url}/#organization`,
   website: `${SITE.url}/#website`,
-  event: `${SITE.url}/#event`,
+  /** Edição vigente: o nó Event da home. Muda de sufixo a cada edição. */
+  event: `${SITE.url}/#event-2027`,
+  /** Edição arquivada, que vive na própria URL do arquivo. */
+  event2026: `${SITE.url}/2026#event`,
   webpage: (path: string) => `${abs(path)}#webpage`,
 } as const;
 
@@ -79,8 +83,12 @@ export function webpage(opts: {
   name: string;
   description: string;
   image?: string;
-  /** true quando a página fala do evento corrente (liga #webpage → #event). */
-  aboutEvent?: boolean;
+  /**
+   * Liga #webpage → o Event da página. `true`/ausente usa a edição vigente,
+   * uma string usa o @id informado (as páginas de /2026 passam ID.event2026) e
+   * `false` não liga nada — página que não fala de edição nenhuma.
+   */
+  aboutEvent?: boolean | string;
   datePublished?: string;
   dateModified?: string;
 }): Json {
@@ -93,7 +101,9 @@ export function webpage(opts: {
     inLanguage: SITE.lang,
     isPartOf: { '@id': ID.website },
   };
-  if (opts.aboutEvent !== false) node.about = { '@id': ID.event };
+  if (opts.aboutEvent !== false) {
+    node.about = { '@id': typeof opts.aboutEvent === 'string' ? opts.aboutEvent : ID.event };
+  }
   if (opts.image) node.primaryImageOfPage = abs(opts.image);
   if (opts.datePublished) node.datePublished = opts.datePublished;
   if (opts.dateModified) node.dateModified = opts.dateModified;
