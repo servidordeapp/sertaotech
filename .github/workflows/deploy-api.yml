@@ -1,0 +1,237 @@
+# Deploy to shared hosting (cPanel-style: FTP sync + SSH post-deploy).
+#
+# Written by the laravel-project-setup skill. The placeholders below are filled
+# in when the file is installed — edit assets/deploy/shared-hosting.yml in the
+# skill to change the pipeline for every project, or this file to change it for
+# this one.
+#
+# The pipeline is split into three jobs on purpose: quality → sync → post-deploy.
+# When one of them fails, "Re-run failed jobs" replays only that job (and what
+# depends on it), so an SSH hiccup no longer forces a full rebuild and re-upload.
+# The compiled assets travel from `quality` to `sync` as an artifact.
+#
+# Repository configuration this workflow expects:
+#   vars.FTP_HOST      hostname of the FTP/SFTP server
+#   vars.FTP_USER      username used for both FTP and SSH
+#   secrets.FTP_PASSWORD  password used for both FTP and SSH
+#   vars.SSH_HOST      optional — defaults to vars.FTP_HOST
+#   vars.SSH_PORT      optional — defaults to 22
+name: Deploy API
+
+# Monorepo: o workflow mora na raiz (o GitHub só lê .github/workflows de lá),
+# mas a aplicação é api/. O filtro de path evita rodar o deploy da API quando o
+# push só mexeu em site/ ou docs/.
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'api/**'
+      - '.github/workflows/deploy-api.yml'
+  workflow_dispatch:
+
+env:
+  REMOTE_DIR: /apps/api/
+
+jobs:
+  quality:
+    name: Quality gate & build
+    runs-on: ubuntu-latest
+
+    # Todo comando `run` deste job executa dentro de api/ (não afeta os `uses`).
+    defaults:
+      run:
+        working-directory: api
+
+    # A suite roda contra MySQL, o mesmo banco da produção. Sem este service o
+    # runner não resolve o host `mysql` do Sail e todos os testes falham no
+    # connect.
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: testing
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping -h 127.0.0.1 -uroot -ppassword"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+
+    env:
+      DB_CONNECTION: mysql
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_DATABASE: testing
+      DB_USERNAME: root
+      DB_PASSWORD: password
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.5
+          tools: composer:v2
+          extensions: pdo_mysql
+          # `composer coverage` refuses to run without pcov or xdebug, so this
+          # must stay a real driver: with coverage: none the quality gate below
+          # fails on every push.
+          coverage: xdebug
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: '24'
+
+      - name: Install Node Dependencies
+        run: npm install
+
+      - name: Copy .env
+        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
+
+      - name: Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: Directory Permissions
+        run: chmod -R 777 storage bootstrap/cache
+
+      - name: Generate Application Key
+        run: php artisan key:generate
+
+      - name: Build Assets
+        run: npm run build
+
+      - name: Run Static Analysis
+        run: composer stan
+
+      - name: Run Pint
+        run: composer pint
+
+      # Enforces the --min the setup baked into composer.json (COVERAGE_MIN,
+      # 90 by default). A project without a suite yet fails here — lower the
+      # threshold in composer.json, or drop this step until there are tests.
+      - name: Check coverage
+        run: composer coverage
+
+      # Only the compiled bundle needs to survive the job: `sync` checks the
+      # source out again from git.
+      - name: Upload built assets
+        uses: actions/upload-artifact@v4
+        with:
+          name: public-build
+          path: api/public/build
+          if-no-files-found: error
+          retention-days: 1
+
+  sync:
+    name: FTP sync
+    runs-on: ubuntu-latest
+    needs: quality
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download built assets
+        uses: actions/download-artifact@v4
+        with:
+          name: public-build
+          path: api/public/build
+
+      - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
+        with:
+          server: ${{ vars.FTP_HOST }}
+          username: ${{ vars.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # local-dir precisa da barra final; sem ele a action subiria a raiz
+          # do monorepo (site/, docs/, 2026/…) para dentro de REMOTE_DIR.
+          local-dir: ./api/
+          server-dir: ${{ env.REMOTE_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            vendor/**
+            **/.claude/**
+            **/.specify/**
+            **/.ai/**
+            **/specs/**
+            **/tests/**
+            **/database/factories/**
+            **/database/seeders/DemoSeeder.php
+            **/storage/debugbar/**
+            **/storage/logs/**
+            **/storage/framework/cache/**
+            **/storage/framework/sessions/**
+            **/storage/framework/views/**
+            **/storage/framework/testing/**
+            **/bootstrap/cache/*.php
+            **/database/*.sqlite
+            **/database/*.sqlite-journal
+            *.sh
+            compose.yaml
+            compose.yml
+            docker-compose*.yml
+            .env
+            .env.*
+            .vscode*
+            .editorconfig
+            .DS_Store
+            phpunit.xml
+            pint.json
+            phpstan.neon
+            **/*.md
+            **/resources/css/**
+            **/resources/js/**
+            vite.config.js
+            package.json
+            package-lock.json
+            public/hot
+            *.log
+            .mcp.json
+            .npmrc
+            boost.json
+
+  post-deploy:
+    name: SSH post-deploy
+    runs-on: ubuntu-latest
+    needs: sync
+
+    steps:
+      # Idempotente: pode ser re-executado sozinho após uma falha de SSH, sem
+      # refazer o build nem o upload.
+      - name: Executing remote ssh commands using password
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ vars.SSH_HOST || vars.FTP_HOST }}
+          username: ${{ vars.FTP_USER }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ vars.SSH_PORT || 22 }}
+          script: |
+            set -e
+            PHP=/usr/local/bin/php
+            cd ${{ env.REMOTE_DIR }}
+            # Manda as requisições da raiz para public/. O .htaccess da raiz não
+            # vai para o git porque o cPanel grava nele o handler do PHP; aqui só
+            # acrescentamos o rewrite quando ele ainda não existe.
+            grep -qF 'public/$1' .htaccess 2>/dev/null || cat >> .htaccess <<'EOF'
+
+            <IfModule mod_rewrite.c>
+                RewriteEngine on
+                RewriteRule ^(.*)$ public/$1 [L]
+            </IfModule>
+            EOF
+            mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs storage/app/public
+            chmod -R 775 storage bootstrap/cache
+            rm -f bootstrap/cache/*.php
+            $PHP composer.phar install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            $PHP artisan optimize:clear
+            $PHP artisan migrate --force
+            $PHP artisan optimize
+            $PHP artisan queue:restart

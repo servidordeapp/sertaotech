@@ -1,0 +1,18 @@
+/* Sertão Tech — Corner radii
+ * The brand mark is a stadium/capsule badge, so the system leans on generous,
+ * friendly rounding, with a full pill for interactive controls.
+ */
+:root {
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 999px;  /* buttons, chips, tags — echoes the badge */
+
+  /* Semantic */
+  --radius-control: var(--radius-pill);
+  --radius-card: var(--radius-lg);
+  --radius-field: var(--radius-md);
+}

@@ -368,12 +368,31 @@ para a stack nova.
 - [ ] `build-ds.sh` sai (tokens importados pelo Astro) ou fica como está?
 - [ ] `midia-kit.css` / `.js` vão para `src/` (hash automático) ou ficam em
       `public/` com rename manual?
-- [ ] Blog da `feat/blog`: portar a estrutura e publicar, portar sem publicar,
-      ou deixar fora desta migração?
-- [ ] `api/` entra no compose já agora como placeholder, ou só quando existir?
+- [x] ~~Blog da `feat/blog`~~ — **fora desta migração** (2026-11-03). Os 8 posts,
+      as rotas `/blog`, o feed RSS, a content collection e os componentes só de
+      post saíram na Fase 2. O que pesou: com os posts fora, 7 links internos
+      ficavam quebrados e o `/blog` ia ao ar como página vazia; manter o blog
+      significava publicar conteúdo da era "2025 é o arquivo" sem revisão.
+      Tudo está em `648438f` se o blog voltar.
+- [x] ~~`api/` no compose da raiz~~ — **fora, por ora** (2026-11-03). O `api/`
+      nasceu em Laravel no PR #8 e já vem com a stack do Sail em
+      `api/compose.yaml`, que constrói de `./vendor/laravel/sail/runtimes/8.5`.
+      Sem `composer install` não há `vendor/`, e incluir esse arquivo no compose
+      da raiz derrubaria o `docker compose up` do site também. Reavaliar quando
+      o `api/` tiver vendor e rodar.
 
 ## Histórico
 
+- 2026-11-03 — Fase 3: `docker-compose.yml` na raiz com o serviço `site`,
+  `docker compose up` servindo o dev server em 4321. Imagem ficou em
+  `node:24-bookworm-slim` (o fallback da decisão 5) por causa dos binários do
+  `sharp`, com `python3` dentro para as verificações. Polling do watcher medido
+  como desnecessário. `api/` fica na stack própria do Sail.
+- 2026-11-03 — Fases 1 e 2 do checklist: raiz do monorepo (README índice,
+  `.gitignore`) e esqueleto Astro em `site/`, trazido de `origin/feat/blog` sem
+  merge. Blog decidido para fora da migração. Deploy em container descartado na
+  prática (`Dockerfile.vercel`, `docker/` e os estágios `build`/`prod` do
+  `Dockerfile`). `npm run verify` verde com 6 páginas.
 - 2026-11-03 — Primeira versão. Decisão por Astro estático, monorepo
   docker-first com o site em `site/`, Node 24 enxuto, `sharp` em
   `devDependencies`, `cache-bust.sh` e o deploy em container descartados.

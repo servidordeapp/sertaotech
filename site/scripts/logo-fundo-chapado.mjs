@@ -1,0 +1,147 @@
+#!/usr/bin/env node
+// Prepara o logo de um patrocinador que veio com fundo chapado (arte em cima de
+// um bloco de cor da marca) para o mural #patrocinadores.
+//
+// ANTES DE RODAR: recortar o fundo é alterar a marca do patrocinador, e a
+// maioria tem manual de marca que proíbe isso. O caminho certo é pedir a versão
+// oficial em fundo transparente ou fundo claro — quase toda empresa tem. Use
+// este script só quando a empresa autorizar, ou quando der pra confirmar que o
+// resultado bate com uma versão oficial que eles já usam. Ver "Regra zero" em
+// assets/patrocinadores/README.md.
+//
+// O que faz: lê a cor do canto superior esquerdo, joga todo pixel próximo dela
+// pra alpha 0, corta no limite exato do desenho e exporta WebP lossless na
+// largura de exibição vezes 4 (folga pra tela retina).
+//
+// Se o canto já vier com alpha 0, o script não mexe em cor nenhuma: entende que
+// a arte já está transparente e só corta a sobra de canvas (o caso do export em
+// 16:9, com o logo pequeno no meio de uma tela de slide). Aí não há alteração
+// de marca, só remoção de vazio — mas continue conferindo o resultado.
+//
+// Por que o recorte é binário e não com alpha proporcional: a arte é chapada
+// (duas ou três cores sólidas), então o serrilhado do original tem 1-2px numa
+// imagem de milhares de pixels. O resize do sharp é premultiplicado, então esse
+// serrilhado vira antialias limpo no tamanho final — e keying proporcional
+// deixaria semitransparentes os pixels internos que fazem borda entre duas
+// cores do próprio logo (o `</>` branco dentro do hexágono preto, por exemplo).
+//
+// Uso:
+//   npm i sharp        # não é dependência do site, instale sob demanda
+//   node scripts/logo-fundo-chapado.mjs "arte-original.png" nome-da-empresa [largura]
+//
+// Por padrão grava em public/assets/patrocinadores/. Para outra pasta de
+// assets (comunidades, por exemplo), passe --dir=<pasta>.
+//
+// --tol=<n> ajusta a distância por canal que ainda conta como fundo (padrão
+// 60). Baixe quando o logo tiver um tom claro perto do fundo: o mapa cinza
+// (222,222,221) do Flutter Piauí fica a 33 do branco, então com a tolerância
+// padrão ele sumia junto com o fundo. Depois de mudar a tolerância, confira a
+// arte — é exatamente esse o tipo de perda que passa despercebida.
+//
+// Depois confira o resultado sobre o cream do card antes de subir: fundo claro
+// esconde logo branco, e sobra de fundo aparece como retângulo colorido.
+
+import sharp from 'sharp';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const args = process.argv.slice(2);
+const dirArg = args.find((a) => a.startsWith('--dir='))?.slice('--dir='.length);
+const tolArg = Number(args.find((a) => a.startsWith('--tol='))?.slice('--tol='.length));
+const [src, slug, widthArg] = args.filter((a) => !a.startsWith('--'));
+if (!src || !slug) {
+  console.error('uso: node scripts/logo-fundo-chapado.mjs <arte-original> <slug> [largura] [--dir=pasta]');
+  process.exit(1);
+}
+
+const TOL = Number.isFinite(tolArg) && tolArg > 0 ? tolArg : 60; // distância máx. por canal pra considerar o pixel como fundo
+const ALPHA_MIN = 10; // no modo alpha, abaixo disso o pixel é canvas vazia
+const OUT_W = Number(widthArg) || 640;
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const out = path.join(repoRoot, 'public/assets', dirArg || 'patrocinadores', `${slug}.webp`);
+
+const { data, info } = await sharp(src).ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+const { width: W, height: H, channels: C } = info;
+
+// A cor de fundo sai do voto dos quatro cantos, recuados alguns pixels, e não
+// do pixel (0,0): print de tela costuma trazer 1px de borda escura, e ler ela
+// como fundo faz o script apagar tudo que for perto de preto — ou seja, o
+// contorno do próprio logo. Foi o que aconteceu com o logo do GDG, cuja
+// primeira linha inteira é rgb(22,23,23).
+const INSET = Math.max(2, Math.round(Math.min(W, H) * 0.02));
+const pixel = (x, y) => {
+  const i = (y * W + x) * C;
+  return [data[i], data[i + 1], data[i + 2], data[i + 3]];
+};
+const cantos = [
+  pixel(INSET, INSET),
+  pixel(W - 1 - INSET, INSET),
+  pixel(INSET, H - 1 - INSET),
+  pixel(W - 1 - INSET, H - 1 - INSET),
+];
+const votos = new Map();
+for (const c of cantos) {
+  const chave = c.join(',');
+  votos.set(chave, (votos.get(chave) ?? 0) + 1);
+}
+const [vencedor, apoio] = [...votos.entries()].sort((a, b) => b[1] - a[1])[0];
+if (apoio < 3) {
+  console.warn(
+    `aviso: os cantos não concordam sobre a cor de fundo (${[...votos.keys()].join(' | ')}). ` +
+    `Usando ${vencedor}. Confira o resultado — arte com fundo em degradê não é caso pra este script.`,
+  );
+}
+const cantoRef = vencedor.split(',').map(Number);
+const bg = cantoRef.slice(0, 3);
+
+// Arte já transparente (export com canvas grande, tipo 16:9 de slide): o canto
+// tem alpha 0, então não há fundo pra remover — só sobra de canvas pra cortar.
+// Nesse caso keying por cor seria destrutivo: o RGB do canto costuma ser
+// rgb(0,0,0) sob alpha 0, e apagar "todo pixel perto de preto" comeria o traço
+// preto do próprio logo. Aqui o recorte sai do alpha que já veio no arquivo.
+const jaTransparente = cantoRef[3] === 0;
+
+let minX = W, minY = H, maxX = -1, maxY = -1;
+for (let y = 0; y < H; y++) {
+  for (let x = 0; x < W; x++) {
+    const i = (y * W + x) * C;
+    let fundo;
+    if (jaTransparente) {
+      fundo = data[i + 3] <= ALPHA_MIN;
+    } else {
+      const d = Math.max(
+        Math.abs(data[i]     - bg[0]),
+        Math.abs(data[i + 1] - bg[1]),
+        Math.abs(data[i + 2] - bg[2]),
+      );
+      fundo = d < TOL;
+      if (fundo) data[i + 3] = 0;
+    }
+    if (!fundo) {
+      if (x < minX) minX = x;
+      if (x > maxX) maxX = x;
+      if (y < minY) minY = y;
+      if (y > maxY) maxY = y;
+    }
+  }
+}
+
+if (maxX < 0) {
+  console.error(jaTransparente
+    ? 'a imagem inteira está transparente — o arquivo tem desenho mesmo?'
+    : 'a imagem inteira bateu com a cor do canto — ela tem fundo chapado mesmo?');
+  process.exit(1);
+}
+
+// Sem margem no recorte: o respiro visual vem do padding do .logo-card.
+await sharp(data, { raw: { width: W, height: H, channels: C } })
+  .extract({ left: minX, top: minY, width: maxX - minX + 1, height: maxY - minY + 1 })
+  .resize({ width: OUT_W, fit: 'inside', kernel: 'lanczos3' })
+  .webp({ lossless: true, effort: 6 })
+  .toFile(out);
+
+const m = await sharp(out).metadata();
+console.log(jaTransparente
+  ? `arte já transparente, só cortei a canvas vazia | ${out} — ${m.width}x${m.height}`
+  : `fundo removido: rgb(${bg}) com tol ${TOL} | ${out} — ${m.width}x${m.height}`);
+console.log(`no HTML: width="${m.width}" height="${m.height}"`);

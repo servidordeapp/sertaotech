@@ -1,0 +1,529 @@
+{
+  "@type": "Event",
+  "@id": "https://osertaotech.com.br/#event",
+  "name": "Sertão Tech 2026",
+  "description": "Sertão Tech, 2ª edição: um dia inteiro de palestras, roda de conversa e networking para estudantes, profissionais e quem está migrando de carreira. Realizado na UFDPar — Universidade Federal do Delta do Parnaíba, com apoio do PHP PI e da PHPWomen PI.",
+  "startDate": "2026-10-09T14:00:00-03:00",
+  "endDate": "2026-10-09T21:30:00-03:00",
+  "eventStatus": "https://schema.org/EventScheduled",
+  "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+  "url": "https://osertaotech.com.br/",
+  "image": [
+    "https://osertaotech.com.br/assets/og-cover.jpg"
+  ],
+  "inLanguage": "pt-BR",
+  "isAccessibleForFree": false,
+  "location": {
+    "@type": "Place",
+    "name": "UFDPar — Campus Ministro Reis Velloso",
+    "sameAs": "https://www.ufdpar.edu.br/",
+    "hasMap": "https://maps.app.goo.gl/yVJSv4X96VjH5xvC9",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Av. São Sebastião, 2819 — Nossa Senhora de Fátima",
+      "addressLocality": "Parnaíba",
+      "addressRegion": "PI",
+      "postalCode": "64202-020",
+      "addressCountry": "BR"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -2.9090924,
+      "longitude": -41.7543254
+    }
+  },
+  "offers": {
+    "@type": "Offer",
+    "name": "Inscrição individual",
+    "price": "20",
+    "priceCurrency": "BRL",
+    "availability": "https://schema.org/InStock",
+    "url": "https://www.sympla.com.br/evento/sertao-tech/3549344",
+    "validFrom": "2026-07-25"
+  },
+  "organizer": {
+    "@id": "https://osertaotech.com.br/#organization"
+  },
+  "sponsor": [
+    {
+      "@type": "Organization",
+      "name": "ParaDevs",
+      "url": "https://www.paradevs.io/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Programe Studio",
+      "url": "https://programe.studio/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Exa",
+      "url": "https://www.exa.com.br/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Retake Brasil",
+      "url": "https://www.retake.com.br/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Bruno Neves Advogado",
+      "url": "https://brunonevesadv.com.br/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Cajutec",
+      "url": "https://app.cajutec.com.br/"
+    },
+    {
+      "@type": "Organization",
+      "name": "Cod3r",
+      "url": "https://www.formacao.dev/"
+    },
+    {
+      "@type": "Organization",
+      "name": "PHP PI"
+    },
+    {
+      "@type": "Organization",
+      "name": "PHPWomen PI"
+    }
+  ],
+  "subEvent": [
+    {
+      "@type": "Event",
+      "name": "Privacidade estrutural: como o Privacy by Design muda a forma de projetar software",
+      "startDate": "2026-10-09T14:40:00-03:00",
+      "endDate": "2026-10-09T15:10:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Adryanne Kelly",
+          "jobTitle": "Fullstack Developer",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Livvie"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/adryanne-kelly-384.webp",
+          "sameAs": "https://www.linkedin.com/in/adryanne-kelly/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Além do Código: Carreira, Product Management e Empreendedorismo",
+      "startDate": "2026-10-09T15:10:00-03:00",
+      "endDate": "2026-10-09T15:25:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Fernando Melo",
+          "jobTitle": "Fundador e Product Owner",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "DOMUS"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/fernando-melo-384.webp",
+          "sameAs": "https://www.linkedin.com/in/fernandomelojr/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais",
+      "startDate": "2026-10-09T15:25:00-03:00",
+      "endDate": "2026-10-09T15:40:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Kauê Victor",
+          "jobTitle": "Embaixador",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Stellar in Brazil"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/kaue-victor-384.webp",
+          "sameAs": "https://www.linkedin.com/in/kauevictor/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Antes do Gráfico: os Bastidores de um Dashboard",
+      "startDate": "2026-10-09T15:40:00-03:00",
+      "endDate": "2026-10-09T16:10:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Vitoria Neris",
+          "jobTitle": "Analista de Dados Pleno",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "GIF International"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/vitoria-neris-384.webp",
+          "sameAs": "https://www.linkedin.com/in/vitoria-neris/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Suporte, a chave do sucesso de uma aplicação",
+      "startDate": "2026-10-09T16:10:00-03:00",
+      "endDate": "2026-10-09T16:25:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Isaac Costa",
+          "jobTitle": "Tech Config II",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "UL Solutions"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/isaac-costa-384.webp",
+          "sameAs": "https://www.linkedin.com/in/isaac-costa-3880a61b5/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A",
+      "startDate": "2026-10-09T16:25:00-03:00",
+      "endDate": "2026-10-09T16:55:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Sandro Daniel Garcia",
+          "jobTitle": "Co-Founder & CTO",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "IA Automations"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/sandro-daniel-garcia-384.webp",
+          "sameAs": "https://www.linkedin.com/in/sandrog/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Roda de Conversa — ALT + TAB: Migrando para a área da Tecnologia",
+      "startDate": "2026-10-09T16:55:00-03:00",
+      "endDate": "2026-10-09T17:25:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Maria Katriane",
+          "jobTitle": "Product Manager",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "PlayDevs"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/maria-katriane-384.webp",
+          "sameAs": "https://www.linkedin.com/in/mariakatriane/"
+        },
+        {
+          "@type": "Person",
+          "name": "Bia Thereza",
+          "jobTitle": "Mestranda em Biotecnologia",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "UFDPar"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/bia-thereza-384.webp",
+          "sameAs": "https://www.linkedin.com/in/thereza-beatriz-l-a37434378/"
+        },
+        {
+          "@type": "Person",
+          "name": "Sâmyla Alves",
+          "jobTitle": "Tech Recruiter",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Beyond Soluções"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/samyla-alves-384.webp",
+          "sameAs": "https://www.linkedin.com/in/samyla-alves/"
+        },
+        {
+          "@type": "Person",
+          "name": "Celenny Sousa",
+          "jobTitle": "Analista de Garantia de Qualidade",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Serasa Experian"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/celenny-sousa-384.webp",
+          "sameAs": "https://www.linkedin.com/in/celenny/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Como lidar com a síndrome do impostor",
+      "startDate": "2026-10-09T17:55:00-03:00",
+      "endDate": "2026-10-09T18:10:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Dione Bastos",
+          "jobTitle": "Blockchain Engineer",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Nearx"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/dione-bastos-384.webp",
+          "sameAs": "https://www.linkedin.com/in/dione-bastos/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "O Gerente de Projetos de Software na Era da IA",
+      "startDate": "2026-10-09T18:10:00-03:00",
+      "endDate": "2026-10-09T18:40:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Silvia Azevedo",
+          "jobTitle": "Product Owner",
+          "image": "https://osertaotech.com.br/assets/palestrantes/silvia-azevedo-384.webp",
+          "sameAs": "https://www.linkedin.com/in/silvia-azevedo-oliveira/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Do terminal ao mercado: como transformar seu código em um negócio real",
+      "startDate": "2026-10-09T18:40:00-03:00",
+      "endDate": "2026-10-09T18:55:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Vilmar Aguiar de Paula Segundo",
+          "jobTitle": "CEO",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Clube Charger"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/vilmar-aguiar-384.webp",
+          "sameAs": "https://www.linkedin.com/in/vilmar-segundo/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário",
+      "startDate": "2026-10-09T18:55:00-03:00",
+      "endDate": "2026-10-09T19:25:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Jacson Santos Silva",
+          "jobTitle": "Desenvolvedor sênior",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Intelia"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/jacson-santos-silva-384.webp",
+          "sameAs": "https://www.linkedin.com/in/jacsonsantossilva/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar",
+      "startDate": "2026-10-09T19:25:00-03:00",
+      "endDate": "2026-10-09T19:40:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Ariel Teles",
+          "jobTitle": "Professor of Artificial Intelligence",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Universidade Federal do Delta do Parnaíba (UFDPar)"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/ariel-teles-384.webp",
+          "sameAs": "https://www.linkedin.com/in/ariel-soares-teles/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Além do Código: Como usar IA para faturar antes de se formar",
+      "startDate": "2026-10-09T19:40:00-03:00",
+      "endDate": "2026-10-09T20:10:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Sebastião Galeno",
+          "jobTitle": "Software Engineer",
+          "image": "https://osertaotech.com.br/assets/palestrantes/sebastiao-galeno-384.webp",
+          "sameAs": "https://www.linkedin.com/in/sebastiaogaleno/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Revolução Programacional: a IA na era das mudanças",
+      "startDate": "2026-10-09T20:20:00-03:00",
+      "endDate": "2026-10-09T21:00:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Alessandro Feitoza",
+          "jobTitle": "Senior Software Engineer",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "Bússola Social"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/alessandro-feitoza-384.webp",
+          "sameAs": "https://www.linkedin.com/in/alessandrofeitoza/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "Cardinal — um simulador de mundos para desenvolvedores de jogos",
+      "startDate": "2026-10-09T15:00:00-03:00",
+      "endDate": "2026-10-09T17:00:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Germano Gomes",
+          "jobTitle": "Engenheiro de software",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "G-Dev Society"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/germano-gomes-384.webp",
+          "sameAs": "https://www.linkedin.com/in/germano-gomes-293648121/"
+        }
+      ]
+    },
+    {
+      "@type": "Event",
+      "name": "O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA",
+      "startDate": "2026-10-09T15:00:00-03:00",
+      "endDate": "2026-10-09T17:00:00-03:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "UFDPar — Campus Ministro Reis Velloso"
+      },
+      "performer": [
+        {
+          "@type": "Person",
+          "name": "Rodrigo Castro",
+          "jobTitle": "Engenheiro de software sênior",
+          "affiliation": {
+            "@type": "Organization",
+            "name": "LWSA"
+          },
+          "image": "https://osertaotech.com.br/assets/palestrantes/rodrigo-castro-384.webp",
+          "sameAs": "https://www.linkedin.com/in/rodrigo-castro-8422a7145/"
+        }
+      ]
+    }
+  ],
+  "subjectOf": [
+    {
+      "@type": "WebPage",
+      "@id": "https://osertaotech.com.br/patrocinio#webpage"
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://osertaotech.com.br/palestrantes#webpage"
+    }
+  ]
+}

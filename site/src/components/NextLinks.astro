@@ -1,0 +1,21 @@
+---
+/**
+ * Bloco de próximos passos no fim do post. Existe pra dar um destino
+ * claro ao leitor — e pra distribuir link interno pras páginas que
+ * precisam ranquear.
+ */
+import Icon from './Icon.astro';
+
+export interface Props {
+  itens: { href: string; titulo: string; texto: string; icone?: string }[];
+}
+const { itens } = Astro.props;
+---
+<div class="next-links">
+  {itens.map((item) => (
+    <a href={item.href}>
+      <Icon name={item.icone ?? 'arrow'} size={20} />
+      <span><strong>{item.titulo}</strong><span>{item.texto}</span></span>
+    </a>
+  ))}
+</div>

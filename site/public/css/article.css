@@ -1,0 +1,352 @@
+/* ============================================================
+ * Sertão Tech — camada de texto longo (blog e páginas de conteúdo)
+ *
+ * css/site.css é layout de landing page: o único estilo de corpo de
+ * texto que existe lá é `.prose`, aplicado a um <p> isolado. Post de
+ * blog tem títulos, listas, citação, código, imagem com legenda e
+ * tabela — nada disso tinha regra. Este arquivo é essa camada.
+ *
+ * Cuidado herdado do DS: ds/tokens/base.css zera a margem de h1..h5.
+ * O ritmo vertical do artigo é definido aqui, e só dentro de .article.
+ * ============================================================ */
+
+/* ---------- coluna de leitura ---------- */
+.container--narrow { max-width: var(--container-narrow); margin: 0 auto; }
+
+.article {
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+}
+
+.article > * + * { margin-top: var(--space-6); }
+.article > :first-child { margin-top: 0; }
+
+/* ---------- títulos internos ---------- */
+.article h2,
+.article h3,
+.article h4 {
+  font-family: var(--font-display);
+  color: var(--text-strong);
+  letter-spacing: var(--tracking-tight);
+  scroll-margin-top: 92px; /* âncora não some atrás do header fixo */
+}
+.article h2 { font-size: clamp(24px, 3.4vw, 30px); line-height: 1.2; }
+.article h3 { font-size: clamp(20px, 2.6vw, 23px); line-height: 1.25; }
+.article h4 { font-size: 19px; line-height: 1.3; }
+
+.article > h2 { margin-top: var(--space-12); }
+.article > h3 { margin-top: var(--space-10); }
+.article > h4 { margin-top: var(--space-8); }
+.article > h2 + *,
+.article > h3 + *,
+.article > h4 + * { margin-top: var(--space-4); }
+
+/* rehype-autolink-headings envolve o título num <a>; ele não deve
+   parecer link, só ganhar o "#" no hover pra copiar a âncora. */
+.article .heading-anchor { color: inherit; text-decoration: none; }
+.article .heading-anchor::after {
+  content: ' #';
+  color: var(--terra-500);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-standard);
+}
+.article .heading-anchor:hover::after,
+.article .heading-anchor:focus-visible::after { opacity: 1; }
+
+/* ---------- corpo ---------- */
+.article p { margin: 0; }
+.article strong { color: var(--text-strong); font-weight: var(--fw-semibold); }
+.article em { font-style: italic; }
+
+.article a:not(.btn):not(.heading-anchor) {
+  color: var(--text-link);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  text-underline-offset: 2px;
+}
+.article a:not(.btn):not(.heading-anchor):hover {
+  color: var(--text-link-hover);
+  text-decoration-color: currentColor;
+}
+
+/* ---------- listas ----------
+ * O `:not([class])` restringe estas regras às listas que vieram do markdown:
+ * lista gerada por markdown nunca tem class. Sem isso, um componente embutido
+ * no post via HTML — o mural de logos das comunidades, por exemplo — herdaria
+ * o marcador de losango e o recuo de texto corrido. */
+.article ul:not([class]),
+.article ol:not([class]) { margin: 0; padding-left: var(--space-6); }
+.article :is(ul, ol):not([class]) > li + li { margin-top: var(--space-2); }
+.article li > ul:not([class]),
+.article li > ol:not([class]) { margin-top: var(--space-2); }
+.article ul:not([class]) { list-style: none; }
+.article ul:not([class]) > li { position: relative; padding-left: var(--space-4); }
+.article ul:not([class]) > li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 7px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--terra-500);
+  transform: rotate(45deg);
+}
+.article ol:not([class]) { list-style: decimal; }
+.article ol:not([class]) > li::marker {
+  font-family: var(--font-mono);
+  font-weight: var(--fw-bold);
+  color: var(--terra-600);
+}
+
+/* ---------- citação ---------- */
+.article blockquote {
+  margin: 0;
+  padding: var(--space-1) 0 var(--space-1) var(--space-6);
+  border-left: 3px solid var(--amber-500);
+  color: var(--text-muted);
+  font-size: var(--text-xl);
+  line-height: var(--leading-normal);
+}
+.article blockquote > * + * { margin-top: var(--space-4); }
+.article blockquote cite {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-style: normal;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-subtle);
+}
+
+/* ---------- código ---------- */
+.article :not(pre) > code {
+  font-family: var(--font-code);
+  font-size: 0.88em;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-xs);
+  padding: 0.12em 0.36em;
+  color: var(--text-strong);
+  overflow-wrap: break-word;
+}
+.article pre {
+  margin: 0;
+  padding: var(--space-5);
+  border-radius: var(--radius-card);
+  border: 1px solid var(--border-strong);
+  overflow-x: auto;
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  tab-size: 2;
+}
+.article pre code { font-family: var(--font-code); background: none; border: 0; padding: 0; }
+
+/* ---------- imagem, figura, separador, tabela ---------- */
+.article img { display: block; border-radius: var(--radius-card); height: auto; }
+.article figure { margin: 0; }
+.article figcaption {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+  color: var(--text-subtle);
+}
+
+.article hr {
+  border: 0;
+  border-top: 1px solid var(--border-default);
+  margin: var(--space-12) 0;
+}
+
+.article .table-wrap { overflow-x: auto; }
+.article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+.article th,
+.article td {
+  padding: var(--space-3) var(--space-4);
+  text-align: left;
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+}
+.article th {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+  border-bottom-color: var(--border-strong);
+}
+
+/* ---------- destaque dentro do artigo ---------- */
+.article .callout {
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface-sunken);
+  border: 2px solid var(--border-ink);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-badge-sm);
+  font-size: var(--text-base);
+}
+.article .callout > * + * { margin-top: var(--space-3); }
+.article .callout strong:first-child { font-family: var(--font-display); }
+
+/* ============================================================
+ * Metadados do post, índice, cartões e blocos de navegação
+ * ============================================================ */
+
+/* ---------- linha de metadados ---------- */
+.post-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+.post-meta--on-ink { color: var(--text-on-ink-muted); }
+.post-meta__sep { opacity: 0.5; }
+.post-meta a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- índice do post ---------- */
+.toc {
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+}
+.toc__title {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-caps);
+  color: var(--terra-700);
+  margin: 0 0 var(--space-3);
+}
+.toc ol { margin: 0; padding-left: var(--space-5); font-size: var(--text-base); }
+.toc li + li { margin-top: var(--space-2); }
+.toc a { color: var(--text-body); text-decoration: none; }
+.toc a:hover { color: var(--text-link); text-decoration: underline; text-underline-offset: 2px; }
+
+/* ---------- cartão de post (índice do blog, relacionados) ---------- */
+.post-grid { display: grid; gap: var(--space-5); }
+.post-grid--2 { grid-template-columns: repeat(2, 1fr); }
+.post-grid--3 { grid-template-columns: repeat(3, 1fr); }
+
+.post-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--dur-base) var(--ease-standard),
+              box-shadow var(--dur-base) var(--ease-standard);
+}
+.post-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.post-card--featured { border: 2px solid var(--border-ink); box-shadow: var(--shadow-badge); }
+.post-card--featured:hover { box-shadow: 8px 8px 0 var(--border-ink); }
+
+.post-card__title {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  line-height: var(--leading-snug);
+  color: var(--text-strong);
+  margin: 0;
+}
+.post-card__title a { color: inherit; }
+.post-card__title a:hover { color: var(--text-link); }
+.post-card__excerpt { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text-muted); }
+.post-card__foot { margin-top: auto; padding-top: var(--space-2); }
+.post-card__more {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  color: var(--text-link);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.post-card__more:hover { color: var(--text-link-hover); }
+
+/* ---------- bloco de próximos passos / links internos ---------- */
+.next-links { display: grid; gap: var(--space-3); }
+.next-links a {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  color: var(--text-strong);
+  font-size: var(--text-base);
+  line-height: 1.5;
+  transition: border-color var(--dur-fast) var(--ease-standard),
+              background var(--dur-fast) var(--ease-standard);
+}
+.next-links a:hover { border-color: var(--border-ink); background: var(--surface-hover); }
+.next-links a svg { color: var(--terra-600); margin-top: 2px; }
+.next-links strong { font-family: var(--font-display); display: block; }
+.next-links span { color: var(--text-muted); font-size: var(--text-sm); }
+
+/* ---------- lista de eventos (páginas locais) ---------- */
+.event-list { display: grid; gap: var(--space-4); }
+.event-item {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--space-6);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+}
+.event-item--destaque { border: 2px solid var(--border-ink); box-shadow: var(--shadow-badge-sm); }
+.event-item__when {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: var(--fw-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--terra-700);
+  line-height: 1.4;
+}
+.event-item__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  color: var(--text-strong);
+  margin: 0 0 var(--space-2);
+}
+.event-item__desc { margin: 0; font-size: var(--text-base); line-height: 1.6; color: var(--text-muted); }
+.event-item__meta {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-subtle);
+}
+
+/* ---------- responsivo: acompanha os dois breakpoints do site.css ---------- */
+@media (max-width: 1024px) {
+  .post-grid--3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .article { font-size: var(--text-base); }
+  .article > * + * { margin-top: var(--space-5); }
+  .article > h2 { margin-top: var(--space-10); }
+  .article > h3 { margin-top: var(--space-8); }
+  .article blockquote { font-size: var(--text-lg); padding-left: var(--space-5); }
+  .article pre { padding: var(--space-4); border-radius: var(--radius-md); }
+  .post-grid--2,
+  .post-grid--3 { grid-template-columns: 1fr; }
+  .event-item { grid-template-columns: 1fr; gap: var(--space-3); }
+  .toc { padding: var(--space-4) var(--space-5); }
+}

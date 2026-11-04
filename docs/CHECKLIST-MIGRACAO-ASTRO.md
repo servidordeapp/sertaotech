@@ -56,50 +56,91 @@ Esperando o formulário próprio:
 - [x] Atualizar as 3 referências por nome nos comentários de HTML
       (`index.html`, `midia-kit/caravanas-2027/index.html`,
       `relatorio/2026/index.html`).
-- [ ] Branch nova a partir de `main`:
-      ```bash
-      git switch main && git pull && git switch -c feat/monorepo-astro
-      ```
-- [ ] Reescrever `README.md` da raiz como índice do monorepo: o que é cada pasta,
-      como subir (`docker compose up`), onde está a documentação. O detalhe de
-      cada aplicação vai no README dela.
-- [ ] `.gitignore` da raiz: `node_modules/`, `dist/`, `.astro/`, `.vercel/`,
-      mantendo `/originais/`.
+- [x] Branch nova: `feat/monorepo-astro`. Nasceu de `plano-2027` porque os 3
+      itens acima desta fase (a pasta `docs/`, o `.vercelignore` e os
+      comentários de HTML) só existiam lá. No mesmo dia a `plano-2027` entrou na
+      `main` pelo PR #6, com a mesma árvore, e a branch foi rebaseada em
+      `origin/main` — está onde o checklist mandava.
+- [x] `README.md` da raiz reescrito como índice do monorepo: mapa das pastas,
+      como subir (`docker compose up`, a partir da Fase 3) e índice de `docs/`.
+      As duas seções de detalhe (build do design system e mídia kit) ficaram no
+      fim do arquivo, marcadas para virar `site/README.md` na Fase 2 — sair
+      delas agora perderia a instrução até a pasta existir.
+- [x] `.gitignore` da raiz: `node_modules/`, `dist/`, `.astro/`, `.vercel/`,
+      mantendo `/originais/`. `node_modules/` e `dist/` sem barra inicial, para
+      pegar também `site/` e `api/`.
 
 ---
 
 ## Fase 2 — Esqueleto Astro em `site/`
 
-- [ ] Trazer o esqueleto da branch antiga sem merge:
+- [x] Trazer o esqueleto da branch antiga sem merge:
       ```bash
       git checkout origin/feat/blog -- site/
       ```
-- [ ] Apagar o que é deploy em container (decisão 2 e 7 do documento):
-      ```bash
-      git rm -r site/Dockerfile.vercel site/docker/ site/.dockerignore
-      ```
-      (`site/Dockerfile` **fica** — vai ser reescrito como container de dev na Fase 3.)
-- [ ] Conferir que o `vercel.json` da raiz **não** tem `services` nem
-      `runtime: container`. Se o checkout trouxe isso, restaurar o da `main`:
-      ```bash
-      git checkout main -- vercel.json
-      ```
-- [ ] `site/package.json`:
-      - [ ] remover a chave `allowScripts`
-      - [ ] mover `sharp` de `dependencies` para `devDependencies`
-      - [ ] adicionar `"engines": { "node": "24.x" }`
-      - [ ] revisar os scripts (`dev`, `build`, `preview`, `check`, `verify`, `ds`, `og`)
-- [ ] Apagar os 8 posts de blog de `site/src/content/blog/` e as artes
-      `site/public/assets/og-blog*.jpg` **se** a decisão em aberto for "portar sem
-      publicar". Se for publicar, mover para a Fase 6.
-- [ ] Apagar `site/src/pages/edicoes/2025.astro`, `edicoes/index.astro`,
-      `src/data/edicao-2025.ts` e `src/data/edicoes.ts` — são da era em que 2025
-      era o arquivo. O arquivo agora é 2026.
-- [ ] Conferir que `site/astro.config.mjs` mantém
-      `trailingSlash: 'never'` + `build.format: 'directory'` e o comentário que
-      explica o casamento com `cleanUrls`.
-- [ ] `npm install` dentro de `site/` e commitar `package-lock.json`.
-- [ ] `npm run build` passa.
+      Veio de `648438f` ("wip feat blog"), 200 arquivos.
+- [x] Apagar o que é deploy em container (decisão 2 e 7 do documento):
+      `site/Dockerfile.vercel`, `site/docker/` e `site/.dockerignore`.
+      Os estágios `build` e `prod` do `site/Dockerfile` saíram junto: o `prod`
+      era o nginx e copiava o `docker/nginx.conf.template` que acabou de ser
+      apagado — o arquivo não construiria. Sobraram `base`, `deps` e `dev`, que
+      é o que a Fase 3 quer.
+- [x] `vercel.json` da raiz conferido: sem `services`, sem `runtime: container`
+      (o checkout não tocou nele). `site/vercel.json` **ficou** — é SSG
+      (`framework: astro`, `outputDirectory: dist`) e é o arquivo que vale
+      quando o Root Directory da Vercel virar `site/`.
+- [x] `site/package.json`:
+      - [x] chave `allowScripts` removida. O `npm install` passa a avisar que o
+            `postinstall` do `esbuild` não rodou; `build`, `check` e `verify`
+            passam mesmo assim.
+      - [x] `sharp` movido para `devDependencies`
+      - [x] `"engines": { "node": "24.x" }`
+      - [x] scripts revisados: `dev`, `build`, `preview`, `check`, `verify`,
+            `ds`, `og`. O `og:post` saiu com o blog.
+      - [x] `npm audit fix` (só bumps compatíveis): de 9 vulnerabilidades
+            (6 altas, em `vite` e `zod`) para 0.
+- [x] **Decisão do blog: fora desta migração** (2026-11-03, registrada em
+      `MIGRACAO-ASTRO.md`). Saíram os 8 posts, as 8 artes `og-blog-*.jpg`,
+      `src/pages/blog/`, `content.config.ts`, `lib/blog.ts`, `ArticleLayout`,
+      `Toc`, `PostCard`, `PostMeta`, `RelatedPosts`, `scripts/og-post.mjs`,
+      `blog()`/`blogPosting()` do `schema.ts`, o `<link rel=alternate>` do feed
+      e a dependência `@astrojs/rss`.
+      - [x] 7 links para posts arrancados (6 em
+            `eventos-de-tecnologia-parnaiba.astro`, 1 no `SiteFooter`), mais o
+            item "Blog" do menu. O card "comunidades da região" virou dois
+            parágrafos — o conteúdo era o nome das comunidades, não o link.
+      - [x] O pipeline de markdown (`markdown:` do `astro.config.mjs`,
+            `rehype-table-wrap.mjs` e as 4 dependências `rehype-*` /
+            `@astrojs/markdown-remark`) saiu junto: sem `.md` no `src/`, era
+            código morto. **Se voltar conteúdo em markdown** (o blog, ou o
+            `cerimonial/` e o `mesa-redonda/` da raiz), restaurar de `648438f`.
+      - [x] Bloco "regras editoriais dos posts" do `scripts/verify-build.sh`
+            removido.
+- [x] Apagados `site/src/pages/edicoes/2025.astro`, `edicoes/index.astro`,
+      `src/data/edicao-2025.ts` e `src/data/edicoes.ts` — da era em que 2025 era
+      o arquivo. Os 3 links para `/edicoes` (rodapé, `sobre`, página-âncora) e
+      as 2 entradas de `/edicoes` no `serialize` do sitemap saíram com eles.
+- [x] `site/astro.config.mjs` confere: `trailingSlash: 'never'` +
+      `build.format: 'directory'`, com o comentário do casamento com `cleanUrls`
+      intacto.
+- [x] `npm install` dentro de `site/`, `package-lock.json` commitado.
+- [x] `npm run build` passa: 6 páginas (`/`, `/palestrantes`, `/caravanas`,
+      `/patrocinio`, `/sobre`, `/eventos-de-tecnologia-parnaiba`).
+- [x] `npm run check`: 0 erros, 0 avisos (1 dica pré-existente no `BaseLayout`).
+- [x] `npm run verify`: tudo verde — performance, analytics, JSON-LD (9 `@id`,
+      20 referências, 0 órfãs), canonical, sitemap, links externos e internos.
+
+Herança da `feat/blog` que ficou de fora do escopo desta fase:
+
+- `site/docs/seo-local.md` (254 linhas) foi escrito com o blog no escopo. A
+  parte de Search Console, Google Business Profile e citações locais continua
+  válida; a de calendário editorial está em suspenso.
+- `site/README.md` foi atualizado para o que existe (sem blog, sem estágio de
+  produção em nginx, sem `/edicoes`).
+- `/site` e `/api` entraram no `.vercelignore`. O deploy de hoje ainda tem a
+  raiz como Root Directory e serve arquivo por arquivo, então sem isso o fonte
+  do Astro e do Laravel subiria como arquivo estático. Revisar na Fase 10,
+  quando o Root Directory virar `site/`.
 
 ---
 
@@ -108,24 +149,52 @@ Esperando o formulário próprio:
 Objetivo: `docker compose up` na raiz, nada mais instalado na máquina além do
 Docker.
 
-- [ ] `site/Dockerfile`, alvo de desenvolvimento, base `node:24-alpine`:
-      instala dependências e roda `astro dev --host 0.0.0.0`.
-- [ ] `docker-compose.yml` na raiz, serviço `site`:
-      - [ ] `build: ./site`
-      - [ ] porta `4321:4321`
-      - [ ] bind mount `./site:/app`
-      - [ ] **volume anônimo em `/app/node_modules`** (sem isso o host sobrescreve
-            o que foi instalado no container)
-- [ ] Subir e abrir: `docker compose up` → `http://localhost:4321`
-- [ ] Testar hot reload editando um `.astro`. **Se o navegador não atualizar**
-      (WSL2 não propaga eventos de arquivo por bind mount), ligar polling no
-      `server.watch` do Vite em `astro.config.mjs`.
-- [ ] Testar `sharp` dentro do container:
-      `docker compose run --rm site npm run og`.
-      **Se falhar por binário musl**, trocar a base para `node:24-slim`.
-- [ ] Documentar no `README.md` da raiz: subir, parar, rodar script pontual,
-      e qual dos dois knobs acima foi necessário.
-- [ ] Confirmar que nada no fluxo de desenvolvimento exige Node instalado no host.
+- [x] `site/Dockerfile`, alvo `dev`: instala dependência do lockfile numa camada
+      própria (`deps`) e roda `astro dev --host 0.0.0.0 --port 4321`.
+      **Base `node:24-bookworm-slim`, não `node:24-alpine`** — o fallback que a
+      decisão 5 do documento previa. Motivo, que já estava comentado no
+      Dockerfile da `feat/blog` e foi confirmado aqui: o `package-lock.json` foi
+      gerado em glibc e só traz os binários `@img/sharp-linux-*`; num Alpine o
+      `npm ci` não instalaria o `@img/sharp-linuxmusl-x64`.
+      - [x] `python3` instalado na imagem: 4 das 7 verificações do
+            `scripts/verify-build.sh` são Python. Sem ele o `npm run verify`
+            dentro do container morre em `python3: command not found` e a
+            verificação passaria a exigir Python no host.
+- [x] `docker-compose.yml` na raiz, serviço `site`:
+      - [x] `build: { context: ./site, target: dev }`
+      - [x] porta `4321:4321`
+      - [x] bind mount `./site:/app`
+      - [x] volume anônimo em `/app/node_modules`
+- [x] `docker compose up -d` → `http://localhost:4321` responde `200` com
+      `<title>Sertão Tech 2026 — …</title>`. O `dist/` que o build escreve no
+      bind mount sai como o usuário do host (uid 1000 = `node` na imagem), não
+      como root.
+- [x] Hot reload testado editando `src/pages/index.astro`: o container viu a
+      edição (conteúdo e `mtime` novos dentro de `/app`) e passou a servir o
+      título novo sem restart.
+      **Polling não foi necessário.** Nenhuma mensagem de HMR chegou no
+      websocket `vite-hmr` na edição de um `.astro` — mas o `astro dev` rodando
+      direto no host se comportou igual, então isso é comportamento do Astro 7
+      para página, não bind mount engolindo inotify. O knob ficou no
+      `astro.config.mjs` (`VITE_POLLING=1`), desligado, com a linha comentada no
+      `docker-compose.yml` para ligar se algum dia o navegador parar de
+      recarregar.
+- [x] `sharp` dentro do container: `0.35.5`, libvips `8.18.7`, e
+      `docker compose exec site npm run og -- caravanas` gerou
+      `og-caravanas.jpg` 1200x630, 83 kB — byte a byte igual ao versionado.
+      Não precisou trocar a base.
+- [x] `README.md` da raiz documenta subir, parar, reconstruir depois de mexer no
+      `package.json`, rodar comando pontual (`verify`, `check`, `og`, `ds`) e os
+      dois pontos medidos (imagem glibc, watcher sem polling).
+- [x] Nada no fluxo de desenvolvimento exige Node no host:
+      `docker compose exec site npm run verify` passa inteiro dentro do
+      container — build de 6 páginas e as 7 verificações verdes.
+- [x] `api/` **fora** do compose da raiz (decisão em aberto do documento,
+      resolvida): a stack dele é o Laravel Sail em `api/compose.yaml`, com
+      `build.context: ./vendor/laravel/sail/runtimes/8.5`. Sem `composer
+      install` não existe `api/vendor/`, e um `include:` faria o
+      `docker compose up` do site falhar junto. Reavaliar quando o `api/` tiver
+      vendor e rodar.
 
 ---
 
