@@ -109,7 +109,10 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
         if (typeof gtag === 'function') gtag('event', 'waitlist_submit', { tipo: form.dataset.tipo });
         return;
       }
-      throw new Error(r.status === 422 ? 'Confira os campos e tente de novo.' : 'Algo deu errado. Tente de novo em instantes.');
+      if (r.status !== 422) throw new Error('Algo deu errado. Tente de novo em instantes.');
+      return r.json().then(function (j) {
+        throw new Error(Object.values(j.errors || {}).flat().join(' ') || 'Confira os campos e tente de novo.');
+      });
     }).catch(function (err) {
       msg.textContent = err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message;
       msg.hidden = false;

@@ -1,11 +1,14 @@
 # Stack local do monorepo. Único pré-requisito na máquina é o Docker:
 #
-#   docker compose up        # sobe tudo
+#   docker compose up        # sobe site + api + banco
 #   docker compose down      # derruba
 #
-# O `api/` tem a stack própria do Laravel Sail em `api/compose.yaml`, que
-# depende de `api/vendor/` (composer install) e por isso não é incluída aqui:
-# sem o vendor, um `include` derrubaria o `docker compose up` do site também.
+# O `api/compose.yaml` (Laravel Sail) continua lá para quem usa o `sail`, mas
+# não é incluído aqui: ele constrói a imagem a partir de
+# `api/vendor/laravel/sail/runtimes/`, que só existe depois de um
+# `composer install` no host — num clone novo um `include` derrubaria o
+# `docker compose up` do site também. A api aqui usa o `api/Dockerfile`, que
+# roda o composer dentro da imagem.
 services:
   site:
     build:
@@ -17,6 +20,10 @@ services:
     # container viu as edições do host como o próprio host.
     # environment:
     #   VITE_POLLING: '1'
+    environment:
+      # Sem isto o formulário da lista de espera cai no fallback do código
+      # (api.osertaotech.com.br) e o teste local escreveria em produção.
+      PUBLIC_API_URL: 'http://localhost:8000'
     ports:
       - '4321:4321'
     volumes:
@@ -25,3 +32,45 @@ services:
       # Volume anônimo: sem ele o bind mount acima cobriria o node_modules
       # instalado na imagem, e o container subiria sem dependência nenhuma.
       - /app/node_modules
+
+  api:
+    build:
+      context: ./api
+      target: dev
+    # 8000 é o que o APP_URL do api/.env.example já aponta.
+    ports:
+      - '8000:8000'
+    volumes:
+      # Código do host: o servidor embutido do PHP lê o arquivo a cada
+      # requisição, então editar um controller já vale na próxima chamada.
+      - ./api:/app
+      # Volume anônimo, pelo mesmo motivo do node_modules do site: sem ele o
+      # bind mount cobriria o vendor instalado na imagem.
+      - /app/vendor
+    depends_on:
+      mysql:
+        # O boot roda `artisan migrate`, que precisa do banco de pé, não só do
+        # container criado.
+        condition: service_healthy
+
+  mysql:
+    image: 'mysql:8.4'
+    # Credenciais do `api/.env.example` (as mesmas do Sail). Banco local e
+    # descartável; nada daqui vale em produção.
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_USER: sail
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: password
+    volumes:
+      - mysql:/var/lib/mysql
+      # Cria o banco `testing` do phpunit no primeiro boot do volume.
+      - ./docker/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh:ro
+    healthcheck:
+      test: ['CMD', 'mysqladmin', 'ping', '-ppassword']
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+volumes:
+  mysql:
