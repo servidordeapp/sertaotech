@@ -314,18 +314,29 @@ ao vivo e mandadas por WhatsApp.
 
 ## Fase 6 — SEO e analytics
 
-- [ ] JSON-LD saindo de `lib/schema.ts` em todas as páginas públicas:
+- [x] JSON-LD saindo de `lib/schema.ts` em todas as páginas públicas:
       `Organization`, `Event` 2027 e `Event` 2026.
 - [ ] `sitemap.xml` à mão **apagado**. `@astrojs/sitemap` assume.
-- [ ] `filter` do sitemap excluindo **todas** as `noindex`: `/links`,
+      `site/` já não tem o arquivo (`/sitemap.xml` reescreve para o index);
+      o da raiz sai na Fase 10, junto com o resto.
+- [x] `filter` do sitemap excluindo **todas** as `noindex`: `/links`,
       `/relatorio`, `/apresentacoes`, `/impressos`, `/cerimonial/*`,
       `/mesa-redonda/*`, `/after/*`.
-- [ ] Conferir que o sitemap gerado tem as páginas que hoje faltam:
+      Não precisou de `filter`: nenhuma é página Astro, e os decks públicos entram
+      por `customPages`.
+- [x] Conferir que o sitemap gerado tem as páginas que hoje faltam:
       `/2026/palestrantes`, `/2026/patrocinio`, `/2026/caravanas`,
       `/midia-kit/2027`, `/midia-kit/caravanas-2027`.
-- [ ] `llms.txt` revisado contra o conteúdo final.
-- [ ] Artes OG: `npm run og` dentro do container, conferindo que `sharp` e
+- [x] `llms.txt` revisado contra o conteúdo final.
+- [x] Artes OG: `npm run og` dentro do container, conferindo que `sharp` e
       `opentype.js` rodam como devDependencies.
+
+---
+
+Feito junto: `/sobre` e `/eventos-de-tecnologia-parnaiba` passaram a tratar 2027
+como edição vigente e 2026 como encerrada (horário 21h30 → 21h10, como no
+JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
+`/midia-kit` → `/midia-kit/2027` entrou no `site/vercel.json` (Fase 7).
 
 ---
 
