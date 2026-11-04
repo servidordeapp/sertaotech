@@ -149,6 +149,10 @@ jobs:
           server: ${{ vars.FTP_HOST }}
           username: ${{ vars.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # FTPS explicito na 21: sem isso a senha do cPanel vai em claro.
+          # Se o host nao suportar, troque para ftps-legacy (TLS implicito, 990)
+          # ou ftp como ultimo recurso.
+          protocol: ftps
           # local-dir precisa da barra final; sem ele a action subiria a raiz
           # do monorepo (site/, docs/, 2026/…) para dentro de REMOTE_DIR.
           local-dir: ./api/

@@ -29,9 +29,11 @@ export default defineConfig({
         const tune = {
           '/': { changefreq: 'weekly', priority: 1.0 },
           '/eventos-de-tecnologia-parnaiba': { changefreq: 'weekly', priority: 0.9 },
-          '/palestrantes': { changefreq: 'weekly', priority: 0.8 },
-          '/caravanas': { changefreq: 'monthly', priority: 0.8 },
-          '/patrocinio': { changefreq: 'monthly', priority: 0.8 },
+          // Arquivo congelado: não muda mais, mas continua indexado.
+          '/2026': { changefreq: 'yearly', priority: 0.7 },
+          '/2026/palestrantes': { changefreq: 'yearly', priority: 0.5 },
+          '/2026/caravanas': { changefreq: 'yearly', priority: 0.5 },
+          '/2026/patrocinio': { changefreq: 'yearly', priority: 0.5 },
           '/sobre': { changefreq: 'yearly', priority: 0.6 },
         };
         return { ...item, ...(tune[path] ?? { changefreq: 'monthly', priority: 0.7 }) };

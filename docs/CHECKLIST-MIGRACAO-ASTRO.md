@@ -200,45 +200,85 @@ Docker.
 
 ## Fase 4 — Porte de conteúdo
 
-Arquivo congelado primeiro: é porte 1:1 e serve de ensaio para a home.
+Método: as páginas **em produção** são a fonte da verdade, não as da
+`feat/blog` (que pararam na véspera do evento). Cada página virou
+`BaseLayout` + o `<main>` congelado, e o resultado foi conferido com um diff
+normalizado contra o HTML de produção — as 5 páginas saem **idênticas**
+(só `<path/>` vira `<path></path>` na serialização do Astro).
 
 ### 4.1 — Layout e componentes compartilhados
 
-- [ ] `BaseLayout.astro` recebendo o `<head>`, header, footer e o `<script>` do
-      `navToggle` (hoje duplicado em 5 páginas).
-- [ ] `PageHead.astro` com meta, canonical, OG e Twitter por props
-      (hoje 69 a 498 linhas por página).
-- [ ] GA4 `G-62RC94ZH1Z` em um lugar só, dentro do layout.
-- [ ] Trio Google Fonts (preload + `media="print"` swap + `noscript`) no layout,
-      preservando o comportamento não-bloqueante e o porquê em
-      `ds/tokens/fonts.css`.
-- [ ] `Icon.astro` consumindo o sprite. Substituir os 242 SVG inline
-      (55 paths únicos) — migrar os ícones usados, não os 32 do sprite de uma vez.
+- [x] `BaseLayout.astro` com o `<head>`, header, footer e o `<script>` do
+      `navToggle` (que estava duplicado em 5 páginas). Já vinha da `feat/blog`.
+- [x] `PageHead.astro` com meta, canonical, OG e Twitter por props.
+- [x] GA4 `G-62RC94ZH1Z` num lugar só, em `lib/site.ts`, usado pelo layout.
+- [x] Trio Google Fonts (preload + `media="print"` swap + `noscript`) no layout.
+      O `npm run verify` cobre isso: "3 tags por página".
+- [x] Header e rodapé passaram a aceitar menu, CTA e colunas por prop/slot —
+      o site tem duas edições no ar (a vigente na home e o arquivo em `/2026`),
+      com menus diferentes. As listas ficam em `data/nav.ts` e as colunas de
+      rodapé em `FooterCols2026` / `FooterCols2027`.
+- [ ] `Icon.astro` consumindo o sprite, no lugar dos 242 SVG inline.
+      **Não feito, de propósito:** o porte é 1:1 e trocar SVG inline por
+      componente mudaria o HTML de produção no mesmo passo em que ele está
+      sendo migrado — some o diff que prova que a migração não mexeu em nada.
+      Fica para depois do cutover, com o diff normalizado como rede.
 
-### 4.2 — `/2026/*` (arquivo congelado, 3.253 linhas)
+### 4.2 — `/2026/*` (arquivo congelado)
 
-- [ ] `2026/index.html` (1.422 linhas) → página Astro. O `<head>` de 498 linhas
-      passa a sair de `lib/schema.ts`.
-- [ ] 16 linhas de agenda → collection ou `data/evento-2026.json` (parte já existe
-      na branch).
-- [ ] `2026/palestrantes/index.html` (971 linhas) → collection de 19 palestrantes
-      + 1 template. Cada um com 4 tamanhos de WebP.
-- [ ] `2026/patrocinio/index.html` (526 linhas) → página + dados de cotas.
-- [ ] `2026/caravanas/index.html` (334 linhas) → página.
-- [ ] Mural de patrocinadores como componente, **preservando a convenção de
-      telemetria**: nome vem do `alt` da imagem, cota vem do `aria-labelledby` do
-      tier. Patrocinador novo tem que continuar sendo medido sem tocar em JS.
-- [ ] Telemetria de patrocinador (~60 linhas, hoje em 3 páginas) em um script só.
+- [x] `2026/index.html` → `src/pages/2026/index.astro`. O `<head>` de 498 linhas
+      saiu do `lib/schema.ts`.
+- [x] Agenda: `data/evento-2026.json` regenerado do JSON-LD da página congelada
+      (o da `feat/blog` ainda tinha a grade antiga — 16 subeventos com horário,
+      ordem e palestrante diferentes, e `availability: InStock` em vez de
+      `SoldOut`).
+- [x] `2026/palestrantes/index.html` → página Astro, com os 2 modais no slot
+      `after-footer` e o script da página (prazo da chamada + modal de perfil)
+      no slot `scripts`, sem a parte do `navToggle`, que agora é do layout.
+- [ ] 19 palestrantes como collection + 1 template. **Não feito:** é conteúdo
+      congelado, que não vai ser editado nunca mais — a collection só pagaria
+      custo. Se a 3ª edição precisar de página de palestrantes, ela nasce como
+      collection, com esta página de molde.
+- [x] `2026/patrocinio/index.html` → página Astro.
+- [x] `2026/caravanas/index.html` → página Astro. O `data/caravanas-schema.json`
+      também estava velho e foi regenerado do FAQ congelado; o CTA do menu não
+      é mais o Sympla com UTM, é a lista de espera de 2027, como em produção.
+- [x] Mural de patrocinadores como componente (`LogoWall.astro` +
+      `data/patrocinadores-2026.ts`): eram 76 linhas repetidas em 3 páginas,
+      com um comentário pedindo pra trocar logo em dois lugares. A convenção de
+      telemetria foi preservada — nome do `alt` da imagem, cota do
+      `aria-labelledby` do tier — e o `utm_content` por página virou prop
+      (`home`, `patrocinio`, `home2027`).
+- [x] Telemetria de patrocinador num script só (`SponsorTelemetry.astro`).
+      O `sponsor_page` sai do caminho da URL, com os mesmos 3 valores de hoje.
 
-### 4.3 — `/` (home 2027, 500 linhas)
+### 4.3 — `/` (home 2027)
 
-- [ ] Porte manual — é a página mais nova e não existe na branch.
-- [ ] Formulários: se a Fase 0 já fechou, conferir que as URLs reais vieram
-      junto, não os marcadores. Se não fechou, **carregar os 3 marcadores
-      `FORM_*` junto com o comentário que explica o porquê** — a migração não
-      inventa destino.
-- [ ] Galeria de fotos de 2026 (12 momentos × 3 larguras) como dado, não markup.
-- [ ] Evento `waitlist_click` lendo `data-waitlist`, igual hoje.
+- [x] Porte manual de `index.html`. Saída idêntica à de produção.
+- [x] Fase 0 ainda aberta, então os 3 marcadores `FORM_*` vieram junto **com o
+      comentário que explica o porquê**, agora no topo do `<main>` da página e
+      referenciado no `FooterCols2027`. A migração não inventou destino.
+- [x] Galeria e fotos do After como dado (`data/fotos-2026.ts`): 11 `<img>` com
+      `src`, `srcset` e `sizes` escritos à mão viraram 2 arrays e um `.map()`.
+- [x] `waitlist_click` lendo `data-waitlist`, igual hoje.
+- [x] Fotos, logos de apoio e `og-2027-data.jpg` copiados para
+      `site/public/assets/` (30 arquivos que só existiam na raiz).
+
+### Resultado da fase
+
+- 7 páginas: `/`, `/2026`, `/2026/palestrantes`, `/2026/patrocinio`,
+  `/2026/caravanas`, `/sobre`, `/eventos-de-tecnologia-parnaiba`.
+- `npm run check`: 0 erro, 0 aviso. `npm run verify`: tudo verde, 11 `@id` e
+  23 referências de JSON-LD sem órfã.
+- `webpage()` passou a aceitar o `@id` do Event por parâmetro: a edição vigente
+  é `/#event-2027` e o arquivo é `/2026#event`. Antes tudo apontava para
+  `/#event`, que deixou de existir quando a home virou 2027.
+- Redirects `/palestrantes`, `/patrocinio` e `/caravanas` → `/2026/*` entraram
+  no `site/vercel.json`, iguais aos do `vercel.json` da raiz.
+- As 2 páginas-âncora de SEO que vieram da `feat/blog` (`/sobre` e
+  `/eventos-de-tecnologia-parnaiba`) **ainda falam de 2026 como evento futuro**.
+  Os links quebrados foram corrigidos, mas o texto precisa de uma revisão na
+  Fase 6.
 
 ---
 

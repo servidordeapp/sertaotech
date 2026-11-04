@@ -1,0 +1,55 @@
+---
+/**
+ * Mural de patrocinadores, uma cota por bloco. O conteúdo vem de
+ * `data/patrocinadores-2026.ts`.
+ *
+ * **Convenção de telemetria que não pode mudar** (ver SponsorTelemetry):
+ * o nome do patrocinador é lido do `alt` da imagem e a cota do
+ * `aria-labelledby` do `.logo-wall` (`tier-<slug>`). Patrocinador novo é
+ * medido sem tocar em JS — basta entrar no dado.
+ */
+import { COTAS_2026, APOIO_2026, type Cota } from '../data/patrocinadores-2026';
+
+export interface Props {
+  /**
+   * Prefixo do `utm_content` dos links, que separa a origem do clique no
+   * relatório: `home` em /2026, `patrocinio` na página de cotas e `home2027`
+   * na home da edição vigente.
+   */
+  utm: string;
+  /** Apoio como texto (páginas de 2026) ou logomarca (home de 2027). */
+  apoio?: 'nomes' | 'logos';
+}
+const { utm, apoio = 'nomes' } = Astro.props;
+
+const cotas: Cota[] = [...COTAS_2026, APOIO_2026[apoio]];
+
+/** Mesma query das páginas estáticas, com o utm_content por página e cota. */
+function href(url: string, slug: string): string {
+  return `${url}?utm_source=osertaotech.com.br&utm_medium=referral&utm_campaign=sertaotech-2026&utm_content=${utm}-${slug}`;
+}
+---
+{cotas.map((cota) => (
+  <div class="logo-tier">
+    <div class="logo-tier__head">
+      <span class="logo-tier__rule" aria-hidden="true"></span>
+      <h3 class="logo-tier__name" id={`tier-${cota.slug}`}>{cota.nome}</h3>
+      <span class="logo-tier__rule" aria-hidden="true"></span>
+    </div>
+    <ul class:list={['logo-wall', cota.classe]} aria-labelledby={`tier-${cota.slug}`}>
+      {cota.logos.map((logo) => (
+        <li class:list={[!logo.url && 'logo-card']}>
+          {logo.url ? (
+            <a class:list={['logo-card', cota.classeCard]} href={href(logo.url, cota.slug)} target="_blank" rel="noopener sponsored">
+              <img src={`/assets/patrocinadores/${logo.arquivo}`} alt={logo.nome} width={logo.largura} height={logo.altura} loading="lazy" decoding="async">
+            </a>
+          ) : logo.arquivo ? (
+            <img src={`/assets/patrocinadores/${logo.arquivo}`} alt={logo.nome} width={logo.largura} height={logo.altura} loading="lazy" decoding="async">
+          ) : (
+            <p class="logo-card__name">{logo.nome}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+))}

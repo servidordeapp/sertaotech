@@ -5,6 +5,7 @@
  * que é reescrita todo ano.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FooterCols2027 from '../components/FooterCols2027.astro';
 import PageHead from '../components/PageHead.astro';
 import CtaBand from '../components/CtaBand.astro';
 import Icon from '../components/Icon.astro';
@@ -24,7 +25,14 @@ const jsonLd = graph(
   breadcrumb([{ name: 'Sobre', path }]),
 );
 ---
-<BaseLayout title={title} description={description} path={path} jsonLd={jsonLd}>
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  jsonLd={jsonLd}
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
   <main>
     <PageHead
       trail={[{ name: 'Sobre' }]}
@@ -86,7 +94,7 @@ const jsonLd = graph(
         <div>
           <span class="eyebrow">// quem organiza</span>
           <h2 class="section-title">Gente daqui, com apoio de comunidade.</h2>
-          <p class="prose">A organização é local e voluntária, com apoio das comunidades <strong>PHP PI</strong> e <strong>PHPWomen PI</strong> e de empresas patrocinadoras que decidiram investir na região. Quem apoia cada edição está listado na <a href="/patrocinio">página de patrocínio</a>.</p>
+          <p class="prose">A organização é local e voluntária, com apoio das comunidades <strong>PHP PI</strong> e <strong>PHPWomen PI</strong> e de empresas patrocinadoras que decidiram investir na região. Quem apoia cada edição está listado na <a href="/2026/patrocinio">página de patrocínio da 2ª edição</a>.</p>
           <p class="prose">O conteúdo do site é escrito por quem organiza o evento — não é conteúdo terceirizado. Se algo estiver errado ou desatualizado, é falha nossa e a gente corrige: manda mensagem.</p>
           <p class="prose">Também mantemos um guia da cena local que não depende de edição nenhuma: <a href="/eventos-de-tecnologia-parnaiba">eventos de tecnologia em Parnaíba e no norte do Piauí</a>.</p>
         </div>
@@ -113,7 +121,11 @@ const jsonLd = graph(
       lead="Na UFDPar, em Parnaíba - PI, das 14h às 21h30. Inscrição a partir de R$ 20."
     >
       <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
-      <a class="btn btn--outline-ink btn--lg" href="/palestrantes"><Icon name="mic" />Quero palestrar</a>
+      <a class="btn btn--outline-ink btn--lg" href="/#lista-de-espera"><Icon name="mic" />Quero palestrar</a>
     </CtaBand>
   </main>
+<Fragment slot="footer-cols">
+  <FooterCols2027 />
+</Fragment>
+
 </BaseLayout>

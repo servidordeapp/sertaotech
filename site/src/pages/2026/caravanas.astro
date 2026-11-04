@@ -1,0 +1,198 @@
+---
+/**
+ * Arquivo congelado da 2ª edição — porte 1:1 de `2026/caravanas/index.html`, a
+ * página que está em produção. O corpo é o mesmo markup; o <head> saiu do
+ * BaseLayout e do grafo de `lib/schema.ts`.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FooterCols2026 from '../../components/FooterCols2026.astro';
+import { graph, organization, website, webpage, breadcrumb, ID } from '../../lib/schema';
+import caravanasSchema from '../../data/caravanas-schema.json';
+import { NAV_2026, CTA_2026 } from '../../data/nav';
+
+const path = '/2026/caravanas';
+const title = "Caravanas — Sertão Tech 2026";
+const description =
+  "Caravanas no Sertão Tech 2026, na UFDPar, Parnaíba - PI. Inscrições esgotadas: veja os próximos passos para caravanas já inscritas.";
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({ path, name: title, description, image: '/assets/og-caravanas.jpg', aboutEvent: ID.event2026 }),
+  breadcrumb([{ name: 'Caravanas', path }]),
+  ...caravanasSchema,
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  nav="caravanas"
+  ogDescription={"Inscrições esgotadas. Caravana inscrita? Veja os próximos passos. 09 de outubro de 2026, na UFDPar — Parnaíba - PI."}
+  ogImage="/assets/og-caravanas.jpg"
+  ogImageAlt={"Caravanas do Sertão Tech 2026"}
+  jsonLd={jsonLd}
+  navLinks={NAV_2026}
+  cta={CTA_2026}
+  brandHref="/"
+  footerAbout={"09 de outubro de 2026 · UFDPar, Parnaíba - PI. Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia."}
+>
+
+<main>
+
+  <!-- CABEÇALHO DA PÁGINA -->
+  <div class="band-ink">
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="/2026">Sertão Tech 2026</a>
+          <span aria-hidden="true">/</span>
+          <span>Caravanas</span>
+        </nav>
+        <span class="eyebrow eyebrow--ink">// caravanas · 2ª edição</span>
+        <h1 class="page-head__title">Caravanas no Sertão Tech.</h1>
+        <p class="section-lead" style="color: var(--text-on-ink-muted); max-width: 640px;">As inscrições da 2ª edição <strong style="color: var(--sand-100);">esgotaram</strong> — inclusive as de caravana. Se o seu grupo já está inscrito, veja logo abaixo como deixar tudo pronto pro dia 09.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent btn--lg" href="https://wa.me/5586999202231" target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>Falar com a organização</a>
+          <a class="btn btn--outline-ink btn--lg" href="#proximos-passos"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>Ver os próximos passos</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- O QUE É UMA CARAVANA -->
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <span class="eyebrow">// o que é</span>
+        <h2 class="section-title">Uma inscrição só, o grupo inteiro dentro.</h2>
+        <p class="prose">Caravana é a inscrição em grupo do Sertão Tech. Em vez de cada pessoa comprar o próprio ingresso, um responsável — coordenador de curso, professor, líder de comunidade ou representante de turma — faz uma única inscrição para todo mundo, com valor por pessoa menor que o do ingresso individual.</p>
+        <p class="prose">Na 2ª edição, caravanas de instituições como <strong>IFPI</strong>, <strong>IFMA</strong>, <strong>UFDPar</strong> e comunidades em geral trazem estudantes de várias cidades do norte do Piauí e do entorno até o <a href="https://maps.app.goo.gl/yVJSv4X96VjH5xvC9" target="_blank" rel="noopener" style="text-decoration: underline;">UFDPar, em Parnaíba - PI</a>.</p>
+        <div class="range-facts">
+          <div class="range-fact">
+            <span class="range-fact__k">mínimo</span>
+            <div class="range-fact__v">20</div>
+            <p class="range-fact__note">pessoas por caravana</p>
+          </div>
+          <div class="range-fact">
+            <span class="range-fact__k">máximo</span>
+            <div class="range-fact__v">50</div>
+            <p class="range-fact__note">pessoas por caravana</p>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <div class="feature-row" style="padding: 20px 22px;">
+          <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <div>
+            <h3>Desconto para grupos</h3>
+            <p>O valor por pessoa na caravana é menor que o do ingresso individual.</p>
+          </div>
+        </div>
+        <div class="feature-row" style="padding: 20px 22px;">
+          <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
+          <div>
+            <h3>Uma compra, um pagamento</h3>
+            <p>O responsável paga uma vez pelo grupo inteiro — sem correr atrás de 30 comprovantes.</p>
+          </div>
+        </div>
+        <div class="feature-row" style="padding: 20px 22px;">
+          <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+          <div>
+            <h3>Instituição divulgada como apoiadora</h3>
+            <p>A escola, instituto ou universidade que organiza a caravana é divulgada como apoiadora do evento.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRÓXIMOS PASSOS (caravana já inscrita) -->
+  <div class="band-sunken">
+    <section class="section" id="proximos-passos">
+      <div class="container">
+        <span class="eyebrow">// próximos passos</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">Sua caravana já está inscrita?</h2>
+        <p class="section-lead" style="max-width: 640px; margin-bottom: 36px;">Faltam poucos detalhes pra deixar o grupo pronto pro dia 09.</p>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <div>
+              <h3 class="step__title">Envie a lista de participantes</h3>
+              <p class="step__text">Mande o nome de cada pessoa da caravana pra organização pelo WhatsApp <a href="https://wa.me/5586999202231" target="_blank" rel="noopener">+55 (86) 99920-2231</a>, se ainda não enviou.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <div>
+              <h3 class="step__title">Alinhe a chegada e o credenciamento</h3>
+              <p class="step__text">Combine com a organização o horário de chegada do grupo na UFDPar e como vai ser o credenciamento — e, se for o caso, a divulgação da instituição como apoiadora.</p>
+            </div>
+          </li>
+
+          <li class="step">
+            <span class="step__num" aria-hidden="true"></span>
+            <div>
+              <h3 class="step__title">Avise se alguém mudar</h3>
+              <p class="step__text">Precisa trocar um nome da lista? É só avisar a organização antes do evento.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </div>
+
+  <!-- DÚVIDAS -->
+  <section class="section" id="duvidas">
+    <div class="container">
+      <span class="eyebrow">// dúvidas</span>
+      <h2 class="section-title" style="margin-bottom: 28px;">Perguntas frequentes</h2>
+      <div class="faq">
+        <details>
+          <summary>Ainda dá pra inscrever uma caravana?</summary>
+          <p>Não. Atingimos a capacidade máxima do local e as inscrições da 2ª edição estão encerradas — tanto as individuais quanto as de caravana. Pra saber da próxima edição em primeira mão, acompanha o <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">@osertaotech</a>.</p>
+        </details>
+        <details>
+          <summary>Ainda preciso enviar a lista de participantes?</summary>
+          <p>Sim, se ainda não enviou. Quem fez a inscrição foi o responsável pela caravana; a lista com o nome de cada participante é combinada com a organização pelo WhatsApp <a href="https://wa.me/5586999202231" target="_blank" rel="noopener">+55 (86) 99920-2231</a>.</p>
+        </details>
+        <details>
+          <summary>Dá pra trocar alguém da caravana?</summary>
+          <p>Dá. Como a lista de participantes é enviada separadamente, trocar um nome antes do evento é só avisar a organização.</p>
+        </details>
+        <details>
+          <summary>A organização ajuda com o transporte?</summary>
+          <p>O transporte fica por conta de quem organiza a caravana. O que a organização faz é ajudar com material de divulgação e com a articulação junto à instituição de ensino — inclusive na conversa com coordenação e direção.</p>
+        </details>
+        <details>
+          <summary>Todo mundo da caravana recebe certificado?</summary>
+          <p>Sim. Cada participante da caravana tem os mesmos direitos de quem se inscreveu individualmente: acesso a todas as palestras e à roda de conversa, certificado de participação, coffee break e sorteios.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta__glow" aria-hidden="true"></div>
+    <section class="section cta__inner">
+      <div class="container">
+        <span class="eyebrow eyebrow--ink">// caravana inscrita?</span>
+        <h2 class="cta__title">A gente se vê no dia 09.</h2>
+        <p class="cta__lead">09 de outubro de 2026, das 14h às 21h10, na UFDPar — Parnaíba - PI. Pra alinhar chegada, credenciamento e lista de participantes, chama a organização no WhatsApp.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent btn--lg" href="https://wa.me/5586999202231" target="_blank" rel="noopener"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>Falar com a organização</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<Fragment slot="footer-cols">
+  <FooterCols2026 />
+</Fragment>
+
+</BaseLayout>

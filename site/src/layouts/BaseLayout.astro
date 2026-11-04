@@ -12,6 +12,7 @@
 import { SITE, abs, FONTS_HREF } from '../lib/site';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
+import type { NavLink, NavCta } from '../data/nav';
 
 export interface Props {
   title: string;
@@ -28,10 +29,13 @@ export interface Props {
   noindex?: boolean;
   /** Item ativo do menu, pra marcar aria-current="page". */
   nav?: string;
-  /** Override do botão de inscrição do menu (ver SiteHeader). */
-  ctaHref?: string;
-  ctaClass?: string;
-  ctaExternal?: boolean;
+  /** Menu, CTA e destino da marca — por edição (ver src/data/nav.ts). */
+  navLinks?: NavLink[];
+  cta?: NavCta;
+  brandHref?: string;
+  /** Rodapé: a frase embaixo da marca e a forma do bloco de apoio. */
+  footerAbout: string;
+  footerApoio?: 'nomes' | 'logos';
   /** Metadados de artigo (og:type article). */
   article?: {
     publishedTime: string;
@@ -54,9 +58,11 @@ const {
   jsonLd,
   noindex = false,
   nav,
-  ctaHref,
-  ctaClass,
-  ctaExternal,
+  navLinks,
+  cta,
+  brandHref,
+  footerAbout,
+  footerApoio,
   article,
   bodyClass,
 } = Astro.props;
@@ -126,11 +132,13 @@ const socialDescription = ogDescription ?? description;
 </head>
 <body class={bodyClass}>
 
-<SiteHeader active={nav} ctaHref={ctaHref} ctaClass={ctaClass} ctaExternal={ctaExternal} />
+<SiteHeader active={nav} links={navLinks} cta={cta} brandHref={brandHref} />
 
 <slot />
 
-<SiteFooter />
+<SiteFooter about={footerAbout} apoio={footerApoio}>
+  <slot name="footer-cols" />
+</SiteFooter>
 
 <slot name="after-footer" />
 

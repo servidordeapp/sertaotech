@@ -30,7 +30,12 @@ ENV NODE_ENV=development
 RUN apt-get update \
  && apt-get install -y --no-install-recommends python3 \
  && rm -rf /var/lib/apt/lists/*
-COPY --from=deps /app/node_modules ./node_modules
-COPY . .
+COPY --from=deps --chown=node:node /app/node_modules ./node_modules
+COPY --chown=node:node . .
+# Roda como `node` (uid 1000), não como root: /app é bind mount do host, então
+# tudo que o container escreve ali (dist/, .astro/) aparece no host com o dono
+# de quem escreveu. Como root, o `npm run build` no host passava a falhar com
+# EACCES nos arquivos que o container tinha criado.
+USER node
 EXPOSE 4321
 CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "4321"]
