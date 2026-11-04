@@ -16,12 +16,18 @@
 #   secrets.FTP_PASSWORD  password used for both FTP and SSH
 #   vars.SSH_HOST      optional — defaults to vars.FTP_HOST
 #   vars.SSH_PORT      optional — defaults to 22
-name: Deploy App
+name: Deploy API
 
+# Monorepo: o workflow mora na raiz (o GitHub só lê .github/workflows de lá),
+# mas a aplicação é api/. O filtro de path evita rodar o deploy da API quando o
+# push só mexeu em site/ ou docs/.
 on:
   push:
     branches:
       - main
+    paths:
+      - 'api/**'
+      - '.github/workflows/deploy-api.yml'
   workflow_dispatch:
 
 env:
@@ -31,6 +37,11 @@ jobs:
   quality:
     name: Quality gate & build
     runs-on: ubuntu-latest
+
+    # Todo comando `run` deste job executa dentro de api/ (não afeta os `uses`).
+    defaults:
+      run:
+        working-directory: api
 
     # A suite roda contra MySQL, o mesmo banco da produção. Sem este service o
     # runner não resolve o host `mysql` do Sail e todos os testes falham no
@@ -113,7 +124,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: public-build
-          path: public/build
+          path: api/public/build
           if-no-files-found: error
           retention-days: 1
 
@@ -130,7 +141,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: public-build
-          path: public/build
+          path: api/public/build
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.4.0
@@ -138,6 +149,9 @@ jobs:
           server: ${{ vars.FTP_HOST }}
           username: ${{ vars.FTP_USER }}
           password: ${{ secrets.FTP_PASSWORD }}
+          # local-dir precisa da barra final; sem ele a action subiria a raiz
+          # do monorepo (site/, docs/, 2026/…) para dentro de REMOTE_DIR.
+          local-dir: ./api/
           server-dir: ${{ env.REMOTE_DIR }}
           exclude: |
             **/.git*
