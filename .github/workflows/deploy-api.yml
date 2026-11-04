@@ -195,6 +195,11 @@ jobs:
                 RewriteRule ^(.*)$ public/$1 [L]
             </IfModule>
             EOF
+            # Diagnostico: o handler e escrito pelo MultiPHP Manager do cPanel,
+            # nao pelo deploy. Se sumir, o dominio cai no PHP padrao da conta e
+            # o Laravel morre com "requires a PHP version >= 8.4.1" so no
+            # browser, enquanto o php do ssh continua 8.5.
+            grep -q 'AddHandler' .htaccess 2>/dev/null || echo "AVISO: .htaccess da raiz sem AddHandler. Confira o MultiPHP Manager para api.osertaotech.com.br."
             mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs storage/app/public
             chmod -R 775 storage bootstrap/cache
             rm -f bootstrap/cache/*.php

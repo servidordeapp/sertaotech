@@ -15,6 +15,14 @@
 .env
 .env.*
 
+# O .htaccess da RAIZ é do servidor, não do repositório: o cPanel grava nele o
+# handler de PHP (AddHandler ...ea-php85) e o post-deploy acrescenta o rewrite
+# para public/. Sem esta linha o --delete o apagava a cada deploy e o domínio
+# voltava para o PHP padrão da conta — era o "PHP version >= 8.4.1" no browser
+# com php -v mostrando 8.5 no ssh. A âncora / limita à raiz: public/.htaccess,
+# esse sim versionado, continua subindo.
+/.htaccess
+
 # Não têm função em produção
 /tests/
 /database/factories/
