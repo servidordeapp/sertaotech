@@ -1,0 +1,841 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { graph, organization, website, webpage, breadcrumb } from '../lib/schema';
+
+const title = 'Palestrar no Sertão Tech 2026 — chamada de palestras aberta';
+const description =
+  'Chamada de palestras do Sertão Tech 2026, na UFDPar, Parnaíba - PI. Submissão aberta, 30 minutos de palco, 9 áreas. Primeira palestra da vida também conta.';
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({ path: '/palestrantes', name: title, description, image: '/assets/og-palestrantes.jpg' }),
+  breadcrumb([{ name: 'Palestrantes', path: '/palestrantes' }]),
+);
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path="/palestrantes"
+  nav="palestrantes"
+  ogDescription="Submissão aberta à comunidade. 30 minutos de palco, 9 áreas, 09 de outubro de 2026 na UFDPar, em Parnaíba - PI."
+  ogImage="/assets/og-palestrantes.jpg"
+  ogImageAlt="Chamada de palestras do Sertão Tech 2026"
+  jsonLd={jsonLd}
+>
+
+<main>
+
+  <!-- CABEÇALHO DA PÁGINA -->
+  <div class="band-ink">
+    <section class="page-head">
+      <div class="container">
+        <nav class="breadcrumb" aria-label="Trilha de navegação">
+          <a href="/">Sertão Tech 2026</a>
+          <span aria-hidden="true">/</span>
+          <span>Palestrantes</span>
+        </nav>
+        <span class="eyebrow eyebrow--ink">// chamada de palestras · 2ª edição</span>
+        <h1 class="page-head__title">Palestre no Sertão Tech 2026.</h1>
+        <p class="section-lead" style="color: var(--text-on-ink-muted); max-width: 620px;">A submissão é aberta à comunidade e a seleção é feita pela organização. Prazo final: 31 de agosto de 2026. Evento em 09 de outubro de 2026, na UFDPar, Parnaíba - PI — 30 minutos de palco pra dividir o que você sabe.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent btn--lg js-cta-form" href="https://docs.google.com/forms/d/e/1FAIpQLSfkZqAj-YdYi0l0NRehnPh9Jj3QoOM00Mx9VdFP9mMrVR3WZA/viewform?usp=header" target="_blank" rel="noopener">Enviar minha proposta<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></a>
+          <a class="btn btn--outline-ink btn--lg" href="/#agenda"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>Ver cronograma</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PALESTRANTES CONFIRMADOS -->
+  <section class="section" id="confirmados">
+    <div class="container">
+      <span class="eyebrow">// no palco</span>
+      <h2 class="section-title" style="margin-bottom: 14px;">Palestrantes confirmados</h2>
+      <p class="prose" style="max-width: 680px;">São 19 pessoas no palco da 2ª edição: 7 palestras, 6 microtalks, 2 minicursos em trilha paralela e uma roda de conversa. Os horários de cada sessão estão no <a href="/#agenda">cronograma</a>.</p>
+
+      <div class="speaker-group" id="palestras">
+        <span class="eyebrow">// palestras</span>
+        <h3 class="speaker-group__title">Palestras</h3>
+        <div class="grid-4 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/adryanne-kelly-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 14h40</span>
+              <h4 class="speaker__name">Adryanne Kelly</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Fullstack Developer · Livvie</p>
+              <p class="speaker__talk">Privacidade estrutural: como o Privacy by Design muda a forma de projetar software</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Fullstack Developer com foco em Flutter, atualmente trabalhando na Livvie, empresa sediada na Flórida. É pós-graduada em Engenharia de Software com Métodos Ágeis e, ao longo da carreira, passou por projetos com Laravel e Flutter, unindo backend e mobile. Organizadora da comunidade Flutterando, além de administrar a PHPPB e ser membra ativa na He4rt Developers, onde encontra espaço pra trocar conhecimento e aprender junto com outras pessoas da área.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/adryanne-kelly/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/vitoria-neris-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 15h40</span>
+              <h4 class="speaker__name">Vitoria Neris</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Analista de Dados Pleno · GIF International / PyLadies Parnaíba</p>
+              <p class="speaker__talk">Antes do Gráfico: os Bastidores de um Dashboard</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Vitoria Neris é bacharela em Ciência da Computação pela UESPI e pós-graduada em Ciência de Dados pela UTFPR. Atua como Analista de Dados na GIF International, onde também lidera uma iniciativa de documentação no setor de Tecnologia. Além da atuação profissional, é coorganizadora da PyLadies Parnaíba, contribuindo para incentivar a participação de mulheres na tecnologia.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/vitoria-neris/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/sandro-daniel-garcia-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 16h25</span>
+              <h4 class="speaker__name">Sandro Daniel Garcia</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Co-Founder &amp; CTO · IA Automations</p>
+              <p class="speaker__talk">Além dos Grafos Rígidos: Construindo Redes Multiagente Descentralizadas e Seguras com o Protocolo IRC-A</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Arquiteto de Soluções com mais de 20 anos de experiência em sistemas bancários, distribuídos e inteligência artificial aplicada. É arquiteto de software do UnitHOS, projeto de hospitalidade acelerado pelo programa Startup Piauí. Criador e autor do protocolo open source IRC-A (Internet Relay Chat for Agents), desenvolve pesquisas e arquiteturas focadas em redes multiagente descentralizadas, governança de execução, segurança por design e roteamento semântico dinâmico.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/sandrog/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/silvia-azevedo-384x480.webp" srcset="/assets/palestrantes/silvia-azevedo-384x480.webp 384w, /assets/palestrantes/silvia-azevedo-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 18h10</span>
+              <h4 class="speaker__name">Silvia Azevedo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Product Owner · Grupo Stefanini</p>
+              <p class="speaker__talk">O Gerente de Projetos de Software na Era da IA</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Especialista em Tecnologia e Gestão de Produtos com mais de 20 anos de experiência, atuando na transformação ágil de empresas nos setores de TIC, Financeiro, GovTech e BPO. Atualmente Product Owner no Grupo Stefanini, possui formação em Ciência da Computação, Pós-graduação em TI e MBA em Gestão de Projetos pela FGV, além das certificações PSPO I e PSPO II. É especialista em liderar times de alta performance.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/silvia-azevedo-oliveira/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/jacson-santos-silva-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 18h55</span>
+              <h4 class="speaker__name">Jacson Santos Silva</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Desenvolvedor sênior · Intelia / Simples Diário</p>
+              <p class="speaker__talk">Open Source na Prática: Construindo Soluções Profissionais sem Dependência de Software Proprietário</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Jacson Santos é desenvolvedor de software há mais de 10 anos, com experiência no desenvolvimento de aplicações web, APIs, soluções SaaS e integrações utilizando tecnologias Open Source. Atualmente atua na Intelia, desenvolvendo soluções voltadas para &ldquo;Conversation Intelligence&rdquo;. Também é fundador da Simples Diário, onde cria soluções para o setor educacional. É entusiasta de Linux, Docker, Laravel, Inteligência Artificial, WebRTC e telefonia IP, buscando transformar tecnologias abertas em produtos inovadores e de alto impacto.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/jacsonsantossilva/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/sebastiao-galeno-384x480.webp" srcset="/assets/palestrantes/sebastiao-galeno-384x480.webp 384w, /assets/palestrantes/sebastiao-galeno-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--terra">Palestra · 19h40</span>
+              <h4 class="speaker__name">Sebastião Galeno</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Software Engineer · Parnaíba-PI</p>
+              <p class="speaker__talk">Além do Código: Como usar IA para faturar antes de se formar</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Sebastião Galeno é mestre em ciência da computação, com especialização em Inteligência Artificial e também em redes de computadores e segurança corporativa. Atualmente, trabalha como engenheiro de software e possui mais de 10 anos de experiência profissional desenvolvendo sistemas web para empresas nacionais e internacionais.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/sebastiaogaleno/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/alessandro-feitoza-384x480.webp" srcset="/assets/palestrantes/alessandro-feitoza-384x480.webp 384w, /assets/palestrantes/alessandro-feitoza-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">Keynote · 20h20</span>
+              <h4 class="speaker__name">Alessandro Feitoza</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Senior Software Engineer · Bússola Social / PHP com Rapadura</p>
+              <p class="speaker__talk">Revolução Programacional: a IA na era das mudanças</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Bacharel em Sistemas de Informações, Especialista em Engenharia de Software, com mais de 15 anos de experiência em desenvolvimento web.
+
+Professor universitário e de Computarias no mei do mundo.
+
+Senior Software Engineer e Techlead na Bússola social.
+
+Fundador da comunidade PHP com Rapadura</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/alessandrofeitoza/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="microtalks">
+        <span class="eyebrow">// microtalks</span>
+        <h3 class="speaker-group__title">MicroTalks</h3>
+        <div class="grid-4 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/fernando-melo-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 15h10</span>
+              <h4 class="speaker__name">Fernando Melo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Fundador e Product Owner · DOMUS</p>
+              <p class="speaker__talk">Além do Código: Carreira, Product Management e Empreendedorismo</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Fernando Melo começou na área de tecnologia com formação técnica em Informática e experiência profissional em suporte, onboarding e gestão de sistemas SaaS. Na Foxinline, evoluiu de atendente de suporte a gerente de onboarding, atuando com clientes, processos e tecnologia. Atualmente cursa Análise e Desenvolvimento de Sistemas e desenvolve o DOMUS, um SaaS voltado ao mercado imobiliário, unindo tecnologia, produto e visão de negócio.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/fernandomelojr/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/kaue-victor-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 15h25</span>
+              <h4 class="speaker__name">Kauê Victor</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Embaixador · Stellar in Brazil / Porto Indie</p>
+              <p class="speaker__talk">Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Kauê Victor é estudante de Análise e Desenvolvimento de Sistemas e apaixonado por tecnologia, estudando áreas como Back-End com Laravel, Blockchain e desenvolvimento de jogos. Gosta de ensinar o que aprendeu e da experiência de palestrar, dá muito valor ao networking, participa de comunidades no Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/kauevictor/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/isaac-costa-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 16h10</span>
+              <h4 class="speaker__name">Isaac Costa</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Tech Config II · UL Solutions</p>
+              <p class="speaker__talk">Suporte, a chave do sucesso de uma aplicação</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Bacharel em Sistemas de Informação desde 2011 e especialista em gestão de projetos. Trabalha com suporte de sistemas há mais de 15 anos, sendo os últimos 6 em sistemas de larga escala. Yellow belt em Lean Six Sigma.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/isaac-costa-3880a61b5/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/dione-bastos-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 17h55</span>
+              <h4 class="speaker__name">Dione Bastos</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Blockchain Engineer · Nearx</p>
+              <p class="speaker__talk">Como lidar com a síndrome do impostor</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Dione Bastos é Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. Atua no desenvolvimento de APIs escaláveis, otimização de performance e Developer Experience (DX), além de ser Mentor Técnico e Embaixador da rede Stellar na América Latina.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/dione-bastos/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/vilmar-aguiar-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 18h40</span>
+              <h4 class="speaker__name">Vilmar Aguiar de Paula Segundo</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">CEO · Clube Charger</p>
+              <p class="speaker__talk">Do terminal ao mercado: como transformar seu código em um negócio real</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Economista de formação com mente de desenvolvedor, atua na intersecção entre tecnologia, regulação e transição energética. Como fundador e desenvolvedor do Clube Charger, lidera não só o desenvolvimento do código da plataforma, mas também a sua implementação em eletropostos por todo o país. Unindo o MBA em Gestão de Energia, Petróleo e Gás à especialização em Avaliação de Impactos Ambientais e extensão em Mobilidade Elétrica pela Unicamp, tem uma visão holística para desenhar soluções financeiramente viáveis, tecnologicamente robustas e em total conformidade com o ambiente regulatório e ambiental do setor elétrico.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/vilmar-segundo/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/ariel-teles-384x480.webp" srcset="/assets/palestrantes/ariel-teles-384x480.webp 384w, /assets/palestrantes/ariel-teles-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--amber">MicroTalk · 19h25</span>
+              <h4 class="speaker__name">Ariel Teles</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Professor of Artificial Intelligence · UFDPar, Campus Ministro Reis Velloso</p>
+              <p class="speaker__talk">Da Graduação ao Doutorado: caminhos de formação em tecnologia e inovação na UFDPar</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Possui graduação em Ciência da Computação pela Universidade Estadual do Piauí (2008), Especialização em Redes de Computadores pela Faculdade Piauiense (2010), Mestrado (2012) e Doutorado (2017) em Engenharia de Eletricidade, na área de concentração em Ciência da Computação, pela Universidade Federal do Maranhão (UFMA). Durante o doutorado, realizou dois estágios de doutorado sanduíche, um nacional na Pontifícia Universidade Católica do Rio de Janeiro (PUC-Rio) e outro internacional na Faculdade de Engenharia da Universidade do Porto (FEUP), onde também atuou junto ao Instituto de Engenharia de Sistemas e Computadores Tecnologia e Ciência (INESC TEC), em Portugal. Realizou pós-doutorado na Universidade Federal do Piauí (UFPI/Campus Parnaíba), entre 2017 e 2018, e no King's College London (KCL), Institute of Psychiatry, Psychology Neuroscience (IoPPN), entre 2024 e 2025, onde também atuou como Visiting Senior Lecturer no Department of Biostatistics and Health Informatics. Foi Professor do Instituto Federal do Maranhão (IFMA), onde atuou por 14 anos nas áreas de ensino, pesquisa, extensão e inovação. Atualmente é Professor do Magistério Superior da Universidade Federal do Delta do Parnaíba (UFDPar), atuando no Curso de Bacharelado em Inteligência Artificial. É professor permanente do Programa de Pós-Graduação em Biotecnologia (PPGBiotec/UFDPar) e coordena o Grupo de Pesquisa e Laboratório DeltaIA, dedicado ao desenvolvimento de pesquisas em Inteligência Artificial Aplicada. É também pesquisador associado do Laboratório de Sistemas Distribuídos Inteligentes (LSDi/UFMA) e do Neuro-innovation Technology Brain Mapping Laboratory (NITLAB/UFDPar). Atua principalmente nas áreas de Inteligência Artificial, Aprendizado de Máquina, Aprendizado Profundo, Processamento de Linguagem Natural, Visão Computacional, Saúde Digital, com ênfase no desenvolvimento de sistemas inteligentes para suporte à decisão, modelos multimodais, IA explicável e aplicações em saúde. É membro da Sociedade Brasileira de Computação (SBC), do Institute of Electrical and Electronics Engineers (IEEE) e da International Society for Research on Internet Interventions (ISRII). Bolsista de Produtividade em Desenvolvimento Tecnológico - DT do CNPq.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/ariel-soares-teles/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="minicursos">
+        <span class="eyebrow">// minicursos · trilha paralela</span>
+        <h3 class="speaker-group__title">Minicursos</h3>
+        <div class="grid-4 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/germano-gomes-384x480.webp" srcset="/assets/palestrantes/germano-gomes-384x480.webp 384w, /assets/palestrantes/germano-gomes-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--agave">Minicurso · 15h00</span>
+              <h4 class="speaker__name">Germano Gomes</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Engenheiro de software · G-Dev Society</p>
+              <p class="speaker__talk">Cardinal — um simulador de mundos para desenvolvedores de jogos</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Germano Gomes é desenvolvedor há 8 anos no mercado de trabalho e hobbista em desenvolvimento de jogos há 12 anos. É pai de duas meninas, CEO de uma empresa de tecnologia e professor de nível técnico/especializante.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/germano-gomes-293648121/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/rodrigo-castro-384x480.webp" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--agave">Minicurso · 15h00</span>
+              <h4 class="speaker__name">Rodrigo Castro</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Engenheiro de software sênior · LWSA / Flutterando</p>
+              <p class="speaker__talk">O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Rodrigo Castro, mais conhecido como &ldquo;RED&rdquo; nas comunidades. Cearense de coração, mora em João Pessoa e está sempre conectado com a galera tech do Nordeste. Participa ativamente das comunidades PHP com Rapadura, He4rt Developers e Flutterando. Profissionalmente, é Desenvolvedor Full Stack Sênior na LWSA, especializado em Flutter e Laravel, com pós-graduação em Engenharia de Software e experiência sólida no setor de telecomunicações.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/rodrigo-castro-8422a7145/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="speaker-group" id="roda-de-conversa">
+        <span class="eyebrow">// roda de conversa</span>
+        <h3 class="speaker-group__title">Roda de Conversa</h3>
+        <div class="grid-4 speaker-grid">
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/maria-katriane-384x480.webp" srcset="/assets/palestrantes/maria-katriane-384x480.webp 384w, /assets/palestrantes/maria-katriane-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Maria Katriane</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Product Manager · PlayDevs / PHPPI / PHP Women Piauí</p>
+              <p class="speaker__talk">ALT + TAB: Migrando para a área da Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Maria Katriane é Product Manager na PlayDevs e pós-graduanda em Digital Product Management pela FIAP. É representante do PHP Women no Piauí e atua na organização de comunidades e eventos de tecnologia como PHPPI, PHPeste e Sertão Tech.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/mariakatriane/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/bia-thereza-384x480.webp" srcset="/assets/palestrantes/bia-thereza-384x480.webp 384w, /assets/palestrantes/bia-thereza-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Bia Thereza</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Mestranda em Biotecnologia · UFDPar</p>
+              <p class="speaker__talk">ALT + TAB: Migrando para a área da Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Mestranda em Biotecnologia pela UFDPar, Embaixadora Estudantil Google, e possui formação em Ciências Biológicas e Informática, atualmente estuda as áreas de Inteligência Artificial e Visão Computacional aplicadas à saúde, buscando aproximar pesquisa, inovação e compartilhamento de conhecimento.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/thereza-beatriz-l-a37434378/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/samyla-alves-384x480.webp" srcset="/assets/palestrantes/samyla-alves-384x480.webp 384w, /assets/palestrantes/samyla-alves-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Sâmyla Alves</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Tech Recruiter · Beyond Soluções</p>
+              <p class="speaker__talk">ALT + TAB: Migrando para a área da Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Sâmyla Alves, Tech Recruiter da Beyond Soluções, uma consultoria de tecnologia que atende o mercado financeiro.
+
+Atua no recrutamento end-to-end (busca, entrevista e contratação) de profissionais de tecnologia para empresas como BTG Pactual, XP Investimentos, Banco Itaú, e muitas outras. Ela conhece, em detalhes, o que as empresas de ponta procuram!</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/samyla-alves/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+          <article class="speaker card">
+            <div class="speaker__photo"><img src="/assets/palestrantes/celenny-sousa-384x480.webp" srcset="/assets/palestrantes/celenny-sousa-384x480.webp 384w, /assets/palestrantes/celenny-sousa-768x960.webp 768w" sizes="(max-width: 760px) 92vw, (max-width: 1024px) 30vw, 264px" alt="" width="384" height="480" loading="lazy" decoding="async"></div>
+            <div class="speaker__meta">
+              <span class="tag tag--cactus">Roda de conversa · 16h55</span>
+              <h4 class="speaker__name">Celenny Sousa</h4>
+              <!-- cargo · empresa/comunidade: opcional. Vazio = não aparece. -->
+              <p class="speaker__role">Analista de Garantia de Qualidade · Serasa Experian / GDG Parnaíba</p>
+              <p class="speaker__talk">ALT + TAB: Migrando para a área da Tecnologia</p>
+              <!-- minibio: cole o texto completo aqui dentro. Acima de 220 caracteres o card corta e mostra "Ler mais". Vazio = não aparece. -->
+              <p class="speaker__bio">Celenny Sousa é bacharel em Ciência da Computação pela Universidade Estadual do Piauí e atualmente Analista de Qualidade de Software na Serasa Experian, a primeira Data Tech do Brasil.
+
+Com uma trajetória sólida, ela já atuou em grandes empresas como o BTG Pactual, o maior banco de investimentos da América Latina; a FTeam, especialista em Flutter; e nas Lojas Quero-Quero, uma potência do varejo no Rio Grande do Sul.
+
+Apaixonada por tecnologia, criou o @celycodes no Instagram em 2020 para compartilhar sua jornada, que hoje conecta mais de 6 mil seguidores. Também é co-organizadora do GDG Parnaíba, promovendo conexão e aprendizado na comunidade tech.</p>
+              <div class="speaker__actions">
+                <!-- LinkedIn: cole a URL no href. href vazio = o link some do card. -->
+                <a class="speaker__linkedin" href="https://www.linkedin.com/in/celenny/" target="_blank" rel="noopener"><svg class="icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm1.78 13.02H3.55V9h3.57v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.72v20.56C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.72V1.72C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container">
+        <span class="eyebrow">// como funciona</span>
+        <h2 class="section-title" style="margin-bottom: 34px;">O formato das palestras</h2>
+        <div class="grid-3">
+          <div class="card">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <h3 class="card-title">30 min + perguntas</h3>
+            <p class="card-text">Cada slot tem cerca de 40 minutos no total: 30 de apresentação e o resto pra conversa com a plateia.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3 class="card-title">Plateia mista</h3>
+            <p class="card-text">Estudantes, profissionais e gente migrando de carreira. Vale nível iniciante e vale conteúdo técnico — só evita jargão que assusta.</p>
+          </div>
+          <div class="card">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <h3 class="card-title">Presencial, no sertão</h3>
+            <p class="card-text">A 2ª edição é 100% presencial na <a href="https://maps.app.goo.gl/yVJSv4X96VjH5xvC9" target="_blank" rel="noopener" style="text-decoration: underline;">UFDPar — Campus Ministro Reis Velloso</a>, em Parnaíba - PI, das 14h às 22h do dia 09 de outubro de 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ÁREAS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">// áreas aceitas</span>
+          <h2 class="section-title">Sobre o que você pode falar</h2>
+          <p class="section-lead" style="max-width: 560px;">Essas são as áreas que vão estar no palco da 2ª edição. Se a sua proposta encosta em mais de uma, melhor ainda.</p>
+        </div>
+      </div>
+      <div class="grid-3">
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m16 18 6-6-6-6"/><path d="m8 6-6 6 6 6"/></svg></span>
+            <h3>Desenvolvimento de Software</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.962 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span>
+            <h3>Inteligência Artificial</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+            <h3>Cloud Computing</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg></span>
+            <h3>Segurança da Informação</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></span>
+            <h3>Dados</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <h3>Product Management</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></span>
+            <h3>UX / UI</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>Carreira e Soft Skills</h3>
+          </div>
+        </div>
+        <div class="card card--interactive">
+          <div class="topic">
+            <span class="chip-icon chip-icon--amber"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg></span>
+            <h3>Open Source e comunidades</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO SUBMETER -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container two-col two-col--submissao">
+        <div>
+          <span class="eyebrow">// submissão</span>
+          <h2 class="section-title" style="font-size: clamp(26px, 4vw, 36px);">Como enviar sua proposta</h2>
+          <p class="section-lead" style="font-size: 16px; line-height: 1.65; margin: 16px 0 20px;">Preenche o formulário de submissão com as informações abaixo, ou chama a organização no WhatsApp ou no direct do Instagram — a gente responde falando dos próximos passos. Prazo final: <strong>31 de agosto de 2026</strong>.</p>
+          <div class="hero__actions">
+            <a class="btn btn--primary btn--lg js-cta-form" href="https://docs.google.com/forms/d/e/1FAIpQLSfkZqAj-YdYi0l0NRehnPh9Jj3QoOM00Mx9VdFP9mMrVR3WZA/viewform?usp=header" target="_blank" rel="noopener">Enviar proposta<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+            <a class="btn btn--outline btn--lg" href="https://wa.me/5586999202231" target="_blank" rel="noopener">Falar no WhatsApp</a>
+          </div>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span>
+            <div>
+              <h3>Título e resumo</h3>
+              <p>O nome da palestra e um parágrafo dizendo o que a pessoa leva de lá.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <div>
+              <h3>Uma mini bio</h3>
+              <p>Quem é você, o que faz hoje e onde te encontram na internet.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
+            <div>
+              <h3>Área e nível</h3>
+              <p>Qual das áreas acima e se o conteúdo é pra quem tá começando ou pra quem já roda.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- QUEM PODE -->
+  <section class="section">
+    <div class="container two-col">
+      <div>
+        <span class="eyebrow">// quem pode palestrar</span>
+        <h2 class="section-title">Primeira palestra da vida também conta.</h2>
+        <p class="prose">O Sertão Tech existe pra fazer gente do interior dar o primeiro passo — e isso vale pro palco também. Se você nunca palestrou, manda mesmo assim: a organização ajuda a lapidar o tema e a estrutura antes do dia.</p>
+        <p class="prose">A gente quer o palco parecido com a plateia: pessoas de <strong>todos os gêneros</strong>, de várias cidades da região, com histórias diferentes de entrada na tecnologia. Palestrantes de fora do Piauí também são bem-vindos.</p>
+      </div>
+      <div class="card card--badge" style="padding: 32px;">
+        <span class="eyebrow">// o que a organização oferece</span>
+        <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Palco, apoio e divulgação</h3>
+        <ul class="ticket__list" style="margin-top: 18px;">
+          <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Divulgação do seu nome e da sua palestra nos canais do evento</li>
+          <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Certificado de palestrante</li>
+          <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Acesso completo ao evento, coffee break e networking</li>
+          <li><svg class="icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21.801 10A10 10 0 1 1 17 3.335"/><path d="m9 11 3 3L22 4"/></svg>Apoio da organização na preparação da apresentação</li>
+        </ul>
+        <p class="card-text" style="margin-top: 18px;">O Sertão Tech é um evento comunitário e sem fins lucrativos: não há cachê nem reembolso de deslocamento ou hospedagem.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERGUNTAS FREQUENTES -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container">
+        <span class="eyebrow">// dúvidas comuns</span>
+        <h2 class="section-title" style="margin-bottom: 28px;">Perguntas de quem quer palestrar</h2>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div class="feature-row" style="padding: 20px 22px;">
+            <div>
+              <h3>Precisa ser de Teresina ou de Parnaíba - PI?</h3>
+              <p>Não. A prioridade é dar espaço pra quem é da região, mas a chamada é aberta pra qualquer lugar do Brasil. O evento é presencial, então considere o deslocamento — ele fica por sua conta.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <div>
+              <h3>Posso enviar mais de uma proposta?</h3>
+              <p>Pode. Só sinaliza qual é a sua preferida, porque cada pessoa fica com no máximo um slot na grade.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <div>
+              <h3>Palestrante paga inscrição?</h3>
+              <p>Não. Palestrantes selecionados entram sem pagar os R$ 20 da inscrição.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <div>
+              <h3>Até quando dá pra enviar?</h3>
+              <p>Até 31 de agosto de 2026. Depois dessa data o formulário de submissão fecha, então quanto antes você mandar, maior a chance de pegar um slot.</p>
+            </div>
+          </div>
+          <div class="feature-row" style="padding: 20px 22px;">
+            <div>
+              <h3>Tem palestra remota?</h3>
+              <p>Não nesta edição. A 2ª edição é 100% presencial, das 14h às 22h.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta">
+    <div class="cta__glow" aria-hidden="true"></div>
+    <section class="section cta__inner">
+      <div class="container">
+        <span class="eyebrow eyebrow--ink">// bora pro palco?</span>
+        <h2 class="cta__title">Manda sua proposta.</h2>
+        <p class="cta__lead">A grade da 2ª edição ainda tá aberta. Se você tem uma história ou um assunto que ajudaria alguém do interior a começar, esse palco é seu. Submissões até <strong>31 de agosto de 2026</strong>.</p>
+        <div class="hero__actions">
+          <a class="btn btn--accent btn--lg js-cta-form" href="https://docs.google.com/forms/d/e/1FAIpQLSfkZqAj-YdYi0l0NRehnPh9Jj3QoOM00Mx9VdFP9mMrVR3WZA/viewform?usp=header" target="_blank" rel="noopener">Manda sua proposta<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></a>
+          <a class="btn btn--outline-ink btn--lg" href="/patrocinio">Ver cotas de patrocínio<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<Fragment slot="after-footer">
+<!-- MODAL: prazo de submissão encerrado -->
+<div class="modal-overlay" id="deadlineModal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="deadlineModalTitle" aria-describedby="deadlineModalDesc">
+    <button class="modal__close" type="button" id="deadlineModalClose" aria-label="Fechar">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <span class="chip-icon chip-icon--terra-sm"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+    <h2 class="modal__title" id="deadlineModalTitle">Prazo de submissão encerrado</h2>
+    <p class="modal__text" id="deadlineModalDesc">Infelizmente o prazo para envio de propostas terminou em 31 de agosto de 2026. A grade da 2ª edição já está sendo fechada com o que foi recebido até essa data.</p>
+    <p class="modal__text">Quer saber das próximas chamadas de palestras? Acompanha o <a href="https://instagram.com/osertaotech" target="_blank" rel="noopener">@osertaotech</a> ou chama a organização no WhatsApp.</p>
+    <div class="modal__actions">
+      <a class="btn btn--outline btn--md" href="https://wa.me/5586999202231" target="_blank" rel="noopener">Falar no WhatsApp</a>
+      <button class="btn btn--primary btn--md" type="button" id="deadlineModalOk">Entendi</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: perfil do palestrante -->
+<div class="modal-overlay" id="speakerModal" hidden>
+  <div class="modal modal--speaker" role="dialog" aria-modal="true" aria-labelledby="speakerModalTitle">
+    <button class="modal__close" type="button" id="speakerModalClose" aria-label="Fechar">
+      <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+    </button>
+    <div class="speaker__head">
+      <div class="speaker__photo" id="speakerModalPhoto" aria-hidden="true"></div>
+      <div>
+        <h2 class="modal__title" id="speakerModalTitle"></h2>
+        <span class="tag" id="speakerModalTag"></span>
+        <p class="speaker__role" id="speakerModalRole"></p>
+      </div>
+    </div>
+    <p class="speaker__talk" id="speakerModalTalk"></p>
+    <p class="modal__text" id="speakerModalBio"></p>
+    <div class="modal__actions">
+      <a class="btn btn--outline btn--md" id="speakerModalLinkedin" href="" target="_blank" rel="noopener">Ver LinkedIn</a>
+      <button class="btn btn--primary btn--md" type="button" id="speakerModalOk">Fechar</button>
+    </div>
+  </div>
+</div>
+</Fragment>
+
+<script is:inline slot="scripts">
+  // Chamada de palestras: bloqueia o formulário depois do prazo e mostra o aviso.
+  (function () {
+    var DEADLINE = new Date('2026-09-01T00:00:00-03:00'); // exclusivo: até 31/08/2026 (horário de Brasília)
+    var ctaLinks = document.querySelectorAll('.js-cta-form');
+    var modal = document.getElementById('deadlineModal');
+    if (!ctaLinks.length || !modal) return;
+
+    var closeBtn = document.getElementById('deadlineModalClose');
+    var okBtn = document.getElementById('deadlineModalOk');
+    var lastFocused = null;
+
+    function openModal(trigger) {
+      lastFocused = trigger || document.activeElement;
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('button, a[href]');
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    ctaLinks.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        if (Date.now() >= DEADLINE.getTime()) {
+          e.preventDefault();
+          openModal(link);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  })();
+
+  // Palestrantes: minibio cortada em BIO_LIMIT caracteres, com modal pro texto completo.
+  (function () {
+    var BIO_LIMIT = 220;
+    var cards = document.querySelectorAll('.speaker');
+    var modal = document.getElementById('speakerModal');
+    if (!cards.length || !modal) return;
+
+    var closeBtn = document.getElementById('speakerModalClose');
+    var okBtn = document.getElementById('speakerModalOk');
+    var elPhoto = document.getElementById('speakerModalPhoto');
+    var elRole = document.getElementById('speakerModalRole');
+    var elTitle = document.getElementById('speakerModalTitle');
+    var elTag = document.getElementById('speakerModalTag');
+    var elTalk = document.getElementById('speakerModalTalk');
+    var elBio = document.getElementById('speakerModalBio');
+    var elLinkedin = document.getElementById('speakerModalLinkedin');
+    var lastFocused = null;
+
+    // Corta no espaço anterior ao limite pra não quebrar palavra no meio.
+    function truncate(text, limit) {
+      if (text.length <= limit) return text;
+      var cut = text.slice(0, limit);
+      var space = cut.lastIndexOf(' ');
+      if (space > limit * 0.6) cut = cut.slice(0, space);
+      return cut.replace(/[\s.,;:!?—-]+$/, '') + '…';
+    }
+
+    function openModal(card, trigger) {
+      lastFocused = trigger || document.activeElement;
+      var photo = card.querySelector('.speaker__photo');
+      elPhoto.className = photo.className;
+      elPhoto.replaceChildren();
+      Array.prototype.forEach.call(photo.childNodes, function (node) {
+        elPhoto.appendChild(node.cloneNode(true));
+      });
+
+      var role = card.dataset.role || '';
+      elRole.textContent = role;
+      elRole.hidden = !role;
+      elTitle.textContent = card.querySelector('.speaker__name').textContent;
+
+      var tag = card.querySelector('.tag');
+      elTag.textContent = tag ? tag.textContent : '';
+      elTag.className = tag ? tag.className : 'tag';
+
+      elTalk.textContent = card.querySelector('.speaker__talk').textContent;
+      elBio.textContent = card.dataset.bio || '';
+
+      var href = card.dataset.linkedin || '';
+      if (href) {
+        elLinkedin.href = href;
+        elLinkedin.hidden = false;
+      } else {
+        elLinkedin.removeAttribute('href');
+        elLinkedin.hidden = true;
+      }
+
+      modal.hidden = false;
+      document.body.classList.add('modal-open');
+      closeBtn.focus();
+      document.addEventListener('keydown', onKeydown);
+    }
+
+    function closeModal() {
+      modal.hidden = true;
+      document.body.classList.remove('modal-open');
+      document.removeEventListener('keydown', onKeydown);
+      if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    }
+
+    function onKeydown(e) {
+      if (e.key === 'Escape') { closeModal(); return; }
+      if (e.key !== 'Tab') return;
+      var focusable = modal.querySelectorAll('button, a[href]:not([hidden])');
+      if (!focusable.length) return;
+      var first = focusable[0];
+      var last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    cards.forEach(function (card) {
+      var bioEl = card.querySelector('.speaker__bio');
+      var roleEl = card.querySelector('.speaker__role');
+      var linkEl = card.querySelector('.speaker__linkedin');
+      var actionsEl = card.querySelector('.speaker__actions');
+
+      var role = roleEl ? roleEl.textContent.trim() : '';
+      card.dataset.role = role;
+      if (roleEl && !role) roleEl.remove();
+      var bio = bioEl ? bioEl.textContent.trim().replace(/[ \t]+/g, ' ').replace(/\n{3,}/g, '\n\n') : '';
+      var flatBio = bio.replace(/\s+/g, ' ');
+      var href = linkEl ? (linkEl.getAttribute('href') || '').trim() : '';
+
+      card.dataset.bio = bio;
+      card.dataset.linkedin = href;
+
+      // Sem URL preenchida o link vira ruído — some do card.
+      if (linkEl && !href) linkEl.remove();
+
+      if (!bioEl) return;
+      if (!bio) { bioEl.remove(); return; }
+
+      bioEl.textContent = truncate(flatBio, BIO_LIMIT);
+      if (flatBio.length <= BIO_LIMIT) return;
+
+      var more = document.createElement('button');
+      more.type = 'button';
+      more.className = 'speaker__more';
+      more.textContent = 'Ler mais';
+      more.setAttribute('aria-label', 'Ler a bio completa de ' + card.querySelector('.speaker__name').textContent);
+      more.addEventListener('click', function () { openModal(card, more); });
+      if (actionsEl) actionsEl.prepend(more);
+      else bioEl.insertAdjacentElement('afterend', more);
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    okBtn.addEventListener('click', closeModal);
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+  })();
+</script>
+
+</BaseLayout>

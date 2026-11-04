@@ -56,10 +56,11 @@ Esperando o formulário próprio:
 - [x] Atualizar as 3 referências por nome nos comentários de HTML
       (`index.html`, `midia-kit/caravanas-2027/index.html`,
       `relatorio/2026/index.html`).
-- [x] Branch nova: `feat/monorepo-astro`. Saiu de `plano-2027`, **não** de
-      `main`: os 3 itens acima desta fase (a pasta `docs/`, o `.vercelignore` e
-      os comentários de HTML) só existem em `plano-2027`, que já contém `main`.
-      Sair de `main` desfaria o que a fase tem como feito.
+- [x] Branch nova: `feat/monorepo-astro`. Nasceu de `plano-2027` porque os 3
+      itens acima desta fase (a pasta `docs/`, o `.vercelignore` e os
+      comentários de HTML) só existiam lá. No mesmo dia a `plano-2027` entrou na
+      `main` pelo PR #6, com a mesma árvore, e a branch foi rebaseada em
+      `origin/main` — está onde o checklist mandava.
 - [x] `README.md` da raiz reescrito como índice do monorepo: mapa das pastas,
       como subir (`docker compose up`, a partir da Fase 3) e índice de `docs/`.
       As duas seções de detalhe (build do design system e mídia kit) ficaram no
