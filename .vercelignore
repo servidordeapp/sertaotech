@@ -2,9 +2,9 @@
 # site/ (confirmado no build de 2026-11-04). Por isso /site NÃO pode estar aqui:
 # apagava o próprio projeto antes do build.
 
-# Fora do deploy: material interno para patrocinadores (ver docs/RELATORIO-PATROCINADORES-2026.md)
-/relatorio
+# Documentação de negócio: não é site.
 /docs
 
-# Backend Laravel: não é servido pela Vercel (deploy próprio, por FTPS).
+# Backend Laravel: não é servido pela Vercel (deploy próprio, por rsync/SSH —
+# ver .github/workflows/deploy-api.yml).
 /api

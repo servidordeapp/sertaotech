@@ -5,6 +5,7 @@
  * BaseLayout e do grafo de `lib/schema.ts`.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditionBanner from '../../components/EditionBanner.astro';
 import FooterCols2026 from '../../components/FooterCols2026.astro';
 import { graph, organization, website, webpage, breadcrumb, ID } from '../../lib/schema';
 import caravanasSchema from '../../data/caravanas-schema.json';
@@ -37,6 +38,8 @@ const jsonLd = graph(
   brandHref="/"
   footerAbout={"09 de outubro de 2026 · UFDPar, Parnaíba - PI. Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia."}
 >
+
+<EditionBanner ano={2026} proxima={2027} slot="pre-header" />
 
 <main>
 

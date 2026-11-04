@@ -6,7 +6,7 @@ Sugestão: imprimir a partir do VS Code (Markdown PDF), Typora ou Pandoc — as 
 -->
 
 # ROTEIRO — CERIMONIALISTA
-**Sertão Tech 2026 · 2ª edição** — 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 14h às 21h30
+**Sertão Tech 2026 · 2ª edição** — 09 de outubro de 2026 · UFDPar, Campus Ministro Reis Velloso · Parnaíba - PI · 14h às 21h10
 
 > **Legenda:** 🎤 fala em voz alta · ⏱️ horário previsto · ⚠️ atenção da produção
 > Textos entre `[colchetes]` devem ser confirmados com a organização antes do evento.
@@ -20,7 +20,7 @@ Sugestão: imprimir a partir do VS Code (Markdown PDF), Typora ou Pandoc — as 
 - Sempre que anunciar alguém: **nome → cargo/empresa → título da fala**. Nessa ordem.
 - Ao encerrar cada fala: agradecer pelo nome, pedir palmas, emendar no próximo horário.
 - Se atrasar: cortar o comentário livre, manter só nome, cargo e título.
-- Pronúncias: **Adryanne** (Ádriane) · **Sâmyla** (Sâmila) · **Celenny** (Selêni) · **Katriane** (Katriâne) · **Feitoza** (Feitóza).
+- Pronúncias: **Adryanne** (Adriane) · **Sâmyla** (Sâmila) · **Celenny** (Selêni) · **Katriane** (Katriâne) · **Feitoza** (Feitóza) · **Bea** (Bía).
 - Minicursos são **em salas separadas**, em paralelo ao palco principal. Reforçar isso 3 vezes ao longo da tarde.
 
 <div style="page-break-after: always"></div>
@@ -31,35 +31,35 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 | Início | Fim | Atividade | Duração |
 |---|---|---|---|
-| 14h00 | 14h30 | Credenciamento e networking | 30 min |
-| 14h30 | 14h40 | Abertura oficial | 10 min |
-| 14h40 | 15h10 | Palestra — Adryanne Kelly | 30 min |
+| 14h00 | 14h25 | Credenciamento e networking | 25 min |
+| 14h25 | 14h35 | Abertura oficial | 10 min |
+| 14h35 | 15h05 | Palestra — Adryanne Kelly | 30 min |
 | 15h00 | 17h00 | Minicursos 1 e 2 (salas separadas, em paralelo) | 2h |
-| 15h10 | 15h25 | MicroTalk — Fernando Melo | 15 min |
-| 15h25 | 15h40 | MicroTalk — Kauê Victor | 15 min |
-| 15h40 | 16h10 | Palestra — Vitoria Neris | 30 min |
-| 16h10 | 16h25 | MicroTalk — Isaac Costa | 15 min |
-| 16h25 | 16h55 | Palestra — Sandro Daniel Garcia | 30 min |
-| 16h55 | 17h25 | Roda de conversa — 4 convidadas | 30 min |
-| 17h25 | 17h55 | Coffee break e networking | 30 min |
-| 17h55 | 18h10 | MicroTalk — Dione Bastos | 15 min |
-| 18h10 | 18h40 | Palestra — Silvia Azevedo | 30 min |
-| 18h40 | 18h55 | MicroTalk — Vilmar Aguiar | 15 min |
-| 18h55 | 19h25 | Palestra — Jacson Santos Silva | 30 min |
-| 19h25 | 19h40 | MicroTalk — Ariel Teles | 15 min |
-| 19h40 | 20h10 | Palestra — Sebastião Galeno | 30 min |
-| 20h10 | 20h20 | Momento Patrocinador Ouro + sorteio | 10 min |
-| 20h20 | 21h00 | Keynote — Alessandro Feitoza | 40 min |
-| 21h00 | 21h15 | Sorteio de brindes e agradecimentos | 15 min |
-| 21h15 | 21h30 | Encerramento oficial e foto | 15 min |
+| 15h05 | 15h20 | MicroTalk — Fernando Melo | 15 min |
+| 15h20 | 15h35 | MicroTalk — Dione Bastos | 15 min |
+| 15h35 | 16h05 | Palestra — Vitoria Neris | 30 min |
+| 16h05 | 16h20 | MicroTalk — Isaac Costa | 15 min |
+| 16h20 | 16h50 | Palestra — Sandro Daniel Garcia | 30 min |
+| 16h50 | 17h20 | Roda de conversa — 4 convidadas | 30 min |
+| 17h20 | 17h45 | Coffee break e networking | 25 min |
+| 17h45 | 18h00 | MicroTalk — Kauê Victor | 15 min |
+| 18h00 | 18h30 | Palestra — Silvia Azevedo | 30 min |
+| 18h30 | 18h45 | MicroTalk — Paula Barros | 15 min |
+| 18h45 | 19h15 | Palestra — Jacson Santos Silva | 30 min |
+| 19h15 | 19h30 | MicroTalk — Ariel Teles | 15 min |
+| 19h30 | 20h00 | Palestra — Thiago Monteiro | 30 min |
+| 20h00 | 20h05 | Momento Patrocinador Ouro + sorteio | 5 min |
+| 20h05 | 20h45 | Keynote — Alessandro Feitoza | 40 min |
+| 20h45 | 20h55 | Sorteio de brindes e agradecimentos | 10 min |
+| 20h55 | 21h10 | Encerramento oficial e foto | 15 min |
 
 <div style="page-break-after: always"></div>
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 01 — ⏱️ 14h00 → 14h30 · CREDENCIAMENTO E NETWORKING
+## BLOCO 01 — ⏱️ 14h00 → 14h25 · CREDENCIAMENTO E NETWORKING
 
-**Duração: 30 min** · próxima atividade: Abertura Oficial, 14h30.
+**Duração: 25 min** · próxima atividade: Abertura Oficial, 14h25.
 
 🎤 *(microfone de ambiente, tom leve, pode repetir ao longo dos 30 minutos)*
 
@@ -69,37 +69,53 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 >
 > Aproveitem esses minutos pra conhecer gente nova. Esse evento é feito de conversa: ao seu lado tem estudante, tem profissional, tem quem tá começando agora e tem quem já roda há anos. Puxe assunto.
 >
-> Nossa programação começa pontualmente às **14h30**. Peço que, até lá, todo mundo já esteja acomodado no auditório.
+> Nossa programação começa pontualmente às **14h25**. Peço que, até lá, todo mundo já esteja acomodado no auditório.
 
 ⚠️ Avisar a produção quando o auditório estiver com ~70% de ocupação.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 02 — ⏱️ 14h30 → 14h40 · ABERTURA OFICIAL
+## BLOCO 02 — ⏱️ 14h25 → 14h35 · ABERTURA OFICIAL
 
-**Duração: 10 min** · próxima atividade: palestra da Adryanne Kelly, 14h40.
+**Duração: 10 min** · próxima atividade: palestra da Adryanne Kelly, 14h35.
 
 🎤
 
 > Boa tarde a todas e a todos! Está oficialmente aberta a **segunda edição do Sertão Tech**.
 >
-> Meu nome é `[nome do cerimonialista]` e eu vou conduzir a nossa programação até as 21h30 de hoje.
+> Meu nome é **Bia Thereza** e eu vou conduzir a nossa programação até as 21h10 de hoje.
 >
 > O Sertão Tech nasceu de uma ideia simples: **tecnologia de ponta também se faz no interior**. Aqui, no norte do Piauí, com gente daqui, com histórias daqui. Hoje somos um dia inteiro de palestras, microtalks, minicursos e roda de conversa — pra estudante, pra profissional e pra quem tá migrando de carreira.
 >
 > Esta edição é realizada com o apoio do **PHP PI**, da **PHPWomen PI** e do **Bacharelado em Inteligência Artificial da UFDPar**, que nos recebe nesta casa. Uma salva de palmas pra eles!
 >
-> Agradeço também aos nossos **patrocinadores** — `[ler nomes por cota: Ouro, Prata, Bronze]` —, que tornaram este evento possível.
+> Agradeço também aos nossos **patrocinadores** — na cota **Ouro**, **ParaDevs**; na cota **Prata**, **Programe Studio** e **Exa**; e na cota **Bronze**, **Retake Brasil**, **Bruno Neves Advogado**, **Cajutec** e **Cod3r** —, que tornaram este evento possível.
 >
-> Convido agora `[nome da organização / autoridade]` pra dar as boas-vindas oficiais.
+> E já que vocês estão com o crachá aí: ele foi feito pela **Bea Studio Criativo**, parceira desta edição. A Bea montou uma lojinha aqui no hall, com bottons, stickers, chaveiros e papelaria. Vale uma passada no intervalo pra conhecer os produtos.
+
+⚠️ Continua na próxima ficha (Bloco 02-B), sem pausa.
+
+<div style="page-break-after: always"></div>
+
+## BLOCO 02-B — ⏱️ 14h25 → 14h35 · ABERTURA OFICIAL (continuação)
+
+Continuação do bloco anterior · ler na sequência, sem pausa · próxima atividade: palestra da Adryanne Kelly, 14h35.
+
+🎤
+
+> Os momentos do Sertão Tech estão sendo registrados pela **Analice** — videomaker, storymaker e apaixonada por criar, ela transforma o que acontece aqui em histórias que ficam na memória e nas redes sociais. Quer ter o seu evento ou a sua marca registrados com olhar criativo? Procure ela e conheça o seu trabalho!
+>
+> Contato: 📞 **(86) 99549-3174** · 📩 **analicevideomaker@gmail.com**
+>
+> Convido agora a **Maria Katriane**, da organização do Sertão Tech e representante da **PHPWomen PI**, pra dar as boas-vindas oficiais.
 
 ⚠️ Fala institucional: até 5 minutos. Sinalizar com o cartaz de tempo.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 03 — ⏱️ 14h40 → 15h10 · PALESTRA · ADRYANNE KELLY
+## BLOCO 03 — ⏱️ 14h35 → 15h05 · PALESTRA · ADRYANNE KELLY
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade no palco: MicroTalk do Fernando Melo, 15h10.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade no palco: MicroTalk do Fernando Melo, 15h05.
 
 🎤 **Abertura:**
 
@@ -113,32 +129,39 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Adryanne! Uma salva de palmas.
+> Muito obrigada, Adryanne! Uma salva de palmas.
 >
 > Fica o recado: privacidade não é etapa final, é decisão de arquitetura.
+
+⚠️ **Aviso dos minicursos (Bloco 04):** não interromper a palestra. Ler o aviso completo **na transição para as perguntas**, antes de abrir o microfone pro público. Depois das perguntas, logo após este encerramento, ler o **reforço curto** do Bloco 04.
 
 <div style="page-break-after: always"></div>
 
 ## BLOCO 04 — ⏱️ 15h00 → 17h00 · MINICURSOS · TRILHA PARALELA
 
 **Duração: 2h**, em salas separadas · o palco principal segue normalmente durante todo esse tempo.
-⚠️ Ler este bloco por volta das **14h55**, antes da palestra da Adryanne terminar, para dar tempo do deslocamento.
+⚠️ **Nunca interromper a palestrante.** Ler o aviso completo quando a Adryanne terminar o conteúdo, **antes de abrir as perguntas** (por volta das 14h55), para dar tempo do deslocamento. Depois das perguntas, ler o reforço curto.
+⚠️ Antes das 15h, entregar a **lista de presença impressa** (`cerimonial/lista-presenca-minicursos.html`) em cada sala e preencher o número da sala.
 
-🎤 *(aviso importante — falar devagar e repetir)*
+🎤 **Aviso completo** *(antes das perguntas — falar devagar)*
 
-> Atenção, pessoal! Neste momento começam os nossos **dois minicursos**, que acontecem **ao mesmo tempo, em salas separadas**, em paralelo à programação do palco principal. Eles vão das **15h às 17h**.
+> Antes de abrirmos as perguntas, um aviso importante! Às **15h** começam os nossos **dois minicursos**, que acontecem **ao mesmo tempo, em salas separadas**, em paralelo à programação do palco principal. Eles vão das **15h às 17h**.
 >
 > **Minicurso 1** — com **Germano Gomes**, engenheiro de software, desenvolvedor há 8 anos e hobbista em jogos há 12, CEO de uma empresa de tecnologia e professor. Tema: **"Cardinal — um simulador de mundos para desenvolvedores de jogos"**. Sala `[número]`.
 >
 > **Minicurso 2** — com **Rodrigo Castro**, o "RED" das comunidades, Desenvolvedor Full Stack Sênior na **LWSA**, especializado em Flutter e Laravel, ativo na PHP com Rapadura, He4rt Developers e Flutterando. Tema: **"O Kit do Freelancer Ágil: MVP do zero com Laravel, Flutter, Cockpit e IA"**. Sala `[número]`.
 >
-> Quem se inscreveu num minicurso, dirija-se agora à sala correspondente. Nossa equipe está na porta pra orientar. Quem fica no auditório, continuamos com a programação do palco em instantes.
+> Os minicursos são abertos a todos os participantes, não precisa de inscrição separada: é só escolher um e se dirigir à sala. Lá dentro vai passar uma **lista de presença** — não esqueçam de assinar. Nossa equipe está na porta pra orientar. Quem fica no auditório, seguimos agora com as perguntas pra Adryanne.
+
+🎤 **Reforço** *(após as perguntas, logo depois do encerramento da Adryanne)*
+
+> Reforçando: os **minicursos** já começaram! **Germano Gomes** na sala `[número]` e **Rodrigo Castro** na sala `[número]`. Quem quiser participar, pode seguir agora e assinar a lista de presença na sala — a equipe está na porta pra orientar. Quem fica, continuamos aqui no palco principal.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 05 — ⏱️ 15h10 → 15h25 · MICROTALK · FERNANDO MELO
+## BLOCO 05 — ⏱️ 15h05 → 15h20 · MICROTALK · FERNANDO MELO
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Kauê Victor, 15h25.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Dione Bastos, 15h20.
 
 🎤 **Abertura:**
 
@@ -152,35 +175,35 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Obrigado, Fernando! Palmas pra ele.
+> Obrigada, Fernando! Palmas pra ele.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 06 — ⏱️ 15h25 → 15h40 · MICROTALK · KAUÊ VICTOR
+## BLOCO 06 — ⏱️ 15h20 → 15h35 · MICROTALK · DIONE BASTOS
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Vitoria Neris, 15h40.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Vitoria Neris, 15h35.
 
 🎤 **Abertura:**
 
-> Nosso próximo MicroTalk fala de uma coisa que quase ninguém ensina na faculdade: como você se posiciona.
+> Seguimos com um tema que quase todo mundo aqui já sentiu na pele.
 >
-> Recebo o **Kauê Victor**, embaixador da **Stellar in Brazil** e da **Porto Indie**. Estudante de Análise e Desenvolvimento de Sistemas, estuda Back-End com Laravel, Blockchain e desenvolvimento de jogos, participa de comunidades em todo o Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.
+> Recebo o **Dione Bastos**, Blockchain Engineer na **Nearx**. Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. É Mentor Técnico e Embaixador da rede **Stellar na América Latina**.
 >
-> O tema é **"Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais"**.
+> O tema é **"Como lidar com a síndrome do impostor"**.
 >
-> Com vocês, Kauê Victor!
+> Com vocês, Dione Bastos!
 
 🎤 **Encerramento:**
 
-> Valeu, Kauê! Uma salva de palmas.
+> Obrigada, Dione! Palmas.
 >
-> E fica a dica: sigam o Kauê e os nossos palestrantes nas redes. Networking também é depois do evento.
+> Se você se reconheceu nessa fala, saiba que você não é o único no auditório.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 07 — ⏱️ 15h40 → 16h10 · PALESTRA · VITORIA NERIS
+## BLOCO 07 — ⏱️ 15h35 → 16h05 · PALESTRA · VITORIA NERIS
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Isaac Costa, 16h10.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Isaac Costa, 16h05.
 
 🎤 **Abertura:**
 
@@ -194,13 +217,13 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Vitoria! Palmas.
+> Muito obrigada, Vitoria! Palmas.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 08 — ⏱️ 16h10 → 16h25 · MICROTALK · ISAAC COSTA
+## BLOCO 08 — ⏱️ 16h05 → 16h20 · MICROTALK · ISAAC COSTA
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Sandro Daniel Garcia, 16h25.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Sandro Daniel Garcia, 16h20.
 
 🎤 **Abertura:**
 
@@ -214,13 +237,13 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Obrigado, Isaac! Uma salva de palmas.
+> Obrigada, Isaac! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 09 — ⏱️ 16h25 → 16h55 · PALESTRA · SANDRO DANIEL GARCIA
+## BLOCO 09 — ⏱️ 16h20 → 16h50 · PALESTRA · SANDRO DANIEL GARCIA
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Roda de Conversa, 16h55.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Roda de Conversa, 16h50.
 
 🎤 **Abertura:**
 
@@ -234,15 +257,15 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Sandro! Palmas pra ele.
+> Muito obrigada, Sandro! Palmas pra ele.
 
 ⚠️ Confirmar com a produção: 4 cadeiras no palco para a roda de conversa a seguir.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 10 — ⏱️ 16h55 → 17h25 · RODA DE CONVERSA (parte 1 — chamada)
+## BLOCO 10 — ⏱️ 16h50 → 17h20 · RODA DE CONVERSA (parte 1 — chamada)
 
-**Roda de conversa: 30 min** no total, incluindo as perguntas do público · próxima atividade: coffee break, 17h25.
+**Roda de conversa: 30 min** no total, incluindo as perguntas do público · próxima atividade: coffee break, 17h20.
 
 🎤
 
@@ -255,11 +278,11 @@ Referência rápida de início e fim de cada atividade. Os tempos já incluem as
 *(chamar uma a uma, com pausa para aplausos — texto no bloco seguinte)*
 
 ⚠️ Microfone volante disponível a partir dos 15 minutos finais.
-⚠️ Sinalizar os 5 minutos finais da roda, às 17h20.
+⚠️ Sinalizar os 5 minutos finais da roda, às 17h15.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 11 — ⏱️ 16h55 → 17h25 · RODA DE CONVERSA (parte 2 — apresentação das convidadas)
+## BLOCO 11 — ⏱️ 16h50 → 17h20 · RODA DE CONVERSA (parte 2 — apresentação das convidadas)
 
 Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
@@ -277,53 +300,61 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Que conversa! Obrigado, Maria Katriane, Bia Thereza, Sâmyla e Celenny. Palmas mais uma vez!
+> Que conversa! Obrigada, Maria Katriane, Bia Thereza, Sâmyla e Celenny. Palmas mais uma vez!
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 12 — ⏱️ 17h25 → 17h55 · COFFEE BREAK & NETWORKING
+## BLOCO 12 — ⏱️ 17h20 → 17h45 · COFFEE BREAK & NETWORKING
 
-**Duração: 30 min** · próxima atividade: MicroTalk do Dione Bastos, 17h55.
+**Duração: 25 min** · próxima atividade: MicroTalk do Kauê Victor, 17h45.
 
 🎤
 
-> Chegou a hora do respiro: nosso **coffee break** está servido `[local]`.
+> Antes de liberar vocês, uns recados rápidos.
 >
-> São **30 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
+> No intervalo, aproveitem pra conhecer as lojinhas aqui no hall. A **Bea Studio Criativo**, a mesma que fez os crachás de hoje, tem bottons, stickers, chaveiros, agendas, cadernos e bloquinhos, tudo feito por ela, e aceita Pix e cartão. Instagram: **@bea_studio_criativo**.
 >
-> Quem está nos minicursos, eles terminam agora às 17h e vocês podem se juntar a nós.
+> A **Helen Crochê** traz bolsas, chaveiros, ligas e prendedores de cabelo, tudo em crochê. Instagram: **@jasminecroche**.
 >
-> Voltamos **pontualmente às 17h55** com a segunda metade da programação. Não se percam por aí — a noite ainda tem muita coisa boa, incluindo a nossa keynote e o sorteio de brindes.
+> E a lojinha da **Emily Horta** tem ecobags sustentáveis e personalizáveis. Instagram: **@parnaiba.eco**.
+>
+> Quem estava nos minicursos, já pode se juntar a nós.
+>
+> Voltamos **pontualmente às 17h45** com a segunda metade da programação. Não se percam por aí — a noite ainda tem muita coisa boa, incluindo o nosso keynote e o sorteio de brindes.
+>
+> Agora sim, chegou a hora do respiro: nosso **coffee break** está servido no hall, em frente ao auditório.
+>
+> São **25 minutos**. Aproveitem pra comer, tomar um café e — principalmente — conversar. Puxe assunto com quem palestrou, com quem tá do lado, com as empresas e comunidades presentes.
 
 ⚠️ Passar na produção: conferir sorteios, brindes e a lista dos patrocinadores para o Momento Ouro.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 13 — ⏱️ 17h55 → 18h10 · MICROTALK · DIONE BASTOS
+## BLOCO 13 — ⏱️ 17h45 → 18h00 · MICROTALK · KAUÊ VICTOR
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Silvia Azevedo, 18h10.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra da Silvia Azevedo, 18h00.
 
 🎤 **Abertura:**
 
-> De volta ao palco! E a gente retoma com um tema que quase todo mundo aqui já sentiu na pele.
+> De volta ao palco! E a gente retoma com uma coisa que quase ninguém ensina na faculdade: como você se posiciona.
 >
-> Recebo o **Dione Bastos**, Blockchain Engineer na **Nearx**. Engenheiro de Backend e Plataformas, bacharel em Sistemas de Informação, com experiência em NestJS, Python, Golang e Docker. É Mentor Técnico e Embaixador da rede **Stellar na América Latina**.
+> Recebo o **Kauê Victor**, embaixador da **Stellar in Brazil** e da **Porto Indie**. Estudante de Análise e Desenvolvimento de Sistemas, estuda Back-End com Laravel, Blockchain e desenvolvimento de jogos, participa de comunidades em todo o Norte e Nordeste e é admin da maior comunidade de desenvolvedores de jogos de Parnaíba.
 >
-> O tema é **"Como lidar com a síndrome do impostor"**.
+> O tema é **"Construindo sua Imagem: Posicionamento Estratégico em Comunidades e Redes Sociais"**.
 >
-> Com vocês, Dione Bastos!
+> Com vocês, Kauê Victor!
 
 🎤 **Encerramento:**
 
-> Obrigado, Dione! Palmas.
+> Valeu, Kauê! Uma salva de palmas.
 >
-> Se você se reconheceu nessa fala, saiba que você não é o único no auditório.
+> E fica a dica: sigam o Kauê e os nossos palestrantes nas redes. Networking também é depois do evento.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 14 — ⏱️ 18h10 → 18h40 · PALESTRA · SILVIA AZEVEDO
+## BLOCO 14 — ⏱️ 18h00 → 18h30 · PALESTRA · SILVIA AZEVEDO
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do Vilmar Aguiar, 18h40.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk da Paula Barros, 18h30.
 
 🎤 **Abertura:**
 
@@ -337,33 +368,33 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Silvia! Uma salva de palmas.
+> Muito obrigada, Silvia! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 15 — ⏱️ 18h40 → 18h55 · MICROTALK · VILMAR AGUIAR
+## BLOCO 15 — ⏱️ 18h30 → 18h45 · MICROTALK · PAULA BARROS
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Jacson Santos, 18h55.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Jacson Santos, 18h45.
 
 🎤 **Abertura:**
 
-> E se aquele seu projeto parado no terminal virasse negócio?
+> E se o caminho pra sua próxima vaga passasse por aprender a pensar como quem ataca?
 >
-> Recebo o **Vilmar Aguiar de Paula Segundo**, CEO do **Clube Charger**. Economista de formação com mente de desenvolvedor, atua na intersecção entre tecnologia, regulação e transição energética. Fundou e desenvolve o Clube Charger, plataforma implementada em eletropostos por todo o país. Tem MBA em Gestão de Energia, Petróleo e Gás e extensão em Mobilidade Elétrica pela Unicamp.
+> Recebo a **Paula Barros**, Analista de Segurança Sênior na **EXA**. Especializada em segurança ofensiva, atua em pentests, exercícios de red team e na sustentação de ferramentas de CTI e Attack Surface Management. É formada em Ciência da Computação pela UNICSUL e acumula certificações em segurança ofensiva e defensiva. Fora do trabalho, é mãe da Maya e do Anakin, e gosta de jogar videogame.
 >
-> O tema é **"Do terminal ao mercado: como transformar seu código em um negócio real"**.
+> O tema é **"Hackeando sua Carreira: Encontre Seu Caminho em Cibersegurança"**.
 >
-> Com vocês, Vilmar Aguiar!
+> Com vocês, Paula Barros!
 
 🎤 **Encerramento:**
 
-> Obrigado, Vilmar! Palmas pra ele.
+> Obrigada, Paula! Palmas pra ela.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 16 — ⏱️ 18h55 → 19h25 · PALESTRA · JACSON SANTOS SILVA
+## BLOCO 16 — ⏱️ 18h45 → 19h15 · PALESTRA · JACSON SANTOS SILVA
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do professor Ariel Teles, 19h25.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: MicroTalk do professor Ariel Teles, 19h15.
 
 🎤 **Abertura:**
 
@@ -377,13 +408,13 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Jacson! Uma salva de palmas.
+> Muito obrigada, Jacson! Uma salva de palmas.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 17 — ⏱️ 19h25 → 19h40 · MICROTALK · ARIEL TELES
+## BLOCO 17 — ⏱️ 19h15 → 19h30 · MICROTALK · ARIEL TELES
 
-**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Sebastião Galeno, 19h40.
+**MicroTalk: 15 min**, conteúdo + perguntas · próxima atividade: palestra do Thiago Monteiro, 19h30.
 
 🎤 **Abertura:**
 
@@ -397,33 +428,35 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Muito obrigado, professor Ariel! Palmas. E palmas também pra UFDPar, que abriu as portas pro Sertão Tech.
+> Muito obrigada, professor Ariel! Palmas. E palmas também pra UFDPar, que abriu as portas pro Sertão Tech.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 18 — ⏱️ 19h40 → 20h10 · PALESTRA · SEBASTIÃO GALENO
+## BLOCO 18 — ⏱️ 19h30 → 20h00 · PALESTRA · THIAGO MONTEIRO
 
-**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Momento Patrocinador Ouro, 20h10.
+**Palestra: 30 min**, conteúdo + perguntas · próxima atividade: Momento Patrocinador Ouro, 20h00.
 
 🎤 **Abertura:**
 
-> A próxima palestra tem um título provocativo — e é pra estudante prestar muita atenção.
+> Se a máquina escreve o código, o que sobra pra quem programa?
 >
-> Recebo o **Sebastião Galeno**, Software Engineer aqui de Parnaíba. Mestre em Ciência da Computação, com especialização em Inteligência Artificial e em redes de computadores e segurança corporativa. São mais de 10 anos desenvolvendo sistemas web para empresas nacionais e internacionais.
+> Recebo o **Thiago Monteiro**, fundador da **Paradevs**. Com atuação em mais de 23 países, é referência brasileira no desenvolvimento de negócios em blockchain — no ecossistema Web3 é conhecido como **BrazillianCare** e já liderou a expansão de mais de 150 protocolos internacionais para toda a América Latina. A Paradevs é um hub de inovação em tecnologias emergentes sediado aqui em **Parnaíba**. Ele também toca uma iniciativa social de educação tecnológica que já capacitou **1.500 desenvolvedores** do nordeste de forma gratuita.
 >
-> A palestra é **"Além do Código: Como usar IA para faturar antes de se formar"**.
+> O tema é **"Ser grande é entender conceitos e acompanhar tendências: o que significa ser DEV em um mundo comandado por prompts"**.
 >
-> Com vocês, Sebastião Galeno!
+> Com vocês, Thiago Monteiro!
 
 🎤 **Encerramento:**
 
-> Muito obrigado, Sebastião! Uma salva de palmas.
+> Obrigada, Thiago! Uma salva de palmas.
+
+⚠️ Pronúncia do apelido no ecossistema: **BrazillianCare** (brazilian care).
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 19 — ⏱️ 20h10 → 20h20 · MOMENTO PATROCINADOR OURO
+## BLOCO 19 — ⏱️ 20h00 → 20h05 · MOMENTO PATROCINADOR OURO
 
-**Duração: 10 min** (até 3 min de apresentação institucional + sorteio) · próxima atividade: keynote, 20h20.
+**Duração: 5 min** (até 3 min de apresentação institucional + sorteio) · próxima atividade: keynote, 20h05.
 
 🎤
 
@@ -433,20 +466,20 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 *(após a apresentação — até 3 minutos)*
 
-> Muito obrigado, `[nome]`! E agora vamos ao que interessa: **sorteio de brindes**!
+> Muito obrigada, `[nome]`! E agora vamos ao que interessa: **sorteio de brindes**!
 >
 > `[realizar o sorteio conforme a mecânica definida — QR code / cupom / número de inscrição]`
 >
-> Parabéns aos sorteados! Quem não ganhou agora, calma: tem mais sorteio às 21h.
+> Parabéns aos sorteados! Quem não ganhou agora, calma: tem mais sorteio às 20h45.
 
 ⚠️ Apresentação institucional: **máximo 3 minutos**. Sinalizar com cartaz.
 ⚠️ Ter em mãos: lista de inscritos / mecânica do sorteio / brindes separados.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 20 — ⏱️ 20h20 → 21h00 · KEYNOTE · ALESSANDRO FEITOZA
+## BLOCO 20 — ⏱️ 20h05 → 20h45 · KEYNOTE · ALESSANDRO FEITOZA
 
-**Keynote: 40 min**, conteúdo + perguntas · próxima atividade: sorteio e agradecimentos, 21h00.
+**Keynote: 40 min**, conteúdo + perguntas · próxima atividade: sorteio e agradecimentos, 20h45.
 
 🎤 **Abertura:**
 
@@ -460,15 +493,15 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 
 🎤 **Encerramento:**
 
-> Que aula! Muito obrigado, Alessandro. Uma salva de palmas de pé pra ele!
+> Que aula! Muito obrigada, Alessandro. Uma salva de palmas de pé pra ele!
 
-⚠️ Sinalizar os 5 minutos finais da keynote, às 20h55.
+⚠️ Sinalizar os 5 minutos finais do keynote, às 20h40.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 21 — ⏱️ 21h00 → 21h15 · SORTEIO DE BRINDES E AGRADECIMENTOS
+## BLOCO 21 — ⏱️ 20h45 → 20h55 · SORTEIO DE BRINDES E AGRADECIMENTOS
 
-**Duração: 15 min** · próxima atividade: encerramento oficial, 21h15.
+**Duração: 10 min** · próxima atividade: encerramento oficial, 20h55.
 
 🎤
 
@@ -476,25 +509,31 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > `[realizar os sorteios — anunciar patrocinador e brinde a cada rodada]`
 >
-> Parabéns aos sorteados! E o agradecimento mais importante da noite vai pra quem bancou esse dia:
+> Parabéns aos sorteados!
 >
-> `[ler nomes dos patrocinadores — Ouro, Prata e Bronze]`
+> Um agradecimento especial à **Bea Studio Criativo**, que produziu os 214 crachás desta edição, e também à **Helen Crochê** e à **Emily Horta**. As lojinhas delas ficam no hall até o fim, então passem lá na saída.
+>
+> E o agradecimento mais importante da noite vai pra quem bancou esse dia:
+>
+> Na cota **Ouro**, **ParaDevs**! Na cota **Prata**, **Programe Studio** e **Exa**! E na cota **Bronze**, **Retake Brasil**, **Bruno Neves Advogado**, **Cajutec** e **Cod3r**!
 >
 > E às nossas comunidades e apoiadores: **PHP PI**, **PHPWomen PI** e o **Bacharelado em Inteligência Artificial da UFDPar**. Palmas pra eles!
 >
-> Obrigado também a cada pessoa da **equipe de organização e voluntariado** — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.
+> Obrigada também a cada pessoa da **equipe de organização e voluntariado** — quem montou, carregou, credenciou e segurou a barra o dia inteiro. Podem levantar a mão aí! Uma salva de palmas.
+
+⚠️ Se a Bea doar um brinde, trocar a menção por: *"Esse próximo brinde é cortesia da Bea Studio Criativo, que fez os crachás de hoje e está com a lojinha aqui no hall!"* — e sortear na sequência.
 
 ⚠️ Chamar a equipe de organização pro palco ao final deste bloco.
 
 <div style="page-break-after: always"></div>
 
-## BLOCO 22 — ⏱️ 21h15 → 21h30 · ENCERRAMENTO OFICIAL
+## BLOCO 22 — ⏱️ 20h55 → 21h10 · ENCERRAMENTO OFICIAL
 
-**Duração: 15 min** · fim do evento às 21h30.
+**Duração: 15 min** · fim do evento às 21h10.
 
 🎤
 
-> Pessoal, foram sete horas e meia de programação: **7 palestras, 6 microtalks, 2 minicursos, uma roda de conversa** e 19 pessoas no palco. Tudo isso aqui, no norte do Piauí.
+> Pessoal, foram mais de sete horas de programação: **7 palestras, 6 microtalks, 2 minicursos, uma roda de conversa** e 19 pessoas no palco. Tudo isso aqui, no norte do Piauí.
 >
 > O Sertão Tech existe pra provar uma coisa: **não precisa sair daqui pra fazer tecnologia de verdade**. Se você chegou hoje sem conhecer ninguém e sai com um contato novo, uma ideia nova ou a coragem de mandar a sua primeira proposta de palestra — a gente fez o nosso trabalho.
 >
@@ -504,7 +543,7 @@ Mesma sessão do bloco anterior · ler na sequência, sem pausa.
 >
 > Pra fechar, peço que todo mundo venha pra frente do palco: vamos tirar a **foto oficial do Sertão Tech 2026**!
 >
-> Muito obrigado, boa noite, e até a próxima edição!
+> Muito obrigada, boa noite, e até a próxima edição!
 
 ⚠️ Foto oficial: fotógrafo posicionado antes da chamada.
 

@@ -9,11 +9,12 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "./scripts/hash-midia-kit.sh && astro build",
     "preview": "astro preview",
     "check": "astro check",
     "verify": "npm run build && ./scripts/verify-build.sh",
     "ds": "./scripts/build-ds.sh",
+    "midia-kit": "./scripts/hash-midia-kit.sh",
     "og": "node scripts/og-card.mjs"
   },
   "dependencies": {

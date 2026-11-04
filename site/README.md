@@ -38,6 +38,12 @@ public/              copiado byte a byte pro dist/, sem nenhum processamento
   css/article.css    tipografia de texto longo (páginas de conteúdo)
   assets/            imagens, logos, cards de Open Graph
   robots.txt
+  midia-kit/<ano>/   decks reveal.js do kit de patrocínio (ver abaixo)
+  midia-kit/*.css|js tema e init dos decks (GERADOS com hash — ver abaixo)
+  after/2026/        deck do encontro privado (noindex)
+  relatorio/2026/    relatório dos patrocinadores (noindex, sem link público)
+  apresentacoes/     hub interno dos decks (noindex)
+  impressos/         hub interno dos documentos de impressão (noindex)
   cerimonial/        documentos de impressão gerados por build-html.py
   mesa-redonda/      idem
   links/             stub de redirecionamento (noindex)
@@ -47,8 +53,9 @@ src/
   lib/site.ts        constantes de identidade (domínio, GA4, contatos)
   lib/schema.ts      construtores de JSON-LD
   data/              dados da edição do evento
+  midia-kit/         fonte do tema e do init dos decks (CSS e JS)
   pages/             uma página por rota
-scripts/             build do design system e geradores de arte
+scripts/             build do design system, hash dos assets dos decks e artes
 docs/seo-local.md    o que fazer fora do código (Search Console, GBP, links)
 ```
 
@@ -84,7 +91,9 @@ isso que o `npm run verify` checa cada um:
   variáveis do design system, nunca hex cru.
 - **Todo `<script>` leva `is:inline`.** Sem isso o Astro transforma em módulo
   ES, o que tira `gtag()` do escopo global e mata a analytics de patrocinador
-  em `/patrocinio` sem erro nenhum.
+  em `/patrocinio` sem erro nenhum. A única exceção é o bundle do
+  `@sentry/astro` (`/_astro/page.<hash>.js`), que o integration injeta em toda
+  página — o `verify` libera esse e barra qualquer outro.
 - **Todo `<img>` leva `width` e `height` reais** (dimensão do arquivo), pra
   reservar espaço e não causar layout shift.
 - **`fetchpriority="high"` só na imagem do topo da home.**
@@ -98,8 +107,10 @@ A estrutura de URL e o grafo de JSON-LD estão documentados em
 `src/lib/schema.ts`. Duas convenções que é fácil quebrar sem perceber:
 
 - **A home é sempre a edição vigente.** Cada edição passada ganha URL
-  permanente por ano (hoje `/2026` no site estático da raiz, que ainda não foi
-  portado). O `@id` `#event` significa sempre a edição corrente e mora na home.
+  permanente por ano (`/2026`, `/2026/palestrantes`, …) e a faixa
+  `<EditionBanner>` no topo manda quem cair lá pela busca para a edição
+  vigente. O `@id` `#event-<ano>` identifica cada edição; a vigente mora na
+  home.
 - **`/eventos-de-tecnologia-parnaiba` é a página-âncora.** Não fala de edição
   nenhuma, então sobrevive à troca de ano e acumula link e idade. É pra ela que
   as outras páginas apontam.
@@ -117,3 +128,54 @@ e `trailingSlash: false` (ou seja, `/patrocinio`, sem barra no fim). O sitemap
 é gerado pelo `@astrojs/sitemap` como `sitemap-index.xml`; existe um rewrite de
 `/sitemap.xml` pra ele, porque é `/sitemap.xml` que está enviado no Search
 Console.
+
+## Mídia kit e os decks de `public/`
+
+Um deck reveal.js por edição, carregado por CDN (sem build). `/midia-kit`
+redireciona para o ano mais recente. São HTML estático em `public/`: o Astro
+copia sem tocar, então nada ali passa pelo `BaseLayout` nem pelo hash do
+`_astro/`.
+
+```
+src/midia-kit/midia-kit.css     tema reveal compartilhado, só sobre os tokens de /ds/styles.css
+src/midia-kit/midia-kit.js      init compartilhado: reveal no desktop, página rolável no celular, export PDF
+public/midia-kit/icons.svg      sprite Lucide: <svg class="icon"><use href="/midia-kit/icons.svg#bot"/></svg>
+public/midia-kit/2026|2027/     um index.html por edição
+public/midia-kit/caravanas-2027/ kit das caravanas
+public/after/2026/              deck do After
+public/relatorio/2026/          relatório dos patrocinadores
+```
+
+O CSS e o JS do tema **moram em `src/midia-kit/`** e são publicados em
+`public/midia-kit/` com o hash do conteúdo no nome
+(`midia-kit.<hash>.css`), com as referências dos decks reescritas pelo
+`scripts/hash-midia-kit.sh`. Isso roda sozinho no `npm run build`, e dá pra
+rodar à mão com `npm run midia-kit`. É o que permite a regra
+`Cache-Control: immutable` do `vercel.json` para esses dois arquivos: sem hash
+no nome, mudar o tema exigiria esperar o `max-age` ou um purge no Cloudflare.
+**Edite sempre os arquivos de `src/midia-kit/`** — os de `public/` são
+regerados e commitados junto.
+
+Para começar uma edição nova (ex.: 2028):
+
+1. `cp -r public/midia-kit/2027 public/midia-kit/2028` e edite só o conteúdo
+   das `<section>`. As notas do palestrante ficam em `<aside class="notes">`
+   (tecla `S` abre a visão do palestrante).
+2. Aponte o redirect de `/midia-kit` no `vercel.json` para o ano novo. Os anos
+   antigos continuam no ar em `/midia-kit/<ano>`.
+3. Rode `npm run build`: o hash dos assets entra no HTML novo.
+
+No kit de 2027, os benefícios das cotas tradicionais são um
+`<div class="placeholder">` por cota; o comentário acima desse slide diz como
+substituir. Os contatos estão no último slide.
+
+- **Celulares** (≤ 900px): o reveal não é iniciado; os slides viram uma página
+  rolável (`.mk-flow` no CSS).
+- **PDF**: `/midia-kit/<ano>?print-pdf` monta uma página 1920×1080 por slide e
+  abre o diálogo de impressão ("Salvar como PDF"). Slides escondidos ficam de
+  fora.
+- **`/relatorio/2026` fica no deploy, mas fora do Google**: `noindex, nofollow`
+  no HTML, `Disallow: /relatorio/` no `robots.txt` e nenhum link em página
+  pública — só no hub interno `/apresentacoes`. O link é mandado por WhatsApp
+  a quem patrocinou. `/after/2026`, `/apresentacoes` e `/impressos` são
+  `noindex` pelo HTML e também ficam fora do sitemap.

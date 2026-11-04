@@ -209,11 +209,14 @@ está feita e comentada.
     astro.config.mjs
     package.json
     src/
-      layouts/  components/  content/  data/  lib/  pages/
-    public/                   # passthrough: decks, impressos, llms.txt, assets
-    scripts/                  # build-ds.sh, og-card.mjs, …
-  api/                        # futuro, serviço próprio no compose
+      layouts/  components/  data/  lib/  pages/  midia-kit/
+    public/                   # passthrough: decks, impressos, relatório, llms.txt, assets
+    scripts/                  # build-ds.sh, hash-midia-kit.sh, og-card.mjs, …
+  api/                        # Laravel, serviço próprio no compose
+  docker/                     # init dos containers do compose
 ```
+
+Foi para aí que a migração chegou em 2026-11-04: a raiz não serve mais HTML.
 
 ---
 
@@ -364,17 +367,43 @@ para a stack nova.
 
 ## Decisões em aberto
 
-- [ ] `/relatorio` fica fora do deploy ou entra com Deployment Protection?
-- [ ] `build-ds.sh` sai (tokens importados pelo Astro) ou fica como está?
-- [ ] `midia-kit.css` / `.js` vão para `src/` (hash automático) ou ficam em
-      `public/` com rename manual?
+- [x] ~~`/relatorio` fica fora do deploy ou entra com Deployment Protection?~~
+      — **dentro do deploy, fora do Google** (2026-11-04). Está em
+      `site/public/relatorio/2026`, com `noindex, nofollow`,
+      `Disallow: /relatorio/` no `robots.txt`, fora do sitemap e sem link em
+      página pública (só no hub interno `/apresentacoes`). O link vai por
+      WhatsApp a quem patrocinou, e Deployment Protection cobraria login de
+      quem recebe. Se um dia precisar ser de fato privado, aí sim.
+- [x] ~~`build-ds.sh` sai ou fica?~~ — **fica, só em `site/`** (2026-11-04). O
+      motivo dele não mudou: `ds/styles.css` é concatenação de tokens para
+      economizar as 8 requisições em cadeia do `@import`, e o Astro não faz
+      isso com arquivo de `public/`. A cópia da raiz morreu na Fase 10; a que
+      vale é `site/scripts/build-ds.sh`, por `npm run ds`, sobre
+      `site/public/ds/tokens/`.
+- [x] ~~`midia-kit.css` / `.js` vão para `src/` ou ficam em `public/` com
+      rename manual?~~ — **os dois** (2026-11-04). A fonte foi para
+      `site/src/midia-kit/` e o `site/scripts/hash-midia-kit.sh` publica
+      `public/midia-kit/midia-kit.<hash>.css|js`, reescrevendo a referência nos
+      5 HTML que os consomem (4 decks + relatório). Roda dentro do
+      `npm run build`, é idempotente, e destrava `Cache-Control: immutable`
+      para os dois no `vercel.json`. O hash automático do Astro não serviria:
+      os decks são HTML de `public/`, que ele copia sem olhar.
 - [x] ~~Blog da `feat/blog`~~ — **fora desta migração** (2026-11-03). Os 8 posts,
       as rotas `/blog`, o feed RSS, a content collection e os componentes só de
       post saíram na Fase 2. O que pesou: com os posts fora, 7 links internos
       ficavam quebrados e o `/blog` ia ao ar como página vazia; manter o blog
       significava publicar conteúdo da era "2025 é o arquivo" sem revisão.
       Tudo está em `648438f` se o blog voltar.
-- [x] ~~`api/` no compose da raiz~~ — **fora, por ora** (2026-11-03). O `api/`
+- [x] ~~`api/` no compose da raiz~~ — **dentro** (2026-11-04). Decisão anterior
+      revista: o `docker-compose.yml` da raiz tem `site`, `api` e `mysql`, e a
+      `api` sobe pelo `api/Dockerfile` (PHP 8.5 com o composer rodando dentro
+      da imagem), não pela imagem do Sail — que era justamente o que exigia
+      `composer install` no host. O `api/compose.yaml` continua no repositório
+      para quem usa o comando `sail`, mas não é incluído. A `api/` em si foi
+      feita fora desta migração, em worktree própria (PR #8), e depois trazida
+      para o monorepo: não passou pelo porte de conteúdo.
+
+      Registro da decisão anterior: **fora, por ora** (2026-11-03). O `api/`
       nasceu em Laravel no PR #8 e já vem com a stack do Sail em
       `api/compose.yaml`, que constrói de `./vendor/laravel/sail/runtimes/8.5`.
       Sem `composer install` não há `vendor/`, e incluir esse arquivo no compose
@@ -383,6 +412,25 @@ para a stack nova.
 
 ## Histórico
 
+- 2026-11-04 — **Migração concluída.** Fases 7 e 8 fechadas (Root Directory
+  `site/`, preset Astro, Node 24; HTML sem "Cache Everything" e `/_astro/*`
+  chegando `immutable` pelo Cloudflare) e Fase 10 feita: a raiz do repositório
+  deixou de servir HTML — `index.html`, `2026/`, `assets/`, `css/`, `ds/`,
+  decks, hubs internos, `scripts/`, `sitemap.xml`, `robots.txt`, `llms.txt` e o
+  `vercel.json` da raiz saíram, e sobraram `site/`, `api/`, `docs/`, `docker/`
+  e a infra do monorepo. A comparação arquivo por arquivo antes de apagar achou
+  três coisas que só existiam na raiz: 9 fotos de palestrante que davam 404 em
+  produção, a revisão do dia do evento no roteiro do cerimonial e no guia da
+  mesa redonda, e a faixa `edition-banner` das 4 páginas de `/2026`, que o
+  porte tinha perdido (virou `EditionBanner.astro`). As 3 decisões em aberto
+  foram resolvidas (`/relatorio` dentro do deploy e fora do Google,
+  `build-ds.sh` fica em `site/`, `midia-kit.css|js` com hash no nome) e o
+  `npm run verify` ganhou dois consertos: o bundle do Sentry deixou de ser
+  falso positivo e o `paginas()` parou de expandir glob antes do `find`.
+  Ficou de fora, de propósito: `Icon.astro` no lugar dos 242 SVG inline, os 19
+  palestrantes de 2026 como collection, e a parte da Fase 9 em suspenso
+  (números contra os documentos de negócio, GA4 no DebugView, PageSpeed,
+  render do `?print-pdf`, clone limpo).
 - 2026-11-03 — Fase 3: `docker-compose.yml` na raiz com o serviço `site`,
   `docker compose up` servindo o dev server em 4321. Imagem ficou em
   `node:24-bookworm-slim` (o fallback da decisão 5) por causa dos binários do

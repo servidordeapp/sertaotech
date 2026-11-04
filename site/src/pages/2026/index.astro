@@ -9,6 +9,7 @@
  * para edição mora na home.
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import EditionBanner from '../../components/EditionBanner.astro';
 import SponsorTelemetry from '../../components/SponsorTelemetry.astro';
 import LogoWall from '../../components/LogoWall.astro';
 import FooterCols2026 from '../../components/FooterCols2026.astro';
@@ -46,6 +47,8 @@ const jsonLd = graph(
   cta={CTA_2026}
   footerAbout={"09 de outubro de 2026 · UFDPar, Parnaíba - PI. Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia."}
 >
+
+<EditionBanner ano={2026} proxima={2027} slot="pre-header" />
 
 <main>
 
