@@ -40,7 +40,7 @@ env:
 jobs:
   quality:
     name: Quality gate & build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     # Todo comando `run` deste job executa dentro de api/ (não afeta os `uses`).
     defaults:
@@ -74,7 +74,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -114,7 +114,7 @@ jobs:
 
   sync:
     name: rsync via SSH
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: quality
 
     # Era FTPS, mas o cPanel exige reuso da sessao TLS do canal de controle no
@@ -123,7 +123,7 @@ jobs:
     # rsync usa o mesmo SSH do post-deploy, criptografado e com delta real.
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Install rsync & sshpass
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync sshpass
@@ -146,14 +146,14 @@ jobs:
 
   post-deploy:
     name: SSH post-deploy
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     needs: sync
 
     steps:
       # Idempotente: pode ser re-executado sozinho após uma falha de SSH, sem
       # refazer o build nem o upload.
       - name: Executing remote ssh commands using password
-        uses: appleboy/ssh-action@master
+        uses: appleboy/ssh-action@v1.2.5
         with:
           host: ${{ vars.SSH_HOST || vars.FTP_HOST }}
           username: ${{ vars.FTP_USER }}
