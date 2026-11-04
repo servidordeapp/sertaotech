@@ -111,34 +111,47 @@ Notas da execução:
 
 ## Fase 2 — Listas de espera (regras 4, 5 e 6)
 
-**Decisão:** Google Forms. É a ferramenta que o projeto já usa, não exige
-código e as respostas caem no Sheets. Contra: a pessoa sai do site. Os forms
-são criados na conta Google da organização, com o conteúdo abaixo.
+> **Decisão revista em 2026-11-03: Google Forms está fora.** As três listas
+> vão virar **formulário próprio**, feito no site. Motivo: a pessoa não sai
+> mais do site e os dados ficam com a organização.
+>
+> O que continua valendo desta fase: o **conteúdo** — perguntas, tipos,
+> obrigatoriedade e o bloco de LGPD das seções abaixo. É a especificação do
+> formulário próprio, só muda a implementação.
+>
+> O que saiu: os passos de criar form no Google, vincular ao Planilhas e
+> coletar o `viewform`. `scripts/listas-de-espera.gs` ficou morto — apagar
+> quando o formulário próprio existir (ou antes, está no histórico do git).
+>
+> Em aberto, para a fase do formulário próprio: onde a resposta é gravada
+> (banco, planilha ou e-mail), e se precisa de `api/` — hoje o site é estático.
 
-**Atalho:** `scripts/listas-de-espera.gs` (Google Apps Script) cria os 3 forms
-de uma vez, já com as configurações e a planilha vinculada (uma aba por form).
-Passo a passo no topo do arquivo. Ele cobre os três primeiros itens abaixo.
-Sem o script, faça à mão com o conteúdo das seções seguintes.
+**Pendente, bloqueando os 11 botões de `index.html`:**
 
-- [ ] Criar os 3 forms (conteúdo abaixo, pronto para colar).
-- [ ] Em cada form: **Configurações → Respostas → Coletar e-mails: "Não
-      coletar"** (o e-mail já é uma pergunta) e **"Limitar a 1 resposta":
-      desligado** (não exige login Google, que derruba a conversão).
-- [ ] Ligar cada form a uma planilha (**Respostas → Vincular ao Planilhas**).
-      Pode ser a mesma planilha, uma aba por form.
-- [ ] Abrir cada link `viewform` numa janela anônima: tem que abrir sem login
-      e o bloco LGPD tem que ser a última seção.
-- [ ] Testar cada form com uma resposta falsa e apagar depois.
-- [ ] Colar os 3 links `.../viewform` aqui. A Fase 3 usa esses links nos
-      cards, e a Fase 4 usa nos eventos `waitlist_click`.
-  - Participante: `<link>`
-  - Palestrante: `<link>`
-  - Patrocinador: `<link>`
+- [ ] Definir e construir o formulário próprio (3 listas: participante,
+      palestrante, patrocinador), com o conteúdo das seções abaixo e o bloco
+      de LGPD como última seção.
+- [ ] Form 1: caixa opcional de compartilhamento com patrocinadores, com as 4
+      regras da seção "Bloco de compartilhamento" — principalmente gravar a
+      versão do texto aceita e não bloquear o envio.
+- [ ] Página pública de patrocinadores e parceiros de 2027, citada no texto do
+      compartilhamento. Sem ela a finalidade fica indeterminada.
+- [ ] Revisão jurídica do bloco de LGPD e do de compartilhamento.
+- [ ] Decidir onde as respostas caem e como a organização as lê.
+- [ ] Trocar os 3 marcadores `FORM_*` em `index.html` pelas URLs reais.
+      A Fase 4 continua medindo `waitlist_click` pelo `data-waitlist`, que não
+      depende do destino.
 
-### Bloco LGPD (igual nos três)
+**Decisão antiga (Google Forms), mantida só como registro:**
+
+- [x] ~~Criar os 3 forms no Google Forms.~~ Cancelado.
+- [x] ~~Vincular ao Planilhas, uma aba por form.~~ Cancelado.
+
+### Bloco LGPD
 
 Vai como a **última seção** de cada form: um bloco de texto seguido da
-pergunta de consentimento.
+pergunta de consentimento. O texto abaixo é igual nos três; o Form 1 ganha
+um segundo bloco, de compartilhamento (ver adiante).
 
 > **Como usamos seus dados**
 >
@@ -158,6 +171,55 @@ Troque `{FINALIDADE}` por:
 Pergunta "Consentimento" (caixa de seleção, **obrigatória**), com uma única
 opção: "Li e concordo com o uso dos meus dados como descrito acima."
 
+Esta caixa cobre **só o uso interno**. Nada de compartilhamento entra aqui:
+autorização genérica é nula (LGPD art. 8 §4) e repasse para outro controlador
+exige consentimento específico (art. 7 §5). Juntar os dois numa caixa
+obrigatória invalida o consentimento do repasse e derruba a conversão de quem
+só quer saber a data do evento.
+
+### Bloco de compartilhamento — **só no Form 1 (participante)**
+
+Vem depois do bloco de LGPD, como penúltima coisa do form. Fora dos Forms 2 e
+3 de propósito: palestrante já fala direto com a organização, e patrocinador é
+o próprio parceiro.
+
+> **Compartilhamento com patrocinadores e parceiros (opcional)**
+>
+> Se você autorizar abaixo, compartilhamos seu nome, e-mail e WhatsApp com as
+> empresas e instituições que patrocinam ou apoiam a edição 2027 — a lista
+> delas fica publicada em sertaotech.com.br. Elas podem falar com você sobre
+> vagas, cursos e oportunidades, e passam a responder pelos seus dados por
+> conta própria, pelo prazo e pela política de cada uma. É opcional: deixar
+> desmarcado não muda nada na sua inscrição nem no aviso sobre o evento. Para
+> voltar atrás, chame a organização no WhatsApp +55 (86) 99920-2231 — tiramos
+> você dos próximos repasses, mas quem já recebeu precisa ser avisado caso a
+> caso.
+
+Pergunta "Compartilhamento" (caixa de seleção, **não obrigatória**, desmarcada
+por padrão), com uma única opção: "Autorizo o Sertão Tech a compartilhar meu
+nome, e-mail e WhatsApp com os patrocinadores e parceiros da edição 2027."
+
+Quatro regras que fazem esse consentimento valer. Não são detalhe de texto:
+
+1. **Não bloqueia o envio.** Form só rejeita por causa da caixa obrigatória de
+   LGPD. Desmarcar o compartilhamento tem que mandar normalmente.
+2. **Lista nomeada e pública.** "Parceiros que ajudaram a construir o evento" é
+   finalidade indeterminada. Precisa da página pública de patrocinadores,
+   citada no texto. Patrocinador que entra depois **não** está coberto pelo
+   consentimento já dado.
+3. **Registro de quem aceitou.** O ônus de provar o consentimento é da
+   organização (art. 37). Cada resposta grava data/hora e a **versão do texto**
+   aceita. Mais um motivo para o formulário próprio: Google Forms não dá isso.
+4. **Só nome, e-mail e WhatsApp.** Cidade e "qual seu perfil?" são para a
+   curadoria, não para o comercial de terceiro.
+
+Isso abre uma exceção na retenção prometida no bloco de LGPD ("até o fim da
+edição 2027"): o que foi para o patrocinador não morre nessa data, e o texto
+acima diz isso. Sem essa frase a promessa fica falsa.
+
+Texto e desenho seguem a LGPD como escrita, mas vale revisão jurídica antes de
+ir ao ar.
+
 ### Form 1 — Participante
 
 - **Título:** Sertão Tech 2027 — Lista de espera
@@ -172,6 +234,7 @@ opção: "Li e concordo com o uso dos meus dados como descrito acima."
 | Cidade | Resposta curta | Sim | |
 | Qual seu perfil? | Múltipla escolha | Sim | Estudante · Profissional de tecnologia · Migrando de carreira · Curioso(a) |
 | Bloco LGPD | | Sim | |
+| Compartilhamento com patrocinadores | Caixa de seleção | **Não** | Desmarcada por padrão. Repassa nome, e-mail e WhatsApp |
 
 ### Form 2 — Palestrante
 
@@ -224,7 +287,8 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
        edição 2026" apontando para `/2026`.
 7. [x] **Nav enxuta:** "Edição 2026" e o botão da lista de espera.
 8. [ ] Trocar os marcadores `FORM_PARTICIPANTE`, `FORM_PALESTRANTE` e
-       `FORM_PATROCINADOR` em `index.html` pelos links da Fase 2.
+       `FORM_PATROCINADOR` em `index.html` pelas URLs do formulário próprio
+       (Fase 2). **Único item que falta para a Fase 3 fechar.**
 
 Notas da execução:
 
@@ -277,7 +341,7 @@ Notas da execução:
 
 ## Decisões em aberto
 
-- [x] Formulários: Google Forms.
+- [x] Formulários: ~~Google Forms~~ → formulário próprio (revisto em 2026-11-03, ver Fase 2).
 - [x] 2027 tem data e local: 15 e 16 de outubro de 2027, na UFDPar, em
       parceria com o Bacharelado em Inteligência Artificial. Na home:
       hero, CTA, rodapé, metas, JSON-LD `Event` e arte `og-2027-data.jpg`.
@@ -299,3 +363,13 @@ Notas da execução:
 - 2026-10-28 — Fase 4: arte `og-2027.jpg`, JSON-LD `Organization`, sitemap e evento `waitlist_click`.
 - 2026-11-02 — Data e local de 2027 definidos: 15 e 16 de outubro, UFDPar.
 - 2026-11-02 — Home com a data: hero, CTA, rodapé, metas, JSON-LD `Event` de 2027 e arte nova `og-2027-data.jpg` (nome novo por causa do cache immutable).
+- 2026-11-03 — Fase 2: Google Forms abandonado. As listas de espera vão virar
+  formulário próprio; o conteúdo das perguntas e o bloco de LGPD continuam
+  valendo como especificação. `scripts/listas-de-espera.gs` ficou morto.
+- 2026-11-03 — Comentário dos marcadores `FORM_*` em `index.html` atualizado:
+  os 11 botões seguem sem destino até o formulário próprio existir.
+- 2026-11-03 — Fase 2: compartilhamento de dados com patrocinadores aceito, mas
+  como caixa **opcional e separada** no Form 1 (participante), repassando só
+  nome, e-mail e WhatsApp. Consentimento obrigatório segue cobrindo apenas o uso
+  interno — juntar os dois anularia o do repasse (LGPD art. 8 §4 e art. 7 §5).
+  Depende de página pública de patrocinadores e de revisão jurídica.
