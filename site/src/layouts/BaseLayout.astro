@@ -45,6 +45,8 @@ export interface Props {
     tags?: string[];
   };
   bodyClass?: string;
+  /** Só /sobre e o guia local usam article.css; nas outras ele só bloquearia o render. */
+  articleCss?: boolean;
 }
 
 const {
@@ -65,6 +67,7 @@ const {
   footerApoio,
   article,
   bodyClass,
+  articleCss = false,
 } = Astro.props;
 
 const canonical = abs(path);
@@ -122,7 +125,7 @@ const socialDescription = ogDescription ?? description;
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="/ds/styles.css">
 <link rel="stylesheet" href="/css/site.css">
-<link rel="stylesheet" href="/css/article.css">
+{articleCss && <link rel="stylesheet" href="/css/article.css">}
 <link rel="preload" as="style" href={FONTS_HREF}>
 <link rel="stylesheet" href={FONTS_HREF} media="print" onload="this.media='all'">
 <noscript><link rel="stylesheet" href={FONTS_HREF}></noscript>
