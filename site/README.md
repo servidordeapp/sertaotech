@@ -18,55 +18,35 @@ npm run verify       # build + todas as verificações (ver abaixo)
 
 ### Com Docker
 
-Ou pelo `docker-compose.yml` da raiz, que é a stack local de todas as
-aplicações do Sertão Tech — hoje só o site, e é onde as próximas entram. Os
-comandos abaixo rodam **na raiz do repositório**:
+O `Dockerfile` tem o estágio `dev` (`astro dev` em `0.0.0.0:4321`), mas o
+`docker-compose.yml` da raiz que o usa só chega na Fase 3 da migração — ver
+[`docs/CHECKLIST-MIGRACAO-ASTRO.md`](../docs/CHECKLIST-MIGRACAO-ASTRO.md).
+Até lá, rode no host.
 
-```bash
-docker compose up -d                 # sobe tudo → http://localhost:4321
-docker compose logs -f site          # acompanha o dev server
-docker compose down                  # derruba
-```
-
-O serviço `site` roda o `astro dev` com hot reload: o código vem por bind
-mount, então editar um arquivo no host recarrega o navegador. O `node_modules`
-mora num volume do container e não no host — **depois de mexer no
-`package.json`, reconstrua** com `docker compose up -d --build --force-recreate site`.
-
-Para conferir o build de produção servido como a Vercel serve (nginx, com
-`cleanUrls`, o rewrite do sitemap e os `Cache-Control` do `vercel.json`):
-
-```bash
-docker compose --profile prod up -d --build site-prod   # http://localhost:8080
-```
-
-As portas saem de `SITE_PORT` (4321) e `SITE_PROD_PORT` (8080), que podem ser
-redefinidas num `.env` na raiz.
+Não existe estágio de produção: na Vercel o site é estático, servido do CDN, e
+o Dockerfile é ferramenta de desenvolvimento — a Vercel não olha pra ele.
 
 ## Estrutura
 
 ```
-Dockerfile           imagem da aplicação (estágios dev, build e prod)
-docker/nginx.conf    nginx do estágio prod, espelhando o vercel.json
+Dockerfile           imagem de desenvolvimento (estágios base, deps e dev)
+vercel.json          configuração do deploy estático (Root Directory = site/)
 public/              copiado byte a byte pro dist/, sem nenhum processamento
   ds/styles.css      design system (GERADO — ver abaixo)
   ds/tokens/*.css    fonte do design system
   css/site.css       layout do site
-  css/article.css    tipografia de texto longo (blog e páginas de conteúdo)
+  css/article.css    tipografia de texto longo (páginas de conteúdo)
   assets/            imagens, logos, cards de Open Graph
   robots.txt
   cerimonial/        documentos de impressão gerados por build-html.py
   mesa-redonda/      idem
   links/             stub de redirecionamento (noindex)
 src/
-  layouts/           BaseLayout (o <head> e o shell) e ArticleLayout (posts)
-  components/        header, footer, cabeçalho de página, cards, ícones
+  layouts/           BaseLayout — o <head> e o shell de toda página
+  components/        header, footer, cabeçalho de página, ícones
   lib/site.ts        constantes de identidade (domínio, GA4, contatos)
   lib/schema.ts      construtores de JSON-LD
-  lib/blog.ts        listagem e relacionados dos posts
-  data/              dados da edição do evento e histórico de edições
-  content/blog/*.md  os posts
-  content.config.ts  schema (zod) do frontmatter dos posts
+  data/              dados da edição do evento
   pages/             uma página por rota
 scripts/             build do design system e geradores de arte
 docs/seo-local.md    o que fazer fora do código (Search Console, GBP, links)
@@ -112,41 +92,23 @@ isso que o `npm run verify` checa cada um:
   quebraria o `Cache-Control: immutable` e a estabilidade das URLs que
   WhatsApp, LinkedIn e Facebook guardam em cache.
 
-## Blog
-
-Cada post é um `.md` em `src/content/blog/`, com frontmatter validado por zod
-em `src/content.config.ts` — descrição fora de 80–165 caracteres, título longo
-demais ou imagem sem `alt` **quebram o build** de propósito.
-
-O nome do arquivo é a URL: `meu-post.md` → `/blog/meu-post`.
-
-Card de Open Graph de cada post:
-
-```bash
-npm run og:post -- --all      # gera todos + o card do /blog
-npm run og:post -- meu-post   # um só
-npm run og:post -- --check    # falha se faltar card
-```
-
-O script quebra o título em até 3 linhas e reduz o corpo até caber. Se não
-couber nem no menor corpo, ele falha com erro — card com texto cortado é pior
-que build quebrado. Nesse caso, encurte o título ou defina um `titleSeo`.
-
 ## SEO
 
 A estrutura de URL e o grafo de JSON-LD estão documentados em
 `src/lib/schema.ts`. Duas convenções que é fácil quebrar sem perceber:
 
 - **A home é sempre a edição vigente.** Cada edição passada ganha URL
-  permanente em `/edicoes/<ano>`. O `@id` `#event` significa sempre a edição
-  corrente e mora na home.
+  permanente por ano (hoje `/2026` no site estático da raiz, que ainda não foi
+  portado). O `@id` `#event` significa sempre a edição corrente e mora na home.
 - **`/eventos-de-tecnologia-parnaiba` é a página-âncora.** Não fala de edição
-  nenhuma, então sobrevive à troca de ano e acumula link e idade. Todo post do
-  blog linka pra ela do corpo do texto — o `npm run verify` verifica isso.
+  nenhuma, então sobrevive à troca de ano e acumula link e idade. É pra ela que
+  as outras páginas apontam.
 
 O que fazer fora do repositório (Search Console, Google Business Profile,
 citações locais, backlinks e o calendário de manutenção) está em
-[`docs/seo-local.md`](docs/seo-local.md).
+[`docs/seo-local.md`](docs/seo-local.md) — escrito quando o blog fazia parte do
+escopo, então a parte de conteúdo editorial está em suspenso (ver a decisão do
+blog em [`../docs/MIGRACAO-ASTRO.md`](../docs/MIGRACAO-ASTRO.md)).
 
 ## Deploy
 

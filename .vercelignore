@@ -1,3 +1,10 @@
 # Fora do deploy: material interno para patrocinadores (ver docs/RELATORIO-PATROCINADORES-2026.md)
 /relatorio
 /docs
+
+# Fora do deploy: código-fonte das aplicações do monorepo. O deploy de hoje
+# ainda tem a raiz como Root Directory e serve arquivo por arquivo — sem isso,
+# o fonte do Astro e do Laravel iria ao ar como arquivo estático. Revisar na
+# Fase 10, quando o Root Directory virar site/.
+/site
+/api

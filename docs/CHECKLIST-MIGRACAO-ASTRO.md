@@ -74,36 +74,73 @@ Esperando o formulário próprio:
 
 ## Fase 2 — Esqueleto Astro em `site/`
 
-- [ ] Trazer o esqueleto da branch antiga sem merge:
+- [x] Trazer o esqueleto da branch antiga sem merge:
       ```bash
       git checkout origin/feat/blog -- site/
       ```
-- [ ] Apagar o que é deploy em container (decisão 2 e 7 do documento):
-      ```bash
-      git rm -r site/Dockerfile.vercel site/docker/ site/.dockerignore
-      ```
-      (`site/Dockerfile` **fica** — vai ser reescrito como container de dev na Fase 3.)
-- [ ] Conferir que o `vercel.json` da raiz **não** tem `services` nem
-      `runtime: container`. Se o checkout trouxe isso, restaurar o da `main`:
-      ```bash
-      git checkout main -- vercel.json
-      ```
-- [ ] `site/package.json`:
-      - [ ] remover a chave `allowScripts`
-      - [ ] mover `sharp` de `dependencies` para `devDependencies`
-      - [ ] adicionar `"engines": { "node": "24.x" }`
-      - [ ] revisar os scripts (`dev`, `build`, `preview`, `check`, `verify`, `ds`, `og`)
-- [ ] Apagar os 8 posts de blog de `site/src/content/blog/` e as artes
-      `site/public/assets/og-blog*.jpg` **se** a decisão em aberto for "portar sem
-      publicar". Se for publicar, mover para a Fase 6.
-- [ ] Apagar `site/src/pages/edicoes/2025.astro`, `edicoes/index.astro`,
-      `src/data/edicao-2025.ts` e `src/data/edicoes.ts` — são da era em que 2025
-      era o arquivo. O arquivo agora é 2026.
-- [ ] Conferir que `site/astro.config.mjs` mantém
-      `trailingSlash: 'never'` + `build.format: 'directory'` e o comentário que
-      explica o casamento com `cleanUrls`.
-- [ ] `npm install` dentro de `site/` e commitar `package-lock.json`.
-- [ ] `npm run build` passa.
+      Veio de `648438f` ("wip feat blog"), 200 arquivos.
+- [x] Apagar o que é deploy em container (decisão 2 e 7 do documento):
+      `site/Dockerfile.vercel`, `site/docker/` e `site/.dockerignore`.
+      Os estágios `build` e `prod` do `site/Dockerfile` saíram junto: o `prod`
+      era o nginx e copiava o `docker/nginx.conf.template` que acabou de ser
+      apagado — o arquivo não construiria. Sobraram `base`, `deps` e `dev`, que
+      é o que a Fase 3 quer.
+- [x] `vercel.json` da raiz conferido: sem `services`, sem `runtime: container`
+      (o checkout não tocou nele). `site/vercel.json` **ficou** — é SSG
+      (`framework: astro`, `outputDirectory: dist`) e é o arquivo que vale
+      quando o Root Directory da Vercel virar `site/`.
+- [x] `site/package.json`:
+      - [x] chave `allowScripts` removida. O `npm install` passa a avisar que o
+            `postinstall` do `esbuild` não rodou; `build`, `check` e `verify`
+            passam mesmo assim.
+      - [x] `sharp` movido para `devDependencies`
+      - [x] `"engines": { "node": "24.x" }`
+      - [x] scripts revisados: `dev`, `build`, `preview`, `check`, `verify`,
+            `ds`, `og`. O `og:post` saiu com o blog.
+      - [x] `npm audit fix` (só bumps compatíveis): de 9 vulnerabilidades
+            (6 altas, em `vite` e `zod`) para 0.
+- [x] **Decisão do blog: fora desta migração** (2026-11-03, registrada em
+      `MIGRACAO-ASTRO.md`). Saíram os 8 posts, as 8 artes `og-blog-*.jpg`,
+      `src/pages/blog/`, `content.config.ts`, `lib/blog.ts`, `ArticleLayout`,
+      `Toc`, `PostCard`, `PostMeta`, `RelatedPosts`, `scripts/og-post.mjs`,
+      `blog()`/`blogPosting()` do `schema.ts`, o `<link rel=alternate>` do feed
+      e a dependência `@astrojs/rss`.
+      - [x] 7 links para posts arrancados (6 em
+            `eventos-de-tecnologia-parnaiba.astro`, 1 no `SiteFooter`), mais o
+            item "Blog" do menu. O card "comunidades da região" virou dois
+            parágrafos — o conteúdo era o nome das comunidades, não o link.
+      - [x] O pipeline de markdown (`markdown:` do `astro.config.mjs`,
+            `rehype-table-wrap.mjs` e as 4 dependências `rehype-*` /
+            `@astrojs/markdown-remark`) saiu junto: sem `.md` no `src/`, era
+            código morto. **Se voltar conteúdo em markdown** (o blog, ou o
+            `cerimonial/` e o `mesa-redonda/` da raiz), restaurar de `648438f`.
+      - [x] Bloco "regras editoriais dos posts" do `scripts/verify-build.sh`
+            removido.
+- [x] Apagados `site/src/pages/edicoes/2025.astro`, `edicoes/index.astro`,
+      `src/data/edicao-2025.ts` e `src/data/edicoes.ts` — da era em que 2025 era
+      o arquivo. Os 3 links para `/edicoes` (rodapé, `sobre`, página-âncora) e
+      as 2 entradas de `/edicoes` no `serialize` do sitemap saíram com eles.
+- [x] `site/astro.config.mjs` confere: `trailingSlash: 'never'` +
+      `build.format: 'directory'`, com o comentário do casamento com `cleanUrls`
+      intacto.
+- [x] `npm install` dentro de `site/`, `package-lock.json` commitado.
+- [x] `npm run build` passa: 6 páginas (`/`, `/palestrantes`, `/caravanas`,
+      `/patrocinio`, `/sobre`, `/eventos-de-tecnologia-parnaiba`).
+- [x] `npm run check`: 0 erros, 0 avisos (1 dica pré-existente no `BaseLayout`).
+- [x] `npm run verify`: tudo verde — performance, analytics, JSON-LD (9 `@id`,
+      20 referências, 0 órfãs), canonical, sitemap, links externos e internos.
+
+Herança da `feat/blog` que ficou de fora do escopo desta fase:
+
+- `site/docs/seo-local.md` (254 linhas) foi escrito com o blog no escopo. A
+  parte de Search Console, Google Business Profile e citações locais continua
+  válida; a de calendário editorial está em suspenso.
+- `site/README.md` foi atualizado para o que existe (sem blog, sem estágio de
+  produção em nginx, sem `/edicoes`).
+- `/site` e `/api` entraram no `.vercelignore`. O deploy de hoje ainda tem a
+  raiz como Root Directory e serve arquivo por arquivo, então sem isso o fonte
+  do Astro e do Laravel subiria como arquivo estático. Revisar na Fase 10,
+  quando o Root Directory virar `site/`.
 
 ---
 

@@ -8,8 +8,8 @@ próprio; esta página é só o índice.
 | Pasta | O que é |
 |---|---|
 | `docs/` | Documentação de negócio e de engenharia. Fora do deploy. |
-| `site/` | Site público em Astro (saída estática). **Ainda não existe** — chega na Fase 2 da migração. |
-| `api/` | Serviço de backend. Previsto, ainda não existe. |
+| `site/` | Site público em Astro (saída estática). Esqueleto no ar desde a Fase 2; as páginas atuais ainda não foram portadas. Ver [`site/README.md`](site/README.md). |
+| `api/` | Serviço de backend em Laravel. Ver [`api/README.md`](api/README.md). |
 | `scripts/` | Geração de arte e do design system (`build-ds.sh`, `og-card.mjs`, …). Rodam localmente. |
 | `originais/` | Fotos e artes em alta resolução. Locais, fora do git. |
 
@@ -26,8 +26,9 @@ A partir da Fase 3 da migração, o único pré-requisito na máquina é o Docke
 docker compose up   # site em http://localhost:4321
 ```
 
-Hoje, antes dessa fase, não há nada para subir: é HTML estático, aberto direto
-no navegador ou servido por qualquer servidor de arquivos.
+Até lá, o site Astro sobe de dentro de `site/` com `npm install && npm run dev`,
+e o HTML estático da raiz abre direto no navegador ou em qualquer servidor de
+arquivos.
 
 ## Documentação
 
@@ -45,10 +46,11 @@ no navegador ou servido por qualquer servidor de arquivos.
 
 ---
 
-## Site estático (migra para `site/README.md` na Fase 2)
+## Site estático da raiz (sai daqui quando as páginas forem portadas)
 
-As duas seções abaixo são detalhe da aplicação de site. Elas saem daqui e viram
-o README de `site/` quando a pasta existir.
+As duas seções abaixo são detalhe do site estático que ainda mora na raiz. O
+equivalente dentro do Astro já está em [`site/README.md`](site/README.md); estas
+saem quando `ds/` e `midia-kit/` forem portados (Fases 4 a 7).
 
 ### Build do design system
 
