@@ -5,7 +5,9 @@
  * edição anterior fica congelada em `/2026`.
  *
  * Os 11 `<img>` da galeria e do After viraram dado em `data/fotos-2026.ts`.
- * Os botões das 3 listas de espera levam a `/lista-de-espera/<tipo>`.
+ * Os botões das 3 listas de espera levam a `/lista-de-espera/<tipo>`. Os botões
+ * genéricos ("Entrar na lista de espera") levam à seção `/#lista-de-espera`,
+ * onde a pessoa escolhe o tipo, em vez de escolher participante por ela.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorTelemetry from '../components/SponsorTelemetry.astro';
@@ -54,7 +56,7 @@ const jsonLd = graph(
         <h1 class="hero__title">Sertão Tech <em>2027</em>.<span class="hero__title-sub"><span style="white-space:nowrap">15 e 16 de outubro ·</span> <span style="white-space:nowrap">UFDPar ·</span> <span style="white-space:nowrap">lista de espera aberta</span></span></h1>
         <p class="hero__lead">A 2ª edição esgotou e lotou o auditório da UFDPar. Em 2027 são dois dias, em parceria com o Bacharelado em Inteligência Artificial. Entre na lista de espera e saiba primeiro quando as inscrições abrirem.</p>
         <div class="hero__actions">
-          <a class="btn btn--accent btn--lg" href="/lista-de-espera/participante" data-waitlist="participante">Entrar na lista de espera<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="btn btn--accent btn--lg" href="/#lista-de-espera">Entrar na lista de espera<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
       </div>
       <div class="hero__art">
@@ -207,7 +209,7 @@ const jsonLd = graph(
         <h2 class="cta__title">O sertão volta<br>em outubro de 2027.</h2>
         <p class="cta__lead">15 e 16 de outubro, na UFDPar. As vagas de 2026 acabaram antes do evento: entre na lista de espera e garanta o aviso antes da divulgação.</p>
         <div class="hero__actions">
-          <a class="btn btn--accent btn--lg" href="/lista-de-espera/participante" data-waitlist="participante">Entrar na lista de espera</a>
+          <a class="btn btn--accent btn--lg" href="/#lista-de-espera">Entrar na lista de espera</a>
           <a class="btn btn--outline-ink btn--lg" href="/2026">Ver como foi a edição 2026</a>
         </div>
       </div>
