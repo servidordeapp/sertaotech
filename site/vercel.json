@@ -20,6 +20,11 @@
       "source": "/caravanas",
       "destination": "/2026/caravanas",
       "permanent": false
+    },
+    {
+      "source": "/midia-kit",
+      "destination": "/midia-kit/2027",
+      "permanent": false
     }
   ],
   "rewrites": [

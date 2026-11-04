@@ -23,12 +23,12 @@ const faqItens = [
   {
     pergunta: 'Tem evento de tecnologia em Parnaíba?',
     resposta:
-      'Tem. O maior é o Sertão Tech, que acontece na UFDPar — Campus Ministro Reis Velloso. A 2ª edição é em 09 de outubro de 2026, das 14h às 21h30. Além dele, comunidades locais como PHP PI, PHPWomen PI e GDG Parnaíba organizam encontros ao longo do ano.',
+      'Tem. O maior é o Sertão Tech, que acontece na UFDPar — Campus Ministro Reis Velloso. A 3ª edição é em 15 e 16 de outubro de 2027, com lista de espera aberta; a 2ª foi em 09 de outubro de 2026 e esgotou. Além dele, comunidades locais como PHP PI, PHPWomen PI e GDG Parnaíba organizam encontros ao longo do ano.',
   },
   {
     pergunta: 'Quanto custa participar de um evento de tecnologia em Parnaíba?',
     resposta:
-      'Encontro de comunidade normalmente é gratuito. Eventos maiores têm valor simbólico: a inscrição individual do Sertão Tech 2026 é de R$ 20, e grupos de 20 a 50 pessoas entram como caravana.',
+      'Encontro de comunidade normalmente é gratuito. Eventos maiores têm valor simbólico: o ingresso do Sertão Tech 2026 foi de R$ 20, e grupos de 20 a 50 pessoas entram como caravana, pagando menos que o individual.',
   },
   {
     pergunta: 'Preciso trabalhar com tecnologia pra participar?',
@@ -61,7 +61,7 @@ const jsonLd = graph(
   itemList({
     name: 'Eventos de tecnologia em Parnaíba e no norte do Piauí',
     description: 'Edições do Sertão Tech, o principal evento de tecnologia do norte do Piauí.',
-    items: [{ name: 'Sertão Tech 2026', path: '/' }],
+    items: [{ name: 'Sertão Tech 2027', path: '/' }, { name: 'Sertão Tech 2026', path: '/2026' }],
   }),
   faqPage(faqItens),
 );
@@ -83,7 +83,7 @@ const jsonLd = graph(
       lead="Acontece mais coisa por aqui do que parece — o problema é que quase nada disso chega até você. Esse guia é o mapa: o que rola, onde, quanto custa e como ficar sabendo antes de encher."
     >
       <div class="hero__actions">
-        <a class="btn btn--accent btn--lg" href="/">Sertão Tech 2026<Icon name="arrow" /></a>
+        <a class="btn btn--accent btn--lg" href="/">Sertão Tech 2027<Icon name="arrow" /></a>
       </div>
     </PageHead>
 
@@ -95,16 +95,16 @@ const jsonLd = graph(
           <h2 class="section-title">Tecnologia no interior não é promessa. Já está acontecendo.</h2>
           <p class="prose">Parnaíba é o polo do norte do Piauí, e a cena de tecnologia daqui cresceu junto com a <strong>UFDPar</strong> — Universidade Federal do Delta do Parnaíba, que hoje forma gente em cursos da área, incluindo <strong>Inteligência Artificial</strong>, e mantém grupos de pesquisa em IA aplicada.</p>
           <p class="prose">Ao redor disso existe um ecossistema pequeno mas ativo: comunidades como <strong>GDG Parnaíba</strong>, <strong>PyLadies Parnaíba</strong>, <strong>PHP PI</strong>, <strong>Flutter Piauí</strong>, <strong>Java Piauí</strong>, <strong>JS/TS Piauí</strong> e <strong>AWS User Group Piauí</strong>, empresas de tecnologia que contratam remoto e um evento anual que junta todo mundo no mesmo lugar.</p>
-          <p class="prose">Esse evento é o <a href="/">Sertão Tech</a>, e é sobre ele que a maior parte desta página fala — não por falta de opção, mas porque é o único com data firme, programação pública e inscrição aberta enquanto você lê isso.</p>
+          <p class="prose">Esse evento é o <a href="/">Sertão Tech</a>, e é sobre ele que a maior parte desta página fala — não por falta de opção, mas porque é o único com data firme e lista de espera aberta enquanto você lê isso.</p>
         </div>
         <div class="card card--badge" style="padding: 32px;">
           <span class="eyebrow">// próximo evento</span>
-          <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Sertão Tech 2026</h3>
-          <p style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 20px;">2ª edição. Um dia inteiro de palestras, minicursos, roda de conversa e networking.</p>
+          <h3 style="font-family: var(--font-display); font-size: 26px; margin: 12px 0 0; color: var(--text-strong);">Sertão Tech 2027</h3>
+          <p style="font-size: 16px; line-height: 1.6; color: var(--text-muted); margin: 12px 0 20px;">3ª edição. Dois dias, quatro trilhas (Principal, Robótica, Negócios e Sênior+), em parceria com o Bacharelado em Inteligência Artificial da UFDPar.</p>
           <div style="display: flex; flex-direction: column; gap: 14px;">
             <div class="feature-row" style="padding: 16px 18px;">
               <span class="chip-icon chip-icon--terra-sm"><Icon name="calendar" /></span>
-              <div><h3>09 de outubro de 2026</h3><p>sexta-feira, das 14h às 21h30</p></div>
+              <div><h3>15 e 16 de outubro de 2027</h3><p>sexta e sábado</p></div>
             </div>
             <div class="feature-row" style="padding: 16px 18px;">
               <span class="chip-icon chip-icon--terra-sm"><Icon name="pin" /></span>
@@ -112,11 +112,11 @@ const jsonLd = graph(
             </div>
             <div class="feature-row" style="padding: 16px 18px;">
               <span class="chip-icon chip-icon--terra-sm"><Icon name="ticket" /></span>
-              <div><h3>A partir de R$ 20</h3><p>caravana de 20 a 50 pessoas tem condição própria</p></div>
+              <div><h3>Lista de espera aberta</h3><p>caravana de 20 a 50 pessoas tem condição própria</p></div>
             </div>
           </div>
           <div style="margin-top: 22px;">
-            <a class="btn btn--primary btn--md" href="/">Ver a programação<Icon name="arrow" size={18} /></a>
+            <a class="btn btn--primary btn--md" href="/#lista-de-espera">Entrar na lista de espera<Icon name="arrow" size={18} /></a>
           </div>
         </div>
       </div>
@@ -195,11 +195,19 @@ const jsonLd = graph(
         <p class="prose" style="max-width: 700px; margin-bottom: 28px;">Cada edição tem programação, palestrantes e patrocinadores próprios. A 1ª edição, de 2025, entra aqui quando o arquivo dela for publicado.</p>
         <div class="event-list">
           <div class="event-item event-item--destaque">
+            <div class="event-item__when">15–16 out<br>2027</div>
+            <div>
+              <h3 class="event-item__name">Sertão Tech 2027 — 3ª edição</h3>
+              <p class="event-item__desc">Dois dias e quatro trilhas (Principal, Robótica, Negócios e Sênior+), na UFDPar, em parceria com o Bacharelado em Inteligência Artificial.</p>
+              <p class="event-item__meta">UFDPar · Parnaíba - PI · lista de espera aberta · <a href="/">entrar na lista</a></p>
+            </div>
+          </div>
+          <div class="event-item">
             <div class="event-item__when">09 out<br>2026</div>
             <div>
               <h3 class="event-item__name">Sertão Tech 2026 — 2ª edição</h3>
-              <p class="event-item__desc">Palestras, microtalks, dois minicursos em trilha paralela, roda de conversa sobre migração de carreira e keynote de encerramento. Nove áreas no palco, das 14h às 21h30, na UFDPar.</p>
-              <p class="event-item__meta">UFDPar · Parnaíba - PI · inscrição a partir de R$ 20 · <a href="/">ver programação</a></p>
+              <p class="event-item__desc">Palestras, microtalks, dois minicursos em trilha paralela, roda de conversa sobre migração de carreira e keynote de encerramento, das 14h às 21h10, na UFDPar. Ingressos esgotados.</p>
+              <p class="event-item__meta">UFDPar · Parnaíba - PI · encerrado · <a href="/2026">ver a edição</a></p>
             </div>
           </div>
         </div>
@@ -213,10 +221,10 @@ const jsonLd = graph(
 
     <CtaBand
       eyebrow="// bora?"
-      title="O próximo é 09 de outubro."
-      lead="Sertão Tech 2026, na UFDPar, em Parnaíba - PI. Das 14h às 21h30, a partir de R$ 20."
+      title="O próximo é 15 e 16 de outubro de 2027."
+      lead="Sertão Tech 2027, na UFDPar, em Parnaíba - PI. A lista de espera está aberta."
     >
-      <a class="btn btn--accent btn--lg" href="/#inscricao">Quero participar<Icon name="arrow" /></a>
+      <a class="btn btn--accent btn--lg" href="/#lista-de-espera">Entrar na lista de espera<Icon name="arrow" /></a>
       <a class="btn btn--outline-ink btn--lg" href="/#lista-de-espera"><Icon name="bus" />Levar uma caravana</a>
     </CtaBand>
   </main>

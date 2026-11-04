@@ -22,8 +22,15 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // /links é um stub de redirecionamento com robots noindex — fora do sitemap.
-      filter: (page) => !page.includes('/links'),
+      // Decks públicos em public/ (passthrough) não são páginas Astro, então o
+      // integration não os enxerga. Os noindex (/links, /after, /relatorio,
+      // /apresentacoes, /impressos, /cerimonial, /mesa-redonda) ficam de fora
+      // por não serem páginas Astro nem estarem aqui.
+      customPages: [
+        'https://osertaotech.com.br/midia-kit/2027',
+        'https://osertaotech.com.br/midia-kit/caravanas-2027',
+        'https://osertaotech.com.br/midia-kit/2026',
+      ],
       serialize(item) {
         const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
         const tune = {
