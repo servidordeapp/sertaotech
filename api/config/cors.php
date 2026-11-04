@@ -6,7 +6,7 @@ declare(strict_types=1);
 return [
     'paths'                    => ['api/*'],
     'allowed_methods'          => ['POST'],
-    'allowed_origins'          => array_filter(explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'https://osertaotech.com.br'))),
+    'allowed_origins'          => array_filter(explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'https://osertaotech.com.br,https://www.osertaotech.com.br'))),
     'allowed_origins_patterns' => [],
     'allowed_headers'          => ['Content-Type', 'Accept'],
     'exposed_headers'          => [],
