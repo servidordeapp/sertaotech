@@ -189,6 +189,10 @@ jobs:
             set -e
             PHP=/usr/local/bin/php
             cd ${{ env.REMOTE_DIR }}
+            # O .env de producao e colocado a mao, uma vez, e o rsync nao o
+            # envia nem apaga. Sem ele o migrate abaixo morre em "could not
+            # find driver" ou numa APP_KEY vazia, que nao diz o que falta.
+            [ -f .env ] || { echo "ERRO: ${{ env.REMOTE_DIR }}.env nao existe no servidor. Suba o .env de producao e re-execute este job."; exit 1; }
             # O composer nao vem no repositorio nem sobe pelo rsync. Ordem:
             # o que o cPanel ja instala, o que estiver no PATH, um .phar que
             # um deploy anterior tenha baixado e, por ultimo, baixar.
