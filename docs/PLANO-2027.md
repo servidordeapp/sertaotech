@@ -131,6 +131,12 @@ Notas da execução:
 - [ ] Definir e construir o formulário próprio (3 listas: participante,
       palestrante, patrocinador), com o conteúdo das seções abaixo e o bloco
       de LGPD como última seção.
+- [ ] Form 1: caixa opcional de compartilhamento com patrocinadores, com as 4
+      regras da seção "Bloco de compartilhamento" — principalmente gravar a
+      versão do texto aceita e não bloquear o envio.
+- [ ] Página pública de patrocinadores e parceiros de 2027, citada no texto do
+      compartilhamento. Sem ela a finalidade fica indeterminada.
+- [ ] Revisão jurídica do bloco de LGPD e do de compartilhamento.
 - [ ] Decidir onde as respostas caem e como a organização as lê.
 - [ ] Trocar os 3 marcadores `FORM_*` em `index.html` pelas URLs reais.
       A Fase 4 continua medindo `waitlist_click` pelo `data-waitlist`, que não
@@ -141,10 +147,11 @@ Notas da execução:
 - [x] ~~Criar os 3 forms no Google Forms.~~ Cancelado.
 - [x] ~~Vincular ao Planilhas, uma aba por form.~~ Cancelado.
 
-### Bloco LGPD (igual nos três)
+### Bloco LGPD
 
 Vai como a **última seção** de cada form: um bloco de texto seguido da
-pergunta de consentimento.
+pergunta de consentimento. O texto abaixo é igual nos três; o Form 1 ganha
+um segundo bloco, de compartilhamento (ver adiante).
 
 > **Como usamos seus dados**
 >
@@ -164,6 +171,55 @@ Troque `{FINALIDADE}` por:
 Pergunta "Consentimento" (caixa de seleção, **obrigatória**), com uma única
 opção: "Li e concordo com o uso dos meus dados como descrito acima."
 
+Esta caixa cobre **só o uso interno**. Nada de compartilhamento entra aqui:
+autorização genérica é nula (LGPD art. 8 §4) e repasse para outro controlador
+exige consentimento específico (art. 7 §5). Juntar os dois numa caixa
+obrigatória invalida o consentimento do repasse e derruba a conversão de quem
+só quer saber a data do evento.
+
+### Bloco de compartilhamento — **só no Form 1 (participante)**
+
+Vem depois do bloco de LGPD, como penúltima coisa do form. Fora dos Forms 2 e
+3 de propósito: palestrante já fala direto com a organização, e patrocinador é
+o próprio parceiro.
+
+> **Compartilhamento com patrocinadores e parceiros (opcional)**
+>
+> Se você autorizar abaixo, compartilhamos seu nome, e-mail e WhatsApp com as
+> empresas e instituições que patrocinam ou apoiam a edição 2027 — a lista
+> delas fica publicada em sertaotech.com.br. Elas podem falar com você sobre
+> vagas, cursos e oportunidades, e passam a responder pelos seus dados por
+> conta própria, pelo prazo e pela política de cada uma. É opcional: deixar
+> desmarcado não muda nada na sua inscrição nem no aviso sobre o evento. Para
+> voltar atrás, chame a organização no WhatsApp +55 (86) 99920-2231 — tiramos
+> você dos próximos repasses, mas quem já recebeu precisa ser avisado caso a
+> caso.
+
+Pergunta "Compartilhamento" (caixa de seleção, **não obrigatória**, desmarcada
+por padrão), com uma única opção: "Autorizo o Sertão Tech a compartilhar meu
+nome, e-mail e WhatsApp com os patrocinadores e parceiros da edição 2027."
+
+Quatro regras que fazem esse consentimento valer. Não são detalhe de texto:
+
+1. **Não bloqueia o envio.** Form só rejeita por causa da caixa obrigatória de
+   LGPD. Desmarcar o compartilhamento tem que mandar normalmente.
+2. **Lista nomeada e pública.** "Parceiros que ajudaram a construir o evento" é
+   finalidade indeterminada. Precisa da página pública de patrocinadores,
+   citada no texto. Patrocinador que entra depois **não** está coberto pelo
+   consentimento já dado.
+3. **Registro de quem aceitou.** O ônus de provar o consentimento é da
+   organização (art. 37). Cada resposta grava data/hora e a **versão do texto**
+   aceita. Mais um motivo para o formulário próprio: Google Forms não dá isso.
+4. **Só nome, e-mail e WhatsApp.** Cidade e "qual seu perfil?" são para a
+   curadoria, não para o comercial de terceiro.
+
+Isso abre uma exceção na retenção prometida no bloco de LGPD ("até o fim da
+edição 2027"): o que foi para o patrocinador não morre nessa data, e o texto
+acima diz isso. Sem essa frase a promessa fica falsa.
+
+Texto e desenho seguem a LGPD como escrita, mas vale revisão jurídica antes de
+ir ao ar.
+
 ### Form 1 — Participante
 
 - **Título:** Sertão Tech 2027 — Lista de espera
@@ -178,6 +234,7 @@ opção: "Li e concordo com o uso dos meus dados como descrito acima."
 | Cidade | Resposta curta | Sim | |
 | Qual seu perfil? | Múltipla escolha | Sim | Estudante · Profissional de tecnologia · Migrando de carreira · Curioso(a) |
 | Bloco LGPD | | Sim | |
+| Compartilhamento com patrocinadores | Caixa de seleção | **Não** | Desmarcada por padrão. Repassa nome, e-mail e WhatsApp |
 
 ### Form 2 — Palestrante
 
@@ -311,3 +368,8 @@ Notas da execução:
   valendo como especificação. `scripts/listas-de-espera.gs` ficou morto.
 - 2026-11-03 — Comentário dos marcadores `FORM_*` em `index.html` atualizado:
   os 11 botões seguem sem destino até o formulário próprio existir.
+- 2026-11-03 — Fase 2: compartilhamento de dados com patrocinadores aceito, mas
+  como caixa **opcional e separada** no Form 1 (participante), repassando só
+  nome, e-mail e WhatsApp. Consentimento obrigatório segue cobrindo apenas o uso
+  interno — juntar os dois anularia o do repasse (LGPD art. 8 §4 e art. 7 §5).
+  Depende de página pública de patrocinadores e de revisão jurídica.
