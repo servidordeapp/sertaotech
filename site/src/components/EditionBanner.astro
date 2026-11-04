@@ -1,0 +1,15 @@
+---
+/**
+ * Faixa no topo das páginas da edição encerrada, mandando quem chegou pelo
+ * Google para a edição vigente. Era um `<div class="edition-banner">` escrito
+ * à mão no topo do `<body>` das 4 páginas de `/2026` (estilo em css/site.css).
+ *
+ * Vai no slot `pre-header` do BaseLayout, antes do header.
+ */
+interface Props {
+  /** Edição que acabou. */ ano: number;
+  /** Edição vigente, para onde a faixa manda. */ proxima: number;
+}
+const { ano, proxima } = Astro.props;
+---
+<div class="edition-banner" role="note">Edição {ano} encerrada. <a href="/">Conheça o Sertão Tech {proxima} e entre na lista de espera</a></div>

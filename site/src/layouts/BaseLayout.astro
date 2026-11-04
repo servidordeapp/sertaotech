@@ -135,6 +135,8 @@ const socialDescription = ogDescription ?? description;
 </head>
 <body class={bodyClass}>
 
+<slot name="pre-header" />
+
 <SiteHeader active={nav} links={navLinks} cta={cta} brandHref={brandHref} />
 
 <slot />
