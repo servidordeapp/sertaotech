@@ -1,0 +1,7 @@
+# O que não entra na imagem. node_modules fica de fora porque é instalado
+# dentro do container (binário nativo do sharp é por plataforma) e dist/ e
+# .astro/ são saída de build — a imagem de desenvolvimento não usa nenhum dos
+# dois.
+node_modules
+dist
+.astro

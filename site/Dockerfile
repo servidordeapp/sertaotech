@@ -23,6 +23,13 @@ RUN npm ci
 # --------------------------------------------------------------------------
 FROM base AS dev
 ENV NODE_ENV=development
+# python3 é o que roda 4 das 7 verificações do scripts/verify-build.sh (JSON-LD,
+# canonical, links externos e internos). Sem ele o `npm run verify` dentro do
+# container falha com "python3: command not found", e a verificação passaria a
+# exigir Python instalado no host — justo o que o docker-first evita.
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends python3 \
+ && rm -rf /var/lib/apt/lists/*
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 EXPOSE 4321

@@ -1,0 +1,27 @@
+# Stack local do monorepo. Único pré-requisito na máquina é o Docker:
+#
+#   docker compose up        # sobe tudo
+#   docker compose down      # derruba
+#
+# O `api/` tem a stack própria do Laravel Sail em `api/compose.yaml`, que
+# depende de `api/vendor/` (composer install) e por isso não é incluída aqui:
+# sem o vendor, um `include` derrubaria o `docker compose up` do site também.
+services:
+  site:
+    build:
+      context: ./site
+      target: dev
+    # Se o navegador parar de recarregar sozinho ao editar um arquivo,
+    # descomente: liga o polling do watcher do Vite (ver o comentário em
+    # site/astro.config.mjs). Medido em 2026-11-03 como desnecessário — o
+    # container viu as edições do host como o próprio host.
+    # environment:
+    #   VITE_POLLING: '1'
+    ports:
+      - '4321:4321'
+    volumes:
+      # Código do host, para o hot reload ver as edições.
+      - ./site:/app
+      # Volume anônimo: sem ele o bind mount acima cobriria o node_modules
+      # instalado na imagem, e o container subiria sem dependência nenhuma.
+      - /app/node_modules

@@ -20,15 +20,49 @@ na raiz: `index.html`, `2026/`, `after/`, `apresentacoes/`, `assets/`,
 
 ## Como subir
 
-A partir da Fase 3 da migração, o único pré-requisito na máquina é o Docker:
+O único pré-requisito na máquina é o Docker. Nada de Node, npm ou Python
+instalados no host.
 
 ```bash
-docker compose up   # site em http://localhost:4321
+docker compose up -d            # sobe a stack → http://localhost:4321
+docker compose logs -f site     # acompanha o dev server
+docker compose down             # derruba
 ```
 
-Até lá, o site Astro sobe de dentro de `site/` com `npm install && npm run dev`,
-e o HTML estático da raiz abre direto no navegador ou em qualquer servidor de
-arquivos.
+Editar um arquivo em `site/` recarrega o navegador: o código entra por bind
+mount e o `node_modules` fica num volume do container, então **depois de mexer
+no `package.json` reconstrua**:
+
+```bash
+docker compose up -d --build site
+```
+
+Comando pontual dentro do container (sem instalar nada no host):
+
+```bash
+docker compose exec site npm run verify        # build + as 7 verificações
+docker compose exec site npm run check         # astro check
+docker compose exec site npm run og caravanas  # regera uma arte de OG (sharp)
+docker compose exec site npm run ds            # regera o design system
+```
+
+Dois detalhes medidos em 2026-11-03, não adivinhados:
+
+- **A imagem é `node:24-bookworm-slim`, não Alpine.** O `package-lock.json` foi
+  gerado em glibc e só traz os binários `@img/sharp-linux-*`; num Alpine o
+  `sharp` quebraria por falta do `linuxmusl`. Conferido dentro do container:
+  `sharp` 0.35.5 com libvips 8.18.7, e `npm run og` gerou a arte real.
+- **O watcher roda sem polling.** O container enxergou as edições do host como
+  o próprio host (repositório no ext4 do WSL). Se um dia o navegador parar de
+  recarregar sozinho, há um knob comentado no `docker-compose.yml`
+  (`VITE_POLLING=1`).
+
+O `api/` tem a stack própria do Laravel Sail em `api/compose.yaml`, que depende
+de `api/vendor/`; ela não é incluída aqui para não derrubar o `docker compose up`
+do site antes do `composer install`.
+
+O HTML estático da raiz não precisa de nada: abre direto no navegador ou em
+qualquer servidor de arquivos.
 
 ## Documentação
 

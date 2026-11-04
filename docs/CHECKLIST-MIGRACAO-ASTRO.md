@@ -149,24 +149,52 @@ Herança da `feat/blog` que ficou de fora do escopo desta fase:
 Objetivo: `docker compose up` na raiz, nada mais instalado na máquina além do
 Docker.
 
-- [ ] `site/Dockerfile`, alvo de desenvolvimento, base `node:24-alpine`:
-      instala dependências e roda `astro dev --host 0.0.0.0`.
-- [ ] `docker-compose.yml` na raiz, serviço `site`:
-      - [ ] `build: ./site`
-      - [ ] porta `4321:4321`
-      - [ ] bind mount `./site:/app`
-      - [ ] **volume anônimo em `/app/node_modules`** (sem isso o host sobrescreve
-            o que foi instalado no container)
-- [ ] Subir e abrir: `docker compose up` → `http://localhost:4321`
-- [ ] Testar hot reload editando um `.astro`. **Se o navegador não atualizar**
-      (WSL2 não propaga eventos de arquivo por bind mount), ligar polling no
-      `server.watch` do Vite em `astro.config.mjs`.
-- [ ] Testar `sharp` dentro do container:
-      `docker compose run --rm site npm run og`.
-      **Se falhar por binário musl**, trocar a base para `node:24-slim`.
-- [ ] Documentar no `README.md` da raiz: subir, parar, rodar script pontual,
-      e qual dos dois knobs acima foi necessário.
-- [ ] Confirmar que nada no fluxo de desenvolvimento exige Node instalado no host.
+- [x] `site/Dockerfile`, alvo `dev`: instala dependência do lockfile numa camada
+      própria (`deps`) e roda `astro dev --host 0.0.0.0 --port 4321`.
+      **Base `node:24-bookworm-slim`, não `node:24-alpine`** — o fallback que a
+      decisão 5 do documento previa. Motivo, que já estava comentado no
+      Dockerfile da `feat/blog` e foi confirmado aqui: o `package-lock.json` foi
+      gerado em glibc e só traz os binários `@img/sharp-linux-*`; num Alpine o
+      `npm ci` não instalaria o `@img/sharp-linuxmusl-x64`.
+      - [x] `python3` instalado na imagem: 4 das 7 verificações do
+            `scripts/verify-build.sh` são Python. Sem ele o `npm run verify`
+            dentro do container morre em `python3: command not found` e a
+            verificação passaria a exigir Python no host.
+- [x] `docker-compose.yml` na raiz, serviço `site`:
+      - [x] `build: { context: ./site, target: dev }`
+      - [x] porta `4321:4321`
+      - [x] bind mount `./site:/app`
+      - [x] volume anônimo em `/app/node_modules`
+- [x] `docker compose up -d` → `http://localhost:4321` responde `200` com
+      `<title>Sertão Tech 2026 — …</title>`. O `dist/` que o build escreve no
+      bind mount sai como o usuário do host (uid 1000 = `node` na imagem), não
+      como root.
+- [x] Hot reload testado editando `src/pages/index.astro`: o container viu a
+      edição (conteúdo e `mtime` novos dentro de `/app`) e passou a servir o
+      título novo sem restart.
+      **Polling não foi necessário.** Nenhuma mensagem de HMR chegou no
+      websocket `vite-hmr` na edição de um `.astro` — mas o `astro dev` rodando
+      direto no host se comportou igual, então isso é comportamento do Astro 7
+      para página, não bind mount engolindo inotify. O knob ficou no
+      `astro.config.mjs` (`VITE_POLLING=1`), desligado, com a linha comentada no
+      `docker-compose.yml` para ligar se algum dia o navegador parar de
+      recarregar.
+- [x] `sharp` dentro do container: `0.35.5`, libvips `8.18.7`, e
+      `docker compose exec site npm run og -- caravanas` gerou
+      `og-caravanas.jpg` 1200x630, 83 kB — byte a byte igual ao versionado.
+      Não precisou trocar a base.
+- [x] `README.md` da raiz documenta subir, parar, reconstruir depois de mexer no
+      `package.json`, rodar comando pontual (`verify`, `check`, `og`, `ds`) e os
+      dois pontos medidos (imagem glibc, watcher sem polling).
+- [x] Nada no fluxo de desenvolvimento exige Node no host:
+      `docker compose exec site npm run verify` passa inteiro dentro do
+      container — build de 6 páginas e as 7 verificações verdes.
+- [x] `api/` **fora** do compose da raiz (decisão em aberto do documento,
+      resolvida): a stack dele é o Laravel Sail em `api/compose.yaml`, com
+      `build.context: ./vendor/laravel/sail/runtimes/8.5`. Sem `composer
+      install` não existe `api/vendor/`, e um `include:` faria o
+      `docker compose up` do site falhar junto. Reavaliar quando o `api/` tiver
+      vendor e rodar.
 
 ---
 
