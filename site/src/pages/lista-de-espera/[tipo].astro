@@ -1,0 +1,135 @@
+---
+/**
+ * Formulário próprio das listas de espera (substitui os 3 Google Forms).
+ * Estático por tipo; o envio é um fetch para a API Laravel (api/).
+ * Spec: docs/PLANO-2027.md, Fase 2.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FooterCols2027 from '../../components/FooterCols2027.astro';
+import { NAV_2027, CTA_2027 } from '../../data/nav';
+import { LISTAS, LGPD_VERSAO, COMPARTILHAMENTO_VERSAO, type Tipo } from '../../data/listas';
+
+export function getStaticPaths() {
+  return (Object.keys(LISTAS) as Tipo[]).map((tipo) => ({ params: { tipo }, props: { tipo } }));
+}
+
+const { tipo } = Astro.props as { tipo: Tipo };
+const lista = LISTAS[tipo];
+const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
+---
+<BaseLayout
+  title={lista.titulo}
+  description={lista.descricao}
+  path={`/lista-de-espera/${tipo}`}
+  noindex
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main id="conteudo">
+  <section class="section">
+    <div class="container wl">
+      <h1 class="section-title">{lista.titulo}</h1>
+      <p class="wl-lead">{lista.descricao}</p>
+
+      <form id="wl-form" novalidate data-api={api} data-tipo={tipo} data-lgpd={LGPD_VERSAO} data-compartilhamento={COMPARTILHAMENTO_VERSAO}>
+        {lista.campos.map((c) => (
+          c.type === 'radio' ? (
+            <fieldset class="wl-field">
+              <legend>{c.label}{c.required && <span aria-hidden="true"> *</span>}</legend>
+              {c.options!.map((o) => (
+                <label class="wl-check"><input type="radio" name={c.name} value={o} required={c.required} /> {o}</label>
+              ))}
+            </fieldset>
+          ) : (
+            <div class="wl-field">
+              <label for={`f-${c.name}`}>{c.label}{c.required && <span aria-hidden="true"> *</span>}</label>
+              {c.type === 'textarea'
+                ? <textarea id={`f-${c.name}`} name={c.name} rows="4" maxlength="2000" required={c.required}></textarea>
+                : <input id={`f-${c.name}`} name={c.name} type={c.type ?? 'text'} required={c.required} autocomplete={c.autocomplete} maxlength="254" />}
+              {c.hint && <small>{c.hint}</small>}
+            </div>
+          )
+        ))}
+
+        <div class="wl-box">
+          <strong>Como usamos seus dados</strong>
+          <p>Os dados deste formulário servem só para a organização do Sertão Tech avisar você sobre a edição 2027: {lista.finalidade}. Só a organização tem acesso a eles, e não vendemos nem repassamos para terceiros. Guardamos os dados até o fim da edição 2027. Para corrigir ou apagar os seus dados a qualquer momento, chame a organização no WhatsApp +55 (86) 99920-2231 ou no Instagram @osertaotech.</p>
+          <label class="wl-check"><input type="checkbox" name="lgpd" required /> Li e concordo com o uso dos meus dados como descrito acima. <span aria-hidden="true">*</span></label>
+        </div>
+
+        {lista.compartilhamento && (
+          <div class="wl-box">
+            <strong>Compartilhamento com patrocinadores e parceiros (opcional)</strong>
+            <p>Se você autorizar abaixo, compartilhamos seu nome, e-mail e WhatsApp com as empresas e instituições que patrocinam ou apoiam a edição 2027 — a lista delas fica publicada em sertaotech.com.br. Elas podem falar com você sobre vagas, cursos e oportunidades, e passam a responder pelos seus dados por conta própria, pelo prazo e pela política de cada uma. É opcional: deixar desmarcado não muda nada na sua inscrição nem no aviso sobre o evento. Para voltar atrás, chame a organização no WhatsApp +55 (86) 99920-2231 — tiramos você dos próximos repasses, mas quem já recebeu precisa ser avisado caso a caso.</p>
+            <label class="wl-check"><input type="checkbox" name="compartilhamento" /> Autorizo o Sertão Tech a compartilhar meu nome, e-mail e WhatsApp com os patrocinadores e parceiros da edição 2027.</label>
+          </div>
+        )}
+
+        <p id="wl-msg" role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg" type="submit">Entrar na lista</button>
+      </form>
+
+      <div id="wl-ok" role="status" hidden>
+        <h2>Pronto, você está na lista.</h2>
+        <p>Avisamos você assim que houver novidade. <a href="/">Voltar para a home</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+<Fragment slot="footer-cols"><FooterCols2027 /></Fragment>
+
+<script is:inline slot="scripts">
+  var form = document.getElementById('wl-form');
+  var msg = document.getElementById('wl-msg');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.hidden = true;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var data = {};
+    new FormData(form).forEach(function (v, k) { if (v !== '') data[k] = v; });
+    data.lgpd = !!form.elements.lgpd.checked;
+    data.lgpd_versao = form.dataset.lgpd;
+    if (form.elements.compartilhamento) {
+      data.compartilhamento = form.elements.compartilhamento.checked;
+      data.compartilhamento_versao = form.dataset.compartilhamento;
+    }
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    fetch(form.dataset.api + '/api/lista-de-espera/' + form.dataset.tipo, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
+    }).then(function (r) {
+      if (r.status === 201) {
+        form.hidden = true;
+        document.getElementById('wl-ok').hidden = false;
+        if (typeof gtag === 'function') gtag('event', 'waitlist_submit', { tipo: form.dataset.tipo });
+        return;
+      }
+      throw new Error(r.status === 422 ? 'Confira os campos e tente de novo.' : 'Algo deu errado. Tente de novo em instantes.');
+    }).catch(function (err) {
+      msg.textContent = err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message;
+      msg.hidden = false;
+      btn.disabled = false;
+    });
+  });
+</script>
+
+<style>
+  .wl { max-width: 40rem; }
+  .wl-lead { color: var(--text-muted); margin-bottom: var(--space-8); }
+  .wl-field { display: grid; gap: var(--space-2); margin: 0 0 var(--space-5); padding: 0; border: 0; }
+  .wl-field label, .wl-field legend { font-weight: 600; color: var(--text-strong); }
+  .wl-field small { color: var(--text-muted); }
+  .wl-field input:not([type=radio]), .wl-field textarea {
+    font: inherit; padding: var(--space-3); border: 1px solid var(--border-ink);
+    border-radius: var(--radius-field); background: var(--surface-card); width: 100%;
+  }
+  .wl-check { display: flex; gap: var(--space-2); align-items: flex-start; font-weight: 400 !important; }
+  .wl-box { border: 1px solid var(--border-subtle); border-radius: var(--radius-field); padding: var(--space-4); margin: 0 0 var(--space-5); background: var(--surface-card); }
+  .wl-box p { margin: var(--space-2) 0 var(--space-3); font-size: .9em; color: var(--text-muted); }
+  #wl-msg { color: #b3261e; font-weight: 600; }
+</style>
+</BaseLayout>

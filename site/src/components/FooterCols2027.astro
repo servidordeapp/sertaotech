@@ -1,14 +1,13 @@
 ---
 /**
  * Coluna "2027" do rodapé da edição vigente: as 3 listas de espera e o link
- * pro arquivo. Os `FORM_*` são marcadores — ver o comentário no topo de
- * `src/pages/index.astro`.
+ * pro arquivo.
  */
 ---
 <div>
   <h3><span aria-hidden="true">// </span>2027</h3>
-  <a href="FORM_PARTICIPANTE" data-waitlist="participante" target="_blank" rel="noopener">Quero participar</a>
-  <a href="FORM_PALESTRANTE" data-waitlist="palestrante" target="_blank" rel="noopener">Quero palestrar</a>
-  <a href="FORM_PATROCINADOR" data-waitlist="patrocinador" target="_blank" rel="noopener">Quero patrocinar</a>
+  <a href="/lista-de-espera/participante" data-waitlist="participante">Quero participar</a>
+  <a href="/lista-de-espera/palestrante" data-waitlist="palestrante">Quero palestrar</a>
+  <a href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar</a>
   <a href="/2026">Edição 2026</a>
 </div>

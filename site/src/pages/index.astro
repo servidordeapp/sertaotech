@@ -5,7 +5,7 @@
  * edição anterior fica congelada em `/2026`.
  *
  * Os 11 `<img>` da galeria e do After viraram dado em `data/fotos-2026.ts`.
- * Os 3 marcadores `FORM_*` são intencionais: ver o comentário acima do <main>.
+ * Os botões das 3 listas de espera levam a `/lista-de-espera/<tipo>`.
  */
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SponsorTelemetry from '../components/SponsorTelemetry.astro';
@@ -43,19 +43,6 @@ const jsonLd = graph(
   footerApoio="logos"
 >
 
-<!-- =========================================================
-     LINKS DOS FORMULÁRIOS — marcadores, ainda não resolvidos.
-     Google Forms foi abandonado (ver Fase 2 do docs/PLANO-2027.md).
-     As três listas de espera vão virar formulário próprio; até lá os
-     botões abaixo apontam para estes marcadores e NÃO funcionam:
-       FORM_PARTICIPANTE  → lista de participantes
-       FORM_PALESTRANTE   → lista de palestrantes
-       FORM_PATROCINADOR  → lista de patrocinadores
-     Para trocar, substitua os três marcadores em todo o arquivo.
-     O atributo data-waitlist de cada botão é o que o GA4 mede e não
-     depende do destino: pode ficar como está.
-     ========================================================= -->
-
 <main>
 
   <!-- HERO -->
@@ -67,7 +54,7 @@ const jsonLd = graph(
         <h1 class="hero__title">Sertão Tech <em>2027</em>.<span class="hero__title-sub"><span style="white-space:nowrap">15 e 16 de outubro ·</span> <span style="white-space:nowrap">UFDPar ·</span> <span style="white-space:nowrap">lista de espera aberta</span></span></h1>
         <p class="hero__lead">A 2ª edição esgotou e lotou o auditório da UFDPar. Em 2027 são dois dias, em parceria com o Bacharelado em Inteligência Artificial. Entre na lista de espera e saiba primeiro quando as inscrições abrirem.</p>
         <div class="hero__actions">
-          <a class="btn btn--accent btn--lg" href="FORM_PARTICIPANTE" data-waitlist="participante" target="_blank" rel="noopener">Entrar na lista de espera<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+          <a class="btn btn--accent btn--lg" href="/lista-de-espera/participante" data-waitlist="participante">Entrar na lista de espera<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
         </div>
       </div>
       <div class="hero__art">
@@ -153,19 +140,19 @@ const jsonLd = graph(
             <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
             <h3 class="card-title">Participar</h3>
             <p class="card-text">Seja avisado quando as inscrições de 2027 abrirem. Em 2026 elas esgotaram antes do evento.</p>
-            <a class="btn btn--primary btn--md" href="FORM_PARTICIPANTE" data-waitlist="participante" target="_blank" rel="noopener">Quero participar</a>
+            <a class="btn btn--primary btn--md" href="/lista-de-espera/participante" data-waitlist="participante">Quero participar</a>
           </div>
           <div class="card waitlist-card">
             <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span>
             <h3 class="card-title">Palestrar</h3>
             <p class="card-text">Conte o tema que você quer apresentar e avisamos quando a chamada de palestras abrir. Pode ser a sua primeira palestra.</p>
-            <a class="btn btn--primary btn--md" href="FORM_PALESTRANTE" data-waitlist="palestrante" target="_blank" rel="noopener">Quero palestrar</a>
+            <a class="btn btn--primary btn--md" href="/lista-de-espera/palestrante" data-waitlist="palestrante">Quero palestrar</a>
           </div>
           <div class="card waitlist-card">
             <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
             <h3 class="card-title">Patrocinar</h3>
             <p class="card-text">Receba as cotas de 2027 assim que saírem e conecte sua marca aos talentos de tecnologia do norte do Piauí.</p>
-            <a class="btn btn--primary btn--md" href="FORM_PATROCINADOR" data-waitlist="patrocinador" target="_blank" rel="noopener">Quero patrocinar</a>
+            <a class="btn btn--primary btn--md" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar</a>
           </div>
         </div>
 
@@ -182,8 +169,8 @@ const jsonLd = graph(
             ))}
           </div>
           <div class="hero__actions">
-            <a class="btn btn--accent btn--lg" href="FORM_PALESTRANTE" data-waitlist="palestrante" target="_blank" rel="noopener">Quero palestrar</a>
-            <a class="btn btn--outline-ink btn--lg" href="FORM_PATROCINADOR" data-waitlist="patrocinador" target="_blank" rel="noopener">Quero patrocinar</a>
+            <a class="btn btn--accent btn--lg" href="/lista-de-espera/palestrante" data-waitlist="palestrante">Quero palestrar</a>
+            <a class="btn btn--outline-ink btn--lg" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar</a>
           </div>
         </div>
       </div>
@@ -206,7 +193,7 @@ const jsonLd = graph(
 
         <LogoWall utm="home2027" apoio="logos" />
       <div class="sponsor-cta">
-        <a class="btn btn--primary btn--lg" href="FORM_PATROCINADOR" data-waitlist="patrocinador" target="_blank" rel="noopener">Quero patrocinar em 2027<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        <a class="btn btn--primary btn--lg" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar em 2027<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
     </div>
   </section>
@@ -220,7 +207,7 @@ const jsonLd = graph(
         <h2 class="cta__title">O sertão volta<br>em outubro de 2027.</h2>
         <p class="cta__lead">15 e 16 de outubro, na UFDPar. As vagas de 2026 acabaram antes do evento: entre na lista de espera e garanta o aviso antes da divulgação.</p>
         <div class="hero__actions">
-          <a class="btn btn--accent btn--lg" href="FORM_PARTICIPANTE" data-waitlist="participante" target="_blank" rel="noopener">Entrar na lista de espera</a>
+          <a class="btn btn--accent btn--lg" href="/lista-de-espera/participante" data-waitlist="participante">Entrar na lista de espera</a>
           <a class="btn btn--outline-ink btn--lg" href="/2026">Ver como foi a edição 2026</a>
         </div>
       </div>
