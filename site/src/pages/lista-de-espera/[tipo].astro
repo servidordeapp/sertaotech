@@ -84,6 +84,22 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
 <script is:inline slot="scripts">
   var form = document.getElementById('wl-form');
   var msg = document.getElementById('wl-msg');
+  // Máscara (DD) 9XXXX-XXXX. Colar com +55 funciona: o DDI é descartado.
+  var wa = form.elements.whatsapp;
+  if (wa) {
+    wa.maxLength = 15;
+    wa.inputMode = 'tel';
+    wa.pattern = '\\(\\d{2}\\) \\d{4,5}-\\d{4}';
+    wa.title = 'Ex.: (86) 99999-9999';
+    wa.addEventListener('input', function () {
+      var d = wa.value.replace(/\D/g, '');
+      if (d.length > 11 && d.slice(0, 2) === '55') d = d.slice(2);
+      d = d.slice(0, 11);
+      wa.value = d.length > 6 ? '(' + d.slice(0, 2) + ') ' + d.slice(2, d.length > 10 ? 7 : 6) + '-' + d.slice(d.length > 10 ? 7 : 6)
+        : d.length > 2 ? '(' + d.slice(0, 2) + ') ' + d.slice(2)
+        : d.length ? '(' + d : '';
+    });
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     msg.hidden = true;
