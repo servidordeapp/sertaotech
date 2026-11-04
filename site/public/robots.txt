@@ -6,4 +6,9 @@ Allow: /
 Disallow: /cerimonial/
 Disallow: /mesa-redonda/
 
+# Relatório comercial dos patrocinadores de 2026: fica no deploy para ser
+# mandado por link a quem patrocinou, mas não é conteúdo público. Nenhuma
+# página pública linka (só o hub interno /apresentacoes) e o HTML é noindex.
+Disallow: /relatorio/
+
 Sitemap: https://osertaotech.com.br/sitemap-index.xml

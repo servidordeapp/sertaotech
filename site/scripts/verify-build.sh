@@ -28,7 +28,7 @@ echo
 # Passthrough de site/public/: decks reveal.js e hubs internos copiados byte a
 # byte (URLs apresentadas ao vivo). Não passam pelo BaseLayout, então as regras
 # do site Astro não se aplicam a eles.
-PASSTHROUGH='dist/midia-kit dist/after dist/apresentacoes dist/impressos'
+PASSTHROUGH='dist/midia-kit dist/after dist/apresentacoes dist/impressos dist/relatorio'
 EXCL_GREP="--exclude-dir=cerimonial --exclude-dir=mesa-redonda $(for d in $PASSTHROUGH; do printf -- "--exclude-dir=%s " "$(basename $d)"; done)"
 
 echo "== performance (as otimizações do audit de PageSpeed) =="
@@ -41,10 +41,15 @@ else
   ok "nenhum CSS empacotado: só /ds/styles.css, /css/site.css e /css/article.css"
 fi
 
-if grep -rlq $EXCL_GREP 'type="module"' dist --include='*.html'; then
-  erro "apareceu <script type=module> — algum script perdeu o is:inline"
+# O único module esperado é o bundle do @sentry/astro (sentry.client.config.js),
+# que o integration injeta em toda página como /_astro/page.<hash>.js. Qualquer
+# outro quer dizer que um componente ganhou <script> sem is:inline.
+inesperado=$(grep -rho $EXCL_GREP '<script[^>]*type="module"[^>]*>' dist --include='*.html' |
+  grep -cv '/_astro/page\.' || true)
+if [ "$inesperado" -gt 0 ]; then
+  erro "$inesperado <script type=module> fora do bundle do Sentry — algum script perdeu o is:inline"
 else
-  ok "nenhum JS empacotado (todo script é inline e clássico)"
+  ok "nenhum JS empacotado além do bundle do Sentry (o resto é inline e clássico)"
 fi
 
 if grep -rq '@import' dist/ds/styles.css; then
@@ -65,7 +70,13 @@ echo "== analytics e fontes =="
 
 # /cerimonial e /mesa-redonda são documentos de impressão gerados por
 # build-html.py, com <style> próprio e sem BaseLayout — ficam de fora.
-paginas() { find dist -name '*.html' -not -path 'dist/cerimonial/*' -not -path 'dist/mesa-redonda/*' -not -path 'dist/links/*' $(for d in $PASSTHROUGH; do printf -- "-not -path %s/* " "$d"; done); }
+paginas() {
+  # O filtro e por grep, nao por -not -path do find: dentro de $( ) o padrao
+  # 'dist/midia-kit/*' era expandido pelo shell antes do find ver.
+  local fora
+  fora="$(printf 'cerimonial|mesa-redonda|links'; for d in $PASSTHROUGH; do printf '|%s' "$(basename "$d")"; done)"
+  find dist -name '*.html' | grep -vE "^dist/($fora)/"
+}
 
 for f in $(paginas); do
   n=$(grep -c "G-62RC94ZH1Z" "$f" || true)
@@ -91,7 +102,7 @@ falhas = []
 ids = set()
 refs = []
 for f in pathlib.Path('dist').rglob('*.html'):
-    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')):
+    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/', 'dist/relatorio/')):
         continue
     html = f.read_text(encoding='utf-8')
     for bloco in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
@@ -127,7 +138,7 @@ python3 - <<'PY'
 import re, pathlib, sys
 falhas = []
 for f in pathlib.Path('dist').rglob('*.html'):
-    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')):
+    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/', 'dist/relatorio/')):
         continue  # passthrough byte a byte
     html = f.read_text(encoding='utf-8')
     m = re.search(r'<link rel="canonical" href="([^"]+)"', html)
@@ -168,7 +179,7 @@ python3 - <<'PY_EXT'
 import re, pathlib, sys
 # /links é um stub de redirecionamento: o link dele TEM que trocar a página.
 # /cerimonial e /mesa-redonda são documentos de impressão, fora do padrão.
-IGNORA = ('dist/links/', 'dist/cerimonial/', 'dist/mesa-redonda/', 'dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')
+IGNORA = ('dist/links/', 'dist/cerimonial/', 'dist/mesa-redonda/', 'dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/', 'dist/relatorio/')
 falhas = []
 for f in sorted(pathlib.Path('dist').rglob('*.html')):
     if str(f).startswith(IGNORA):
@@ -197,8 +208,6 @@ quebrados = []
 for f in raiz.rglob('*.html'):
     for href in set(re.findall(r'href="(/[^"#?]*)"', f.read_text(encoding='utf-8'))):
         alvo = href.rstrip('/')
-        if alvo.startswith('/relatorio'):  # material interno, fora do deploy (Fase 5, decisão em aberto)
-            continue
         if any((raiz / (alvo.lstrip('/') + s)).exists() for s in ('', '/index.html', '.html')):
             continue
         quebrados.append(f'{f} -> {href}')
