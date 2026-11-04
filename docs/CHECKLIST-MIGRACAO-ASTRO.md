@@ -359,9 +359,10 @@ JSON-LD); âncora morta `/#inscricao` → `/#lista-de-espera`; 4º redirect
       **Continua valendo:** `ds/` e `css/` estão em `public/`, que o Astro não
       hasheia. Fica com `max-age=86400, must-revalidate`.
 - [x] `.vercelignore` revisado para os caminhos novos.
-      Com Root Directory `site/` o da raiz não vale mais (deploy por Git não lê
-      `.vercelignore`; só o CLI). `site/` não precisa de um: `relatorio/` nunca
-      foi copiado para `public/`. O da raiz sai na Fase 10.
+      **Errado na 1ª versão:** a Vercel lê o `.vercelignore` da raiz mesmo com
+      Root Directory `site/`, e o `/site` nele apagou o projeto do clone
+      (`ENOENT site/package.json`, build de 2026-11-04). Linha removida. O
+      arquivo continua na raiz até a Fase 10, só com `/relatorio`, `/docs`, `/api`.
 - [x] `/relatorio`: aplicar a decisão (fora do deploy ou Deployment Protection).
       Fora do deploy por construção: não está em `site/public/`. Se um dia
       precisar ser acessível, aí sim vira Deployment Protection.

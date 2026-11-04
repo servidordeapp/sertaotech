@@ -1,10 +1,10 @@
+# A Vercel lê este arquivo da raiz do repositório mesmo com Root Directory =
+# site/ (confirmado no build de 2026-11-04). Por isso /site NÃO pode estar aqui:
+# apagava o próprio projeto antes do build.
+
 # Fora do deploy: material interno para patrocinadores (ver docs/RELATORIO-PATROCINADORES-2026.md)
 /relatorio
 /docs
 
-# Fora do deploy: código-fonte das aplicações do monorepo. O deploy de hoje
-# ainda tem a raiz como Root Directory e serve arquivo por arquivo — sem isso,
-# o fonte do Astro e do Laravel iria ao ar como arquivo estático. Revisar na
-# Fase 10, quando o Root Directory virar site/.
-/site
+# Backend Laravel: não é servido pela Vercel (deploy próprio, por FTPS).
 /api
