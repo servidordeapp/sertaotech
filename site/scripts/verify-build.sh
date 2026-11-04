@@ -25,16 +25,23 @@ if [ ! -d dist ]; then
 fi
 
 echo
+# Passthrough de site/public/: decks reveal.js e hubs internos copiados byte a
+# byte (URLs apresentadas ao vivo). Não passam pelo BaseLayout, então as regras
+# do site Astro não se aplicam a eles.
+PASSTHROUGH='dist/midia-kit dist/after dist/apresentacoes dist/impressos'
+EXCL_GREP="--exclude-dir=cerimonial --exclude-dir=mesa-redonda $(for d in $PASSTHROUGH; do printf -- "--exclude-dir=%s " "$(basename $d)"; done)"
+
 echo "== performance (as otimizações do audit de PageSpeed) =="
 
+
 # Exatamente os CSS que a gente controla, nunca um bundle do Astro.
-if grep -rlq '_astro/[^"]*\.css' dist --include='*.html'; then
+if grep -rlq $EXCL_GREP '_astro/[^"]*\.css' dist --include='*.html'; then
   erro "apareceu CSS empacotado pelo Astro (_astro/*.css) — algum componente ganhou <style>"
 else
   ok "nenhum CSS empacotado: só /ds/styles.css, /css/site.css e /css/article.css"
 fi
 
-if grep -rlq 'type="module"' dist --include='*.html'; then
+if grep -rlq $EXCL_GREP 'type="module"' dist --include='*.html'; then
   erro "apareceu <script type=module> — algum script perdeu o is:inline"
 else
   ok "nenhum JS empacotado (todo script é inline e clássico)"
@@ -46,7 +53,7 @@ else
   ok "ds/styles.css continua concatenado (sem @import)"
 fi
 
-faltando_dim=$(grep -rho '<img [^>]*>' dist --include='*.html' | grep -cv 'width=' || true)
+faltando_dim=$(grep -rho $EXCL_GREP '<img [^>]*>' dist --include='*.html' | grep -cv 'width=' || true)
 if [ "$faltando_dim" -gt 0 ]; then
   erro "$faltando_dim <img> sem width/height (volta o layout shift)"
 else
@@ -58,7 +65,7 @@ echo "== analytics e fontes =="
 
 # /cerimonial e /mesa-redonda são documentos de impressão gerados por
 # build-html.py, com <style> próprio e sem BaseLayout — ficam de fora.
-paginas() { find dist -name '*.html' -not -path 'dist/cerimonial/*' -not -path 'dist/mesa-redonda/*' -not -path 'dist/links/*'; }
+paginas() { find dist -name '*.html' -not -path 'dist/cerimonial/*' -not -path 'dist/mesa-redonda/*' -not -path 'dist/links/*' $(for d in $PASSTHROUGH; do printf -- "-not -path %s/* " "$d"; done); }
 
 for f in $(paginas); do
   n=$(grep -c "G-62RC94ZH1Z" "$f" || true)
@@ -84,6 +91,8 @@ falhas = []
 ids = set()
 refs = []
 for f in pathlib.Path('dist').rglob('*.html'):
+    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')):
+        continue
     html = f.read_text(encoding='utf-8')
     for bloco in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
         try:
@@ -118,6 +127,8 @@ python3 - <<'PY'
 import re, pathlib, sys
 falhas = []
 for f in pathlib.Path('dist').rglob('*.html'):
+    if str(f).startswith(('dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')):
+        continue  # passthrough byte a byte
     html = f.read_text(encoding='utf-8')
     m = re.search(r'<link rel="canonical" href="([^"]+)"', html)
     if not m:
@@ -157,7 +168,7 @@ python3 - <<'PY_EXT'
 import re, pathlib, sys
 # /links é um stub de redirecionamento: o link dele TEM que trocar a página.
 # /cerimonial e /mesa-redonda são documentos de impressão, fora do padrão.
-IGNORA = ('dist/links/', 'dist/cerimonial/', 'dist/mesa-redonda/')
+IGNORA = ('dist/links/', 'dist/cerimonial/', 'dist/mesa-redonda/', 'dist/midia-kit/', 'dist/after/', 'dist/apresentacoes/', 'dist/impressos/')
 falhas = []
 for f in sorted(pathlib.Path('dist').rglob('*.html')):
     if str(f).startswith(IGNORA):
@@ -186,6 +197,8 @@ quebrados = []
 for f in raiz.rglob('*.html'):
     for href in set(re.findall(r'href="(/[^"#?]*)"', f.read_text(encoding='utf-8'))):
         alvo = href.rstrip('/')
+        if alvo.startswith('/relatorio'):  # material interno, fora do deploy (Fase 5, decisão em aberto)
+            continue
         if any((raiz / (alvo.lstrip('/') + s)).exists() for s in ('', '/index.html', '.html')):
             continue
         quebrados.append(f'{f} -> {href}')

@@ -287,15 +287,19 @@ normalizado contra o HTML de produção — as 5 páginas saem **idênticas**
 Nada aqui é migrado. São arquivos que já funcionam e cujas URLs são apresentadas
 ao vivo e mandadas por WhatsApp.
 
-- [ ] 4 decks reveal.js para `site/public/`, byte a byte:
+- [x] 4 decks reveal.js para `site/public/`, byte a byte:
       `midia-kit/2026`, `midia-kit/2027`, `midia-kit/caravanas-2027`, `after/2026`.
 - [ ] `relatorio/2026` conforme a decisão em aberto (fora do deploy ou protegido).
-- [ ] 9 páginas internas `noindex`: `apresentacoes`, `impressos`, `links`,
+      Segue só na raiz; o hub `/apresentacoes` ainda linka `/relatorio/2026` e o
+      `verify` ignora esse destino até a decisão.
+- [x] 9 páginas internas `noindex`: `apresentacoes`, `impressos`, `links`,
       `cerimonial/*`, `mesa-redonda/*`. `cerimonial/build-html.py` continua como
       está.
-- [ ] `llms.txt`, `robots.txt`, `assets/`, `midia-kit/icons.svg`,
+- [x] `llms.txt`, `robots.txt`, `assets/`, `midia-kit/icons.svg`,
       `midia-kit/midia-kit.css`, `midia-kit/midia-kit.js`.
-- [ ] Trocar os links relativos dos hubs (`../midia-kit/2026/index.html`) por
+      `robots.txt`, `css/` e `assets/` já tinham versão própria em `site/public/`
+      (sitemap-index, Disallow dos internos) e **não** foram sobrescritos.
+- [x] Trocar os links relativos dos hubs (`../midia-kit/2026/index.html`) por
       caminho absoluto sem `.html`, para não pagar redirect extra com `cleanUrls`.
 - [ ] Verificar as URLs sensíveis uma a uma, sem barra no fim e com a query:
       - [ ] `/midia-kit/2027` e `/midia-kit/2027?print-pdf`
