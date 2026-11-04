@@ -41,5 +41,5 @@ export const NAV_2027: NavLink[] = [{ label: 'Edição 2026', href: '/2026' }];
 
 export const CTA_2027: NavCta = {
   label: 'Lista de espera',
-  href: '#lista-de-espera',
+  href: '/#lista-de-espera',
 };

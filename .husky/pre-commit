@@ -1,14 +1,29 @@
-# Espelha o job de qualidade do CI (pint + phpstan) só quando há PHP da api/ no commit.
+# Espelha o CI: pint + phpstan + testes quando há PHP da api/; astro check quando há código do site/.
 staged_php=$(git diff --cached --name-only --diff-filter=ACMR -- 'api/*.php' | sed 's#^api/##')
+staged_site=$(git diff --cached --name-only --diff-filter=ACMR -- 'site/src' 'site/astro.config.mjs' 'site/sentry.client.config.js' 'site/package.json')
 
 if [ -n "$staged_php" ]; then
   if [ ! -d api/vendor ]; then
-    echo "husky: api/vendor ausente, rode 'composer install' em api/. Pulando pint/stan." >&2
-    exit 0
+    echo "husky: api/vendor ausente, rode 'composer install' em api/. Pulando checks da api." >&2
+  else
+    (
+      cd api || exit 1
+      echo "husky: pint (--test)"
+      echo "$staged_php" | xargs vendor/bin/pint --config=pint.json --test || exit 1
+      echo "husky: phpstan"
+      composer stan || exit 1
+      # SQLite em memória: o MySQL do Sail só existe dentro do container.
+      echo "husky: testes"
+      DB_CONNECTION=sqlite DB_DATABASE=:memory: php artisan test --compact || exit 1
+    ) || exit 1
   fi
-  cd api || exit 1
-  echo "husky: pint (--test)"
-  echo "$staged_php" | xargs vendor/bin/pint --config=pint.json --test || exit 1
-  echo "husky: phpstan"
-  composer stan || exit 1
+fi
+
+if [ -n "$staged_site" ]; then
+  if [ ! -d site/node_modules ]; then
+    echo "husky: site/node_modules ausente, rode 'npm install' em site/. Pulando astro check." >&2
+  else
+    echo "husky: astro check"
+    (cd site && npm run check --silent) || exit 1
+  fi
 fi
