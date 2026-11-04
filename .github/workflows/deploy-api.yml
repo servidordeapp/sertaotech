@@ -189,6 +189,24 @@ jobs:
             set -e
             PHP=/usr/local/bin/php
             cd ${{ env.REMOTE_DIR }}
+            # O composer nao vem no repositorio nem sobe pelo rsync. Ordem:
+            # o que o cPanel ja instala, o que estiver no PATH, um .phar que
+            # um deploy anterior tenha baixado e, por ultimo, baixar.
+            if [ -x /opt/cpanel/composer/bin/composer ]; then
+              COMPOSER="$PHP /opt/cpanel/composer/bin/composer"
+            elif command -v composer >/dev/null 2>&1; then
+              COMPOSER="composer"
+            elif [ -f composer.phar ]; then
+              COMPOSER="$PHP composer.phar"
+            else
+              # Hash conferido antes de executar: o phar roda com as
+              # credenciais da conta, download sem verificacao nao serve.
+              curl -sSf -o composer.phar https://getcomposer.org/composer-stable.phar
+              curl -sSf -o composer.phar.sha256 https://getcomposer.org/composer-stable.phar.sha256sum
+              echo "$(cut -d' ' -f1 composer.phar.sha256)  composer.phar" | sha256sum -c -
+              rm -f composer.phar.sha256
+              COMPOSER="$PHP composer.phar"
+            fi
             # Manda as requisições da raiz para public/. O .htaccess da raiz não
             # vai para o git porque o cPanel grava nele o handler do PHP; aqui só
             # acrescentamos o rewrite quando ele ainda não existe.
@@ -202,7 +220,7 @@ jobs:
             mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs storage/app/public
             chmod -R 775 storage bootstrap/cache
             rm -f bootstrap/cache/*.php
-            $PHP composer.phar install --no-interaction --prefer-dist --optimize-autoloader --no-dev
+            $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev
             $PHP artisan optimize:clear
             $PHP artisan migrate --force
             $PHP artisan optimize
