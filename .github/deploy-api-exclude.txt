@@ -1,0 +1,53 @@
+# Padrões no formato rsync (--exclude-from), aplicados a partir de api/.
+# Arquivo excluído também é PROTEGIDO no servidor: o --delete do rsync não
+# apaga o que está listado aqui. É o que preserva .env, storage/ e vendor/
+# entre deploys.
+
+# Instalado no servidor pelo post-deploy (composer install --no-dev)
+/vendor/
+/node_modules/
+
+# Estado em runtime: logs, cache, sessions e uploads nascem e morrem no servidor
+/storage/
+/bootstrap/cache/*.php
+
+# Segredos e configuração local — o .env de produção é colocado à mão, uma vez
+.env
+.env.*
+
+# Não têm função em produção
+/tests/
+/database/factories/
+/database/seeders/DemoSeeder.php
+/database/*.sqlite
+/database/*.sqlite-journal
+/resources/css/
+/resources/js/
+/public/hot
+/public/.ftp-deploy-sync-state.json
+
+# Ferramental de desenvolvimento
+.git*
+/.claude/
+/.specify/
+/.ai/
+/specs/
+/.github/
+*.sh
+compose.yaml
+compose.yml
+docker-compose*.yml
+phpunit.xml
+pint.json
+phpstan.neon
+vite.config.js
+package.json
+package-lock.json
+boost.json
+.mcp.json
+.npmrc
+.vscode*
+.editorconfig
+.DS_Store
+*.md
+*.log

@@ -11,11 +11,11 @@
 # The compiled assets travel from `quality` to `sync` as an artifact.
 #
 # Repository configuration this workflow expects:
-#   vars.FTP_HOST      hostname of the FTP/SFTP server
-#   vars.FTP_USER      username used for both FTP and SSH
-#   secrets.FTP_PASSWORD  password used for both FTP and SSH
+#   vars.FTP_HOST      hostname of the server (kept the name: same host as FTP)
+#   vars.FTP_USER      username used for SSH
+#   secrets.FTP_PASSWORD  password used for SSH
 #   vars.SSH_HOST      optional — defaults to vars.FTP_HOST
-#   vars.SSH_PORT      optional — defaults to 22
+#   vars.SSH_PORT      optional — defaults to 22 (cPanel costuma usar 22222)
 name: Deploy API
 
 # Monorepo: o workflow mora na raiz (o GitHub só lê .github/workflows de lá),
@@ -31,7 +31,11 @@ on:
   workflow_dispatch:
 
 env:
-  REMOTE_DIR: /apps/api/
+  # Relativo a home da conta SSH (/home2/<usuario>), nao absoluto: o FTP
+  # resolvia /apps/api/ dentro do chroot da conta, o ssh resolveria na raiz do
+  # filesystem. Com caminho relativo, rsync e o `cd` do post-deploy caem os
+  # dois em ~/apps/api.
+  REMOTE_DIR: apps/api/
 
 jobs:
   quality:
@@ -129,10 +133,14 @@ jobs:
           retention-days: 1
 
   sync:
-    name: FTP sync
+    name: rsync via SSH
     runs-on: ubuntu-latest
     needs: quality
 
+    # Era FTPS, mas o cPanel exige reuso da sessao TLS do canal de controle no
+    # canal de dados e o basic-ftp (lib da FTP-Deploy-Action) nao faz isso: o
+    # upload morria no meio com "tlsv1 alert decode error" (SSL alert 50).
+    # rsync usa o mesmo SSH do post-deploy, criptografado e com delta real.
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -143,64 +151,24 @@ jobs:
           name: public-build
           path: api/public/build
 
-      - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@v4.4.0
-        with:
-          server: ${{ vars.FTP_HOST }}
-          username: ${{ vars.FTP_USER }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          # FTPS explicito na 21: sem isso a senha do cPanel vai em claro.
-          # Se o host nao suportar, troque para ftps-legacy (TLS implicito, 990)
-          # ou ftp como ultimo recurso.
-          protocol: ftps
-          # local-dir precisa da barra final; sem ele a action subiria a raiz
-          # do monorepo (site/, docs/, 2026/…) para dentro de REMOTE_DIR.
-          local-dir: ./api/
-          server-dir: ${{ env.REMOTE_DIR }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            vendor/**
-            **/.claude/**
-            **/.specify/**
-            **/.ai/**
-            **/specs/**
-            **/tests/**
-            **/database/factories/**
-            **/database/seeders/DemoSeeder.php
-            **/storage/debugbar/**
-            **/storage/logs/**
-            **/storage/framework/cache/**
-            **/storage/framework/sessions/**
-            **/storage/framework/views/**
-            **/storage/framework/testing/**
-            **/bootstrap/cache/*.php
-            **/database/*.sqlite
-            **/database/*.sqlite-journal
-            *.sh
-            compose.yaml
-            compose.yml
-            docker-compose*.yml
-            .env
-            .env.*
-            .vscode*
-            .editorconfig
-            .DS_Store
-            phpunit.xml
-            pint.json
-            phpstan.neon
-            **/*.md
-            **/resources/css/**
-            **/resources/js/**
-            vite.config.js
-            package.json
-            package-lock.json
-            public/hot
-            *.log
-            .mcp.json
-            .npmrc
-            boost.json
+      - name: Install rsync & sshpass
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends rsync sshpass
+
+      # --delete remove do servidor o que saiu do repositorio, para nao deixar
+      # codigo velho servindo. O que esta em deploy-api-exclude.txt fica
+      # protegido: rsync nao apaga arquivo excluido (sem --delete-excluded).
+      - name: Sync api/ to the server
+        env:
+          SSHPASS: ${{ secrets.FTP_PASSWORD }}
+          SSH_USER: ${{ vars.FTP_USER }}
+          SSH_TARGET: ${{ vars.SSH_HOST || vars.FTP_HOST }}
+          SSH_PORT: ${{ vars.SSH_PORT || 22 }}
+        run: |
+          set -euo pipefail
+          sshpass -e rsync -rltzv --delete \
+            --exclude-from=.github/deploy-api-exclude.txt \
+            -e "ssh -p $SSH_PORT -o StrictHostKeyChecking=accept-new -o UserKnownHostsFile=/dev/null" \
+            ./api/ "$SSH_USER@$SSH_TARGET:$REMOTE_DIR"
 
   post-deploy:
     name: SSH post-deploy
