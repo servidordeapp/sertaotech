@@ -38,4 +38,7 @@ COPY --chown=node:node . .
 # EACCES nos arquivos que o container tinha criado.
 USER node
 EXPOSE 4321
-CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "4321"]
+# --force: o lock do dev server fica em `site/.astro/dev.json`, que é bind
+# mount do host e sobrevive ao container. Sem a flag, recriar o container faz o
+# Astro achar que ainda há um servidor rodando no PID antigo e abortar.
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "4321", "--force"]

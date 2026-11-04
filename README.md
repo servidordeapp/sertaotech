@@ -20,14 +20,25 @@ na raiz: `index.html`, `2026/`, `after/`, `apresentacoes/`, `assets/`,
 
 ## Como subir
 
-O único pré-requisito na máquina é o Docker. Nada de Node, npm ou Python
-instalados no host.
+O único pré-requisito na máquina é o Docker. Nada de Node, npm, PHP, composer
+ou Python instalados no host.
 
 ```bash
-docker compose up -d            # sobe a stack → http://localhost:4321
-docker compose logs -f site     # acompanha o dev server
+docker compose up -d            # sobe site + api + banco
+docker compose logs -f          # acompanha tudo (ou `logs -f site`, `logs -f api`)
 docker compose down             # derruba
 ```
+
+| Serviço | URL | O que é |
+|---|---|---|
+| `site` | <http://localhost:4321> | Dev server do Astro, com hot reload |
+| `api` | <http://localhost:8000> | Laravel. Só `POST /api/lista-de-espera/{tipo}`; não há rota GET, abrir no navegador dá 404 |
+| `mysql` | — | Banco da api, sem porta no host. Acesso por `docker compose exec` |
+
+A api sobe sozinha: no primeiro boot ela cria o `api/.env` a partir do
+`.env.example` (com `key:generate`) e roda `php artisan migrate`. O site recebe
+`PUBLIC_API_URL=http://localhost:8000` pelo compose — sem isso o formulário da
+lista de espera cairia no fallback do código e escreveria **em produção**.
 
 Editar um arquivo em `site/` recarrega o navegador: o código entra por bind
 mount e o `node_modules` fica num volume do container, então **depois de mexer
@@ -37,6 +48,10 @@ no `package.json` reconstrua**:
 docker compose up -d --build site
 ```
 
+O mesmo vale para a api: o `vendor/` fica num volume do container, então
+**depois de mexer no `composer.json` reconstrua** com
+`docker compose up -d --build api`.
+
 Comando pontual dentro do container (sem instalar nada no host):
 
 ```bash
@@ -44,6 +59,10 @@ docker compose exec site npm run verify        # build + as 7 verificações
 docker compose exec site npm run check         # astro check
 docker compose exec site npm run og caravanas  # regera uma arte de OG (sharp)
 docker compose exec site npm run ds            # regera o design system
+
+docker compose exec api composer quality       # pint + phpstan + testes
+docker compose exec api php artisan migrate    # migrações
+docker compose exec api php artisan tinker     # console
 ```
 
 Dois detalhes medidos em 2026-11-03, não adivinhados:
@@ -57,9 +76,12 @@ Dois detalhes medidos em 2026-11-03, não adivinhados:
   recarregar sozinho, há um knob comentado no `docker-compose.yml`
   (`VITE_POLLING=1`).
 
-O `api/` tem a stack própria do Laravel Sail em `api/compose.yaml`, que depende
-de `api/vendor/`; ela não é incluída aqui para não derrubar o `docker compose up`
-do site antes do `composer install`.
+A api usa o `api/Dockerfile` (PHP 8.5 + composer dentro da imagem), e não a
+imagem do Laravel Sail: a de Sail é construída a partir de
+`api/vendor/laravel/sail/runtimes/`, que só existe depois de um `composer
+install` no host. O `api/compose.yaml` continua no repositório para quem usa o
+comando `sail`, mas não é incluído aqui — num clone novo ele derrubaria o
+`docker compose up` do site também.
 
 O HTML estático da raiz não precisa de nada: abre direto no navegador ou em
 qualquer servidor de arquivos.
