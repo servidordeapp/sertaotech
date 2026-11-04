@@ -53,7 +53,7 @@ export const COTAS_2026: Cota[] = [
     logos: [
       { nome: 'Retake Brasil', arquivo: 'retake-brasil.svg', largura: 424, altura: 133, url: 'https://www.retake.com.br/' },
       { nome: 'Bruno Neves Advogado', arquivo: 'bruno-neves-advogado.webp', largura: 640, altura: 311, url: 'https://brunonevesadv.com.br/' },
-      { nome: 'Cajutec', arquivo: 'cajutec.webp', largura: 640, altura: 369, url: 'https://app.cajutec.com.br/' },
+      { nome: 'Cajutec', arquivo: 'cajutec-640.webp', largura: 640, altura: 369, url: 'https://app.cajutec.com.br/' },
       { nome: 'Cod3r', arquivo: 'cod3r.webp', largura: 640, altura: 121, url: 'https://www.formacao.dev/' },
     ],
   },
