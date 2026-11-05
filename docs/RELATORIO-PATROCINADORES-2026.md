@@ -31,7 +31,7 @@ home 2027 (números da edição).
 | 7 | Quem esteve na plateia | 1 | Sim |
 | 8 | O que aconteceu no palco | 1 | Sim |
 | 9 | Registro fotográfico | 1–2 | Sim (+ fotos da marca, se houver) |
-| 10 | O que vem em 2027 | 1–2 | Sim |
+| 10 | O que vem em 2027 | 4 | Quase (nome e logo) |
 | 11 | Sua opinião | 1 | Sim |
 | 12 | Contato | 1 | Sim |
 
@@ -333,14 +333,20 @@ Link para o álbum completo, se a organização tiver um.
 
 ## 10. O que vem em 2027
 
-Só o anúncio do crescimento, sem link para o kit: o próximo passo é uma conversa,
-não a tabela de cotas (decidido em 2026-11-05).
+Sequência para criar desejo de voltar, com argumentos do kit 2027, sem preços e
+sem link para o kit: o próximo passo é uma conversa (decidido em 2026-11-05).
 
-- 3ª edição em 2 dias (15 e 16 de outubro de 2027), na UFDPar.
-- 4 trilhas: Principal, Robótica, Negócios e Sênior+.
-- Botão para o WhatsApp com a mensagem pronta: "Oi! Aqui é da {{empresa}}. Vi o
-  relatório do Sertão Tech 2026 e quero entender se faz sentido patrocinar de
-  novo em 2027. Podemos conversar?" O WhatsApp do slide de contato abre igual.
+1. **O Sertão Tech está crescendo:** meta de 350 inscritos, 2 dias (15 e 16 de
+   outubro de 2027), 4 trilhas; mais experiências, públicos e visibilidade.
+2. **Quatro trilhas, um só evento:** o que é e para quem é cada uma.
+3. **Imagine {{empresa}} apresentando um programa:** Sertão Tech - Robótica e
+   Sertão Tech - Negócios, com o logo do patrocinador no "apresentado por".
+4. **O próximo capítulo é maior:** por que seguir junto.
+5. **Vamos construir a 3ª edição juntos?** 16 vagas, sem valores, e o botão.
+
+Botão para o WhatsApp com a mensagem pronta: "Oi! Aqui é da {{empresa}}. Vi o
+relatório do Sertão Tech 2026 e quero entender se faz sentido patrocinar de novo
+em 2027. Podemos conversar?" O WhatsApp da lista de contatos abre igual.
 - **Proposta para quem patrocinou em 2026** (decidido em 2026-11-05):
   "Patrocinadores de 2026 têm prioridade na escolha de cota até 31/12/2026."
   Mesma data em que o logo sai da home.
@@ -397,7 +403,7 @@ relatório" do CSS, para reaproveitar em 2027).
   2. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
      **Nenhuma**, **Gráficos de fundo** ligado. O nome do arquivo já vem como
      `Sertao-Tech-2026-Relatorio-<Empresa>`.
-- PDF com 13 páginas, mais os slides de comprovação e o anexo de links
+- PDF com 16 páginas, mais os slides de comprovação e o anexo de links
   quando houver contrapartidas preenchidas.
 - Ficaram de fora: slide do Sertão Tech After (fica só uma foto na grade),
   valores das cotas de 2027, dados de perfil do público e o print do GA4 (os
@@ -565,5 +571,6 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
   "atenção", concordância de Bruno Neves Advogado. Mensagem de WhatsApp sem
   "entregas da cota", que o PDF não traz desde 2026-11-01. Prioridade de renovação
   até 31/12/2026 no slide de 2027 e 7 PDFs exportados.
-- 2026-11-05 — Slide de 2027 sem link para o kit, programas e cotas: 2 dias, 4
-  trilhas e botão de WhatsApp com mensagem pronta.
+- 2026-11-05 — 2027 vira sequência de desejo em 4 slides, com o logo do
+  patrocinador nos programas, 16 vagas sem valores e botão de WhatsApp com
+  mensagem pronta no lugar do link para o kit.
