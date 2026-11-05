@@ -1,6 +1,6 @@
 # Stack local do monorepo. Único pré-requisito na máquina é o Docker:
 #
-#   docker compose up        # sobe site + api + banco
+#   docker compose up        # sobe site + painel + api + banco + RustFS
 #   docker compose down      # derruba
 #
 # O `api/compose.yaml` (Laravel Sail) continua lá para quem usa o `sail`, mas
@@ -65,11 +65,48 @@ services:
       # Volume anônimo, pelo mesmo motivo do node_modules do site: sem ele o
       # bind mount cobriria o vendor instalado na imagem.
       - /app/vendor
+    # Variável de ambiente ganha do api/.env, então os anexos daqui nunca vão para o R2.
+    environment:
+      AWS_ACCESS_KEY_ID: rustfsadmin
+      AWS_SECRET_ACCESS_KEY: rustfsadmin
+      AWS_DEFAULT_REGION: us-east-1
+      AWS_BUCKET: osertaotech
+      AWS_ENDPOINT: 'http://rustfs:9000'
+      AWS_USE_PATH_STYLE_ENDPOINT: 'true'
     depends_on:
       mysql:
         # O boot roda `artisan migrate`, que precisa do banco de pé, não só do
         # container criado.
         condition: service_healthy
+      rustfs-bucket:
+        condition: service_completed_successfully
+
+  # O lugar do Cloudflare R2 em dev: mesma api S3, sem conta nem custo. Console em
+  # http://localhost:9001, com o usuário e a senha abaixo.
+  rustfs:
+    image: 'rustfs/rustfs:1.0.4'
+    environment:
+      RUSTFS_ACCESS_KEY: rustfsadmin
+      RUSTFS_SECRET_KEY: rustfsadmin
+      RUSTFS_CONSOLE_ENABLE: 'true'
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    volumes:
+      - rustfs:/data
+
+  # Cria o bucket e sai. O RustFS não cria sozinho, e o curl assina S3 sem precisar
+  # de cliente nenhum. 409 é "já existe", o normal a partir do segundo boot.
+  rustfs-bucket:
+    image: 'curlimages/curl:8.11.1'
+    entrypoint: ['sh', '-c']
+    command:
+      - |
+        until codigo=$$(curl -s -o /dev/null -w '%{http_code}' --aws-sigv4 aws:amz:us-east-1:s3 \
+          -u rustfsadmin:rustfsadmin -X PUT http://rustfs:9000/osertaotech) \
+          && { [ "$$codigo" = 200 ] || [ "$$codigo" = 409 ]; }; do sleep 1; done
+    depends_on:
+      - rustfs
 
   mysql:
     image: 'mysql:8.4'
@@ -92,3 +129,4 @@ services:
 
 volumes:
   mysql:
+  rustfs:

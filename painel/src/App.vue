@@ -1,13 +1,16 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import Drawer from 'primevue/drawer';
 import Menu from 'primevue/menu';
 import Tag from 'primevue/tag';
 import Toast from 'primevue/toast';
 import Estado from './components/Estado.vue';
 import Marca from './components/Marca.vue';
 import Pagina from './components/Pagina.vue';
+import SeletorEdicao from './components/SeletorEdicao.vue';
 import { auth, sai } from './auth.js';
+import { carregaEdicoes } from './edicao.js';
 
 const route = useRoute();
 const router = useRouter();
@@ -16,25 +19,52 @@ const GRUPOS = [
   {
     rotulo: 'Pessoas',
     itens: [
-      { para: '/inscricoes', rotulo: 'Inscrições', icone: 'pi-users' },
-      { para: '/emails', rotulo: 'E-mails', icone: 'pi-envelope', admin: true },
-      { para: '/lgpd', rotulo: 'LGPD', icone: 'pi-shield', admin: true },
+      { nome: 'inscricoes', rotulo: 'Inscrições', icone: 'pi-users' },
+      { nome: 'emails', rotulo: 'E-mails', icone: 'pi-envelope' },
+      { nome: 'lgpd', rotulo: 'LGPD', icone: 'pi-shield' },
     ],
   },
   {
     rotulo: 'Evento',
-    itens: [{ para: '/metricas', rotulo: 'Métricas', icone: 'pi-chart-bar' }],
+    itens: [
+      { nome: 'metricas', rotulo: 'Métricas', icone: 'pi-chart-bar' },
+      { nome: 'apresentacoes', rotulo: 'Apresentações', icone: 'pi-desktop' },
+    ],
+  },
+  {
+    rotulo: 'Finanças',
+    itens: [{ nome: 'orcamento', rotulo: 'Orçamento', icone: 'pi-wallet' }],
   },
 ];
 
-const ehAdmin = computed(() => auth.usuario?.papel === 'admin');
+// No celular cabem quatro abas: o que o papel mais usa, na ordem. O resto vai para "Mais".
+const ABAS_NO_CELULAR = {
+  admin: ['inscricoes', 'metricas', 'orcamento', 'apresentacoes'],
+  comercial: ['inscricoes', 'orcamento', 'apresentacoes', 'metricas'],
+  curadoria: ['inscricoes', 'apresentacoes', 'metricas'],
+  financeiro: ['orcamento', 'apresentacoes'],
+};
+
+const papel = computed(() => auth.usuario?.papel);
+
+function podeVer(meta) {
+  return !meta.papeis || meta.papeis.includes(papel.value);
+}
 
 // O que o papel não vê some do menu, em vez de ficar apagado.
 const grupos = computed(() => GRUPOS
-  .map((grupo) => ({ ...grupo, itens: grupo.itens.filter((item) => !item.admin || ehAdmin.value) }))
+  .map((grupo) => ({ ...grupo, itens: grupo.itens.filter((item) => podeVer(router.resolve({ name: item.nome }).meta)) }))
   .filter((grupo) => grupo.itens.length));
 
-const proibido = computed(() => route.meta.admin && !ehAdmin.value);
+const abas = computed(() => ABAS_NO_CELULAR[papel.value] ?? []);
+const temMais = computed(() => grupos.value.some((grupo) => grupo.itens.some((item) => !abas.value.includes(item.nome))));
+
+const proibido = computed(() => !podeVer(route.meta));
+
+// Trocar de tela não pode perder a edição em foco.
+function destino(nome) {
+  return { name: nome, query: route.query.edicao ? { edicao: route.query.edicao } : {} };
+}
 
 const iniciais = computed(() => (auth.usuario?.nome ?? '')
   .split(' ')
@@ -43,6 +73,11 @@ const iniciais = computed(() => (auth.usuario?.nome ?? '')
   .join(''));
 
 const menu = ref();
+const maisAberto = ref(false);
+
+watch(() => auth.usuario, (usuario) => {
+  if (usuario) carregaEdicoes();
+}, { immediate: true });
 
 async function sair() {
   await sai();
@@ -56,7 +91,9 @@ const opcoesDaConta = [{ label: 'Sair', icon: 'pi pi-sign-out', command: sair }]
   <div v-if="auth.usuario" class="topo">
     <header class="barra">
       <div class="barra__miolo">
-        <Marca claro legenda="Painel" />
+        <Marca claro legenda="Painel" class="barra__marca" />
+
+        <SeletorEdicao />
 
         <Tag :value="auth.usuario.papel" class="barra__papel" />
 
@@ -89,17 +126,45 @@ const opcoesDaConta = [{ label: 'Sair', icon: 'pi pi-sign-out', command: sair }]
       <div class="navegacao__miolo">
         <div v-for="grupo in grupos" :key="grupo.rotulo" class="navegacao__grupo">
           <span class="eyebrow navegacao__rotulo">{{ grupo.rotulo }}</span>
-          <RouterLink v-for="item in grupo.itens" :key="item.para" :to="item.para" class="navegacao__item">
+          <RouterLink
+            v-for="item in grupo.itens"
+            :key="item.nome"
+            :to="destino(item.nome)"
+            class="navegacao__item"
+            :class="{ 'navegacao__item--secundario': !abas.includes(item.nome) }"
+            :style="{ '--ordem': abas.indexOf(item.nome) }"
+          >
             <i class="pi" :class="item.icone" />
             {{ item.rotulo }}
           </RouterLink>
         </div>
+
+        <button v-if="temMais" type="button" class="navegacao__item navegacao__mais" @click="maisAberto = true">
+          <i class="pi pi-th-large" />
+          Mais
+        </button>
       </div>
     </nav>
+
+    <Drawer v-model:visible="maisAberto" position="bottom" header="Todas as telas" style="height: auto">
+      <div v-for="grupo in grupos" :key="grupo.rotulo" class="mais__grupo">
+        <div class="eyebrow">{{ grupo.rotulo }}</div>
+        <RouterLink
+          v-for="item in grupo.itens"
+          :key="item.nome"
+          :to="destino(item.nome)"
+          class="mais__item"
+          @click="maisAberto = false"
+        >
+          <i class="pi" :class="item.icone" />
+          {{ item.rotulo }}
+        </RouterLink>
+      </div>
+    </Drawer>
   </div>
 
   <main class="conteudo" :class="{ 'conteudo--logado': auth.usuario }">
-    <Pagina v-if="proibido" titulo="Sem permissão">
+    <Pagina v-if="auth.usuario && proibido" titulo="Sem permissão">
       <Estado tipo="proibido" />
     </Pagina>
     <RouterView v-else />
@@ -132,6 +197,10 @@ const opcoesDaConta = [{ label: 'Sair', icon: 'pi pi-sign-out', command: sair }]
   gap: var(--space-4);
   align-items: center;
   height: 4rem;
+}
+
+.barra__marca {
+  margin-right: var(--space-2);
 }
 
 .barra__papel {
@@ -243,7 +312,42 @@ const opcoesDaConta = [{ label: 'Sair', icon: 'pi pi-sign-out', command: sair }]
   color: var(--brand-primary);
 }
 
+.navegacao__mais {
+  display: none;
+}
+
+.mais__grupo + .mais__grupo {
+  margin-top: var(--space-4);
+}
+
+.mais__item {
+  display: flex;
+  gap: 0.625rem;
+  align-items: center;
+  min-height: 2.75rem;
+  color: var(--text-body);
+  text-decoration: none;
+}
+
+.mais__item.router-link-active {
+  font-weight: var(--fw-bold);
+  color: var(--brand-primary);
+}
+
 @media (max-width: 47.99rem) {
+  .barra__papel,
+  .barra__marca :deep(.marca__legenda) {
+    display: none;
+  }
+
+  .barra__miolo {
+    gap: var(--space-2);
+  }
+
+  .conta {
+    margin-left: auto;
+  }
+
   .barra__miolo {
     height: 3.5rem;
     padding: 0 0.875rem;
@@ -278,8 +382,21 @@ const opcoesDaConta = [{ label: 'Sair', icon: 'pi pi-sign-out', command: sair }]
     display: none;
   }
 
+  .navegacao__item--secundario {
+    display: none;
+  }
+
+  .navegacao__item.navegacao__mais {
+    display: inline-flex;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    order: 9;
+  }
+
   .navegacao__item {
     flex: 1 1 0;
+    order: var(--ordem);
     flex-direction: column;
     gap: 0.1875rem;
     min-height: 3rem;

@@ -23,7 +23,7 @@ class PainelUsuario extends Command
     protected $signature = 'painel:usuario
                             {--email= : E-mail de quem entra}
                             {--nome= : Nome exibido}
-                            {--papel= : admin, comercial ou curadoria}';
+                            {--papel= : admin, comercial, curadoria ou financeiro}';
 
     protected $description = 'Cria (ou atualiza) um usuário do painel';
 

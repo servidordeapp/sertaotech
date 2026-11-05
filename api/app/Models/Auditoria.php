@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Http\Request;
 
 /**
- * Uma linha por ato sobre dado pessoal: export da lista, consulta de LGPD,
- * anonimização. Não tem update nem delete de propósito.
+ * Uma linha por ato sobre dado pessoal (export da lista, consulta de LGPD,
+ * anonimização) ou sobre dinheiro (`orcamento.*`). Não tem update nem delete de
+ * propósito.
  */
 class Auditoria extends Model
 {

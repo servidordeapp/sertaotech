@@ -27,7 +27,7 @@ php artisan painel:usuario    # pergunta e-mail, nome, papel e senha
 ```
 
 Papéis: `admin` vê os três tipos de inscrição, `comercial` vê patrocinador,
-`curadoria` vê palestrante. O recorte é feito na api — o front só esconde o
+`curadoria` vê palestrante, `financeiro` não vê inscrição nenhuma. O recorte é feito na api — o front só esconde o
 filtro que não serve. Volume de e-mail, LGPD e auditoria são do evento inteiro, não de um tipo: só o
 `admin`. O menu esconde as telas e quem chega pela URL vê o estado de 403, mas
 quem tranca é a api — as rotas estão atrás de `can:painel-admin` e respondem
@@ -41,6 +41,25 @@ quem tranca é a api — as rotas estão atrás de `can:painel-admin` e responde
 | `/metricas` | Totais, inscrições por dia, distribuições (cidade, perfil, experiência, cota) e volume de e-mail |
 | `/emails` | O que saiu de e-mail, com busca por destinatário ou assunto. Só `admin` |
 | `/lgpd` | Direitos do titular: consultar tudo de uma pessoa, anonimizar, e o histórico de quem acessou. Só `admin` |
+| `/apresentacoes` | Decks, relatórios e impressos do site, por edição. Lista fixa em `src/materiais.js`; as URLs são públicas (ver `docs/MELHORIAS-FUTURAS.md`) |
+| `/orcamento` | Receitas em funil, despesas, saldo e comparativo por edição. `admin` e `financeiro` veem tudo; `comercial`, só as receitas |
+
+Inscrições e métricas ainda não têm edição: `waitlist_entries` é uma lista só, e por
+isso o seletor do topo só aparece em Apresentações e Orçamento.
+
+## Orçamento
+
+Dinheiro anda em centavos inteiros entre api e tela; só o campo do formulário
+trabalha em reais. A edição atual é a de maior ano na tabela `edicoes`: edição nova
+entra por migration, quando o ciclo virar. Edição encerrada é só leitura, menos para
+o `admin`, que lança o histórico dela, de onde saem o comparativo e a cópia.
+
+As cotas e os preços de cada kit estão em `src/orcamento.js`. Anexos são PDF de até
+10 MB, em `orcamento/` no bucket S3 (R2 em produção, RustFS em dev). Cada escopo tem
+a sua pasta no mesmo bucket. O bucket `osertaotech` é público por decisão do projeto:
+quem tiver o caminho abre o arquivo, e o que protege é o nome aleatório e a api nunca
+devolver o caminho. O arquivo passa pela api na ida e na volta, por isso o limite do
+PHP em `api/public/.user.ini` ainda vale.
 
 As cores dos gráficos estão em `src/cores.js`, validadas (banda de
 luminosidade, croma, separação para daltonismo e contraste) contra a

@@ -56,6 +56,30 @@
   --blue-100: #D9E6F2;
   --blue-700: #154F82; /* text on blue-100, 6.69:1 */
 
+  /* ---- Darker steps for text on soft fills ---- */
+  --amber-700: #7A4A06; /* text on amber-100, 6.34:1 */
+
+  /* ---- Painel: sponsorship funnel (bg / fg), cold -> warm -> success.
+          Color is never the only signal: the tag also carries a step marker. ---- */
+  --funnel-1-bg: var(--sand-200);   --funnel-1-fg: var(--espresso-700); /* Prospecção        9.00:1 */
+  --funnel-2-bg: var(--agave-100);  --funnel-2-fg: var(--agave-600);    /* Proposta enviada  5.71:1 */
+  --funnel-3-bg: var(--honey-100);  --funnel-3-fg: var(--honey-700);    /* Negociação        5.69:1 */
+  --funnel-4-bg: var(--amber-100);  --funnel-4-fg: var(--amber-700);    /* Fechado           6.34:1 */
+  --funnel-5-bg: var(--terra-100);  --funnel-5-fg: var(--terra-700);    /* Contrato assinado 5.78:1 */
+  --funnel-6-bg: var(--cactus-100); --funnel-6-fg: var(--cactus-600);   /* Pago              5.59:1 */
+
+  /* ---- Painel: expense status ---- */
+  --expense-planned-bg: var(--sand-200);    --expense-planned-fg: var(--espresso-700);  /* 9.00:1 */
+  --expense-committed-bg: var(--honey-100); --expense-committed-fg: var(--honey-700);   /* 5.69:1 */
+  --expense-paid-bg: var(--cactus-100);     --expense-paid-fg: var(--cactus-600);       /* 5.59:1 */
+  --expense-overdue-bg: var(--brick-100);   --expense-overdue-fg: var(--brick-600);     /* 5.84:1 */
+
+  /* ---- Painel: budget execution bar ---- */
+  --exec-paid: var(--terra-700);
+  --exec-committed: var(--terra-400);
+  --exec-track: var(--sand-200);
+  --exec-over: var(--brick-500);
+
   /* ================= Semantic aliases ================= */
   /* Surfaces */
   --surface-page:      var(--sand-100);   /* warm cream — the desert day */

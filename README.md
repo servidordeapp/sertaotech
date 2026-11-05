@@ -26,7 +26,7 @@ O único pré-requisito na máquina é o Docker. Nada de Node, npm, PHP, compose
 ou Python instalados no host.
 
 ```bash
-docker compose up -d            # sobe site + painel + api + banco
+docker compose up -d            # sobe site + painel + api + banco + RustFS
 docker compose logs -f          # acompanha tudo (ou `logs -f site`, `logs -f api`)
 docker compose down             # derruba
 ```
@@ -37,6 +37,7 @@ docker compose down             # derruba
 | `api` | <http://localhost:8000> | Laravel. A lista de espera e as rotas `/api/painel/*` |
 | `painel` | <http://localhost:5173> | Painel interno (Vue + Vite), com hot reload |
 | `mysql` | — | Banco da api, sem porta no host. Acesso por `docker compose exec` |
+| `rustfs` | <http://localhost:9001> | Console do S3 local, no lugar do Cloudflare R2. Usuário e senha `rustfsadmin` |
 
 A api sobe sozinha: no primeiro boot ela cria o `api/.env` a partir do
 `.env.example` (com `key:generate`) e roda `php artisan migrate`. O site recebe

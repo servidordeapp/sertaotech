@@ -6,7 +6,7 @@ import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
 import Password from 'primevue/password';
 import Marca from '../components/Marca.vue';
-import { entra } from '../auth.js';
+import { entra, telaInicial } from '../auth.js';
 
 const route = useRoute();
 const router = useRouter();
@@ -22,7 +22,7 @@ async function enviar() {
 
   try {
     await entra(email.value, senha.value);
-    router.push(route.query.destino || { name: 'inscricoes' });
+    router.push(route.query.destino || telaInicial());
   } catch (e) {
     // 422 vem com a mensagem do Laravel; 429 é o limite de 5 tentativas/min.
     erro.value = e.erros?.email?.[0]

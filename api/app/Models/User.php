@@ -23,15 +23,17 @@ class User extends Authenticatable
     /**
      * Papel do painel => tipos de inscrição que ele enxerga.
      *
-     * Três papéis fixos não pagam um pacote de permissões. Papel que não está
-     * aqui não vê nada (ver `tiposVisiveis()`).
+     * Papéis fixos não pagam um pacote de permissões. Papel que não está aqui
+     * não vê nada (ver `tiposVisiveis()`). O financeiro está de propósito, sem
+     * tipo nenhum: entra no orçamento, não nas inscrições.
      *
      * @var array<string, list<string>>
      */
     public const PAPEIS = [
-        'admin'     => WaitlistEntry::TIPOS,
-        'comercial' => ['patrocinador'],
-        'curadoria' => ['palestrante'],
+        'admin'      => WaitlistEntry::TIPOS,
+        'comercial'  => ['patrocinador'],
+        'curadoria'  => ['palestrante'],
+        'financeiro' => [],
     ];
 
     /**

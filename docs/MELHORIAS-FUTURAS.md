@@ -10,6 +10,23 @@ Consulta e anonimização de dados de um titular, com histórico de quem acessou
 estão em `painel.osertaotech.com.br/lgpd` desde 2026-11-05. O que segue abaixo
 continua de fora.
 
+## Tirar os materiais do público
+
+Os kits não devem ser públicos, mas continuam em `site/public`: `/midia-kit/*`,
+`/relatorio/2026`, `/after/2026`, `/cerimonial/*` e `/mesa-redonda/*` abrem para
+qualquer um que tenha o endereço. O `noindex` só os esconde do Google, e a tela
+`/apresentacoes` do painel apenas aponta para essas URLs: o login dela não protege
+nada.
+
+O design (`docs/design`) prevê link assinado com validade (7 dias, 30 dias, fim da
+edição), revogável e com registro de cada abertura, para mandar a quem está fora.
+
+Custo: mover os arquivos para fora de `site/public`, servi-los pela api com sessão
+ou assinatura, guardar links em tabela própria e trocar as URLs publicadas nos
+materiais já enviados.
+
+Decidido em 2026-11-05: começar com links estáticos, sabendo disso.
+
 ## Registrar e-mail que falhou
 
 `emails_enviados` só tem uma linha por e-mail que **saiu** — o listener

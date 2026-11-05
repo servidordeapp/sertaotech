@@ -19,3 +19,10 @@ export const COR_UNICA = '#A8511A';
 /** Tinta dos eixos e rótulos — texto nunca veste a cor da série. */
 export const TINTA = '#6B4526';
 export const GRADE = 'rgba(107, 69, 38, 0.12)';
+
+/**
+ * Entradas × saídas do orçamento. O validador reprovou o teal do design, que lê
+ * como cinza (croma 0,06 contra piso de 0,10). O azul passa em tudo, com pior par
+ * ΔE 22,6 em protanopia. É o mesmo do palestrante, mas os dois nunca dividem gráfico.
+ */
+export const CORES_ORCAMENTO = { receita: '#1A6FB5', despesa: '#B4670B' };

@@ -12,6 +12,11 @@ export const auth = reactive({
   carregado: false,
 });
 
+/** Para onde vai quem entra sem destino: o financeiro não tem tela de inscrições. */
+export function telaInicial() {
+  return { name: auth.usuario?.papel === 'financeiro' ? 'orcamento' : 'inscricoes' };
+}
+
 export async function carregaSessao() {
   try {
     auth.usuario = await api('/api/painel/me');

@@ -108,6 +108,79 @@ body {
   color: var(--cactus-600);
 }
 
+/* Etapa do funil e situação da despesa. */
+.p-tag.tag-funil,
+.p-tag.tag-despesa {
+  gap: 0.375rem;
+  font-size: var(--text-xs);
+  font-weight: var(--fw-semibold);
+  white-space: nowrap;
+}
+
+.p-tag.tag-funil-1 { background: var(--funnel-1-bg); color: var(--funnel-1-fg); }
+.p-tag.tag-funil-2 { background: var(--funnel-2-bg); color: var(--funnel-2-fg); }
+.p-tag.tag-funil-3 { background: var(--funnel-3-bg); color: var(--funnel-3-fg); }
+.p-tag.tag-funil-4 { background: var(--funnel-4-bg); color: var(--funnel-4-fg); }
+.p-tag.tag-funil-5 { background: var(--funnel-5-bg); color: var(--funnel-5-fg); }
+.p-tag.tag-funil-6 { background: var(--funnel-6-bg); color: var(--funnel-6-fg); }
+
+.p-tag.tag-despesa-planejado { background: var(--expense-planned-bg); color: var(--expense-planned-fg); }
+.p-tag.tag-despesa-comprometido { background: var(--expense-committed-bg); color: var(--expense-committed-fg); }
+.p-tag.tag-despesa-pago { background: var(--expense-paid-bg); color: var(--expense-paid-fg); }
+.p-tag.tag-despesa-vencido { background: var(--expense-overdue-bg); color: var(--expense-overdue-fg); }
+
+/* Campo de formulário: rótulo em cima, ajuda ou erro embaixo. */
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.campo > label,
+.campo__rotulo {
+  font-size: 0.8125rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
+}
+
+.campo__ajuda {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+}
+
+.campo__erro {
+  font-size: var(--text-xs);
+  color: var(--brick-600);
+}
+
+.campos-duplos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+  gap: var(--space-4);
+}
+
+.numero-tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Coluna de valor: número alinhado à direita, cabeçalho junto. */
+.coluna-valor {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.coluna-valor .p-datatable-column-header-content {
+  justify-content: flex-end;
+}
+
+/* Mostrar só num tamanho de tela, sem JavaScript medindo a largura. */
+@media (min-width: 48rem) {
+  .so-celular {
+    display: none !important;
+  }
+}
+
 /* DataTable: o padrão de lista do painel inteiro. */
 .p-datatable {
   font-size: var(--text-sm);
@@ -132,6 +205,11 @@ body {
   font-weight: var(--fw-semibold);
 }
 
+/* Botão que é link (`as="a"`) não herda o sublinhado do `a` do DS. */
+a.p-button {
+  text-decoration: none;
+}
+
 .p-dialog-title {
   font-family: var(--font-display);
 }
@@ -140,6 +218,7 @@ body {
 .p-selectbutton {
   max-width: 100%;
   overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .p-selectbutton .p-togglebutton {
@@ -163,6 +242,10 @@ body {
     display: block;
     padding: var(--space-3) var(--space-10) var(--space-3) var(--space-4);
     border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cartao--tabela .coluna-valor {
+    text-align: left;
   }
 
   .cartao--tabela .p-datatable-tbody > tr > td {

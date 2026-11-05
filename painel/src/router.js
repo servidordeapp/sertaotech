@@ -1,22 +1,38 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import { auth, carregaSessao } from './auth.js';
+import { auth, carregaSessao, telaInicial } from './auth.js';
 import Login from './views/Login.vue';
+import Apresentacoes from './views/Apresentacoes.vue';
 import Inscricoes from './views/Inscricoes.vue';
 import Emails from './views/Emails.vue';
 import Lgpd from './views/Lgpd.vue';
 import Metricas from './views/Metricas.vue';
+import Orcamento from './views/Orcamento.vue';
 
+const COM_INSCRICOES = ['admin', 'comercial', 'curadoria'];
+
+/**
+ * `papeis` é quem vê a tela; sem ele, todo mundo logado. O App.vue usa isto para
+ * montar o menu e para mostrar o 403 no lugar da tela, sem montá-la. Não é a
+ * tranca: a api responde 403 de qualquer jeito. `porEdicao` liga o seletor.
+ */
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/login', name: 'login', component: Login, meta: { publica: true } },
-    { path: '/inscricoes', name: 'inscricoes', component: Inscricoes },
-    { path: '/metricas', name: 'metricas', component: Metricas },
-    // Só admin: o App.vue mostra o estado de 403 no lugar da tela, sem montá-la,
-    // e a api responde 403 de qualquer jeito — a tela não é a tranca.
-    { path: '/emails', name: 'emails', component: Emails, meta: { admin: true } },
-    { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { admin: true } },
-    { path: '/:qualquer(.*)*', redirect: '/inscricoes' },
+    { path: '/inscricoes', name: 'inscricoes', component: Inscricoes, meta: { papeis: COM_INSCRICOES } },
+    { path: '/metricas', name: 'metricas', component: Metricas, meta: { papeis: COM_INSCRICOES } },
+    { path: '/emails', name: 'emails', component: Emails, meta: { papeis: ['admin'] } },
+    { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { papeis: ['admin'] } },
+    { path: '/apresentacoes', name: 'apresentacoes', component: Apresentacoes, meta: { porEdicao: true } },
+    {
+      path: '/orcamento',
+      name: 'orcamento',
+      component: Orcamento,
+      meta: { papeis: ['admin', 'financeiro', 'comercial'], porEdicao: true },
+    },
+    // Sem `redirect`: ele rodaria antes do guarda saber quem está logado, e a tela
+    // inicial depende do papel. O guarda abaixo desvia daqui, a Login nunca monta.
+    { path: '/:qualquer(.*)*', name: 'inicio', component: Login },
   ],
 });
 
@@ -29,8 +45,8 @@ router.beforeEach(async (destino) => {
     return { name: 'login', query: { destino: destino.fullPath } };
   }
 
-  if (destino.name === 'login' && auth.usuario) {
-    return { name: 'inscricoes' };
+  if (destino.name === 'inicio' || (destino.name === 'login' && auth.usuario)) {
+    return telaInicial();
   }
 
   return true;

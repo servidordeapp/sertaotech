@@ -31,6 +31,15 @@ class AppServiceProvider extends ServiceProvider
         // tipo de inscrição: só admin.
         Gate::define('painel-admin', fn (User $usuario): bool => $usuario->ehAdmin());
 
+        // Financeiro mexe em valor e não vê dado pessoal de inscrito.
+        Gate::define('painel-inscricoes', fn (User $usuario): bool => $usuario->tiposVisiveis() !== []);
+
+        // Saldo, margem e despesa ficam com quem cuida do dinheiro.
+        Gate::define('painel-orcamento', fn (User $usuario): bool => in_array($usuario->papel, ['admin', 'financeiro'], true));
+
+        // O comercial toca o funil: o valor da cota já é público no kit de patrocínio.
+        Gate::define('painel-receitas', fn (User $usuario): bool => in_array($usuario->papel, ['admin', 'financeiro', 'comercial'], true));
+
         RateLimiter::for('smtp', fn () => Limit::perDay(config()->integer('mail.limite_diario')));
 
         // Login do painel: a chave é e-mail + IP. Só IP juntaria todo mundo

@@ -37,6 +37,9 @@ FROM base AS dev
 # container escreve (storage/logs, bootstrap/cache) precisa sair com esse dono,
 # senão o host perde a escrita nos próprios arquivos.
 RUN useradd -u 1000 -m -s /bin/bash app
+# O servidor embutido ignora o public/.user.ini, que é o que vale na hospedagem:
+# sem isto o anexo do orçamento para nos 2 MB padrão do PHP só em dev.
+RUN printf 'upload_max_filesize = 11M\npost_max_size = 12M\n' > /usr/local/etc/php/conf.d/uploads.ini
 COPY --from=deps --chown=app:app /app/vendor ./vendor
 COPY --chown=app:app . .
 USER app
@@ -44,4 +47,6 @@ EXPOSE 8000
 # ponytail: `artisan serve` atende uma requisição por vez. Vale enquanto é o
 # dev server de um endpoint de formulário; se um dia precisar de concorrência,
 # trocar por php-fpm + nginx.
-CMD ["sh", "-c", "[ -f .env ] || { cp .env.example .env; php artisan key:generate --no-interaction; }; php artisan migrate --force --no-interaction && php artisan serve --host 0.0.0.0 --port 8000"]
+# --no-reload: sem ele o serve descarta o ambiente do compose e relê só o .env, e o
+# disco S3 ficaria sem bucket. Efeito colateral: mudou o .env, `docker compose restart api`.
+CMD ["sh", "-c", "[ -f .env ] || { cp .env.example .env; php artisan key:generate --no-interaction; }; php artisan migrate --force --no-interaction && php artisan serve --host 0.0.0.0 --port 8000 --no-reload"]
