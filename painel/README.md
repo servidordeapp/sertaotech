@@ -76,3 +76,15 @@ ela o código cai em `https://api.osertaotech.com.br`.
 
 O `.vercelignore` da raiz vale para todos os projetos da Vercel, então `/painel`
 não pode entrar lá — apagaria este projeto antes do build.
+
+## Erros
+
+Sentry, projeto `sertaotech-painel` (mesma org do site e da api). O DSN fica
+cravado em `src/main.js`, igual ao do site: DSN de browser é público por
+design, vai no bundle de qualquer jeito. `enabled: import.meta.env.PROD`
+desliga tudo em dev — só o build da Vercel reporta.
+
+Só captura de erro: sem tracing e sem session replay. O painel é interno e de
+pouco uso, então trace não paga o bundle, e gravar a sessão de uma tela que
+lista dado pessoal de inscrito seria vazar o que a `/lgpd` existe para
+proteger. `sendDefaultPii: false` pelo mesmo motivo.
