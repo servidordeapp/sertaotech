@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Models\User;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
@@ -25,6 +27,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        // E-mail, LGPD e auditoria são do evento inteiro, não do recorte de um
+        // tipo de inscrição: só admin.
+        Gate::define('painel-admin', fn (User $usuario): bool => $usuario->ehAdmin());
+
         RateLimiter::for('smtp', fn () => Limit::perDay(config()->integer('mail.limite_diario')));
 
         // Login do painel: a chave é e-mail + IP. Só IP juntaria todo mundo

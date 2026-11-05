@@ -8,8 +8,10 @@ declare(strict_types=1);
 return [
     // sanctum/csrf-cookie é a primeira chamada do painel no login; fora desta
     // lista o navegador barra antes de a sessão existir.
-    'paths'                    => ['api/*', 'sanctum/csrf-cookie'],
-    'allowed_methods'          => ['GET', 'POST', 'OPTIONS'],
+    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    // DELETE é o pedido de exclusão da LGPD; sem ele o navegador barra no
+    // preflight e a tela recebe um "Failed to fetch" sem explicação.
+    'allowed_methods'          => ['GET', 'POST', 'DELETE', 'OPTIONS'],
     'allowed_origins'          => array_filter(explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'https://osertaotech.com.br,https://www.osertaotech.com.br'))),
     'allowed_origins_patterns' => [],
     // X-XSRF-TOKEN é o cabeçalho que o painel devolve a partir do cookie de CSRF.

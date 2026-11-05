@@ -4,6 +4,12 @@ Lacunas conhecidas, anotadas quando foram descobertas. Nenhuma delas bloqueia o
 que está no ar; cada uma custa trabalho próprio e por isso ficou de fora do
 escopo em que apareceu.
 
+## O que o painel já cobre
+
+Consulta e anonimização de dados de um titular, com histórico de quem acessou,
+estão em `painel.osertaotech.com.br/lgpd` desde 2026-11-05. O que segue abaixo
+continua de fora.
+
 ## Registrar e-mail que falhou
 
 `emails_enviados` só tem uma linha por e-mail que **saiu** — o listener

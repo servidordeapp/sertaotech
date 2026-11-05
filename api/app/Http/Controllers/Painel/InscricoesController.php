@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\InscricaoResource;
+use App\Models\Auditoria;
 use App\Models\User;
 use App\Models\WaitlistEntry;
 use Illuminate\Database\Eloquent\Builder;
@@ -35,6 +36,10 @@ class InscricoesController extends Controller
     {
         $request->validate($this->regrasDeFiltro());
         $consulta = $this->consulta($request);
+
+        // Baixar a lista é levar dado pessoal para fora do painel; fica
+        // registrado quem levou e com que filtro.
+        Auditoria::registra($request, 'inscricoes.export', http_build_query($request->only(['tipo', 'busca'])) ?: null);
 
         return response()->streamDownload(function () use ($consulta): void {
             $saida = fopen('php://output', 'w');

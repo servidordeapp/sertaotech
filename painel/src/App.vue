@@ -20,6 +20,10 @@ async function sair() {
     <nav class="barra__nav">
       <RouterLink to="/inscricoes">Inscrições</RouterLink>
       <RouterLink to="/metricas">Métricas</RouterLink>
+      <template v-if="auth.usuario.papel === 'admin'">
+        <RouterLink to="/emails">E-mails</RouterLink>
+        <RouterLink to="/lgpd">LGPD</RouterLink>
+      </template>
     </nav>
     <span class="barra__usuario">
       {{ auth.usuario.nome }}

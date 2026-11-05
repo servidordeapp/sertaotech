@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import PrimeVue from 'primevue/config';
 import Aura from '@primeuix/themes/aura';
+import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 import 'primeicons/primeicons.css';
 import './estilo.css';
@@ -14,5 +15,6 @@ createApp(App)
   // tela de cada cor.
   .use(PrimeVue, { theme: { preset: Aura, options: { darkModeSelector: false } } })
   .use(ToastService)
+  .use(ConfirmationService)
   .use(router)
   .mount('#app');

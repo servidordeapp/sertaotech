@@ -2,7 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Painel\AuditoriasController;
+use App\Http\Controllers\Painel\EmailsController;
 use App\Http\Controllers\Painel\InscricoesController;
+use App\Http\Controllers\Painel\LgpdController;
 use App\Http\Controllers\Painel\MetricasController;
 use App\Http\Controllers\Painel\SessaoController;
 use App\Http\Controllers\WaitlistController;
@@ -28,5 +31,14 @@ Route::prefix('painel')->group(function (): void {
         Route::get('inscricoes', [InscricoesController::class, 'index']);
 
         Route::get('metricas', [MetricasController::class, 'index']);
+
+        Route::middleware('can:painel-admin')->group(function (): void {
+            Route::get('emails', [EmailsController::class, 'index']);
+
+            Route::get('lgpd', [LgpdController::class, 'show']);
+            Route::delete('lgpd', [LgpdController::class, 'destroy']);
+
+            Route::get('auditorias', [AuditoriasController::class, 'index']);
+        });
     });
 });

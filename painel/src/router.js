@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { auth, carregaSessao } from './auth.js';
 import Login from './views/Login.vue';
 import Inscricoes from './views/Inscricoes.vue';
+import Emails from './views/Emails.vue';
+import Lgpd from './views/Lgpd.vue';
 import Metricas from './views/Metricas.vue';
 
 export const router = createRouter({
@@ -10,6 +12,10 @@ export const router = createRouter({
     { path: '/login', name: 'login', component: Login, meta: { publica: true } },
     { path: '/inscricoes', name: 'inscricoes', component: Inscricoes },
     { path: '/metricas', name: 'metricas', component: Metricas },
+    // Só admin: o guarda abaixo devolve quem não é para /inscricoes, e a api
+    // responde 403 de qualquer jeito — a tela não é a tranca.
+    { path: '/emails', name: 'emails', component: Emails, meta: { admin: true } },
+    { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { admin: true } },
     { path: '/:qualquer(.*)*', redirect: '/inscricoes' },
   ],
 });
@@ -21,6 +27,10 @@ router.beforeEach(async (destino) => {
 
   if (!destino.meta.publica && !auth.usuario) {
     return { name: 'login', query: { destino: destino.fullPath } };
+  }
+
+  if (destino.meta.admin && auth.usuario?.papel !== 'admin') {
+    return { name: 'inscricoes' };
   }
 
   if (destino.name === 'login' && auth.usuario) {

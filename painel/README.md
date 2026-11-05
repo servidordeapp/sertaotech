@@ -28,8 +28,9 @@ php artisan painel:usuario    # pergunta e-mail, nome, papel e senha
 
 Papéis: `admin` vê os três tipos de inscrição, `comercial` vê patrocinador,
 `curadoria` vê palestrante. O recorte é feito na api — o front só esconde o
-filtro que não serve. Volume de e-mail é do evento inteiro, não de um tipo:
-só o `admin` recebe esse bloco em `/api/painel/metricas`.
+filtro que não serve. Volume de e-mail, LGPD e auditoria são do evento inteiro, não de um tipo: só o
+`admin`. O router esconde as telas, mas quem tranca é a api — as rotas estão
+atrás de `can:painel-admin` e respondem 403 de qualquer jeito.
 
 ## Telas
 
@@ -37,6 +38,8 @@ só o `admin` recebe esse bloco em `/api/painel/metricas`.
 |---|---|
 | `/inscricoes` | Tabela com busca, filtro de tipo, linha expansível e export em CSV |
 | `/metricas` | Totais, inscrições por dia, distribuições (cidade, perfil, experiência, cota) e volume de e-mail |
+| `/emails` | O que saiu de e-mail, com busca por destinatário ou assunto. Só `admin` |
+| `/lgpd` | Direitos do titular: consultar tudo de uma pessoa, anonimizar, e o histórico de quem acessou. Só `admin` |
 
 As cores dos gráficos estão em `src/cores.js`, validadas (banda de
 luminosidade, croma, separação para daltonismo e contraste) contra a

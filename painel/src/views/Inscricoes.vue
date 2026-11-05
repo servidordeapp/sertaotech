@@ -11,6 +11,7 @@ import Tag from 'primevue/tag';
 import { useToast } from 'primevue/usetoast';
 import { api, urlDeExport } from '../api.js';
 import { auth } from '../auth.js';
+import { dataHora } from '../formato.js';
 
 const toast = useToast();
 
@@ -74,9 +75,6 @@ watch(tipo, () => {
 
 onMounted(carrega);
 
-function dataHora(iso) {
-  return iso ? new Date(iso).toLocaleString('pt-BR', { dateStyle: 'short', timeStyle: 'short' }) : '';
-}
 
 function whatsapp(digitos) {
   const m = /^(\d{2})(\d{4,5})(\d{4})$/.exec(digitos ?? '');

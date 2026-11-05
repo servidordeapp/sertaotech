@@ -20,6 +20,9 @@ class WaitlistEntry extends Model
 
     public const TIPOS = ['participante', 'palestrante', 'patrocinador'];
 
+    /** Como fica o que era dado pessoal depois do pedido de exclusão. */
+    public const ANONIMO = 'anonimizado';
+
     protected $guarded = [];
 
     protected function casts(): array
@@ -28,6 +31,7 @@ class WaitlistEntry extends Model
             'dados'                      => 'array',
             'lgpd_aceito_em'             => 'datetime',
             'compartilhamento_aceito_em' => 'datetime',
+            'anonimizado_em'             => 'datetime',
         ];
     }
 }
