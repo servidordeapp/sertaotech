@@ -10,6 +10,7 @@ próprio; esta página é só o índice.
 | `docs/` | Documentação de negócio e de engenharia. Fora do deploy. |
 | `site/` | Site público em Astro (saída estática). É o que está no ar. Ver [`site/README.md`](site/README.md). |
 | `api/` | Serviço de backend em Laravel. Ver [`api/README.md`](api/README.md). |
+| `painel/` | Painel interno (SPA Vue) em `painel.osertaotech.com.br`. Ver [`painel/README.md`](painel/README.md). |
 | `docker/` | Scripts de init dos containers do `docker-compose.yml`. |
 | `originais/` | Fotos e artes em alta resolução. Locais, fora do git. |
 
@@ -25,7 +26,7 @@ O único pré-requisito na máquina é o Docker. Nada de Node, npm, PHP, compose
 ou Python instalados no host.
 
 ```bash
-docker compose up -d            # sobe site + api + banco
+docker compose up -d            # sobe site + painel + api + banco
 docker compose logs -f          # acompanha tudo (ou `logs -f site`, `logs -f api`)
 docker compose down             # derruba
 ```
@@ -33,7 +34,8 @@ docker compose down             # derruba
 | Serviço | URL | O que é |
 |---|---|---|
 | `site` | <http://localhost:4321> | Dev server do Astro, com hot reload |
-| `api` | <http://localhost:8000> | Laravel. Só `POST /api/lista-de-espera/{tipo}`; não há rota GET, abrir no navegador dá 404 |
+| `api` | <http://localhost:8000> | Laravel. A lista de espera e as rotas `/api/painel/*` |
+| `painel` | <http://localhost:5173> | Painel interno (Vue + Vite), com hot reload |
 | `mysql` | — | Banco da api, sem porta no host. Acesso por `docker compose exec` |
 
 A api sobe sozinha: no primeiro boot ela cria o `api/.env` a partir do
@@ -95,6 +97,7 @@ comando `sail`, mas não é incluído aqui — num clone novo ele derrubaria o
 | [`docs/ROTEIRO-NEGOCIOS-2027.md`](docs/ROTEIRO-NEGOCIOS-2027.md) | Trilha de negócios |
 | [`docs/MIDIA-KIT-CARAVANAS-2027.md`](docs/MIDIA-KIT-CARAVANAS-2027.md) | Kit de caravanas |
 | [`docs/RELATORIO-PATROCINADORES-2026.md`](docs/RELATORIO-PATROCINADORES-2026.md) | Relatório para patrocinadores de 2026 |
+| [`docs/MELHORIAS-FUTURAS.md`](docs/MELHORIAS-FUTURAS.md) | Lacunas conhecidas, para depois |
 
 `docs/` e `api/` estão no `.vercelignore` — não são site. O relatório dos
 patrocinadores está em `site/public/relatorio/2026`: vai ao ar para ser mandado

@@ -33,6 +33,21 @@ services:
       # instalado na imagem, e o container subiria sem dependência nenhuma.
       - /app/node_modules
 
+  painel:
+    build:
+      context: ./painel
+      target: dev
+    environment:
+      # Sem isto o painel cai no fallback do código (api.osertaotech.com.br) e
+      # o login local tentaria autenticar contra produção.
+      VITE_API_URL: 'http://localhost:8000'
+    ports:
+      - '5173:5173'
+    volumes:
+      - ./painel:/app
+      # Volume anônimo, pelo mesmo motivo do site.
+      - /app/node_modules
+
   api:
     build:
       context: ./api

@@ -1,0 +1,12 @@
+/* Cores do site (site/public/ds) só onde aparecem: o resto é o tema Aura do
+   PrimeVue, que já vem pronto. Painel é interno; não precisa ser o site. */
+:root {
+  --sertao-areia: #f6f1e7;
+  --sertao-terra: #b4531f;
+}
+
+body {
+  margin: 0;
+  background: var(--sertao-areia);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}

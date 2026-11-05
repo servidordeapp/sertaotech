@@ -1,6 +1,7 @@
 # A Vercel lê este arquivo da raiz do repositório mesmo com Root Directory =
 # site/ (confirmado no build de 2026-11-04). Por isso /site NÃO pode estar aqui:
-# apagava o próprio projeto antes do build.
+# apagava o próprio projeto antes do build. O mesmo vale para /painel, que é
+# outro projeto da Vercel na mesma raiz.
 
 # Documentação de negócio: não é site.
 /docs
