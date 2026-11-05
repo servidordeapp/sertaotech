@@ -81,13 +81,14 @@ Compromissos do kit de 2026 e o que aconteceu:
 
 ## 4. A 2ª edição em números
 
-Comparação com a 1ª edição (números do kit de 2026):
+Comparação com a 1ª edição (inscritos e check-ins pela planilha da plataforma de
+ingressos; os demais números, do kit de 2026):
 
 | Indicador | 1ª edição | 2ª edição (2026) | Variação |
 | --- | --- | --- | --- |
 | Inscritos | 191 | 233 | +22% |
-| Presentes (check-in) | 91 | **176** | **+93%** (quase o dobro) |
-| Comparecimento | 48% | **76%** | +28 pontos percentuais |
+| Presentes (check-in) | 109 | **176** | **+61%** |
+| Comparecimento | 57% | **76%** | +19 pontos percentuais |
 | Pessoas no palco | 3 | **18** | 6x |
 | Patrocinadores | — | **7** (1 Ouro, 2 Prata, 4 Bronze) | |
 | Caravanas | — | 4 | |

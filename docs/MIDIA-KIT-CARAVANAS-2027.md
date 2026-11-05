@@ -52,7 +52,7 @@ organizar a caravana.
 | Cidades representadas | Parnaíba, Luís Correia, Buriti dos Lopes e Teresina |
 | Patrocinadores | 7 empresas |
 
-Da 1ª para a 2ª edição, o número de presentes quase dobrou (91 → 176).
+Da 1ª para a 2ª edição, o número de presentes cresceu 61% (109 → 176).
 
 ---
 
