@@ -16,15 +16,15 @@ const emit = defineEmits(['removido']);
 
 const toast = useToast();
 const erro = ref('');
-const DEZ_MEGA = 10 * 1024 * 1024;
+const VINTE_MEGA = 20 * 1024 * 1024;
 
 // Barra aqui o que a api recusaria: subir 50 MB para ouvir um não custa caro no celular.
 function escolhe(evento) {
   const escolhido = evento.target.files[0] ?? null;
   erro.value = '';
 
-  if (escolhido && (escolhido.type !== 'application/pdf' || escolhido.size > DEZ_MEGA)) {
-    erro.value = 'Só PDF de até 10 MB.';
+  if (escolhido && (escolhido.type !== 'application/pdf' || escolhido.size > VINTE_MEGA)) {
+    erro.value = 'Só PDF de até 20 MB.';
     evento.target.value = '';
     arquivo.value = null;
     return;
@@ -67,7 +67,7 @@ async function remove() {
         <strong v-if="arquivo">{{ arquivo.name }}</strong>
         <template v-else>{{ nome ? 'Trocar por outro arquivo' : dica }}</template>
       </span>
-      <span class="mono anexo__limite">PDF · até 10 MB</span>
+      <span class="mono anexo__limite">PDF · até 20 MB</span>
       <input type="file" accept="application/pdf" class="anexo__entrada" @change="escolhe" />
     </label>
 

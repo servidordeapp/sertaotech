@@ -78,7 +78,7 @@ class ReceitasController extends Controller
     {
         $this->garanteEditavel($request, $receita->edicao);
 
-        $request->validate(['arquivo' => ['required', 'file', 'mimes:pdf', 'max:10240']]);
+        $request->validate(['arquivo' => ['required', 'file', 'mimes:pdf', 'max:20480']]);
 
         /** @var UploadedFile $arquivo */
         $arquivo = $request->file('arquivo');

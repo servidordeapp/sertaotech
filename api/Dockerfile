@@ -39,7 +39,7 @@ FROM base AS dev
 RUN useradd -u 1000 -m -s /bin/bash app
 # O servidor embutido ignora o public/.user.ini, que é o que vale na hospedagem:
 # sem isto o anexo do orçamento para nos 2 MB padrão do PHP só em dev.
-RUN printf 'upload_max_filesize = 11M\npost_max_size = 12M\n' > /usr/local/etc/php/conf.d/uploads.ini
+RUN printf 'upload_max_filesize = 21M\npost_max_size = 22M\n' > /usr/local/etc/php/conf.d/uploads.ini
 COPY --from=deps --chown=app:app /app/vendor ./vendor
 COPY --chown=app:app . .
 USER app

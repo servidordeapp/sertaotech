@@ -55,7 +55,7 @@ entra por migration, quando o ciclo virar. Edição encerrada é só leitura, me
 o `admin`, que lança o histórico dela, de onde saem o comparativo e a cópia.
 
 As cotas e os preços de cada kit estão em `src/orcamento.js`. Anexos são PDF de até
-10 MB, em `orcamento/` no bucket S3 (R2 em produção, RustFS em dev). Cada escopo tem
+20 MB, em `orcamento/` no bucket S3 (R2 em produção, RustFS em dev). Cada escopo tem
 a sua pasta no mesmo bucket. O bucket `osertaotech` é público por decisão do projeto:
 quem tiver o caminho abre o arquivo, e o que protege é o nome aleatório e a api nunca
 devolver o caminho. O arquivo passa pela api na ida e na volta, por isso o limite do

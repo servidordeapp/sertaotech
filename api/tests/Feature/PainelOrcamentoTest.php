@@ -337,14 +337,22 @@ describe('anexos', function () {
             ->and($resposta->json('data.0.anexo_nome'))->toBe('c.pdf');
     });
 
-    test('só PDF de até 10 MB', function (UploadedFile $arquivo) {
+    test('aceita PDF de exatos 20 MB', function () {
+        $this->actingAs(usuario())
+            ->post('/api/painel/orcamento/receitas/'.receita()->id.'/anexo', [
+                'arquivo' => UploadedFile::fake()->create('grande.pdf', 20480, 'application/pdf'),
+            ], ['Accept' => 'application/json'])
+            ->assertOk();
+    });
+
+    test('só PDF de até 20 MB', function (UploadedFile $arquivo) {
         $this->actingAs(usuario())
             ->post('/api/painel/orcamento/receitas/'.receita()->id.'/anexo', ['arquivo' => $arquivo], ['Accept' => 'application/json'])
             ->assertJsonValidationErrors('arquivo');
     })->with([
         'imagem'     => fn () => UploadedFile::fake()->create('foto.png', 1, 'image/png'),
         'html'       => fn () => UploadedFile::fake()->create('x.pdf', 1, 'text/html'),
-        'muito peso' => fn () => UploadedFile::fake()->create('grande.pdf', 10241, 'application/pdf'),
+        'muito peso' => fn () => UploadedFile::fake()->create('grande.pdf', 20481, 'application/pdf'),
     ]);
 
     test('o anexo novo substitui o antigo', function () {

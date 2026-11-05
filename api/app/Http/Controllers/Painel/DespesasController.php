@@ -96,7 +96,7 @@ class DespesasController extends Controller
     {
         $this->garanteEditavel($request, $despesa->edicao);
 
-        $request->validate(['arquivo' => ['required', 'file', 'mimes:pdf', 'max:10240']]);
+        $request->validate(['arquivo' => ['required', 'file', 'mimes:pdf', 'max:20480']]);
 
         /** @var UploadedFile $arquivo */
         $arquivo = $request->file('arquivo');
