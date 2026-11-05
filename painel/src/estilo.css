@@ -1,16 +1,189 @@
-/* Cores do site (site/public/ds) só onde aparecem: o resto é o tema Aura do
-   PrimeVue, que já vem pronto. Painel é interno; não precisa ser o site. */
-:root {
-  /* Diz ao navegador que a página é clara: sem isto, num sistema no escuro ele
-     pinta por conta própria o que é dele — input, select, barra de rolagem. */
-  color-scheme: light;
-
-  --sertao-areia: #f6f1e7;
-  --sertao-terra: #b4531f;
-}
-
+/* Peças de layout que o PrimeVue não traz. Os tokens vêm de site/public/ds, e o
+   que é componente do PrimeVue se resolve em src/tema.js. */
 body {
   margin: 0;
-  background: var(--sertao-areia);
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.mono {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: var(--espresso-700);
+  overflow-wrap: anywhere;
+}
+
+.cartao {
+  min-width: 0;
+  padding: var(--space-5);
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-xs);
+}
+
+/* Tabela encosta na borda do cartão; o `hidden` é o que arredonda os cantos dela. */
+.cartao--tabela {
+  padding: 0;
+  overflow: hidden;
+}
+
+.cartao__titulo {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-base);
+  font-weight: var(--fw-semibold);
+  line-height: var(--leading-snug);
+}
+
+.cartao__apoio {
+  margin: 0 0 var(--space-4);
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.busca {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
+.busca .p-inputtext {
+  width: 100%;
+  border-radius: var(--radius-pill);
+}
+
+/* Lista de chave/valor de quem muda de forma por tipo: inscrição e titular. */
+.dados {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
+  gap: var(--space-4) var(--space-6);
+  margin: 0;
+}
+
+.dados dt {
+  margin-bottom: 0.2rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.dados dd {
+  margin: 0;
+  font-size: var(--text-sm);
+  overflow-wrap: anywhere;
+}
+
+/* Cor segue a entidade, como nos gráficos: ver src/cores.js. */
+.p-tag.tag-tipo {
+  font-weight: var(--fw-semibold);
+  text-transform: capitalize;
+}
+
+.p-tag.tag-participante {
+  background: var(--terra-100);
+  color: var(--terra-700);
+}
+
+.p-tag.tag-palestrante {
+  background: var(--blue-100);
+  color: var(--blue-700);
+}
+
+.p-tag.tag-patrocinador {
+  background: var(--cactus-100);
+  color: var(--cactus-600);
+}
+
+/* DataTable: o padrão de lista do painel inteiro. */
+.p-datatable {
+  font-size: var(--text-sm);
+}
+
+.p-datatable .p-datatable-column-title {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.p-datatable .p-datatable-row-expansion > td {
+  padding: var(--space-4) var(--space-5) var(--space-5);
+  background: var(--sand-100);
+}
+
+.p-button {
+  font-family: var(--font-display);
+  font-weight: var(--fw-semibold);
+}
+
+.p-dialog-title {
+  font-family: var(--font-display);
+}
+
+/* O filtro desliza por dentro em vez de alargar a página. */
+.p-selectbutton {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.p-selectbutton .p-togglebutton {
+  flex: none;
+}
+
+/* Celular: cada linha da tabela vira um cartão. O PrimeVue 4 não traz mais o
+   layout empilhado, e o `.cartao--tabela` é o que ganha do CSS dele. */
+@media (max-width: 47.99rem) {
+  .cartao--tabela .p-datatable-thead {
+    display: none;
+  }
+
+  .cartao--tabela .p-datatable-table,
+  .cartao--tabela .p-datatable-tbody {
+    display: block;
+  }
+
+  .cartao--tabela .p-datatable-tbody > tr {
+    position: relative;
+    display: block;
+    padding: var(--space-3) var(--space-10) var(--space-3) var(--space-4);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .cartao--tabela .p-datatable-tbody > tr > td {
+    display: block;
+    width: auto !important; /* a coluna do expansor traz a largura inline */
+    padding: 0.125rem 0;
+    border: 0;
+  }
+
+  .cartao--tabela .p-datatable-tbody > tr > td:has(.p-datatable-row-toggle-button) {
+    position: absolute;
+    top: var(--space-2);
+    right: var(--space-1);
+  }
+
+  .cartao--tabela .p-datatable-tbody > .p-datatable-row-expansion {
+    padding: 0;
+    background: var(--sand-100);
+  }
+
+  .cartao--tabela .p-datatable-tbody > .p-datatable-row-expansion > td {
+    padding: var(--space-4);
+  }
 }

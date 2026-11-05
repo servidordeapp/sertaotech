@@ -1,23 +1,33 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import Button from 'primevue/button';
 import Column from 'primevue/column';
-import ConfirmDialog from 'primevue/confirmdialog';
 import DataTable from 'primevue/datatable';
+import Dialog from 'primevue/dialog';
 import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
-import { useConfirm } from 'primevue/useconfirm';
+import SelectButton from 'primevue/selectbutton';
 import { useToast } from 'primevue/usetoast';
+import Estado from '../components/Estado.vue';
+import Pagina from '../components/Pagina.vue';
 import { api } from '../api.js';
 import { dataHora } from '../formato.js';
 
-const confirmar = useConfirm();
+const PALAVRA = 'ANONIMIZAR';
+
 const toast = useToast();
 
+const aba = ref('consulta');
 const email = ref('');
 const resultado = ref(null);
 const buscando = ref(false);
-const auditorias = ref([]);
+const auditorias = ref(null);
+const erroDoHistorico = ref(null);
+
+const confirmando = ref(false);
+const digitado = ref('');
+const anonimizando = ref(false);
+const podeAnonimizar = computed(() => digitado.value.trim().toUpperCase() === PALAVRA);
 
 async function consultar() {
   buscando.value = true;
@@ -34,19 +44,13 @@ async function consultar() {
 }
 
 function pedirAnonimizacao() {
-  confirmar.require({
-    header: 'Anonimizar os dados desta pessoa?',
-    message: `Nome, e-mail, WhatsApp e respostas de ${resultado.value.email} serão apagados das `
-      + `${resultado.value.inscricoes.length} inscrição(ões). A data e a versão do aceite de LGPD ficam, `
-      + 'como prova do consentimento. Não dá para desfazer.',
-    icon: 'pi pi-exclamation-triangle',
-    rejectProps: { label: 'Cancelar', severity: 'secondary', outlined: true },
-    acceptProps: { label: 'Anonimizar', severity: 'danger' },
-    accept: anonimizar,
-  });
+  digitado.value = '';
+  confirmando.value = true;
 }
 
 async function anonimizar() {
+  anonimizando.value = true;
+
   try {
     const feito = await api('/api/painel/lgpd', { metodo: 'DELETE', corpo: { email: resultado.value.email } });
 
@@ -57,154 +61,257 @@ async function anonimizar() {
       life: 6000,
     });
 
+    confirmando.value = false;
     resultado.value = null;
     email.value = '';
     await carregaAuditoria();
   } catch (e) {
     toast.add({ severity: 'error', summary: 'Não deu para anonimizar', detail: e.message, life: 5000 });
+  } finally {
+    anonimizando.value = false;
   }
 }
 
 async function carregaAuditoria() {
-  auditorias.value = (await api('/api/painel/auditorias?por_pagina=25')).data;
+  erroDoHistorico.value = null;
+
+  try {
+    auditorias.value = (await api('/api/painel/auditorias?por_pagina=25')).data;
+  } catch (e) {
+    erroDoHistorico.value = e;
+  }
 }
 
 onMounted(carregaAuditoria);
-
 </script>
 
 <template>
-  <div class="lgpd">
-    <section class="cartao">
-      <h2>Direitos do titular</h2>
-      <p class="ajuda">
-        Procure pelo e-mail que a pessoa usou na inscrição. A consulta e a anonimização
-        ficam registradas no histórico abaixo, com quem fez e quando.
-      </p>
+  <Pagina
+    eyebrow="Pessoas · direitos do titular"
+    titulo="LGPD"
+    descricao="Procure pelo e-mail que a pessoa usou na inscrição. A consulta e a anonimização ficam registradas no histórico, com quem fez e quando."
+  >
+    <SelectButton
+      v-model="aba"
+      :options="[{ rotulo: 'Consultar titular', valor: 'consulta' }, { rotulo: 'Histórico de acesso', valor: 'historico' }]"
+      option-label="rotulo"
+      option-value="valor"
+      :allow-empty="false"
+      aria-label="Seção"
+      class="abas"
+    />
 
-      <form class="procura" @submit.prevent="consultar">
-        <InputText v-model="email" type="email" placeholder="email@exemplo.com" required />
-        <Button type="submit" label="Consultar" :loading="buscando" />
-      </form>
-    </section>
+    <!-- v-show: trocar de aba não pode perder a consulta aberta. -->
+    <div v-show="aba === 'consulta'" class="consulta">
+      <section class="cartao">
+        <h2 class="cartao__titulo">Localizar titular</h2>
+        <p class="cartao__apoio">Busca exata pelo e-mail completo.</p>
 
-    <section v-if="resultado" class="cartao">
-      <h2>{{ resultado.email }}</h2>
+        <form class="procura" @submit.prevent="consultar">
+          <label for="email-titular">E-mail</label>
+          <InputText id="email-titular" v-model="email" type="email" placeholder="email@exemplo.com" required />
+          <Button type="submit" label="Consultar" icon="pi pi-search" :loading="buscando" />
+        </form>
+      </section>
 
-      <Message v-if="!resultado.inscricoes.length && !resultado.emails.length" severity="info" :closable="false">
-        Não há nada guardado com esse e-mail.
-      </Message>
+      <section v-if="resultado" class="cartao">
+        <h2 class="cartao__titulo mono">{{ resultado.email }}</h2>
 
-      <template v-else>
-        <h3>Inscrições ({{ resultado.inscricoes.length }})</h3>
-        <dl v-for="i in resultado.inscricoes" :key="i.id" class="dados">
-          <template v-for="(valor, chave) in i" :key="chave">
-            <dt>{{ chave }}</dt>
-            <dd>{{ typeof valor === 'object' && valor !== null ? JSON.stringify(valor) : valor ?? '—' }}</dd>
+        <Message
+          v-if="!resultado.inscricoes.length && !resultado.emails.length"
+          severity="info"
+          :closable="false"
+          class="consulta__aviso"
+        >
+          Não há nada guardado com esse e-mail.
+        </Message>
+
+        <template v-else>
+          <h3 class="eyebrow consulta__secao">Inscrições ({{ resultado.inscricoes.length }})</h3>
+          <dl v-for="i in resultado.inscricoes" :key="i.id" class="dados consulta__inscricao">
+            <div v-for="(valor, chave) in i" :key="chave">
+              <dt>{{ chave }}</dt>
+              <dd>{{ typeof valor === 'object' && valor !== null ? JSON.stringify(valor) : valor ?? '—' }}</dd>
+            </div>
+          </dl>
+
+          <h3 class="eyebrow consulta__secao">E-mails enviados ({{ resultado.emails.length }})</h3>
+          <ul class="envios">
+            <li v-for="e in resultado.emails" :key="e.id">
+              {{ dataHora(e.enviado_em) }} — {{ e.assunto }}
+            </li>
+            <li v-if="!resultado.emails.length">Nenhum.</li>
+          </ul>
+
+          <div v-if="resultado.inscricoes.length" class="consulta__acoes">
+            <Button label="Anonimizar titular" icon="pi pi-trash" severity="danger" size="small" @click="pedirAnonimizacao" />
+          </div>
+        </template>
+      </section>
+    </div>
+
+    <div v-show="aba === 'historico'">
+      <Estado v-if="erroDoHistorico" tipo="erro" :falha="erroDoHistorico" @tentar="carregaAuditoria" />
+      <Estado v-else-if="!auditorias" tipo="carregando" />
+
+      <section v-else class="cartao cartao--tabela">
+        <DataTable :value="auditorias" data-key="id">
+          <template #empty>
+            <Estado tipo="vazio" titulo="Nenhum acesso registrado" texto="Consultas e exportações de dado pessoal aparecem aqui." />
           </template>
-        </dl>
+          <Column field="created_at" header="Quando">
+            <template #body="{ data }">{{ dataHora(data.created_at) }}</template>
+          </Column>
+          <Column header="Quem">
+            <template #body="{ data }"><strong>{{ data.user?.name ?? '—' }}</strong></template>
+          </Column>
+          <Column field="acao" header="Ação">
+            <template #body="{ data }"><span class="mono">{{ data.acao }}</span></template>
+          </Column>
+          <Column field="alvo" header="Alvo">
+            <template #body="{ data }"><span class="mono">{{ data.alvo }}</span></template>
+          </Column>
+          <Column field="ip" header="IP">
+            <template #body="{ data }"><span class="mono">{{ data.ip }}</span></template>
+          </Column>
+        </DataTable>
+      </section>
+    </div>
 
-        <h3>E-mails enviados ({{ resultado.emails.length }})</h3>
-        <ul class="envios">
-          <li v-for="e in resultado.emails" :key="e.id">
-            {{ dataHora(e.enviado_em) }} — {{ e.assunto }}
-          </li>
-          <li v-if="!resultado.emails.length">Nenhum.</li>
-        </ul>
+    <Dialog
+      v-model:visible="confirmando"
+      modal
+      :draggable="false"
+      header="Anonimizar titular?"
+      :style="{ width: '30rem', maxWidth: 'calc(100vw - 2rem)' }"
+    >
+      <template v-if="resultado">
+        <p class="confirma__titular">Titular: <strong class="mono">{{ resultado.email }}</strong></p>
 
+        <div class="confirma__perigo">
+          <i class="pi pi-exclamation-triangle" />
+          <div>
+            <strong>Esta ação não pode ser desfeita.</strong>
+            <ul>
+              <li>Nome, e-mail, WhatsApp e respostas somem de {{ resultado.inscricoes.length }} inscrição(ões).</li>
+              <li>No log de envio, o endereço vira um hash.</li>
+              <li>A data e a versão do aceite de LGPD ficam, como prova do consentimento.</li>
+              <li>A ação fica registrada no histórico de acesso.</li>
+            </ul>
+          </div>
+        </div>
+
+        <label for="palavra" class="confirma__rotulo">Para confirmar, digite {{ PALAVRA }}</label>
+        <InputText id="palavra" v-model="digitado" :placeholder="PALAVRA" autocomplete="off" autofocus fluid />
+      </template>
+
+      <template #footer>
+        <Button label="Cancelar" severity="secondary" text @click="confirmando = false" />
         <Button
-          v-if="resultado.inscricoes.length"
-          label="Anonimizar"
+          label="Anonimizar definitivamente"
           icon="pi pi-trash"
           severity="danger"
-          @click="pedirAnonimizacao"
+          :disabled="!podeAnonimizar"
+          :loading="anonimizando"
+          @click="anonimizar"
         />
       </template>
-    </section>
-
-    <section class="cartao">
-      <h2>Histórico de acesso a dado pessoal</h2>
-      <DataTable :value="auditorias" data-key="id" size="small">
-        <template #empty>Nada registrado ainda.</template>
-        <Column field="created_at" header="Quando">
-          <template #body="{ data }">{{ dataHora(data.created_at) }}</template>
-        </Column>
-        <Column header="Quem">
-          <template #body="{ data }">{{ data.user?.name ?? '—' }}</template>
-        </Column>
-        <Column field="acao" header="Ação" />
-        <Column field="alvo" header="Alvo" />
-        <Column field="ip" header="IP" />
-      </DataTable>
-    </section>
-
-    <ConfirmDialog />
-  </div>
+    </Dialog>
+  </Pagina>
 </template>
 
 <style scoped>
-.lgpd {
+.abas {
+  align-self: flex-start;
+}
+
+.consulta {
   display: grid;
-  gap: 1rem;
-}
-
-.cartao {
-  padding: 1rem 1.25rem;
-  background: #fbf6ea;
-  border: 1px solid #eedcb2;
-  border-radius: 12px;
-}
-
-.cartao h2 {
-  margin: 0 0 0.35rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #6b4526;
-}
-
-.cartao h3 {
-  margin: 1rem 0 0.5rem;
-  font-size: 0.95rem;
-}
-
-.ajuda {
-  margin: 0 0 0.75rem;
-  color: #6b4526;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  gap: var(--space-4);
+  align-items: start;
 }
 
 .procura {
   display: flex;
-  gap: 0.5rem;
+  flex-direction: column;
+  gap: var(--space-2);
 }
 
-.procura :deep(.p-inputtext) {
-  width: 22rem;
+.procura label,
+.confirma__rotulo {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
 }
 
-.dados {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 0.2rem 1rem;
-  margin: 0 0 1rem;
-  padding: 0.75rem 1rem;
-  background: #fff;
-  border-radius: 8px;
+.procura :deep(.p-button) {
+  margin-top: var(--space-2);
 }
 
-.dados dt {
-  font-weight: 600;
-  color: #6b4526;
+.consulta__aviso {
+  margin-top: var(--space-3);
 }
 
-.dados dd {
-  margin: 0;
-  overflow-wrap: anywhere;
+.consulta__secao {
+  margin: var(--space-5) 0 var(--space-3);
+  font-weight: 400;
+  line-height: inherit;
+}
+
+.consulta__inscricao {
+  padding: var(--space-4);
+  background: var(--sand-100);
+  border-radius: var(--radius-md);
+}
+
+.consulta__inscricao + .consulta__inscricao {
+  margin-top: var(--space-3);
 }
 
 .envios {
-  margin: 0 0 1rem;
+  margin: 0;
   padding-left: 1.1rem;
+  font-size: var(--text-sm);
+}
+
+.consulta__acoes {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: var(--space-4);
+  margin-top: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.confirma__titular {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-sm);
+}
+
+.confirma__perigo {
+  display: flex;
+  gap: 0.625rem;
+  padding: 0.75rem 0.875rem;
+  margin-bottom: var(--space-4);
+  font-size: 0.84375rem;
+  color: var(--brick-600);
+  background: var(--brick-100);
+  border-radius: var(--radius-md);
+}
+
+.confirma__perigo ul {
+  padding-left: 1.1rem;
+  margin: 0.375rem 0 0;
+}
+
+.confirma__rotulo {
+  margin-bottom: 0.375rem;
+}
+
+@media (max-width: 47.99rem) {
+  .consulta {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 </style>

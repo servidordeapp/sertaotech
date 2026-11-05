@@ -1,0 +1,50 @@
+/* Sertão Tech — Painel interno · ADIÇÕES PROPOSTAS ao arquivo de tokens
+ * Ainda não estão em styles.css: o kit do painel carrega este arquivo à parte.
+ * Ao aprovar, mover para tokens/colors.css (e um novo tokens/charts.css).
+ * Contraste medido (WCAG 2.x) contra o fundo indicado.
+ */
+:root {
+  /* Correção de AA: --text-muted hoje = espresso-500 → 4.42:1 em sand-100 (reprova).
+     espresso-600 → 7.01:1 em sand-100, 7.78:1 em sand-50. */
+  --text-muted-aa: var(--espresso-600);
+
+  /* Degraus escuros que faltavam para texto sobre fundos soft */
+  --honey-700: #7A5208;  /* 5.69:1 sobre honey-100  (honey-600 dava 3.37 — reprova) */
+  --amber-700: #7A4A06;  /* 6.34:1 sobre amber-100 */
+  --blue-100:  #D9E6F2;  /* família da série "palestrante" */
+  --blue-700:  #154F82;  /* 6.69:1 sobre blue-100 */
+
+  /* Estágios do funil de patrocínio (fundo / texto) — progressão fria → quente → sucesso.
+     Cor nunca é o único sinal: a tag leva também o indicador de etapa n/6. */
+  --funnel-1-bg: var(--sand-200);  --funnel-1-fg: var(--espresso-700); /* Prospecção        9.00:1 */
+  --funnel-2-bg: var(--agave-100); --funnel-2-fg: var(--agave-600);    /* Proposta enviada  5.71:1 */
+  --funnel-3-bg: var(--honey-100); --funnel-3-fg: var(--honey-700);    /* Negociação        5.69:1 */
+  --funnel-4-bg: var(--amber-100); --funnel-4-fg: var(--amber-700);    /* Fechado           6.34:1 */
+  --funnel-5-bg: var(--terra-100); --funnel-5-fg: var(--terra-700);    /* Contrato assinado 5.78:1 */
+  --funnel-6-bg: var(--cactus-100);--funnel-6-fg: var(--cactus-600);   /* Pago              5.59:1 */
+
+  /* Status de despesa */
+  --expense-planned-bg: var(--sand-200);   --expense-planned-fg: var(--espresso-700);   /* 9.00:1 */
+  --expense-committed-bg: var(--honey-100);--expense-committed-fg: var(--honey-700);    /* 5.69:1 */
+  --expense-paid-bg: var(--cactus-100);    --expense-paid-fg: var(--cactus-600);        /* 5.59:1 */
+  --expense-overdue-bg: var(--brick-100);  --expense-overdue-fg: var(--brick-600);      /* 5.84:1 */
+
+  /* Gráficos (validados — não refazer no olho). Cor segue a entidade, nunca a posição. */
+  --chart-participante: #A8511A;  /* 5.05:1 sobre sand-50 */
+  --chart-palestrante:  #1A6FB5;  /* 4.89:1 */
+  --chart-patrocinador: #5E8C1A;  /* 3.71:1 — só traço/área; rótulo sempre em --chart-axis */
+  --chart-serie:        #A8511A;
+  --chart-axis:         #6B4526;  /* 7.78:1 */
+  --chart-grid:         rgba(107,69,38,.12);
+  --chart-receita:      #245F57;  /* agave-600 · 6.83:1 */
+  --chart-despesa:      #B4670B;  /* amber-600 · 3.99:1 — traço; separável de agave em deutan/protan */
+
+  /* Barra de execução orçamentária */
+  --exec-paid:      var(--terra-700);
+  --exec-committed: var(--terra-400);
+  --exec-track:     var(--sand-200);
+  --exec-over:      var(--brick-500);
+
+  /* Skeleton */
+  --skeleton: rgba(107,69,38,.10);
+}

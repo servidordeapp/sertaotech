@@ -47,6 +47,9 @@ services:
       - ./painel:/app
       # Volume anônimo, pelo mesmo motivo do site.
       - /app/node_modules
+      # Tokens e logo do design system, importados de `../../site/public`. Em
+      # /site porque o caminho relativo tem de valer dentro e fora do container.
+      - ./site/public:/site/public:ro
 
   api:
     build:

@@ -50,6 +50,11 @@
   --honey-100:  #F7E8C4; --honey-500:  #C88A12; --honey-600:  #A87310; /* warning */
   --brick-100:  #F6DCD1; --brick-500:  #B23A20; --brick-600:  #97301A; /* danger  */
   --agave-100:  #D2E7E2; --agave-500:  #2E7A6F; --agave-600:  #245F57; /* info    */
+  --honey-700: #7A5208; /* text on honey-100, 5.69:1 — honey-600 only reaches 3.37:1 */
+
+  /* ---- Blue / the "palestrante" chart series, for tags in the painel ---- */
+  --blue-100: #D9E6F2;
+  --blue-700: #154F82; /* text on blue-100, 6.69:1 */
 
   /* ================= Semantic aliases ================= */
   /* Surfaces */

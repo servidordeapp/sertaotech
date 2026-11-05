@@ -6,27 +6,36 @@ import DataTable from 'primevue/datatable';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
-import Select from 'primevue/select';
+import SelectButton from 'primevue/selectbutton';
 import Tag from 'primevue/tag';
 import { useToast } from 'primevue/usetoast';
+import Estado from '../components/Estado.vue';
+import Pagina from '../components/Pagina.vue';
 import { api, baixaExport } from '../api.js';
 import { auth } from '../auth.js';
 import { dataHora } from '../formato.js';
 
 const toast = useToast();
 
-const linhas = ref([]);
+// Null até a primeira resposta: a carga inicial mostra o esqueleto, as outras
+// só o indicador por cima da tabela que já está na tela.
+const linhas = ref(null);
 const total = ref(0);
 const carregando = ref(false);
+const erro = ref(null);
 const expandidas = ref({});
 
 const primeiro = ref(0);
 const porPagina = ref(25);
-const tipo = ref(null);
+const tipo = ref('');
 const busca = ref('');
 
 // O papel manda: quem só enxerga um tipo não precisa de filtro de tipo.
 const tipos = computed(() => auth.usuario?.tipos_visiveis ?? []);
+const opcoesDeTipo = computed(() => [
+  { rotulo: 'Todos', valor: '' },
+  ...tipos.value.map((valor) => ({ rotulo: valor[0].toUpperCase() + valor.slice(1), valor })),
+]);
 
 const filtros = computed(() => ({
   ...(tipo.value ? { tipo: tipo.value } : {}),
@@ -35,6 +44,7 @@ const filtros = computed(() => ({
 
 async function carrega() {
   carregando.value = true;
+  erro.value = null;
 
   try {
     const resposta = await api(`/api/painel/inscricoes?${new URLSearchParams({
@@ -46,7 +56,7 @@ async function carrega() {
     linhas.value = resposta.data;
     total.value = resposta.meta.total;
   } catch (e) {
-    toast.add({ severity: 'error', summary: 'Não deu para carregar', detail: e.message, life: 5000 });
+    erro.value = e;
   } finally {
     carregando.value = false;
   }
@@ -105,115 +115,109 @@ function semConsentimento(dados) {
     Object.entries(dados ?? {}).filter(([chave]) => !chave.startsWith('compartilhamento')),
   );
 }
-
-const cores = { participante: 'info', palestrante: 'warn', patrocinador: 'success' };
 </script>
 
 <template>
-  <DataTable
-    v-model:expanded-rows="expandidas"
-    :value="linhas"
-    :loading="carregando"
-    data-key="id"
-    lazy
-    paginator
-    :rows="porPagina"
-    :first="primeiro"
-    :total-records="total"
-    :rows-per-page-options="[25, 50, 100]"
-    current-page-report-template="{first}–{last} de {totalRecords}"
-    paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
-    @page="paginar"
+  <Pagina
+    eyebrow="Pessoas · lista de espera"
+    titulo="Inscrições"
+    :descricao="tipos.length === 1
+      ? `Você vê apenas inscrições de ${tipos[0]}, conforme o seu papel.`
+      : 'Quem entrou na lista de espera pelo site.'"
   >
-    <template #header>
-      <div class="cabecalho">
-        <IconField>
-          <InputIcon class="pi pi-search" />
-          <InputText v-model="busca" placeholder="Nome, e-mail ou whatsapp" />
-        </IconField>
-
-        <Select
-          v-if="tipos.length > 1"
-          v-model="tipo"
-          :options="tipos"
-          placeholder="Todos os tipos"
-          show-clear
-        />
-
-        <Button
-          label="Exportar CSV"
-          icon="pi pi-download"
-          severity="secondary"
-          :loading="exportando"
-          @click="exporta"
-        />
-      </div>
+    <template #acoes>
+      <Button
+        label="Exportar CSV"
+        icon="pi pi-download"
+        severity="secondary"
+        outlined
+        size="small"
+        :loading="exportando"
+        @click="exporta"
+      />
     </template>
 
-    <template #empty>Nenhuma inscrição com esses filtros.</template>
+    <div class="filtros">
+      <IconField class="busca">
+        <InputIcon class="pi pi-search" />
+        <InputText v-model="busca" placeholder="Nome, e-mail ou whatsapp" aria-label="Buscar" />
+      </IconField>
 
-    <Column expander style="width: 3rem" />
-    <Column field="tipo" header="Tipo">
-      <template #body="{ data }">
-        <Tag :value="data.tipo" :severity="cores[data.tipo]" />
-      </template>
-    </Column>
-    <Column field="nome" header="Nome" />
-    <Column field="email" header="E-mail" />
-    <Column field="whatsapp" header="WhatsApp">
-      <template #body="{ data }">{{ whatsapp(data.whatsapp) }}</template>
-    </Column>
-    <Column field="inscrito_em" header="Inscrito em">
-      <template #body="{ data }">{{ dataHora(data.inscrito_em) }}</template>
-    </Column>
+      <SelectButton
+        v-if="tipos.length > 1"
+        v-model="tipo"
+        :options="opcoesDeTipo"
+        option-label="rotulo"
+        option-value="valor"
+        :allow-empty="false"
+        aria-label="Filtrar por tipo"
+      />
+      <Tag v-else-if="tipos.length" icon="pi pi-lock" :value="`Somente ${tipos[0]}`" severity="secondary" />
+    </div>
 
-    <!-- `dados` muda de forma por tipo (cidade, tema, cota...), então vira
-         lista chave/valor em vez de coluna fixa. -->
-    <template #expansion="{ data }">
-      <dl class="dados">
-        <template v-for="(valor, chave) in semConsentimento(data.dados)" :key="chave">
-          <dt>{{ chave }}</dt>
-          <dd>{{ valor }}</dd>
+    <Estado v-if="erro" tipo="erro" :falha="erro" @tentar="carrega" />
+    <Estado v-else-if="!linhas" tipo="carregando" />
+
+    <section v-else class="cartao cartao--tabela">
+      <DataTable
+        v-model:expanded-rows="expandidas"
+        :value="linhas"
+        :loading="carregando"
+        data-key="id"
+        lazy
+        paginator
+        :rows="porPagina"
+        :first="primeiro"
+        :total-records="total"
+        :rows-per-page-options="[25, 50, 100]"
+        current-page-report-template="{first}–{last} de {totalRecords}"
+        paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
+        @page="paginar"
+      >
+        <template #empty>
+          <Estado
+            tipo="vazio"
+            :titulo="Object.keys(filtros).length ? 'Nada encontrado' : 'Nenhuma inscrição ainda'"
+            :texto="Object.keys(filtros).length
+              ? 'Tente outro termo ou limpe o filtro.'
+              : 'Quem entrar na lista de espera pelo site aparece aqui.'"
+          />
         </template>
-        <template v-if="data.compartilha">
-          <dt>compartilhamento</dt>
-          <dd>autorizado</dd>
+
+        <Column expander style="width: 3rem" />
+        <Column field="nome" header="Nome">
+          <template #body="{ data }"><strong>{{ data.nome }}</strong></template>
+        </Column>
+        <Column field="email" header="E-mail">
+          <template #body="{ data }"><span class="mono">{{ data.email }}</span></template>
+        </Column>
+        <Column field="whatsapp" header="WhatsApp">
+          <template #body="{ data }"><span class="mono">{{ whatsapp(data.whatsapp) }}</span></template>
+        </Column>
+        <Column field="tipo" header="Tipo">
+          <template #body="{ data }">
+            <Tag :value="data.tipo" class="tag-tipo" :class="`tag-${data.tipo}`" />
+          </template>
+        </Column>
+        <Column field="inscrito_em" header="Inscrito em">
+          <template #body="{ data }">{{ dataHora(data.inscrito_em) }}</template>
+        </Column>
+
+        <!-- `dados` muda de forma por tipo (cidade, tema, cota...), então vira
+             lista chave/valor em vez de coluna fixa. -->
+        <template #expansion="{ data }">
+          <dl class="dados">
+            <div v-for="(valor, chave) in semConsentimento(data.dados)" :key="chave">
+              <dt>{{ chave }}</dt>
+              <dd>{{ valor }}</dd>
+            </div>
+            <div v-if="data.compartilha">
+              <dt>compartilhamento</dt>
+              <dd>autorizado</dd>
+            </div>
+          </dl>
         </template>
-      </dl>
-    </template>
-  </DataTable>
+      </DataTable>
+    </section>
+  </Pagina>
 </template>
-
-<style scoped>
-.cabecalho {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  align-items: center;
-}
-
-.cabecalho > :last-child {
-  margin-left: auto;
-}
-
-.cabecalho :deep(input) {
-  width: 18rem;
-}
-
-.dados {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 0.25rem 1rem;
-  margin: 0;
-  padding: 0.5rem 1rem;
-}
-
-.dados dt {
-  font-weight: 600;
-  text-transform: capitalize;
-}
-
-.dados dd {
-  margin: 0;
-}
-</style>

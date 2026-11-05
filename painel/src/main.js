@@ -1,13 +1,13 @@
 import { createApp } from 'vue';
 import * as Sentry from '@sentry/vue';
 import PrimeVue from 'primevue/config';
-import Aura from '@primeuix/themes/aura';
-import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 import 'primeicons/primeicons.css';
+import '../../site/public/ds/styles.css';
 import './estilo.css';
 import App from './App.vue';
 import { router } from './router.js';
+import { tema } from './tema.js';
 
 const app = createApp(App);
 
@@ -28,8 +28,7 @@ app
   // 'system', e aí os componentes seguiam o modo escuro do sistema enquanto o
   // CSS daqui (fundo, cabeçalho, cartão de login) continuava claro — metade da
   // tela de cada cor.
-  .use(PrimeVue, { theme: { preset: Aura, options: { darkModeSelector: false } } })
+  .use(PrimeVue, { theme: { preset: tema, options: { darkModeSelector: false } } })
   .use(ToastService)
-  .use(ConfirmationService)
   .use(router)
   .mount('#app');

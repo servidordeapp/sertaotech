@@ -6,8 +6,8 @@ pelas rotas `/api/painel/*`; não tem banco nem backend próprio.
 | Peça | Escolha | Por quê |
 |---|---|---|
 | Build | Vite | É o que a Vercel serve estático, sem SSR para manter |
-| UI | Vue 3 + PrimeVue (tema Aura) | O `DataTable` já traz ordenação, paginação e filtro — que é a tela inteira de inscrições |
-| Rotas | vue-router | Duas telas e um guarda de sessão |
+| UI | Vue 3 + PrimeVue (Aura com os tokens do DS) | O `DataTable` já traz ordenação, paginação e filtro — que é a tela inteira de inscrições |
+| Rotas | vue-router | Poucas telas e um guarda de sessão |
 | Estado | um `reactive` em `src/auth.js` | Só o usuário logado é global. Pinia não paga o preço |
 
 ## Autenticação
@@ -29,8 +29,9 @@ php artisan painel:usuario    # pergunta e-mail, nome, papel e senha
 Papéis: `admin` vê os três tipos de inscrição, `comercial` vê patrocinador,
 `curadoria` vê palestrante. O recorte é feito na api — o front só esconde o
 filtro que não serve. Volume de e-mail, LGPD e auditoria são do evento inteiro, não de um tipo: só o
-`admin`. O router esconde as telas, mas quem tranca é a api — as rotas estão
-atrás de `can:painel-admin` e respondem 403 de qualquer jeito.
+`admin`. O menu esconde as telas e quem chega pela URL vê o estado de 403, mas
+quem tranca é a api — as rotas estão atrás de `can:painel-admin` e respondem
+403 de qualquer jeito.
 
 ## Telas
 
@@ -45,6 +46,18 @@ As cores dos gráficos estão em `src/cores.js`, validadas (banda de
 luminosidade, croma, separação para daltonismo e contraste) contra a
 superfície dos cartões — não escolhidas no olho. Cor segue a entidade: o
 participante é o mesmo laranja em qualquer gráfico.
+
+## Design system
+
+A especificação está em [`docs/design`](../docs/design/README.md). O painel não tem tokens próprios: `src/main.js` importa
+`site/public/ds/styles.css`, e `src/tema.js` aponta o Aura para esses tokens por
+`var()`. Token novo entra em `site/public/ds/tokens/`, seguido de
+`./scripts/build-ds.sh`.
+
+O import sai da pasta do painel, e isso tem duas consequências: o compose monta
+`site/public` em `/site/public`, para o caminho relativo valer dentro do
+container, e o projeto da Vercel precisa de "Include files outside the Root
+Directory" ligado. Desligado, o build falha e a produção fica no deploy anterior.
 
 ## Como rodar
 

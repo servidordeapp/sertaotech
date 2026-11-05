@@ -12,8 +12,8 @@ export const router = createRouter({
     { path: '/login', name: 'login', component: Login, meta: { publica: true } },
     { path: '/inscricoes', name: 'inscricoes', component: Inscricoes },
     { path: '/metricas', name: 'metricas', component: Metricas },
-    // Só admin: o guarda abaixo devolve quem não é para /inscricoes, e a api
-    // responde 403 de qualquer jeito — a tela não é a tranca.
+    // Só admin: o App.vue mostra o estado de 403 no lugar da tela, sem montá-la,
+    // e a api responde 403 de qualquer jeito — a tela não é a tranca.
     { path: '/emails', name: 'emails', component: Emails, meta: { admin: true } },
     { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { admin: true } },
     { path: '/:qualquer(.*)*', redirect: '/inscricoes' },
@@ -27,10 +27,6 @@ router.beforeEach(async (destino) => {
 
   if (!destino.meta.publica && !auth.usuario) {
     return { name: 'login', query: { destino: destino.fullPath } };
-  }
-
-  if (destino.meta.admin && auth.usuario?.papel !== 'admin') {
-    return { name: 'inscricoes' };
   }
 
   if (destino.name === 'login' && auth.usuario) {

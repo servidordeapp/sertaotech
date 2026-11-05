@@ -2,20 +2,25 @@
 import { computed, onMounted, ref } from 'vue';
 import Chart from 'primevue/chart';
 import ProgressBar from 'primevue/progressbar';
-import { useToast } from 'primevue/usetoast';
+import Estado from '../components/Estado.vue';
+import Pagina from '../components/Pagina.vue';
 import { api } from '../api.js';
 import { CORES_POR_TIPO, COR_UNICA, GRADE, TINTA } from '../cores.js';
 
-const toast = useToast();
 const metricas = ref(null);
+const erro = ref(null);
 
-onMounted(async () => {
+async function carrega() {
+  erro.value = null;
+
   try {
     metricas.value = await api('/api/painel/metricas');
   } catch (e) {
-    toast.add({ severity: 'error', summary: 'Não deu para carregar', detail: e.message, life: 5000 });
+    erro.value = e;
   }
-});
+}
+
+onMounted(carrega);
 
 function diaCurto(iso) {
   // 2026-11-05 -> 05/11, sem passar por Date (que leria como UTC e voltaria um dia).
@@ -61,14 +66,16 @@ function distribuicao(itens) {
   };
 }
 
+const FONTE = { family: "'Instrument Sans', system-ui, sans-serif", size: 12 };
+
 /** Eixos e grade recessivos; a legenda só entra quando há mais de uma série. */
 function opcoes({ horizontal = false, legenda = false } = {}) {
-  const valor = { ticks: { color: TINTA, precision: 0 }, grid: { color: GRADE } };
+  const valor = { ticks: { color: TINTA, font: FONTE, precision: 0 }, grid: { color: GRADE } };
   const rotulo = {
     ticks: horizontal
-      ? { color: TINTA }
+      ? { color: TINTA, font: FONTE }
       // 30 dias não cabem como 30 rótulos: o eixo mostra ~8, na horizontal.
-      : { color: TINTA, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
+      : { color: TINTA, font: FONTE, maxRotation: 0, autoSkip: true, maxTicksLimit: 8 },
     grid: { display: false },
   };
 
@@ -77,7 +84,7 @@ function opcoes({ horizontal = false, legenda = false } = {}) {
     indexAxis: horizontal ? 'y' : 'x',
     interaction: { mode: 'index', intersect: false },
     plugins: {
-      legend: { display: legenda, labels: { color: TINTA, usePointStyle: true } },
+      legend: { display: legenda, labels: { color: TINTA, font: FONTE, usePointStyle: true, boxHeight: 8 } },
     },
     scales: horizontal ? { x: valor, y: rotulo } : { x: rotulo, y: { ...valor, beginAtZero: true } },
   };
@@ -90,112 +97,124 @@ const consumoDeEmail = computed(() => {
 </script>
 
 <template>
-  <div v-if="metricas" class="metricas">
-    <section class="numeros">
-      <article class="numero">
-        <h2>Inscrições</h2>
-        <strong>{{ metricas.total }}</strong>
-      </article>
+  <Pagina
+    eyebrow="Evento · lista de espera"
+    titulo="Métricas"
+    :descricao="metricas?.tipos.length === 1
+      ? `Recorte de ${metricas.tipos[0]}, conforme o seu papel.`
+      : 'Como a lista de espera está crescendo e quem está chegando.'"
+  >
+    <Estado v-if="erro" tipo="erro" :falha="erro" @tentar="carrega" />
+    <Estado v-else-if="!metricas" tipo="carregando" com-numeros />
 
-      <article v-for="tipo in metricas.tipos" :key="tipo" class="numero">
-        <h2>
-          <span class="bolinha" :style="{ background: CORES_POR_TIPO[tipo] }" />
-          {{ tipo }}
-        </h2>
-        <strong>{{ metricas.por_tipo[tipo] ?? 0 }}</strong>
-      </article>
+    <template v-else>
+      <section class="numeros">
+        <article class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">Inscrições</h2>
+          <strong class="numero__valor">{{ metricas.total }}</strong>
+        </article>
 
-      <article class="numero">
-        <h2>Reenviaram o formulário</h2>
-        <strong>{{ metricas.reinscricoes }}</strong>
-      </article>
+        <article v-for="tipo in metricas.tipos" :key="tipo" class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">
+            <span class="bolinha" :style="{ background: CORES_POR_TIPO[tipo] }" />
+            {{ tipo }}
+          </h2>
+          <strong class="numero__valor">{{ metricas.por_tipo[tipo] ?? 0 }}</strong>
+        </article>
 
-      <article v-if="metricas.emails" class="numero">
-        <h2>E-mails hoje</h2>
-        <strong>{{ metricas.emails.hoje }} <small>de {{ metricas.emails.limite_diario }}</small></strong>
-        <ProgressBar :value="consumoDeEmail" :show-value="false" />
-      </article>
-    </section>
+        <article class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">Reenviaram o formulário</h2>
+          <strong class="numero__valor">{{ metricas.reinscricoes }}</strong>
+        </article>
 
-    <section class="cartao">
-      <h2>Inscrições por dia <small>· últimos 30 dias</small></h2>
-      <Chart
-        type="line"
-        :data="inscricoesPorDia"
-        :options="opcoes({ legenda: metricas.tipos.length > 1 })"
-        class="grafico"
-      />
-    </section>
+        <article v-if="metricas.emails" class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">E-mails hoje</h2>
+          <strong class="numero__valor">{{ metricas.emails.hoje }} <small>de {{ metricas.emails.limite_diario }}</small></strong>
+          <ProgressBar :value="consumoDeEmail" :show-value="false" />
+        </article>
+      </section>
 
-    <section v-for="d in metricas.distribuicoes" :key="d.titulo" class="cartao">
-      <h2>{{ d.titulo }} <small>· {{ d.tipo }}</small></h2>
-      <Chart type="bar" :data="distribuicao(d.itens)" :options="opcoes({ horizontal: true })" class="grafico" />
-    </section>
+      <section class="cartao">
+        <h2 class="cartao__titulo">Inscrições por dia</h2>
+        <p class="cartao__apoio">Últimos 30 dias</p>
+        <Chart
+          type="line"
+          :data="inscricoesPorDia"
+          :options="opcoes({ legenda: metricas.tipos.length > 1 })"
+          class="grafico"
+        />
+      </section>
 
-    <section v-if="metricas.emails" class="cartao">
-      <h2>E-mails enviados por dia <small>· últimos 30 dias</small></h2>
-      <Chart type="bar" :data="emailsPorDia" :options="opcoes()" class="grafico" />
-    </section>
-  </div>
+      <div class="distribuicoes">
+        <section v-for="d in metricas.distribuicoes" :key="d.titulo" class="cartao">
+          <h2 class="cartao__titulo">{{ d.titulo }}</h2>
+          <p class="cartao__apoio">{{ d.tipo }}</p>
+          <Chart type="bar" :data="distribuicao(d.itens)" :options="opcoes({ horizontal: true })" class="grafico" />
+        </section>
+      </div>
+
+      <section v-if="metricas.emails" class="cartao">
+        <h2 class="cartao__titulo">E-mails enviados por dia</h2>
+        <p class="cartao__apoio">Últimos 30 dias</p>
+        <Chart type="bar" :data="emailsPorDia" :options="opcoes()" class="grafico" />
+      </section>
+    </template>
+  </Pagina>
 </template>
 
 <style scoped>
-.metricas {
-  display: grid;
-  gap: 1rem;
-}
-
+/* auto-fit: papel que perde um cartão não deixa buraco, os outros ocupam o espaço. */
 .numeros {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
-.numero,
-.cartao {
-  padding: 1rem 1.25rem;
-  background: #fbf6ea;
-  border: 1px solid #eedcb2;
-  border-radius: 12px;
+.distribuicoes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(18.75rem, 100%), 1fr));
+  gap: var(--space-4);
 }
 
-.numero h2,
-.cartao h2 {
+.numero {
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.numero__rotulo {
+  display: flex;
   gap: 0.4rem;
-  margin: 0 0 0.35rem;
-  font-size: 0.8rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #6b4526;
-}
-
-.numero strong {
-  font-size: 2rem;
-  line-height: 1;
-  color: #2a1908;
-}
-
-.numero small {
-  font-size: 0.9rem;
+  align-items: center;
   font-weight: 400;
-  color: #6b4526;
+  line-height: inherit;
+}
+
+.numero__valor {
+  font-family: var(--font-display);
+  font-size: var(--text-3xl);
+  font-weight: var(--fw-bold);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text-strong);
+}
+
+.numero__valor small {
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--text-muted);
 }
 
 .numero :deep(.p-progressbar) {
   height: 0.4rem;
-  margin-top: 0.6rem;
-}
-
-.cartao h2 small {
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 400;
+  margin-top: 0.25rem;
 }
 
 .bolinha {
+  flex: none;
   width: 0.6rem;
   height: 0.6rem;
   border-radius: 50%;
@@ -203,16 +222,5 @@ const consumoDeEmail = computed(() => {
 
 .grafico {
   height: 16rem;
-}
-
-@media (min-width: 60rem) {
-  .metricas {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .numeros,
-  .cartao:first-of-type {
-    grid-column: 1 / -1;
-  }
 }
 </style>

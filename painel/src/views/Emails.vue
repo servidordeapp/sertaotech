@@ -5,20 +5,23 @@ import DataTable from 'primevue/datatable';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
 import InputText from 'primevue/inputtext';
-import { useToast } from 'primevue/usetoast';
+import Estado from '../components/Estado.vue';
+import Pagina from '../components/Pagina.vue';
 import { api } from '../api.js';
 import { dataHora } from '../formato.js';
 
-const toast = useToast();
-const linhas = ref([]);
+// Null até a primeira resposta, como em Inscricoes.vue.
+const linhas = ref(null);
 const total = ref(0);
 const carregando = ref(false);
+const erro = ref(null);
 const primeiro = ref(0);
 const porPagina = ref(25);
 const busca = ref('');
 
 async function carrega() {
   carregando.value = true;
+  erro.value = null;
 
   try {
     const resposta = await api(`/api/painel/emails?${new URLSearchParams({
@@ -30,7 +33,7 @@ async function carrega() {
     linhas.value = resposta.data;
     total.value = resposta.total;
   } catch (e) {
-    toast.add({ severity: 'error', summary: 'Não deu para carregar', detail: e.message, life: 5000 });
+    erro.value = e;
   } finally {
     carregando.value = false;
   }
@@ -61,42 +64,55 @@ function mailable(classe) {
 </script>
 
 <template>
-  <DataTable
-    :value="linhas"
-    :loading="carregando"
-    data-key="id"
-    lazy
-    paginator
-    :rows="porPagina"
-    :first="primeiro"
-    :total-records="total"
-    :rows-per-page-options="[25, 50, 100]"
-    current-page-report-template="{first}–{last} de {totalRecords}"
-    paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
-    @page="paginar"
+  <Pagina
+    eyebrow="Pessoas · log de envio"
+    titulo="E-mails"
+    descricao="O que saiu de e-mail, para quem e quando. O corpo da mensagem não é guardado, só o assunto."
   >
-    <template #header>
-      <IconField>
+    <div class="filtros">
+      <IconField class="busca">
         <InputIcon class="pi pi-search" />
-        <InputText v-model="busca" placeholder="Destinatário ou assunto" />
+        <InputText v-model="busca" placeholder="Destinatário ou assunto" aria-label="Buscar" />
       </IconField>
-    </template>
+    </div>
 
-    <template #empty>Nenhum e-mail registrado.</template>
+    <Estado v-if="erro" tipo="erro" :falha="erro" @tentar="carrega" />
+    <Estado v-else-if="!linhas" tipo="carregando" />
 
-    <Column field="enviado_em" header="Enviado em">
-      <template #body="{ data }">{{ dataHora(data.enviado_em) }}</template>
-    </Column>
-    <Column field="para" header="Para" />
-    <Column field="assunto" header="Assunto" />
-    <Column field="mailable" header="Tipo">
-      <template #body="{ data }">{{ mailable(data.mailable) }}</template>
-    </Column>
-  </DataTable>
+    <section v-else class="cartao cartao--tabela">
+      <DataTable
+        :value="linhas"
+        :loading="carregando"
+        data-key="id"
+        lazy
+        paginator
+        :rows="porPagina"
+        :first="primeiro"
+        :total-records="total"
+        :rows-per-page-options="[25, 50, 100]"
+        current-page-report-template="{first}–{last} de {totalRecords}"
+        paginator-template="FirstPageLink PrevPageLink CurrentPageReport NextPageLink LastPageLink RowsPerPageDropdown"
+        @page="paginar"
+      >
+        <template #empty>
+          <Estado
+            tipo="vazio"
+            :titulo="busca.trim() ? 'Nada encontrado' : 'Nenhum e-mail enviado ainda'"
+            :texto="busca.trim() ? 'Tente outro termo.' : 'Os e-mails aparecem aqui assim que saírem.'"
+          />
+        </template>
+
+        <Column field="para" header="Para">
+          <template #body="{ data }"><span class="mono">{{ data.para }}</span></template>
+        </Column>
+        <Column field="assunto" header="Assunto" />
+        <Column field="mailable" header="Tipo">
+          <template #body="{ data }"><span class="mono">{{ mailable(data.mailable) }}</span></template>
+        </Column>
+        <Column field="enviado_em" header="Enviado em">
+          <template #body="{ data }">{{ dataHora(data.enviado_em) }}</template>
+        </Column>
+      </DataTable>
+    </section>
+  </Pagina>
 </template>
-
-<style scoped>
-:deep(.p-inputtext) {
-  width: 20rem;
-}
-</style>

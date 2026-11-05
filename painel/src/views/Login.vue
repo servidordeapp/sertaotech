@@ -5,6 +5,7 @@ import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
 import Password from 'primevue/password';
+import Marca from '../components/Marca.vue';
 import { entra } from '../auth.js';
 
 const route = useRoute();
@@ -33,51 +34,98 @@ async function enviar() {
 </script>
 
 <template>
-  <form class="login" @submit.prevent="enviar">
-    <h1>Entrar no painel</h1>
+  <div class="entrada">
+    <Marca legenda="Painel interno" class="entrada__marca" />
 
-    <Message v-if="erro" severity="error" :closable="false">{{ erro }}</Message>
+    <form class="login" @submit.prevent="enviar">
+      <div>
+        <h1 class="login__titulo">Entrar</h1>
+        <p class="login__apoio">Acesso restrito à organização do evento.</p>
+      </div>
 
-    <label for="email">E-mail</label>
-    <InputText id="email" v-model="email" type="email" autocomplete="username" required autofocus />
+      <Message v-if="erro" severity="error" :closable="false">{{ erro }}</Message>
 
-    <label for="senha">Senha</label>
-    <!-- `input-id` e `input-props` vão para o <input> de dentro; `id` e
-         `autocomplete` soltos cairiam na div que embrulha o campo. -->
-    <Password
-      v-model="senha"
-      input-id="senha"
-      :input-props="{ autocomplete: 'current-password', required: true }"
-      :feedback="false"
-      toggle-mask
-      fluid
-    />
+      <div class="login__campo">
+        <label for="email">E-mail</label>
+        <InputText id="email" v-model="email" type="email" autocomplete="username" required autofocus />
+      </div>
 
-    <Button type="submit" label="Entrar" :loading="enviando" />
-  </form>
+      <div class="login__campo">
+        <label for="senha">Senha</label>
+        <!-- `input-id` e `input-props` vão para o <input> de dentro; `id` e
+             `autocomplete` soltos cairiam na div que embrulha o campo. -->
+        <Password
+          v-model="senha"
+          input-id="senha"
+          :input-props="{ autocomplete: 'current-password', required: true }"
+          :feedback="false"
+          toggle-mask
+          fluid
+        />
+      </div>
+
+      <Button type="submit" label="Entrar" size="large" :loading="enviando" />
+    </form>
+
+    <p class="entrada__nota">Exportações e consultas de dado pessoal ficam registradas (LGPD).</p>
+  </div>
 </template>
 
 <style scoped>
-.login {
-  display: grid;
-  gap: 0.5rem;
-  max-width: 22rem;
-  margin: 3rem auto;
-  padding: 1.5rem;
-  background: #fff;
-  border-radius: 12px;
-}
-
-.login h1 {
-  margin: 0 0 0.5rem;
-  font-size: 1.25rem;
-}
-
-.login :deep(input) {
+.entrada {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  box-sizing: border-box;
   width: 100%;
+  max-width: 26.25rem;
+  margin: 0 auto;
+  padding: var(--space-12) var(--space-4);
 }
 
-.login button[type='submit'] {
-  margin-top: 0.75rem;
+.entrada__marca {
+  align-self: center;
+}
+
+.entrada__nota {
+  margin: 0;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* O único cartão-adesivo do painel, junto com o estado de 403. */
+.login {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--surface-card);
+  border: 2px solid var(--border-ink);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-badge);
+}
+
+.login__titulo {
+  font-size: var(--text-2xl);
+  font-weight: var(--fw-semibold);
+}
+
+.login__apoio {
+  margin: var(--space-1) 0 0;
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+.login__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.login__campo label {
+  font-size: 0.8125rem;
+  font-weight: var(--fw-semibold);
+  color: var(--text-strong);
 }
 </style>
