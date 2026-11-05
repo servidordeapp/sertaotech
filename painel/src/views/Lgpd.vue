@@ -146,7 +146,6 @@ onMounted(carregaAuditoria);
 .lgpd {
   display: grid;
   gap: 1rem;
-  max-width: 60rem;
 }
 
 .cartao {
