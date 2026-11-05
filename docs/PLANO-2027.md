@@ -283,7 +283,7 @@ Usa os mesmos `ds/styles.css` e `css/site.css`. O CSS novo fica só na galeria.
 
 1. [x] **Hero com foto da 2ª edição:** título "Sertão Tech 2027", subtítulo e
        um botão principal, "Entrar na lista de espera" (participante).
-2. [x] **Números de 2026:** 233 inscritos, 16 palestras e minicursos
+2. [x] **Números de 2026:** 233 inscritos, 15 palestras e minicursos
        (contado do JSON-LD de `/2026`), 4 caravanas e 4 cidades (Parnaíba,
        Luís Correia, Buriti dos Lopes e Teresina).
 3. [x] **Galeria:** de 4 a 6 fotos em grid CSS com `srcset`. Todas com

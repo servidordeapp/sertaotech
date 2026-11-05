@@ -330,27 +330,6 @@
     },
     {
       "@type": "Event",
-      "name": "O Gerente de Projetos de Software na Era da IA",
-      "startDate": "2026-10-09T18:00:00-03:00",
-      "endDate": "2026-10-09T18:30:00-03:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "UFDPar — Campus Ministro Reis Velloso"
-      },
-      "performer": [
-        {
-          "@type": "Person",
-          "name": "Silvia Azevedo",
-          "jobTitle": "Product Owner",
-          "image": "https://osertaotech.com.br/assets/palestrantes/silvia-azevedo-384.webp",
-          "sameAs": "https://www.linkedin.com/in/silvia-azevedo-oliveira/"
-        }
-      ]
-    },
-    {
-      "@type": "Event",
       "name": "Hackeando sua Carreira: Encontre Seu Caminho em Cibersegurança",
       "startDate": "2026-10-09T18:30:00-03:00",
       "endDate": "2026-10-09T18:45:00-03:00",
