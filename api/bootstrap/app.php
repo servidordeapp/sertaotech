@@ -20,6 +20,10 @@ return Application::configure(basePath: dirname(__DIR__))
         // SANCTUM_STATEFUL_DOMAINS (o painel). O site público não está na
         // lista, então o POST da lista de espera segue sem sessão, como antes.
         $middleware->statefulApi();
+
+        // Sem sessão a resposta é 401. O padrão do Laravel é redirecionar para
+        // `route('login')`, que não existe aqui: virava 500 em vez de 401.
+        $middleware->redirectGuestsTo(null);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         Integration::handles($exceptions);

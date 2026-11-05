@@ -35,6 +35,10 @@ test('sem sessão as rotas do painel respondem 401', function () {
     $this->getJson('/api/painel/inscricoes')->assertUnauthorized();
     $this->getJson('/api/painel/inscricoes/export')->assertUnauthorized();
     $this->postJson('/api/painel/logout')->assertUnauthorized();
+
+    // Navegador pedindo html (o link de export): 401, não redirect para uma
+    // rota `login` que não existe neste backend — isso virava 500.
+    $this->get('/api/painel/inscricoes/export')->assertUnauthorized();
 });
 
 test('papel desconhecido não enxerga inscrição nenhuma', function () {

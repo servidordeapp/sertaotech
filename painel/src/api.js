@@ -47,9 +47,27 @@ export async function api(caminho, { metodo = 'GET', corpo } = {}) {
 }
 
 /**
- * Download do CSV por navegação, não por fetch: o navegador manda o cookie de
- * sessão (mesmo domínio registrável) e cuida do "salvar como" sozinho.
+ * Download do CSV por fetch, não por navegação: link não manda `Origin` e,
+ * com `Referrer-Policy: same-origin` no painel, também não manda `Referer` —
+ * sem um dos dois o Sanctum não vê a request como stateful e ignora a sessão.
  */
-export function urlDeExport(parametros) {
-  return `${BASE}/api/painel/inscricoes/export?${new URLSearchParams(parametros)}`;
+export async function baixaExport(parametros) {
+  const resposta = await fetch(
+    `${BASE}/api/painel/inscricoes/export?${new URLSearchParams(parametros)}`,
+    { credentials: 'include', headers: { Accept: 'text/csv' } },
+  );
+
+  if (!resposta.ok) {
+    throw new ErroApi(resposta.status, await resposta.json().catch(() => null));
+  }
+
+  const url = URL.createObjectURL(await resposta.blob());
+  const carimbo = new Date().toISOString().slice(0, 19).replace(/[:T]/g, '-');
+
+  Object.assign(document.createElement('a'), {
+    href: url,
+    download: `inscricoes-${carimbo}.csv`,
+  }).click();
+
+  URL.revokeObjectURL(url);
 }

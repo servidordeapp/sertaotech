@@ -9,7 +9,7 @@ import InputText from 'primevue/inputtext';
 import Select from 'primevue/select';
 import Tag from 'primevue/tag';
 import { useToast } from 'primevue/usetoast';
-import { api, urlDeExport } from '../api.js';
+import { api, baixaExport } from '../api.js';
 import { auth } from '../auth.js';
 import { dataHora } from '../formato.js';
 
@@ -75,6 +75,20 @@ watch(tipo, () => {
 
 onMounted(carrega);
 
+const exportando = ref(false);
+
+async function exporta() {
+  exportando.value = true;
+
+  try {
+    await baixaExport(filtros.value);
+  } catch (e) {
+    toast.add({ severity: 'error', summary: 'Não deu para exportar', detail: e.message, life: 5000 });
+  } finally {
+    exportando.value = false;
+  }
+}
+
 
 function whatsapp(digitos) {
   const m = /^(\d{2})(\d{4,5})(\d{4})$/.exec(digitos ?? '');
@@ -130,8 +144,8 @@ const cores = { participante: 'info', palestrante: 'warn', patrocinador: 'succes
           label="Exportar CSV"
           icon="pi pi-download"
           severity="secondary"
-          as="a"
-          :href="urlDeExport(filtros)"
+          :loading="exportando"
+          @click="exporta"
         />
       </div>
     </template>
@@ -180,11 +194,6 @@ const cores = { participante: 'info', palestrante: 'warn', patrocinador: 'succes
 
 .cabecalho > :last-child {
   margin-left: auto;
-}
-
-/* O botão de export é um <a>: sem isto vem sublinhado do navegador. */
-.cabecalho a {
-  text-decoration: none;
 }
 
 .cabecalho :deep(input) {
