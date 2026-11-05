@@ -6,7 +6,7 @@ import DataTable from 'primevue/datatable';
 import Select from 'primevue/select';
 import SelectButton from 'primevue/selectbutton';
 import Tag from 'primevue/tag';
-import { baixaAnexo } from '../../api.js';
+import AcoesAnexo from './AcoesAnexo.vue';
 import { brl, dia, SITUACOES_DE_DESPESA } from '../../orcamento.js';
 
 const props = defineProps({
@@ -113,14 +113,11 @@ const acimaDoOrcado = (d) => d.comprometido_centavos > d.orcado_centavos;
 
             <div class="despesas__botoes">
               <Button v-if="editavel" label="Editar despesa" icon="pi pi-pencil" size="small" severity="secondary" outlined @click="$emit('editar', data)" />
-              <Button
+              <AcoesAnexo
                 v-if="data.anexo_nome"
-                :label="data.anexo_nome"
-                icon="pi pi-paperclip"
-                size="small"
-                severity="secondary"
-                text
-                @click="baixaAnexo(`/api/painel/orcamento/despesas/${data.id}/anexo`, data.anexo_nome)"
+                :url="data.anexo_url"
+                :rota="`/api/painel/orcamento/despesas/${data.id}/anexo`"
+                :nome="data.anexo_nome"
               />
             </div>
           </div>
@@ -169,6 +166,7 @@ const acimaDoOrcado = (d) => d.comprometido_centavos > d.orcado_centavos;
   display: flex;
   flex-wrap: wrap;
   gap: var(--space-2);
+  align-items: center;
 }
 
 .despesas__rodape {

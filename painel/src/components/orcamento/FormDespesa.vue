@@ -135,7 +135,7 @@ async function exclui() {
 }
 
 function aoRemoverAnexo() {
-  atual.value = { ...atual.value, anexo_nome: null };
+  atual.value = { ...atual.value, anexo_nome: null, anexo_url: null };
   emit('salvo');
 }
 </script>
@@ -230,6 +230,7 @@ function aoRemoverAnexo() {
         v-model="arquivo"
         :rota="atual ? `/api/painel/orcamento/despesas/${atual.id}/anexo` : null"
         :nome="atual?.anexo_nome"
+        :url="atual?.anexo_url"
         dica="Escolha ou arraste o orçamento, contrato ou nota"
         @removido="aoRemoverAnexo"
       />

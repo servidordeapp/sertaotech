@@ -10,9 +10,10 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 
 /**
  * Contrato ou nota de um lançamento, no S3 (R2 em produção, RustFS em dev). Nada
- * fica no disco do servidor. O painel baixa pela rota autenticada, mas o bucket de
- * produção é público por decisão do projeto: quem tiver o caminho abre, e o que
- * protege é o nome aleatório e a api nunca devolver o caminho.
+ * fica no disco do servidor. O bucket é público por decisão do projeto: o painel
+ * baixa pela rota autenticada, mas o link de `anexoUrl()` abre para quem o tiver,
+ * com ou sem login. O que protege é o nome aleatório e o link só sair para quem
+ * pode ver o lançamento.
  */
 trait TemAnexo
 {
@@ -41,6 +42,11 @@ trait TemAnexo
         Storage::disk(self::$discoDeAnexos)->delete($this->anexo_caminho);
 
         $this->update(['anexo_caminho' => null, 'anexo_nome' => null]);
+    }
+
+    public function anexoUrl(): ?string
+    {
+        return $this->anexo_caminho === null ? null : Storage::disk(self::$discoDeAnexos)->url($this->anexo_caminho);
     }
 
     public function baixaAnexo(): StreamedResponse

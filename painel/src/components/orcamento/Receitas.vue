@@ -5,7 +5,7 @@ import Column from 'primevue/column';
 import DataTable from 'primevue/datatable';
 import Menu from 'primevue/menu';
 import SelectButton from 'primevue/selectbutton';
-import { baixaAnexo } from '../../api.js';
+import AcoesAnexo from './AcoesAnexo.vue';
 import { brl, brlCurto, dia, ETAPAS } from '../../orcamento.js';
 import TagFunil from './TagFunil.vue';
 
@@ -111,14 +111,11 @@ const ROTULO_DE_ETAPA = Object.fromEntries(ETAPAS.map((etapa) => [etapa.valor, e
         <template #expansion="{ data }">
           <div class="receitas__detalhe">
             <Button v-if="editavel" label="Editar receita" icon="pi pi-pencil" size="small" severity="secondary" outlined @click="$emit('editar', data)" />
-            <Button
+            <AcoesAnexo
               v-if="data.anexo_nome"
-              :label="data.anexo_nome"
-              icon="pi pi-paperclip"
-              size="small"
-              severity="secondary"
-              text
-              @click="baixaAnexo(`/api/painel/orcamento/receitas/${data.id}/anexo`, data.anexo_nome)"
+              :url="data.anexo_url"
+              :rota="`/api/painel/orcamento/receitas/${data.id}/anexo`"
+              :nome="data.anexo_nome"
             />
             <span v-if="!editavel && !data.anexo_nome" class="cartao__apoio">Sem anexo.</span>
           </div>

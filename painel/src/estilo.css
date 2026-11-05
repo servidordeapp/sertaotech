@@ -64,12 +64,21 @@ body {
   border-radius: var(--radius-pill);
 }
 
-/* Lista de chave/valor de quem muda de forma por tipo: inscrição e titular. */
+/* Lista de chave/valor de quem muda de forma por tipo: inscrição e titular. Uma
+   linha por campo, porque o valor pode ser um parágrafo inteiro (o tema da palestra). */
 .dados {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(12rem, 1fr));
-  gap: var(--space-4) var(--space-6);
+  gap: var(--space-3);
   margin: 0;
+}
+
+@media (min-width: 48rem) {
+  .dados > div {
+    display: grid;
+    grid-template-columns: 11rem minmax(0, 72ch);
+    column-gap: var(--space-4);
+    align-items: baseline;
+  }
 }
 
 .dados dt {
@@ -85,6 +94,7 @@ body {
   margin: 0;
   font-size: var(--text-sm);
   overflow-wrap: anywhere;
+  white-space: pre-line;
 }
 
 /* Cor segue a entidade, como nos gráficos: ver src/cores.js. */

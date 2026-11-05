@@ -27,6 +27,7 @@ class DespesaResource extends JsonResource
             'vencida'               => $this->estaVencida(),
             'vencimento'            => $this->vencimento?->toDateString(),
             'anexo_nome'            => $this->anexo_nome,
+            'anexo_url'             => $this->anexoUrl(),
         ];
     }
 }

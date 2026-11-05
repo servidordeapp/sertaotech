@@ -23,8 +23,8 @@ class ReceitaResource extends JsonResource
             'status'             => $this->status,
             'pagamento_previsto' => $this->pagamento_previsto?->toDateString(),
             'recebido_em'        => $this->recebido_em?->toDateString(),
-            // O caminho no disco não sai daqui: o nome basta para a tela.
-            'anexo_nome' => $this->anexo_nome,
+            'anexo_nome'         => $this->anexo_nome,
+            'anexo_url'          => $this->anexoUrl(),
         ];
     }
 }

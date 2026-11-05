@@ -2,12 +2,14 @@
 import { ref } from 'vue';
 import Button from 'primevue/button';
 import { useToast } from 'primevue/usetoast';
-import { api, baixaAnexo } from '../../api.js';
+import { api } from '../../api.js';
+import AcoesAnexo from './AcoesAnexo.vue';
 
 const props = defineProps({
   // Rota do anexo do lançamento; null enquanto ele não foi salvo.
   rota: { type: String, default: null },
   nome: { type: String, default: null },
+  url: { type: String, default: null },
   dica: { type: String, required: true },
 });
 
@@ -33,14 +35,6 @@ function escolhe(evento) {
   arquivo.value = escolhido;
 }
 
-async function baixa() {
-  try {
-    await baixaAnexo(props.rota, props.nome);
-  } catch (e) {
-    erro.value = e.message;
-  }
-}
-
 async function remove() {
   try {
     await api(props.rota, { metodo: 'DELETE' });
@@ -57,7 +51,7 @@ async function remove() {
     <span class="campo__rotulo">Anexo</span>
 
     <div v-if="nome && !arquivo" class="anexo__atual">
-      <Button :label="nome" icon="pi pi-paperclip" severity="secondary" text size="small" @click="baixa" />
+      <AcoesAnexo :url="url" :rota="rota" :nome="nome" />
       <Button label="Remover" severity="danger" text size="small" @click="remove" />
     </div>
 

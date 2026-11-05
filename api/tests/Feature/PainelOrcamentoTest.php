@@ -327,14 +327,16 @@ describe('anexos', function () {
             ->assertDownload('contrato espaco.pdf');
     });
 
-    test('o caminho no disco não sai na api', function () {
+    test('a api devolve o link público do anexo', function () {
+        Storage::fake('s3', ['url' => 'https://arquivos.test']);
         $item = receita();
         $item->guardaAnexo(UploadedFile::fake()->create('c.pdf', 1, 'application/pdf'));
 
         $resposta = $this->actingAs(usuario())->getJson('/api/painel/orcamento/2027/receitas');
 
         expect($resposta->json('data.0'))->not->toHaveKey('anexo_caminho')
-            ->and($resposta->json('data.0.anexo_nome'))->toBe('c.pdf');
+            ->and($resposta->json('data.0.anexo_nome'))->toBe('c.pdf')
+            ->and($resposta->json('data.0.anexo_url'))->toBe('https://arquivos.test/'.$item->anexo_caminho);
     });
 
     test('aceita PDF de exatos 20 MB', function () {
@@ -372,7 +374,9 @@ describe('anexos', function () {
         $caminho = (string) $item->anexo_caminho;
 
         $this->actingAs(usuario());
-        $this->deleteJson('/api/painel/orcamento/receitas/'.$item->id.'/anexo')->assertOk()->assertJsonPath('data.anexo_nome', null);
+        $this->deleteJson('/api/painel/orcamento/receitas/'.$item->id.'/anexo')->assertOk()
+            ->assertJsonPath('data.anexo_nome', null)
+            ->assertJsonPath('data.anexo_url', null);
 
         Storage::disk('s3')->assertMissing($caminho);
         $this->get('/api/painel/orcamento/receitas/'.$item->id.'/anexo')->assertNotFound();
