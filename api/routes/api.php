@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Painel\InscricoesController;
+use App\Http\Controllers\Painel\MetricasController;
 use App\Http\Controllers\Painel\SessaoController;
 use App\Http\Controllers\WaitlistController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,7 @@ Route::prefix('painel')->group(function (): void {
         // Antes de `inscricoes/{id}`, que ainda virá: /export casaria com {id}.
         Route::get('inscricoes/export', [InscricoesController::class, 'export']);
         Route::get('inscricoes', [InscricoesController::class, 'index']);
+
+        Route::get('metricas', [MetricasController::class, 'index']);
     });
 });

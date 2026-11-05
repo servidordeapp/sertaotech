@@ -48,8 +48,13 @@ mount e o `node_modules` fica num volume do container, então **depois de mexer
 no `package.json` reconstrua**:
 
 ```bash
-docker compose up -d --build site
+docker compose up -d --build --renew-anon-volumes site
 ```
+
+O `--renew-anon-volumes` não é enredo: sem ele o compose copia o volume
+anônimo do container antigo para o novo, e o `node_modules` que sobe é o de
+antes — a dependência nova existe na imagem e some no container. Medido em
+2026-11-05, com o `chart.js` do painel.
 
 O mesmo vale para a api: o `vendor/` fica num volume do container, então
 **depois de mexer no `composer.json` reconstrua** com

@@ -28,7 +28,20 @@ php artisan painel:usuario    # pergunta e-mail, nome, papel e senha
 
 Papéis: `admin` vê os três tipos de inscrição, `comercial` vê patrocinador,
 `curadoria` vê palestrante. O recorte é feito na api — o front só esconde o
-filtro que não serve.
+filtro que não serve. Volume de e-mail é do evento inteiro, não de um tipo:
+só o `admin` recebe esse bloco em `/api/painel/metricas`.
+
+## Telas
+
+| Rota | O que mostra |
+|---|---|
+| `/inscricoes` | Tabela com busca, filtro de tipo, linha expansível e export em CSV |
+| `/metricas` | Totais, inscrições por dia, distribuições (cidade, perfil, experiência, cota) e volume de e-mail |
+
+As cores dos gráficos estão em `src/cores.js`, validadas (banda de
+luminosidade, croma, separação para daltonismo e contraste) contra a
+superfície dos cartões — não escolhidas no olho. Cor segue a entidade: o
+participante é o mesmo laranja em qualquer gráfico.
 
 ## Como rodar
 
@@ -45,8 +58,12 @@ Mexeu no `package.json`? Reconstrua, porque o `node_modules` fica num volume do
 container:
 
 ```bash
-docker compose up -d --build painel
+docker compose up -d --build --renew-anon-volumes painel
 ```
+
+Sem o `--renew-anon-volumes` o compose reaproveita o volume anônimo do
+container anterior e a dependência nova não aparece, por mais que a imagem
+tenha sido reconstruída.
 
 ## Deploy
 

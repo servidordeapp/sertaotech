@@ -2,12 +2,14 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { auth, carregaSessao } from './auth.js';
 import Login from './views/Login.vue';
 import Inscricoes from './views/Inscricoes.vue';
+import Metricas from './views/Metricas.vue';
 
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/login', name: 'login', component: Login, meta: { publica: true } },
     { path: '/inscricoes', name: 'inscricoes', component: Inscricoes },
+    { path: '/metricas', name: 'metricas', component: Metricas },
     { path: '/:qualquer(.*)*', redirect: '/inscricoes' },
   ],
 });
