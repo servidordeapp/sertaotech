@@ -7,6 +7,7 @@ namespace App\Models;
 use Database\Factories\WaitlistEntryFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class WaitlistEntry extends Model
 {
@@ -33,5 +34,16 @@ class WaitlistEntry extends Model
             'compartilhamento_aceito_em' => 'datetime',
             'anonimizado_em'             => 'datetime',
         ];
+    }
+
+    /**
+     * As edições em que esta pessoa esteve de fato. O e-mail é o único elo entre a
+     * lista de espera e os ingressos, e os dois são gravados em minúsculas.
+     *
+     * @return HasMany<Participante, $this>
+     */
+    public function presencas(): HasMany
+    {
+        return $this->hasMany(Participante::class, 'email', 'email')->where('compareceu', true);
     }
 }

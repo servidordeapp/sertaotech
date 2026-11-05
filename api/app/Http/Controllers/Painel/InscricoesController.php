@@ -28,7 +28,7 @@ class InscricoesController extends Controller
         ]);
 
         return InscricaoResource::collection(
-            $this->consulta($request)->paginate($request->integer('por_pagina') ?: 25)->withQueryString(),
+            $this->consulta($request)->with('presencas.edicao')->paginate($request->integer('por_pagina') ?: 25)->withQueryString(),
         );
     }
 

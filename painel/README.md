@@ -38,6 +38,7 @@ quem tranca é a api — as rotas estão atrás de `can:painel-admin` e responde
 | Rota | O que mostra |
 |---|---|
 | `/inscricoes` | Tabela com busca, filtro de tipo, linha expansível e export em CSV |
+| `/participantes` | Quem teve ingresso em cada edição, com presença, resumo e filtros por presença e cupom. Só `admin` |
 | `/metricas` | Totais, inscrições por dia, distribuições (cidade, perfil, experiência, cota) e volume de e-mail |
 | `/emails` | O que saiu de e-mail, com busca por destinatário ou assunto. Só `admin` |
 | `/lgpd` | Direitos do titular: consultar tudo de uma pessoa, anonimizar, e o histórico de quem acessou. Só `admin` |
@@ -45,7 +46,7 @@ quem tranca é a api — as rotas estão atrás de `can:painel-admin` e responde
 | `/orcamento` | Receitas em funil, despesas, saldo e comparativo por edição. `admin` e `financeiro` veem tudo; `comercial`, só as receitas |
 
 Inscrições e métricas ainda não têm edição: `waitlist_entries` é uma lista só, e por
-isso o seletor do topo só aparece em Apresentações e Orçamento.
+isso o seletor do topo só aparece em Participantes, Apresentações e Orçamento.
 
 ## Orçamento
 

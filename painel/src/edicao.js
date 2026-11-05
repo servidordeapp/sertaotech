@@ -22,6 +22,8 @@ export function useEdicao() {
   return computed(() => {
     const pedida = Number(route.query.edicao);
 
-    return edicoes.value.find((e) => e.ano === pedida) ?? edicoes.value.find((e) => e.atual) ?? null;
+    const encerrada = route.meta.edicaoEncerrada ? edicoes.value.find((e) => !e.atual) : null;
+
+    return edicoes.value.find((e) => e.ano === pedida) ?? encerrada ?? edicoes.value.find((e) => e.atual) ?? null;
   });
 }

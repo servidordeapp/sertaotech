@@ -20,6 +20,7 @@ const GRUPOS = [
     rotulo: 'Pessoas',
     itens: [
       { nome: 'inscricoes', rotulo: 'Inscrições', icone: 'pi-users' },
+      { nome: 'participantes', rotulo: 'Participantes', icone: 'pi-id-card' },
       { nome: 'emails', rotulo: 'E-mails', icone: 'pi-envelope' },
       { nome: 'lgpd', rotulo: 'LGPD', icone: 'pi-shield' },
     ],

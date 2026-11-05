@@ -186,7 +186,15 @@ function semConsentimento(dados) {
 
         <Column expander style="width: 3rem" />
         <Column field="nome" header="Nome">
-          <template #body="{ data }"><strong>{{ data.nome }}</strong></template>
+          <template #body="{ data }">
+            <strong>{{ data.nome }}</strong>
+            <Tag
+              v-if="data.participou_em.length"
+              :value="`Participou em ${data.participou_em.join(', ')}`"
+              severity="success"
+              class="selo-participou"
+            />
+          </template>
         </Column>
         <Column field="email" header="E-mail">
           <template #body="{ data }"><span class="mono">{{ data.email }}</span></template>
@@ -221,3 +229,9 @@ function semConsentimento(dados) {
     </section>
   </Pagina>
 </template>
+
+<style scoped>
+.selo-participou {
+  margin-left: var(--space-2);
+}
+</style>

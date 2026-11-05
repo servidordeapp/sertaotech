@@ -9,6 +9,7 @@ use App\Http\Controllers\Painel\EmailsController;
 use App\Http\Controllers\Painel\InscricoesController;
 use App\Http\Controllers\Painel\LgpdController;
 use App\Http\Controllers\Painel\MetricasController;
+use App\Http\Controllers\Painel\ParticipantesController;
 use App\Http\Controllers\Painel\ReceitasController;
 use App\Http\Controllers\Painel\ResumoOrcamentoController;
 use App\Http\Controllers\Painel\SessaoController;
@@ -73,6 +74,8 @@ Route::prefix('painel')->group(function (): void {
             Route::delete('lgpd', [LgpdController::class, 'destroy']);
 
             Route::get('auditorias', [AuditoriasController::class, 'index']);
+
+            Route::get('participantes/{edicao:ano}', [ParticipantesController::class, 'index']);
         });
     });
 });

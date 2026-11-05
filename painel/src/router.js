@@ -7,19 +7,27 @@ import Emails from './views/Emails.vue';
 import Lgpd from './views/Lgpd.vue';
 import Metricas from './views/Metricas.vue';
 import Orcamento from './views/Orcamento.vue';
+import Participantes from './views/Participantes.vue';
 
 const COM_INSCRICOES = ['admin', 'comercial', 'curadoria'];
 
 /**
  * `papeis` é quem vê a tela; sem ele, todo mundo logado. O App.vue usa isto para
  * montar o menu e para mostrar o 403 no lugar da tela, sem montá-la. Não é a
- * tranca: a api responde 403 de qualquer jeito. `porEdicao` liga o seletor.
+ * tranca: a api responde 403 de qualquer jeito. `porEdicao` liga o seletor, e
+ * `edicaoEncerrada` abre na última edição que já aconteceu, não na atual.
  */
 export const router = createRouter({
   history: createWebHistory(),
   routes: [
     { path: '/login', name: 'login', component: Login, meta: { publica: true } },
     { path: '/inscricoes', name: 'inscricoes', component: Inscricoes, meta: { papeis: COM_INSCRICOES } },
+    {
+      path: '/participantes',
+      name: 'participantes',
+      component: Participantes,
+      meta: { papeis: ['admin'], porEdicao: true, edicaoEncerrada: true },
+    },
     { path: '/metricas', name: 'metricas', component: Metricas, meta: { papeis: COM_INSCRICOES } },
     { path: '/emails', name: 'emails', component: Emails, meta: { papeis: ['admin'] } },
     { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { papeis: ['admin'] } },
