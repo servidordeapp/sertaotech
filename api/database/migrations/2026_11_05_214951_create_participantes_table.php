@@ -28,7 +28,9 @@ return new class () extends Migration {
             $table->string('cupom', 80)->nullable();
             $table->boolean('compareceu');
             $table->timestamp('check_in_em')->nullable();
-            $table->timestamp('comprado_em');
+            // dateTime: timestamp obrigatório depois de outro timestamp ganha o padrão
+            // 0000-00-00 no MySQL de produção, que recusa essa data (erro 1067).
+            $table->dateTime('comprado_em');
             $table->timestamp('anonimizado_em')->nullable();
             $table->timestamps();
 
