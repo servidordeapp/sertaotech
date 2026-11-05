@@ -94,8 +94,13 @@ ingressos; os demais números, do kit de 2026):
 | Caravanas | — | 4 | |
 | Cidades representadas | — | 4 (Parnaíba, Luís Correia, Buriti dos Lopes, Teresina) | |
 
-Frase de apoio: "76% de comparecimento num evento de taxa simbólica (R$ 20).
-Em eventos gratuitos ou quase gratuitos, metade dos inscritos costuma faltar."
+Inscritos de 2026 são os ingressos **aprovados**: a planilha tem 266, dos quais
+28 não pagos e 5 cancelados ficam fora dos 233. Os 176 check-ins são todos de
+aprovados.
+
+Frase de apoio: "76% de comparecimento num evento de taxa simbólica (R$ 20, ou
+R$ 10 na caravana). Em eventos gratuitos ou quase gratuitos, metade dos inscritos
+costuma faltar."
 
 Visual sugerido: barras lado a lado 1ª × 2ª edição para inscritos e presentes.
 
@@ -321,29 +326,24 @@ versão de 1920 px no PDF):
 
 - `foto-oficial`, `abertura`, `palestra`, `publico`, `minicurso`,
   `coffee-break`, `equipe-organizadora`
-- After (só na versão de quem participou): `after-networking`,
-  `after-petiscos`, `after-bar`
+- After: `after-bar` na grade de todos os decks (decidido em 2026-11-05).
+  Também há `after-networking` e `after-petiscos`.
 
 Link para o álbum completo, se a organização tiver um.
 
 ## 10. O que vem em 2027
 
-Resumo do kit 2027, sem repetir o kit inteiro. Uma página e o link.
+Só o anúncio do crescimento, sem link para o kit: o próximo passo é uma conversa,
+não a tabela de cotas (decidido em 2026-11-05).
 
-- 3ª edição em 15 e 16 de outubro de 2027, na UFDPar, em parceria com o
-  Bacharelado em Inteligência Artificial. 4 trilhas: Principal, Robótica,
-  Negócios e Sênior+.
-- Público ampliado: profissionais experientes, empreendedores, equipes de
-  robótica.
-- Novidade: as trilhas de Robótica e Negócios viram programas no YouTube, com
-  uma marca apresentadora cada ("Sertão Tech - Robótica" e "Sertão Tech -
-  Negócios", "apresentado por…"), 1 vaga cada. Sem valores no relatório.
-- Cotas tradicionais Bronze, Prata e Ouro, sem valores no relatório
-  (ficam no kit 2027).
-- Link: osertaotech.com.br/midia-kit
-- **Proposta para quem patrocinou em 2026** (decisão da organização):
-  prioridade de escolha de cota até uma data, ou condição especial de
-  renovação. Ex.: "Patrocinadores de 2026 têm prioridade até {{data}}".
+- 3ª edição em 2 dias (15 e 16 de outubro de 2027), na UFDPar.
+- 4 trilhas: Principal, Robótica, Negócios e Sênior+.
+- Botão para o WhatsApp com a mensagem pronta: "Oi! Aqui é da {{empresa}}. Vi o
+  relatório do Sertão Tech 2026 e quero entender se faz sentido patrocinar de
+  novo em 2027. Podemos conversar?" O WhatsApp do slide de contato abre igual.
+- **Proposta para quem patrocinou em 2026** (decidido em 2026-11-05):
+  "Patrocinadores de 2026 têm prioridade na escolha de cota até 31/12/2026."
+  Mesma data em que o logo sai da home.
 
 Chamada do slide: "A <empresa> pode impulsionar ainda mais esse crescimento."
 
@@ -370,8 +370,8 @@ As respostas viram depoimento (com autorização) para o kit de 2028.
 
 ## Formato de entrega
 
-**Implementado (2026-10-28):** deck reveal.js em `relatorio/2026/index.html`,
-no estilo do mídia kit (mesmos `midia-kit.css`, `midia-kit.js` e
+**Implementado (2026-10-28):** deck reveal.js em
+`site/public/relatorio/2026/index.html`, no estilo do mídia kit (mesmos `midia-kit.css`, `midia-kit.js` e
 `icons.svg`; os componentes novos ficaram no bloco "Componentes do
 relatório" do CSS, para reaproveitar em 2027).
 
@@ -387,18 +387,21 @@ relatório" do CSS, para reaproveitar em 2027).
     está no comentário do script. Vazio esconde a comprovação inteira.
     Evidências em `relatorio/2026/evidencias/<id>/`, em WebP.
   - `FORM_FEEDBACK`: link do form da seção 11. Vazio esconde o card.
-- **Fora do deploy:** `.vercelignore` exclui `/relatorio` e este arquivo.
-  O repositório no GitHub continua com tudo.
-- **Ver e exportar localmente** (como não vai para a Vercel):
-  1. Na raiz do repo: `python3 -m http.server 8000`
-  2. Abrir `http://localhost:8000/relatorio/2026/` e escolher o patrocinador.
-  3. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
+- **No deploy, fora do Google:** `noindex`, `Disallow: /relatorio/` no
+  `robots.txt`, fora do sitemap e sem link em página pública (decidido em
+  2026-11-04, para o link abrir sem login).
+- **Ver e exportar:**
+  1. Abrir `https://www.osertaotech.com.br/relatorio/2026/` e escolher o
+     patrocinador. Para testar antes do deploy: `python3 -m http.server 8000`
+     dentro de `site/public/`.
+  2. "PDF" abre a janela de impressão: destino **Salvar como PDF**, margens
      **Nenhuma**, **Gráficos de fundo** ligado. O nome do arquivo já vem como
      `Sertao-Tech-2026-Relatorio-<Empresa>`.
 - PDF com 13 páginas, mais os slides de comprovação e o anexo de links
   quando houver contrapartidas preenchidas.
-- Ficaram de fora: Sertão Tech After, valores das cotas de 2027, dados de perfil do público e o print do GA4 (os números do
-  site vão em texto).
+- Ficaram de fora: slide do Sertão Tech After (fica só uma foto na grade),
+  valores das cotas de 2027, dados de perfil do público e o print do GA4 (os
+  números do site vão em texto).
 
 ### Padrão de relatório pós-evento (grandes empresas)
 
@@ -444,8 +447,8 @@ mensagem abaixo. Prazo sugerido: até 08/11/2026 (30 dias depois do evento).
 > Preparamos um relatório com os resultados: a meta era 150 pessoas e
 > tivemos 176 check-ins, além de 88 mil visualizações no Instagram.
 >
-> No PDF estão os números do evento, as entregas da cota {{cota}} e uma
-> prévia do que vem em 2027. Qualquer dúvida, é só chamar por aqui!
+> No PDF estão os números do evento, a presença digital, a marca de vocês no
+> site e uma prévia do que vem em 2027. Qualquer dúvida, é só chamar por aqui!
 
 Se o form de feedback estiver pronto, mandar o link numa segunda mensagem,
 logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
@@ -474,10 +477,11 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
 - [ ] **Para 2027:** incluir perguntas de perfil (ocupação, curso,
       cidade, faixa etária) no formulário da Sympla. É o dado que falta
       neste relatório.
-- [ ] Decidir a condição de renovação para patrocinadores de 2026 (se
-      houver, entra no slide de 2027, ainda sem valores).
-- [ ] Criar o form de feedback da seção 11 e colar em `FORM_FEEDBACK`.
-- [ ] Exportar os 7 PDFs e enviar por WhatsApp (até 08/11/2026).
+- [x] Condição de renovação: prioridade na escolha de cota até 31/12/2026.
+- [ ] Criar o form de feedback da seção 11. Os PDFs saem sem o card; o link vai
+      numa segunda mensagem de WhatsApp.
+- [x] Exportar os 7 PDFs (em `originais/relatorio-2026/pdfs/`, fora do git).
+- [ ] Enviar os PDFs por WhatsApp (até 08/11/2026).
 
 ## Para a 3ª edição (2027)
 
@@ -556,3 +560,10 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
 - 2026-11-02 — 3ª edição em 15 e 16/10/2027 na UFDPar, programas renomeados
   (Sertão Tech - Robótica e Sertão Tech - Negócios) e relatório da 3ª edição
   em 30 dias corridos (antes 15).
+- 2026-11-05 — Revisão final do deck: números conferidos na planilha, taxa da
+  caravana na nota, "visitantes" e "engajamento" no lugar de "pessoas" e
+  "atenção", concordância de Bruno Neves Advogado. Mensagem de WhatsApp sem
+  "entregas da cota", que o PDF não traz desde 2026-11-01. Prioridade de renovação
+  até 31/12/2026 no slide de 2027 e 7 PDFs exportados.
+- 2026-11-05 — Slide de 2027 sem link para o kit, programas e cotas: 2 dias, 4
+  trilhas e botão de WhatsApp com mensagem pronta.
