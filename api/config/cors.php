@@ -2,14 +2,21 @@
 
 declare(strict_types=1);
 
-// Só o site pode postar na API. Em dev, ALLOWED_ORIGINS=http://localhost:4321 (Astro).
+// Quem pode falar com a API pelo navegador: o site (POST da lista de espera) e
+// o painel (GET/POST autenticados). Em dev, ALLOWED_ORIGINS leva
+// http://localhost:4321 (Astro) e http://localhost:5173 (painel).
 return [
-    'paths'                    => ['api/*'],
-    'allowed_methods'          => ['POST'],
+    // sanctum/csrf-cookie é a primeira chamada do painel no login; fora desta
+    // lista o navegador barra antes de a sessão existir.
+    'paths'                    => ['api/*', 'sanctum/csrf-cookie'],
+    'allowed_methods'          => ['GET', 'POST', 'OPTIONS'],
     'allowed_origins'          => array_filter(explode(',', (string) env('CORS_ALLOWED_ORIGINS', 'https://osertaotech.com.br,https://www.osertaotech.com.br'))),
     'allowed_origins_patterns' => [],
-    'allowed_headers'          => ['Content-Type', 'Accept'],
-    'exposed_headers'          => [],
-    'max_age'                  => 600,
-    'supports_credentials'     => false,
+    // X-XSRF-TOKEN é o cabeçalho que o painel devolve a partir do cookie de CSRF.
+    'allowed_headers' => ['Content-Type', 'Accept', 'X-XSRF-TOKEN', 'X-Requested-With'],
+    'exposed_headers' => [],
+    'max_age'         => 600,
+    // O painel manda cookie de sessão. Seguro aqui porque a lista de origens é
+    // explícita: credenciais com origem '*' o navegador recusaria de qualquer forma.
+    'supports_credentials' => true,
 ];

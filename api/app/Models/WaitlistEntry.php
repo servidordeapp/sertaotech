@@ -4,10 +4,15 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Database\Factories\WaitlistEntryFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class WaitlistEntry extends Model
 {
+    /** @use HasFactory<WaitlistEntryFactory> */
+    use HasFactory;
+
     /** Versões vigentes dos textos de LGPD; mudou o texto no site, muda aqui. */
     public const LGPD_VERSAO = 'lgpd-2027-v1';
 

@@ -16,7 +16,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Liga sessão + CSRF nas rotas de api para as origens de
+        // SANCTUM_STATEFUL_DOMAINS (o painel). O site público não está na
+        // lista, então o POST da lista de espera segue sem sessão, como antes.
+        $middleware->statefulApi();
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         Integration::handles($exceptions);

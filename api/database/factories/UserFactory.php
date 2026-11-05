@@ -30,9 +30,16 @@ class UserFactory extends Factory
             'name'              => fake()->name(),
             'email'             => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'papel'             => 'admin',
             'password'          => static::$password ??= Hash::make('password'),
             'remember_token'    => Str::random(10),
         ];
+    }
+
+    /** Papel do painel: quem não é admin só enxerga um tipo de inscrição. */
+    public function papel(string $papel): static
+    {
+        return $this->state(fn (array $attributes) => ['papel' => $papel]);
     }
 
     /**
