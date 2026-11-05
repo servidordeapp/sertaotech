@@ -1,6 +1,10 @@
 /* Cores do site (site/public/ds) só onde aparecem: o resto é o tema Aura do
    PrimeVue, que já vem pronto. Painel é interno; não precisa ser o site. */
 :root {
+  /* Diz ao navegador que a página é clara: sem isto, num sistema no escuro ele
+     pinta por conta própria o que é dele — input, select, barra de rolagem. */
+  color-scheme: light;
+
   --sertao-areia: #f6f1e7;
   --sertao-terra: #b4531f;
 }
