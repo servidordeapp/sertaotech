@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -44,9 +45,16 @@ class Edicao extends Model
         return $usuario->ehAdmin() || $this->ehAtual();
     }
 
-    /** A edição anterior a esta, para comparar e copiar. */
+    /**
+     * A edição anterior a esta, para comparar e copiar. Edição sem nenhum
+     * lançamento não conta: compará-la mostraria um ano inteiro zerado.
+     */
     public function anterior(): ?self
     {
-        return self::query()->where('ano', '<', $this->ano)->orderByDesc('ano')->first();
+        return self::query()
+            ->where('ano', '<', $this->ano)
+            ->where(fn (Builder $edicao): Builder => $edicao->has('receitas')->orHas('despesas'))
+            ->orderByDesc('ano')
+            ->first();
     }
 }

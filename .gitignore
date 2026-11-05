@@ -11,3 +11,6 @@ dist/
 
 # Cache da CLI da Vercel
 .vercel/
+
+# Planilhas de participantes têm dado pessoal: nunca entram no repositório.
+*.xlsx

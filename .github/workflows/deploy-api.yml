@@ -81,7 +81,7 @@ jobs:
         with:
           php-version: 8.5
           tools: composer:v2
-          extensions: pdo_mysql
+          extensions: pdo_mysql, zip
           # `composer coverage` refuses to run without pcov or xdebug, so this
           # must stay a real driver: with coverage: none the quality gate below
           # fails on every push.

@@ -56,7 +56,7 @@ function despesa(array $campos = [], int $ano = 2027): Despesa
 test('as edições vêm da mais nova para a mais velha, e a atual é a de maior ano', function () {
     $this->actingAs(usuario('curadoria'))->getJson('/api/painel/edicoes')
         ->assertOk()
-        ->assertExactJson([['ano' => 2027, 'atual' => true], ['ano' => 2026, 'atual' => false]]);
+        ->assertExactJson([['ano' => 2027, 'atual' => true], ['ano' => 2026, 'atual' => false], ['ano' => 2025, 'atual' => false]]);
 });
 
 describe('papéis', function () {
@@ -477,6 +477,12 @@ describe('resumo', function () {
             ->and($anterior['ate_esta_data'])->toBe(['data' => '2025-11-05', 'receita' => 100, 'despesa' => 0])
             // Base da cópia: o que custou; sem custo ainda, o que foi orçado.
             ->and($anterior['por_categoria'])->toBe(['Espaço' => 60, 'Taxas' => 40]);
+    });
+
+    test('edição anterior só conta quando tem lançamento', function () {
+        receita(['status' => 'pago', 'valor_centavos' => 100, 'recebido_em' => '2025-08-01'], 2025);
+
+        $this->actingAs(usuario())->getJson('/api/painel/orcamento/2026/resumo')->assertJsonPath('anterior.ano', 2025);
     });
 
     test('a primeira edição não tem anterior', function () {

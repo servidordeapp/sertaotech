@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
 use App\Models\Auditoria;
+use App\Models\Participante;
 use App\Models\WaitlistEntry;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -25,8 +26,9 @@ class LgpdController extends Controller
         Auditoria::registra($request, 'lgpd.consulta', $email);
 
         return response()->json([
-            'email'      => $email,
-            'inscricoes' => WaitlistEntry::query()->where('email', $email)->get(),
+            'email'         => $email,
+            'inscricoes'    => WaitlistEntry::query()->where('email', $email)->get(),
+            'participantes' => Participante::query()->where('email', $email)->get(),
             // O registro de envio guarda o destinatário como texto, então a
             // busca é por conteúdo: um envio pode ter ido para mais de um.
             'emails' => DB::table('emails_enviados')
@@ -58,6 +60,24 @@ class LgpdController extends Controller
                 ]);
             }
 
+            $participantes = Participante::query()->where('email', $email)->get();
+
+            foreach ($participantes as $participante) {
+                $marca = sprintf('%s+%d', WaitlistEntry::ANONIMO, $participante->id);
+
+                $participante->update([
+                    'nome'     => WaitlistEntry::ANONIMO,
+                    'email'    => $marca.'@anonimizado.invalid',
+                    'telefone' => null,
+                    // Ingresso e pedido levam à pessoa na plataforma de venda.
+                    'ingresso' => $marca,
+                    'pedido'   => WaitlistEntry::ANONIMO,
+                    // Edição, cupom e presença ficam: sem identificar ninguém,
+                    // mantêm os totais do evento de pé.
+                    'anonimizado_em' => now(),
+                ]);
+            }
+
             // O log de envio não some — ele é a prova do que foi enviado e
             // quando. O endereço vira hash: dá para confirmar um envio quando
             // a pessoa apresenta o próprio e-mail, mas o endereço não fica
@@ -66,7 +86,7 @@ class LgpdController extends Controller
                 ->where('para', 'like', '%'.$email.'%')
                 ->update(['para' => 'sha256:'.hash('sha256', $email)]);
 
-            return ['inscricoes' => $inscricoes->count(), 'emails' => $emails];
+            return ['inscricoes' => $inscricoes->count(), 'participantes' => $participantes->count(), 'emails' => $emails];
         });
 
         Auditoria::registra($request, 'lgpd.anonimizacao', $email);

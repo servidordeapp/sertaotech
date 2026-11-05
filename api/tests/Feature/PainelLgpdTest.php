@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Models\Auditoria;
+use App\Models\Participante;
 use App\Models\User;
 use App\Models\WaitlistEntry;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -80,6 +81,58 @@ test('anonimizar as duas inscrições da mesma pessoa não colide no índice ún
         ->assertJson(['inscricoes' => 2]);
 
     expect(WaitlistEntry::query()->whereNotNull('anonimizado_em')->count())->toBe(2);
+});
+
+test('a consulta inclui os ingressos da pessoa nas edições', function () {
+    Participante::factory()->create(['email' => 'ana@ex.com']);
+    Participante::factory()->create(['email' => 'outra@ex.com']);
+
+    $resposta = $this->actingAs(User::factory()->create())
+        ->getJson('/api/painel/lgpd?email=ana@ex.com')
+        ->assertOk();
+
+    expect($resposta->json('participantes'))->toHaveCount(1)
+        ->and($resposta->json('participantes.0.email'))->toBe('ana@ex.com');
+});
+
+test('anonimizar tira quem era do ingresso e mantém a presença na conta do evento', function () {
+    $participante = Participante::factory()->create([
+        'email'    => 'ana@ex.com',
+        'nome'     => 'Ana',
+        'telefone' => '86999998888',
+        'ingresso' => 'AAAA-01-0001',
+        'pedido'   => 'PED1',
+        'cupom'    => 'PALESTRANTE',
+    ]);
+    $outro = Participante::factory()->create(['email' => 'outra@ex.com']);
+
+    $this->actingAs(User::factory()->create())
+        ->deleteJson('/api/painel/lgpd', ['email' => 'ana@ex.com'])
+        ->assertOk()
+        ->assertJson(['inscricoes' => 0, 'participantes' => 1]);
+
+    $participante->refresh();
+    expect($participante->nome)->toBe(WaitlistEntry::ANONIMO)
+        ->and($participante->email)->not->toContain('ana@ex.com')
+        ->and($participante->telefone)->toBeNull()
+        ->and($participante->ingresso)->not->toBe('AAAA-01-0001')
+        ->and($participante->pedido)->not->toBe('PED1')
+        ->and($participante->anonimizado_em)->not->toBeNull()
+        ->and($participante->compareceu)->toBeTrue()
+        ->and($participante->cupom)->toBe('PALESTRANTE');
+
+    expect($outro->fresh()->email)->toBe('outra@ex.com');
+});
+
+test('anonimizar dois ingressos do mesmo e-mail não colide no índice único', function () {
+    Participante::factory()->count(2)->create(['email' => 'ana@ex.com']);
+
+    $this->actingAs(User::factory()->create())
+        ->deleteJson('/api/painel/lgpd', ['email' => 'ana@ex.com'])
+        ->assertOk()
+        ->assertJson(['participantes' => 2]);
+
+    expect(Participante::query()->whereNotNull('anonimizado_em')->count())->toBe(2);
 });
 
 test('e-mail inválido não passa', function () {

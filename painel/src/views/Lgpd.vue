@@ -57,7 +57,7 @@ async function anonimizar() {
     toast.add({
       severity: 'success',
       summary: 'Anonimizado',
-      detail: `${feito.inscricoes} inscrição(ões) e ${feito.emails} registro(s) de envio.`,
+      detail: `${feito.inscricoes} inscrição(ões), ${feito.participantes} ingresso(s) e ${feito.emails} registro(s) de envio.`,
       life: 6000,
     });
 
@@ -118,7 +118,7 @@ onMounted(carregaAuditoria);
         <h2 class="cartao__titulo mono">{{ resultado.email }}</h2>
 
         <Message
-          v-if="!resultado.inscricoes.length && !resultado.emails.length"
+          v-if="!resultado.inscricoes.length && !resultado.participantes.length && !resultado.emails.length"
           severity="info"
           :closable="false"
           class="consulta__aviso"
@@ -135,6 +135,14 @@ onMounted(carregaAuditoria);
             </div>
           </dl>
 
+          <h3 class="eyebrow consulta__secao">Ingressos em edições ({{ resultado.participantes.length }})</h3>
+          <dl v-for="p in resultado.participantes" :key="p.id" class="dados consulta__inscricao">
+            <div v-for="(valor, chave) in p" :key="chave">
+              <dt>{{ chave }}</dt>
+              <dd>{{ valor ?? '—' }}</dd>
+            </div>
+          </dl>
+
           <h3 class="eyebrow consulta__secao">E-mails enviados ({{ resultado.emails.length }})</h3>
           <ul class="envios">
             <li v-for="e in resultado.emails" :key="e.id">
@@ -143,7 +151,7 @@ onMounted(carregaAuditoria);
             <li v-if="!resultado.emails.length">Nenhum.</li>
           </ul>
 
-          <div v-if="resultado.inscricoes.length" class="consulta__acoes">
+          <div v-if="resultado.inscricoes.length || resultado.participantes.length" class="consulta__acoes">
             <Button label="Anonimizar titular" icon="pi pi-trash" severity="danger" size="small" @click="pedirAnonimizacao" />
           </div>
         </template>
@@ -194,6 +202,7 @@ onMounted(carregaAuditoria);
             <strong>Esta ação não pode ser desfeita.</strong>
             <ul>
               <li>Nome, e-mail, WhatsApp e respostas somem de {{ resultado.inscricoes.length }} inscrição(ões).</li>
+              <li>Nome, e-mail, telefone, ingresso e pedido somem de {{ resultado.participantes.length }} ingresso(s). A presença fica, sem identificar a pessoa, e futuras importações não a trazem de volta.</li>
               <li>No log de envio, o endereço vira um hash.</li>
               <li>A data e a versão do aceite de LGPD ficam, como prova do consentimento.</li>
               <li>A ação fica registrada no histórico de acesso.</li>
