@@ -40,6 +40,9 @@ class AppServiceProvider extends ServiceProvider
         // O comercial toca o funil: o valor da cota já é público no kit de patrocínio.
         Gate::define('painel-receitas', fn (User $usuario): bool => in_array($usuario->papel, ['admin', 'financeiro', 'comercial'], true));
 
+        // Feedback fica com quem cuida do patrocinador. Depoimento pode trazer nome e cargo.
+        Gate::define('painel-feedbacks', fn (User $usuario): bool => in_array('patrocinador', $usuario->tiposVisiveis(), true));
+
         RateLimiter::for('smtp', fn () => Limit::perDay(config()->integer('mail.limite_diario')));
 
         // Login do painel: a chave é e-mail + IP. Só IP juntaria todo mundo

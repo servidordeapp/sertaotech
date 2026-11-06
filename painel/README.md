@@ -42,11 +42,12 @@ quem tranca é a api — as rotas estão atrás de `can:painel-admin` e responde
 | `/metricas` | Totais, inscrições por dia, distribuições (cidade, perfil, experiência, cota) e volume de e-mail |
 | `/emails` | O que saiu de e-mail, com busca por destinatário ou assunto. Só `admin` |
 | `/lgpd` | Direitos do titular: consultar tudo de uma pessoa, anonimizar, e o histórico de quem acessou. Só `admin` |
+| `/feedback` | Respostas do formulário de feedback de patrocinador, com empresas que responderam, nota média, NPS e quem quer voltar. `admin` e `comercial` |
 | `/apresentacoes` | Decks, relatórios e impressos do site, por edição. Lista fixa em `src/materiais.js`; as URLs são públicas (ver `docs/MELHORIAS-FUTURAS.md`) |
 | `/orcamento` | Receitas em funil, despesas, saldo e comparativo por edição. `admin` e `financeiro` veem tudo; `comercial`, só as receitas |
 
 Inscrições e métricas ainda não têm edição: `waitlist_entries` é uma lista só, e por
-isso o seletor do topo só aparece em Participantes, Apresentações e Orçamento.
+isso o seletor do topo só aparece em Participantes, Feedback, Apresentações e Orçamento.
 
 ## Orçamento
 

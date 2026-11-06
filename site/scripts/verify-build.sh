@@ -174,7 +174,7 @@ if [ -f dist/sitemap-index.xml ] && [ -f dist/sitemap-0.xml ]; then
   else
     erro "sitemap: a home deveria aparecer como https://osertaotech.com.br/ (com barra)"
   fi
-  for proibido in '/links' '/cerimonial' '/mesa-redonda' 'feed.xml'; do
+  for proibido in '/links' '/cerimonial' '/mesa-redonda' '/2026/patrocinio/feedback' 'feed.xml'; do
     grep -q "$proibido" dist/sitemap-0.xml && erro "sitemap não deveria listar $proibido"
   done
   ok "sitemap sem URL que não deve ser indexada"

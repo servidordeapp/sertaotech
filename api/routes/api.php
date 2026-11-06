@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\FeedbackPatrocinadorController;
 use App\Http\Controllers\Painel\AuditoriasController;
 use App\Http\Controllers\Painel\DespesasController;
 use App\Http\Controllers\Painel\EdicoesController;
 use App\Http\Controllers\Painel\EmailsController;
+use App\Http\Controllers\Painel\FeedbacksController;
 use App\Http\Controllers\Painel\InscricoesController;
 use App\Http\Controllers\Painel\LgpdController;
 use App\Http\Controllers\Painel\MetricasController;
@@ -17,6 +19,9 @@ use App\Http\Controllers\WaitlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('lista-de-espera/{tipo}', [WaitlistController::class, 'store'])
+    ->middleware('throttle:10,1');
+
+Route::post('feedback-patrocinador/{edicao:ano}', [FeedbackPatrocinadorController::class, 'store'])
     ->middleware('throttle:10,1');
 
 /*
@@ -40,6 +45,8 @@ Route::prefix('painel')->group(function (): void {
 
             Route::get('metricas', [MetricasController::class, 'index']);
         });
+
+        Route::get('feedbacks/{edicao:ano}', [FeedbacksController::class, 'index'])->middleware('can:painel-feedbacks');
 
         Route::middleware('can:painel-receitas')->prefix('orcamento')->group(function (): void {
             Route::get('{edicao:ano}/receitas', [ReceitasController::class, 'index']);

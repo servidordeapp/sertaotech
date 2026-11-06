@@ -6,6 +6,7 @@
  */
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import FooterCols2027 from '../../components/FooterCols2027.astro';
+import FormEstilos from '../../components/FormEstilos.astro';
 import { NAV_2027, CTA_2027 } from '../../data/nav';
 import { LISTAS, LGPD_VERSAO, COMPARTILHAMENTO_VERSAO, type Tipo } from '../../data/listas';
 
@@ -139,26 +140,5 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
   });
 </script>
 
-<style>
-  .wl { max-width: 40rem; }
-  .wl-lead { color: var(--text-muted); margin-bottom: var(--space-8); }
-  .wl-field { display: grid; gap: var(--space-2); margin: 0 0 var(--space-5); padding: 0; border: 0; }
-  .wl-field label, .wl-field legend { font-weight: 600; color: var(--text-strong); }
-  .wl-field small { color: var(--text-muted); }
-  .wl-field input:not([type=radio]), .wl-field textarea {
-    font: inherit; padding: var(--space-3); border: 1px solid var(--border-ink);
-    border-radius: var(--radius-field); background: var(--surface-card); width: 100%;
-  }
-  .wl-check { display: flex; gap: var(--space-2); align-items: flex-start; font-weight: 400 !important; }
-  .wl-box { border: 1px solid var(--border-subtle); border-radius: var(--radius-field); padding: var(--space-4); margin: 0 0 var(--space-5); background: var(--surface-card); }
-  .wl-box p { margin: var(--space-2) 0 var(--space-3); font-size: .9em; color: var(--text-muted); }
-  #wl-msg { color: #b3261e; font-weight: 600; }
-  button[aria-busy=true]::after {
-    content: ''; display: inline-block; width: 1em; height: 1em; margin-left: .6em; vertical-align: -.15em;
-    border: .15em solid currentColor; border-right-color: transparent; border-radius: 50%;
-    animation: wl-spin .7s linear infinite;
-  }
-  @keyframes wl-spin { to { transform: rotate(360deg); } }
-  @media (prefers-reduced-motion: reduce) { button[aria-busy=true]::after { animation-duration: 2s; } }
-</style>
+<FormEstilos />
 </BaseLayout>

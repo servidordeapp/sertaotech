@@ -355,7 +355,12 @@ Chamada do slide: "A <empresa> pode impulsionar ainda mais esse crescimento."
 
 ## 11. Sua opinião
 
-Google Forms, 7 perguntas, cerca de 2 minutos.
+Formulário próprio em `osertaotech.com.br/2026/patrocinio/feedback`: noindex, fora
+do sitemap e sem link em página pública. As respostas aparecem em
+`painel.osertaotech.com.br/feedback`, para `admin` e `comercial`. Cada envio é uma
+linha nova: como a página não tem login, ninguém sobrescreve a resposta de outro.
+São 7 perguntas, cerca de 2 minutos. As opções ficam na página e em
+`api/app/Models/FeedbackPatrocinador.php`; mudou uma, muda nos dois.
 
 **Título:** Sertão Tech 2026: como foi patrocinar?
 
@@ -377,9 +382,9 @@ com a sua autorização.
 **Confirmação:** Obrigado! Recebemos sua resposta. Se quiser conversar sobre a 3ª
 edição, chame a gente no WhatsApp: (86) 99920-2231.
 
-Depois de criar: em Configurações, deixar sem exigir login do Google, para não
-perder resposta. Quem marcar interesse na pergunta 6 recebe contato antes de
-31/12/2026, quando acaba a prioridade.
+Quem marcar interesse na pergunta 6 recebe contato antes de 31/12/2026, quando
+acaba a prioridade. Pedido para retirar um depoimento é atendido à mão: a tela de
+LGPD busca por e-mail, e este formulário não pede e-mail.
 
 ## 12. Contato
 
@@ -477,10 +482,11 @@ mensagem abaixo. Prazo sugerido: até 08/11/2026 (30 dias depois do evento).
 
 Usar "do" em vez de "da" para Bruno Neves Advogado.
 
-Quando o form de feedback estiver pronto, mandar o link numa segunda mensagem:
+Depois, mandar o link do feedback numa segunda mensagem:
 
 > Uma última coisa: se puder, conta pra gente em 2 minutos como foi patrocinar o
-> Sertão Tech. Sua opinião ajuda a deixar a 3ª edição ainda melhor: {{link}}
+> Sertão Tech. Sua opinião ajuda a deixar a 3ª edição ainda melhor:
+> https://osertaotech.com.br/2026/patrocinio/feedback
 
 ---
 
@@ -507,8 +513,8 @@ Quando o form de feedback estiver pronto, mandar o link numa segunda mensagem:
       cidade, faixa etária) no formulário da Sympla. É o dado que falta
       neste relatório.
 - [x] Condição de renovação: prioridade na escolha de cota até 31/12/2026.
-- [ ] Criar o form de feedback com o texto da seção 11. Os PDFs saem sem o card;
-      o link vai numa segunda mensagem de WhatsApp.
+- [x] Formulário de feedback no site, com as respostas no painel (seção 11). Os
+      PDFs saem sem o card; o link vai numa segunda mensagem de WhatsApp.
 - [x] Exportar os 7 PDFs (em `originais/relatorio-2026/pdfs/`, fora do git).
 - [ ] Enviar os PDFs por WhatsApp (até 08/11/2026).
 
@@ -600,3 +606,5 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
 - 2026-11-05 — Texto final do form de feedback e das mensagens de WhatsApp.
   Prints do deck com caminho absoluto: a produção tira a barra final da URL, e o
   caminho relativo dava 404 no deck online.
+- 2026-11-05 — Feedback sai do Google Forms: página própria no site e tela
+  `/feedback` no painel.

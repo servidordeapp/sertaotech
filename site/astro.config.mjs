@@ -33,6 +33,8 @@ export default defineConfig({
         'https://osertaotech.com.br/midia-kit/caravanas-2027',
         'https://osertaotech.com.br/midia-kit/2026',
       ],
+      // Esta é página Astro: sem o filtro, entraria no sitemap mesmo com noindex.
+      filter: (pagina) => !pagina.includes('/2026/patrocinio/feedback'),
       serialize(item) {
         const path = new URL(item.url).pathname.replace(/\/$/, '') || '/';
         const tune = {

@@ -30,6 +30,7 @@ const GRUPOS = [
     itens: [
       { nome: 'metricas', rotulo: 'Métricas', icone: 'pi-chart-bar' },
       { nome: 'apresentacoes', rotulo: 'Apresentações', icone: 'pi-desktop' },
+      { nome: 'feedback', rotulo: 'Feedback', icone: 'pi-comments' },
     ],
   },
   {

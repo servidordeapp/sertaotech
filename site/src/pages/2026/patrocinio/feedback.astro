@@ -1,0 +1,166 @@
+---
+/**
+ * Feedback de quem patrocinou a 2ª edição. Fora do Google: noindex, fora do sitemap e
+ * sem link em página pública; o link vai por WhatsApp. As respostas aparecem no painel.
+ * A API valida as mesmas opções em api/app/Models/FeedbackPatrocinador.php.
+ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import FooterCols2027 from '../../../components/FooterCols2027.astro';
+import FormEstilos from '../../../components/FormEstilos.astro';
+import { COTAS_2026 } from '../../../data/patrocinadores-2026';
+import { NAV_2027, CTA_2027 } from '../../../data/nav';
+
+const empresas = COTAS_2026.flatMap((cota) => cota.logos.map((logo) => logo.nome));
+const notas = Array.from({ length: 11 }, (_, nota) => nota);
+const retornos = ['Sim', 'Em parte', 'Não'];
+const maisValor = [
+  'Logo no site e nos materiais digitais',
+  'Divulgação nas redes sociais',
+  'Logo no banner, no palco ou nos impressos',
+  'Menção no palco',
+  'Brindes ou materiais entregues ao público',
+  'Estande ou sorteio',
+  'Sertão Tech After',
+  'Outro',
+];
+const interesses = ['Sim, na mesma cota', 'Sim, em uma cota maior', 'Sim, em uma cota menor', 'Talvez, quero conversar', 'Não'];
+
+const titulo = 'Sertão Tech 2026: como foi patrocinar?';
+const descricao = 'Obrigado por apoiar a 2ª edição! Sua opinião ajuda a construir uma 3ª edição ainda melhor para quem patrocina. Leva cerca de 2 minutos. As respostas são usadas pela organização para melhorar o evento e só viram depoimento público com a sua autorização.';
+const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
+---
+<BaseLayout
+  title={titulo}
+  description={descricao}
+  path="/2026/patrocinio/feedback"
+  noindex
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  brandHref="/"
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main id="conteudo">
+  <section class="section">
+    <div class="container wl">
+      <h1 class="section-title">{titulo}</h1>
+      <p class="wl-lead">{descricao}</p>
+
+      <form id="wl-form" novalidate data-api={api}>
+        <div class="wl-field">
+          <label for="f-empresa">Qual empresa você representa? <span aria-hidden="true">*</span></label>
+          <select id="f-empresa" name="empresa" required>
+            <option value="">Selecione</option>
+            {empresas.map((empresa) => <option value={empresa}>{empresa}</option>)}
+          </select>
+        </div>
+
+        <fieldset class="wl-field">
+          <legend>De 0 a 10, quanto você recomendaria patrocinar o Sertão Tech? <span aria-hidden="true">*</span></legend>
+          <div class="fb-escala">
+            {notas.map((nota) => <label><input type="radio" name="nota" value={nota} required /><span>{nota}</span></label>)}
+          </div>
+          <small class="fb-legenda"><span>0 = Não recomendaria</span><span>10 = Com certeza recomendaria</span></small>
+        </fieldset>
+
+        <fieldset class="wl-field">
+          <legend>O patrocínio trouxe o retorno que você esperava? <span aria-hidden="true">*</span></legend>
+          {retornos.map((retorno) => <label class="wl-check"><input type="radio" name="retorno" value={retorno} required /> {retorno}</label>)}
+        </fieldset>
+
+        <fieldset class="wl-field" id="f-mais-valor">
+          <legend>O que teve mais valor para a sua empresa? <span aria-hidden="true">*</span></legend>
+          <small>Marque uma ou mais opções.</small>
+          {maisValor.map((item) => <label class="wl-check"><input type="checkbox" name="mais_valor" value={item} /> {item}</label>)}
+        </fieldset>
+
+        <div class="wl-field">
+          <label for="f-melhorias">O que faltou ou poderia melhorar?</label>
+          <textarea id="f-melhorias" name="melhorias" rows="4" maxlength="2000"></textarea>
+        </div>
+
+        <fieldset class="wl-field">
+          <legend>Sua empresa tem interesse em patrocinar a 3ª edição, em 2027? <span aria-hidden="true">*</span></legend>
+          {interesses.map((interesse) => <label class="wl-check"><input type="radio" name="interesse" value={interesse} required /> {interesse}</label>)}
+        </fieldset>
+
+        <div class="wl-field">
+          <label for="f-depoimento">Quer deixar um depoimento sobre a experiência?</label>
+          <small id="f-depoimento-ajuda">Se sim, escreva com o nome e o cargo de quem assina. Ao preencher, você autoriza o Sertão Tech a publicá-lo em seus materiais. Para retirar a autorização, chame a organização no WhatsApp +55 (86) 99920-2231.</small>
+          <textarea id="f-depoimento" name="depoimento" rows="4" maxlength="2000" aria-describedby="f-depoimento-ajuda"></textarea>
+        </div>
+
+        <p id="wl-msg" role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg" type="submit">Enviar resposta</button>
+      </form>
+
+      <div id="wl-ok" role="status" hidden>
+        <h2>Obrigado! Recebemos sua resposta.</h2>
+        <p>Se quiser conversar sobre a 3ª edição, <a href="https://wa.me/5586999202231" target="_blank" rel="noopener">chame a gente no WhatsApp: (86) 99920-2231</a>.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<Fragment slot="footer-cols"><FooterCols2027 /></Fragment>
+
+<script is:inline slot="scripts">
+  var form = document.getElementById('wl-form');
+  var msg = document.getElementById('wl-msg');
+  var itens = form.elements.mais_valor;
+  // Caixas de seleção não têm "obrigatório em grupo" nativo: a primeira carrega o aviso.
+  function exigeItem() {
+    var algum = Array.prototype.some.call(itens, function (item) { return item.checked; });
+    itens[0].setCustomValidity(algum ? '' : 'Marque pelo menos uma opção.');
+  }
+  form.addEventListener('change', exigeItem);
+  exigeItem();
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    msg.hidden = true;
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    var valores = new FormData(form);
+    var data = {};
+    valores.forEach(function (v, k) { if (v !== '' && k !== 'mais_valor') data[k] = v; });
+    data.nota = Number(data.nota);
+    data.mais_valor = valores.getAll('mais_valor');
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    fetch(form.dataset.api + '/api/feedback-patrocinador/2026', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(data),
+    }).then(function (r) {
+      if (r.status === 201) {
+        form.hidden = true;
+        document.getElementById('wl-ok').hidden = false;
+        window.scrollTo(0, 0);
+        return;
+      }
+      if (r.status !== 422) throw new Error('Algo deu errado. Tente de novo em instantes.');
+      return r.json().then(function (j) {
+        throw new Error(Object.values(j.errors || {}).flat().join(' ') || 'Confira os campos e tente de novo.');
+      });
+    }).catch(function (err) {
+      msg.textContent = err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message;
+      msg.hidden = false;
+      btn.disabled = false;
+      btn.removeAttribute('aria-busy');
+    });
+  });
+</script>
+
+<FormEstilos />
+<style>
+  .fb-escala { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: var(--space-1); }
+  .fb-escala label { position: relative; }
+  .fb-escala input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+  .fb-escala span {
+    display: grid; place-items: center; min-height: 2.75rem; font-weight: 600;
+    border: 1px solid var(--border-ink); border-radius: var(--radius-field); background: var(--surface-card);
+  }
+  .fb-escala input:checked + span { color: var(--text-on-brand); background: var(--terra-600); border-color: var(--terra-600); }
+  .fb-escala input:focus-visible + span { outline: 2px solid var(--terra-600); outline-offset: 2px; }
+  .fb-legenda { display: flex; justify-content: space-between; gap: var(--space-4); }
+</style>
+</BaseLayout>

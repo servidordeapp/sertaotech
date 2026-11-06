@@ -4,6 +4,7 @@ import Login from './views/Login.vue';
 import Apresentacoes from './views/Apresentacoes.vue';
 import Inscricoes from './views/Inscricoes.vue';
 import Emails from './views/Emails.vue';
+import Feedbacks from './views/Feedbacks.vue';
 import Lgpd from './views/Lgpd.vue';
 import Metricas from './views/Metricas.vue';
 import Orcamento from './views/Orcamento.vue';
@@ -29,6 +30,12 @@ export const router = createRouter({
       meta: { papeis: ['admin'], porEdicao: true, edicaoEncerrada: true },
     },
     { path: '/metricas', name: 'metricas', component: Metricas, meta: { papeis: COM_INSCRICOES } },
+    {
+      path: '/feedback',
+      name: 'feedback',
+      component: Feedbacks,
+      meta: { papeis: ['admin', 'comercial'], porEdicao: true, edicaoEncerrada: true },
+    },
     { path: '/emails', name: 'emails', component: Emails, meta: { papeis: ['admin'] } },
     { path: '/lgpd', name: 'lgpd', component: Lgpd, meta: { papeis: ['admin'] } },
     { path: '/apresentacoes', name: 'apresentacoes', component: Apresentacoes, meta: { porEdicao: true } },
