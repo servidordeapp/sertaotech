@@ -355,15 +355,31 @@ Chamada do slide: "A <empresa> pode impulsionar ainda mais esse crescimento."
 
 ## 11. Sua opinião
 
-Pedido de feedback curto (Google Forms, 3 a 5 perguntas, 2 minutos):
+Google Forms, 7 perguntas, cerca de 2 minutos.
 
-1. De 0 a 10, quanto recomendaria patrocinar o Sertão Tech?
-2. O patrocínio trouxe o retorno esperado? (sim / em parte / não)
-3. Qual contrapartida teve mais valor para a empresa?
-4. O que faltou ou poderia melhorar?
-5. Tem interesse em 2027? (sim, mesma cota / sim, outra cota / talvez / não)
+**Título:** Sertão Tech 2026: como foi patrocinar?
 
-As respostas viram depoimento (com autorização) para o kit de 2028.
+**Descrição:** Obrigado por apoiar a 2ª edição! Sua opinião ajuda a construir uma
+3ª edição ainda melhor para quem patrocina. Leva cerca de 2 minutos. As respostas
+são usadas pela organização para melhorar o evento e só viram depoimento público
+com a sua autorização.
+
+| # | Pergunta | Tipo | Opções | Obrigatória |
+| --- | --- | --- | --- | --- |
+| 1 | Qual empresa você representa? | Lista suspensa | ParaDevs · Programe Studio · Exa · Retake Brasil · Bruno Neves Advogado · Cajutec · Cod3r | Sim |
+| 2 | De 0 a 10, quanto você recomendaria patrocinar o Sertão Tech? | Escala linear, 0 a 10 | 0 = Não recomendaria · 10 = Com certeza recomendaria | Sim |
+| 3 | O patrocínio trouxe o retorno que você esperava? | Múltipla escolha | Sim · Em parte · Não | Sim |
+| 4 | O que teve mais valor para a sua empresa? | Caixas de seleção | Logo no site e nos materiais digitais · Divulgação nas redes sociais · Logo no banner, no palco ou nos impressos · Menção no palco · Brindes ou materiais entregues ao público · Estande ou sorteio · Sertão Tech After · Outro | Sim |
+| 5 | O que faltou ou poderia melhorar? | Parágrafo | | Não |
+| 6 | Sua empresa tem interesse em patrocinar a 3ª edição, em 2027? | Múltipla escolha | Sim, na mesma cota · Sim, em uma cota maior · Sim, em uma cota menor · Talvez, quero conversar · Não | Sim |
+| 7 | Quer deixar um depoimento sobre a experiência? Se sim, escreva com o nome e o cargo de quem assina. Ao preencher, você autoriza o Sertão Tech a publicá-lo em seus materiais. | Parágrafo | | Não |
+
+**Confirmação:** Obrigado! Recebemos sua resposta. Se quiser conversar sobre a 3ª
+edição, chame a gente no WhatsApp: (86) 99920-2231.
+
+Depois de criar: em Configurações, deixar sem exigir login do Google, para não
+perder resposta. Quem marcar interesse na pergunta 6 recebe contato antes de
+31/12/2026, quando acaba a prioridade.
 
 ## 12. Contato
 
@@ -450,14 +466,21 @@ mensagem abaixo. Prazo sugerido: até 08/11/2026 (30 dias depois do evento).
 > Sertão Tech.
 >
 > Passando para agradecer de novo o patrocínio da {{empresa}} na 2ª edição.
-> Preparamos um relatório com os resultados: a meta era 150 pessoas e
-> tivemos 176 check-ins, além de 88 mil visualizações no Instagram.
+> Preparamos um relatório com os resultados: a meta era 150 pessoas e tivemos
+> 176 check-ins, além de 88 mil visualizações no Instagram.
 >
-> No PDF estão os números do evento, a presença digital, a marca de vocês no
-> site e uma prévia do que vem em 2027. Qualquer dúvida, é só chamar por aqui!
+> No PDF também tem uma prévia da 3ª edição, que vai ter 2 dias e 4 trilhas, com
+> novidades que acho que vão interessar vocês. Quem patrocinou em 2026 tem
+> prioridade na escolha de cota até 31/12.
+>
+> Dá uma olhada com calma e, se fizer sentido, vamos conversar!
 
-Se o form de feedback estiver pronto, mandar o link numa segunda mensagem,
-logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
+Usar "do" em vez de "da" para Bruno Neves Advogado.
+
+Quando o form de feedback estiver pronto, mandar o link numa segunda mensagem:
+
+> Uma última coisa: se puder, conta pra gente em 2 minutos como foi patrocinar o
+> Sertão Tech. Sua opinião ajuda a deixar a 3ª edição ainda melhor: {{link}}
 
 ---
 
@@ -484,8 +507,8 @@ logo depois: "Se puder, conta pra gente em 2 minutos o que achou: {{link}}".
       cidade, faixa etária) no formulário da Sympla. É o dado que falta
       neste relatório.
 - [x] Condição de renovação: prioridade na escolha de cota até 31/12/2026.
-- [ ] Criar o form de feedback da seção 11. Os PDFs saem sem o card; o link vai
-      numa segunda mensagem de WhatsApp.
+- [ ] Criar o form de feedback com o texto da seção 11. Os PDFs saem sem o card;
+      o link vai numa segunda mensagem de WhatsApp.
 - [x] Exportar os 7 PDFs (em `originais/relatorio-2026/pdfs/`, fora do git).
 - [ ] Enviar os PDFs por WhatsApp (até 08/11/2026).
 
@@ -574,3 +597,6 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
 - 2026-11-05 — 2027 vira sequência de desejo em 4 slides, com o logo do
   patrocinador nos programas, 16 vagas sem valores e botão de WhatsApp com
   mensagem pronta no lugar do link para o kit.
+- 2026-11-05 — Texto final do form de feedback e das mensagens de WhatsApp.
+  Prints do deck com caminho absoluto: a produção tira a barra final da URL, e o
+  caminho relativo dava 404 no deck online.
