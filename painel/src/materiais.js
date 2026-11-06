@@ -28,6 +28,14 @@ export const MATERIAIS = [
   },
   {
     grupo: 2027,
+    titulo: 'Kit para parceiros 2027',
+    descricao: 'Mesmo kit, sem os valores das cotas. Para apresentar a instituições e parceiros.',
+    tipo: 'deck',
+    caminho: '/midia-kit/2027-parceiros',
+    temPdf: true,
+  },
+  {
+    grupo: 2027,
     titulo: 'Caravanas 2027',
     descricao: 'Kit para instituições de ensino levarem caravanas de estudantes.',
     tipo: 'deck',
