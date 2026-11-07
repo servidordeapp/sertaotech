@@ -134,6 +134,7 @@ class DespesasController extends Controller
             'realizado_centavos' => ['sometimes', 'nullable', 'integer', 'min:0', 'max:2000000000'],
             'fornecedor'         => ['sometimes', 'nullable', 'string', 'max:160'],
             'responsavel'        => ['sometimes', 'nullable', 'string', 'max:120'],
+            'anotacoes'          => ['sometimes', 'nullable', 'string', 'max:5000'],
             'status'             => ['sometimes', Rule::in(Despesa::STATUS)],
             'vencimento'         => ['sometimes', 'nullable', 'date_format:Y-m-d'],
         ];
