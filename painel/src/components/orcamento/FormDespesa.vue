@@ -7,6 +7,7 @@ import InputText from 'primevue/inputtext';
 import Message from 'primevue/message';
 import Select from 'primevue/select';
 import SelectButton from 'primevue/selectbutton';
+import Textarea from 'primevue/textarea';
 import { useToast } from 'primevue/usetoast';
 import { api, enviaArquivo } from '../../api.js';
 import { brl, centavos, reais } from '../../orcamento.js';
@@ -34,6 +35,7 @@ const vazio = (categoria) => ({
   descricao: '',
   fornecedor: '',
   responsavel: '',
+  anotacoes: '',
   orcado: null,
   realizado: null,
   status: 'planejado',
@@ -47,6 +49,7 @@ const campos = reactive(props.item ? {
   descricao: props.item.descricao,
   fornecedor: props.item.fornecedor ?? '',
   responsavel: props.item.responsavel ?? '',
+  anotacoes: props.item.anotacoes ?? '',
   orcado: reais(props.item.orcado_centavos),
   realizado: reais(props.item.realizado_centavos),
   status: props.item.status,
@@ -85,6 +88,7 @@ async function salva(criarOutra = false) {
       descricao: campos.descricao.trim(),
       fornecedor: campos.fornecedor.trim() || null,
       responsavel: campos.responsavel.trim() || null,
+      anotacoes: campos.anotacoes.trim() || null,
       orcado_centavos: centavos(campos.orcado),
       realizado_centavos: campos.realizado === null ? null : centavos(campos.realizado),
       status: campos.status,
@@ -224,6 +228,12 @@ function aoRemoverAnexo() {
           <span v-if="excesso" class="campo__erro">Acima do orçado em {{ brl(excesso) }}.</span>
           <span v-else class="campo__ajuda">Contratado ou pago. Em branco, conta pelo orçado ao comprometer.</span>
         </div>
+      </div>
+
+      <div class="campo">
+        <label for="despesa-anotacoes">Anotações</label>
+        <Textarea id="despesa-anotacoes" v-model="campos.anotacoes" rows="3" auto-resize maxlength="5000" placeholder="Texto livre: condições, pendências, contatos…" />
+        <span v-if="erros.anotacoes" class="campo__erro">{{ erros.anotacoes[0] }}</span>
       </div>
 
       <CampoAnexo

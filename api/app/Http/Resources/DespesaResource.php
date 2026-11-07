@@ -20,6 +20,7 @@ class DespesaResource extends JsonResource
             'descricao'             => $this->descricao,
             'fornecedor'            => $this->fornecedor,
             'responsavel'           => $this->responsavel,
+            'anotacoes'             => $this->anotacoes,
             'orcado_centavos'       => $this->orcado_centavos,
             'realizado_centavos'    => $this->realizado_centavos,
             'comprometido_centavos' => $this->comprometidoCentavos(),

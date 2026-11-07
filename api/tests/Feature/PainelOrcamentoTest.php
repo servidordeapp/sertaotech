@@ -509,3 +509,14 @@ test('o histórico da LGPD não mistura lançamento do orçamento', function () 
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.acao', 'lgpd.consulta');
 });
+
+it('guarda e devolve as anotações da despesa', function () {
+    test()->actingAs(usuario('financeiro'));
+
+    $id = test()->postJson('/api/painel/orcamento/2027/despesas', [
+        'categoria' => 'Espaço', 'descricao' => 'Locação', 'orcado_centavos' => 100, 'anotacoes' => 'Pedir desconto',
+    ])->assertCreated()->assertJsonPath('data.anotacoes', 'Pedir desconto')->json('data.id');
+
+    test()->patchJson("/api/painel/orcamento/despesas/{$id}", ['anotacoes' => null])
+        ->assertOk()->assertJsonPath('data.anotacoes', null);
+});
