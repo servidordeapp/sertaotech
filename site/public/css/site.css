@@ -1155,3 +1155,44 @@ html:has(dialog[open]) { overflow: hidden; }
   .range-facts--3 { grid-template-columns: 1fr; }
   .range-facts--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* ---------- propriedades 2027: "tela" de programa do kit (midia-kit.css: .screen) ---------- */
+.props { gap: 24px; }
+.prop { display: flex; flex-direction: column; gap: 22px; }
+.prop-screen {
+  position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px;
+  aspect-ratio: 16 / 9; padding: 48px 24px 36px; overflow: hidden; text-align: center;
+  background: var(--espresso-900); border: 2px solid var(--amber-300); border-radius: var(--radius-card);
+  box-shadow: 6px 6px 0 var(--terra-600);
+}
+.prop-screen::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 10px; background: var(--terra-600); }
+.prop-screen__top { position: absolute; top: 18px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: center; }
+.prop-rec, .prop-vaga, .prop-presented { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; }
+.prop-rec { display: flex; align-items: center; gap: 8px; color: var(--sand-100); }
+.prop-rec::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--brick-500); animation: prop-rec 1.6s steps(1) infinite; }
+@keyframes prop-rec { 50% { opacity: 0.25; } }
+@media (prefers-reduced-motion: reduce) { .prop-rec::before { animation: none; } }
+.prop-vaga { padding: 5px 12px; border-radius: var(--radius-pill); background: var(--amber-300); color: var(--espresso-900); font-weight: 700; }
+.prop-program { margin: 0; font-family: var(--font-wordmark); font-weight: 800; line-height: 0.9; text-transform: uppercase; color: var(--amber-300); font-size: clamp(40px, 6vw, 72px); }
+.prop-program small { display: block; margin-bottom: 0.5em; font-size: 0.3em; letter-spacing: 0.24em; color: var(--sand-100); }
+.prop-presented { margin: 4px 0 0; color: var(--text-on-ink-muted); }
+.prop-slot { margin: 0; padding: 8px 28px; border: 2px dashed var(--amber-300); border-radius: var(--radius-pill); font-family: var(--font-display); font-weight: 700; font-size: 20px; color: var(--sand-100); }
+.prop-body { display: flex; flex-direction: column; gap: 10px; }
+.prop-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+.prop-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; color: var(--text-on-ink); font-size: 15px; line-height: 1.45; }
+.prop-list li { display: flex; gap: 10px; align-items: flex-start; }
+.prop-list .icon { flex-shrink: 0; margin-top: 3px; color: var(--amber-300); }
+.prop-list--grid { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; }
+.prop-list--light { color: var(--text-body); }
+.prop-list--light .icon { color: var(--cactus-600); }
+.prop-common { margin-top: 36px; padding: 26px 28px; border: 1px solid rgba(246,197,108,0.35); border-radius: var(--radius-card); display: flex; flex-direction: column; gap: 16px; }
+.prop-plus { margin: 0; font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber-300); }
+.prop-senior { margin-top: 24px; display: grid; grid-template-columns: minmax(0, 360px) 1fr; }
+.prop-senior__lead { margin: 0; font-size: 15px; line-height: 1.5; opacity: 0.9; }
+.prop-senior .track-body { padding: 26px 28px; }
+@media (max-width: 760px) {
+  .prop-list--grid { grid-template-columns: 1fr; }
+  .prop-senior { grid-template-columns: 1fr; }
+  .prop-common { padding: 22px 20px; }
+  .prop-screen { aspect-ratio: auto; padding: 64px 20px 34px; }
+}
