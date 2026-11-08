@@ -200,7 +200,8 @@ jobs:
             # o Laravel morre com "requires a PHP version >= 8.4.1" so no
             # browser, enquanto o php do ssh continua 8.5.
             grep -q 'AddHandler' .htaccess 2>/dev/null || echo "AVISO: .htaccess da raiz sem AddHandler. Confira o MultiPHP Manager para api.osertaotech.com.br."
-            mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs storage/app/public
+            # storage/fonts: cache de métricas das fontes do dompdf (certificados).
+            mkdir -p bootstrap/cache storage/framework/cache/data storage/framework/sessions storage/framework/views storage/logs storage/app/public storage/fonts
             chmod -R 775 storage bootstrap/cache
             rm -f bootstrap/cache/*.php
             $COMPOSER install --no-interaction --prefer-dist --optimize-autoloader --no-dev

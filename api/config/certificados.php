@@ -10,11 +10,23 @@ declare(strict_types=1);
  * recusa as duas juntas.
  */
 return [
+    // Texto, não imagem: trocar de responsável não pede arte nova, e nenhuma
+    // assinatura real entra no git.
+    'emissor' => [
+        'responsavel'  => env('CERTIFICADO_RESPONSAVEL'),
+        'razao_social' => env('CERTIFICADO_RAZAO_SOCIAL'),
+        'cnpj'         => env('CERTIFICADO_CNPJ'),
+    ],
+
+    // O QR Code do PDF abre esta página com ?codigo= preenchido.
+    'url_validacao' => env('CERTIFICADO_URL_VALIDACAO', 'https://osertaotech.com.br/certificado/validar'),
+
     'edicoes' => [
         2025 => [
-            'edicao'            => '1ª',
-            'data'              => '2025-08-22',
-            'local'             => 'Uninassau Parnaíba',
+            'edicao' => '1ª',
+            'data'   => '2025-08-22',
+            // Vai no meio da frase: "realizada em 22 de agosto de 2025, na ...".
+            'local'             => 'na Uninassau, em Parnaíba - PI',
             'carga_evento'      => 4,
             'carga_organizacao' => 4,
             'atividades'        => [],
@@ -22,7 +34,7 @@ return [
         2026 => [
             'edicao'            => '2ª',
             'data'              => '2026-10-09',
-            'local'             => 'Universidade Federal do Delta do Parnaíba (UFDPar), Parnaíba - PI',
+            'local'             => 'na Universidade Federal do Delta do Parnaíba (UFDPar), em Parnaíba - PI',
             'carga_evento'      => 8,
             'carga_organizacao' => 18,
             // Fonte: grade de site/src/pages/2026/index.astro.

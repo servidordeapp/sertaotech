@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** decisões fechadas, fase 1 implementada. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** decisões fechadas, fases 1 e 2 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
@@ -244,9 +244,11 @@ O validador diferencia o cancelamento pela LGPD da revogação por erro, porque 
 - `resources/views/certificados/{ano}.blade.php`, com a arte feita em HTML e CSS, sem imagem de fundo. Edição sem modelo não emite certificado.
 - **Design system:** cores e fontes vêm dos tokens de `site/public/ds/styles.css`. Títulos em Space Grotesk, texto em Instrument Sans, código de validação em Space Mono e a marca SERTÃO TECH em League Spartan, em maiúsculas.
 - **Fontes:** o site carrega as fontes do Google Fonts, mas o dompdf precisa dos arquivos TTF locais. Os quatro, todos com licença OFL, ficam versionados em `api/resources/fonts/`.
-- **Logos:** convertidos para PNG e versionados em `api/resources/certificados/`. O suporte do dompdf a SVG é parcial e a WebP depende do servidor.
+- **Logos:** convertidos para JPEG sobre o creme do papel e versionados em `api/resources/certificados/`. O suporte do dompdf a SVG é parcial, a WebP depende do servidor e o PNG exige a extensão GD, que não foi conferida no servidor. O JPEG entra no PDF sem GD.
 - **Peças comuns:** cabeçalho com os logos, rodapé com responsável, razão social, CNPJ, código e QR Code ficam em partials, e o Blade de cada edição muda só o que for da edição.
-- **Prévia:** uma rota do painel renderiza o modelo com dados de exemplo, sem emitir, para ajustar a arte antes do piloto.
+- **Prévia:** `GET /api/painel/certificados/{ano}/previa?tipo=&nome=&titulo=` renderiza o modelo com dados de exemplo, sem emitir, para ajustar a arte antes do piloto.
+- **Emissão:** `POST /api/painel/certificados/{ano}/emitir` com `confirmar: true` enfileira a edição. `POST /api/painel/certificados/{ano}/emitir/{id}` emite um certificado na hora, sem fila, para o teste.
+- **Código antes do PDF:** o job grava o código no rascunho antes de gerar o PDF. Se o processo morrer depois do upload, a retentativa acha o arquivo no mesmo caminho e para com erro, sem sobrescrever.
 - Nome do responsável, razão social e CNPJ são texto vindo do `.env`, então trocar de responsável não exige nova arte.
 - QR Code com `chillerlan/php-qrcode` em SVG, embutido na Blade. SVG dispensa a extensão GD, que ainda não foi conferida no servidor.
 - PDF com `barryvdh/laravel-dompdf`, porque hospedagem compartilhada não roda Chrome.

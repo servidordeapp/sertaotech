@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Barryvdh\DomPDF\Facade\Pdf;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 use Database\Factories\CertificadoFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use LogicException;
 
 /**
@@ -25,6 +30,9 @@ use LogicException;
  * @property string $tipo
  * @property int $carga_horaria
  * @property list<string> $atividades
+ * @property string|null $titulo
+ * @property string|null $codigo
+ * @property string|null $pdf_caminho
  * @property Carbon|null $emitido_em
  * @property Carbon|null $descartado_em
  * @property Carbon|null $revogado_em
@@ -40,6 +48,9 @@ class Certificado extends Model
 
     /** Cupom da planilha que já diz o papel. PALESTRANTE também cobre ministrante: a revisão separa. */
     public const TIPO_DO_CUPOM = ['PALESTRANTE' => 'palestrante', 'ORGANIZACAO' => 'organizacao'];
+
+    /** Crockford base32: sem I, L, O e U, que se confundem ao digitar. 12 letras dão 60 bits. */
+    private const ALFABETO_DO_CODIGO = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
 
     /** O que a revogação pode tocar num certificado emitido. */
     private const CAMPOS_DA_REVOGACAO = ['revogado_em', 'motivo_revogacao', 'updated_at'];
@@ -157,5 +168,72 @@ class Certificado extends Model
         return DB::transaction(fn (): int => collect($linhas)
             ->chunk(500)
             ->sum(fn ($lote): int => self::query()->insertOrIgnore($lote->all())));
+    }
+
+    /** Formato ST26-7K3M-Q9XP-2TVH: aleatório, não sequencial. */
+    public static function novoCodigo(int $ano): string
+    {
+        $grupos = [];
+        for ($g = 0; $g < 3; $g++) {
+            $grupo = '';
+            for ($i = 0; $i < 4; $i++) {
+                $grupo .= self::ALFABETO_DO_CODIGO[random_int(0, 31)];
+            }
+            $grupos[] = $grupo;
+        }
+
+        return 'ST'.substr((string) $ano, -2).'-'.implode('-', $grupos);
+    }
+
+    public function caminhoDoPdf(): string
+    {
+        return 'certificados/'.$this->edicao->ano.'/'.$this->codigo.'.pdf';
+    }
+
+    public function urlDeValidacao(): string
+    {
+        return Config::string('certificados.url_validacao').'?codigo='.$this->codigo;
+    }
+
+    public function pdfUrl(): ?string
+    {
+        return $this->pdf_caminho === null ? null : Storage::disk('s3')->url($this->pdf_caminho);
+    }
+
+    /** Data URI do QR Code em SVG: dispensa a extensão GD, que o servidor pode não ter. */
+    public function qrCode(): string
+    {
+        $qrCode = new QRCode(new QROptions([
+            'addQuietzone'     => false,
+            'drawLightModules' => false,
+            'connectPaths'     => true,
+        ]));
+
+        $svg = $qrCode->render($this->urlDeValidacao());
+        assert(is_string($svg));
+
+        return $svg;
+    }
+
+    /** O modelo é o Blade da edição: edição sem modelo não tem certificado. */
+    public function temModelo(): bool
+    {
+        return view()->exists('certificados.'.$this->edicao->ano);
+    }
+
+    /** O PDF pronto, em bytes. Quem guarda e trava é o EmiteCertificado. */
+    public function renderizaPdf(): string
+    {
+        $ano = $this->edicao->ano;
+
+        return Pdf::loadView('certificados.'.$ano, [
+            'certificado' => $this,
+            'edicao'      => config('certificados.edicoes.'.$ano),
+            'emissor'     => config('certificados.emissor'),
+            'qrCode'      => $this->qrCode(),
+        ])->setPaper('a4', 'landscape')
+            // Só os glifos usados: o PDF cai de ~290 KB para uma fração disso.
+            ->setOption('isFontSubsettingEnabled', true)
+            ->output();
     }
 }

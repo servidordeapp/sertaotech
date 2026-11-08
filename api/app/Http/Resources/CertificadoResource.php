@@ -25,6 +25,7 @@ class CertificadoResource extends JsonResource
             'atividades'      => $this->atividades,
             'situacao'        => $this->situacao(),
             'codigo'          => $this->codigo,
+            'pdf_url'         => $this->pdfUrl(),
             // Cupom sem check-in pode ser de quem cancelou: é o que a revisão olha.
             'cupom'            => $this->participante?->cupom,
             'compareceu'       => $this->participante?->compareceu,

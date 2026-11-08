@@ -88,6 +88,9 @@ Route::prefix('painel')->group(function (): void {
             Route::get('certificados/{edicao:ano}', [CertificadosController::class, 'index']);
             Route::post('certificados/{edicao:ano}', [CertificadosController::class, 'store']);
             Route::post('certificados/{edicao:ano}/preparar', [CertificadosController::class, 'preparar']);
+            Route::get('certificados/{edicao:ano}/previa', [CertificadosController::class, 'previa']);
+            Route::post('certificados/{edicao:ano}/emitir', [CertificadosController::class, 'emitir']);
+            Route::post('certificados/{edicao:ano}/emitir/{certificado}', [CertificadosController::class, 'emitirUm'])->scopeBindings();
             Route::patch('certificados/{certificado}', [CertificadosController::class, 'update']);
             Route::delete('certificados/{certificado}', [CertificadosController::class, 'destroy']);
         });

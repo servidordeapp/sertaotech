@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CertificadoResource;
+use App\Jobs\EmiteCertificado;
 use App\Models\Auditoria;
 use App\Models\Certificado;
 use App\Models\Edicao;
@@ -15,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Http\Response;
 use Illuminate\Validation\Rule;
 
 /**
@@ -60,6 +62,72 @@ class CertificadosController extends Controller
         Auditoria::registra($request, 'certificados.preparou', $criados.' em '.$edicao->ano);
 
         return response()->json(['criados' => $criados]);
+    }
+
+    /**
+     * Enfileira um job por rascunho. Rodar de novo só alcança quem ficou de
+     * fora, porque o job ignora o que já foi emitido.
+     */
+    public function emitir(Request $request, Edicao $edicao): JsonResponse
+    {
+        $request->validate(['confirmar' => ['accepted']]);
+        $this->garanteModelo($edicao);
+
+        $enfileirados = 0;
+        $edicao->certificados()->whereNull('emitido_em')->whereNull('descartado_em')
+            ->each(function (Certificado $certificado) use (&$enfileirados): void {
+                EmiteCertificado::dispatch($certificado);
+                $enfileirados++;
+            });
+
+        Auditoria::registra($request, 'certificados.emitiu', $enfileirados.' em '.$edicao->ano);
+
+        return response()->json(['enfileirados' => $enfileirados]);
+    }
+
+    /** Na hora, sem fila: é o certificado de teste, para conferir o PDF antes da edição inteira. */
+    public function emitirUm(Request $request, Edicao $edicao, Certificado $certificado): CertificadoResource
+    {
+        $this->garanteRascunho($certificado);
+        $this->garanteModelo($edicao);
+
+        EmiteCertificado::dispatchSync($certificado);
+
+        $certificado->refresh();
+        Auditoria::registra($request, 'certificados.emitiu', '#'.$certificado->id.' '.$certificado->nome.' '.$certificado->codigo);
+
+        return new CertificadoResource($certificado->load('participante'));
+    }
+
+    /** O modelo com dados de exemplo, sem emitir nada, para ajustar a arte. */
+    public function previa(Request $request, Edicao $edicao): Response
+    {
+        $request->validate([
+            'tipo'   => ['sometimes', Rule::in(Certificado::TIPOS)],
+            'nome'   => ['sometimes', 'string', 'max:255'],
+            'titulo' => ['sometimes', 'string', 'max:255'],
+        ]);
+
+        $config = $this->configDa($edicao);
+        $this->garanteModelo($edicao);
+
+        $tipo      = $request->string('tipo')->toString() ?: 'participante';
+        $comTitulo = in_array($tipo, ['palestrante', 'ministrante'], true);
+
+        $exemplo = new Certificado([
+            'nome'          => $request->string('nome')->toString() ?: 'Maria Exemplo da Silva',
+            'tipo'          => $tipo,
+            'titulo'        => $comTitulo ? ($request->string('titulo')->toString() ?: 'Título de exemplo da apresentação') : null,
+            'carga_horaria' => $this->cargaPadrao($config, $tipo, null, []),
+            'atividades'    => $tipo === 'participante' ? array_slice(array_keys($config['atividades']), 0, 1) : [],
+            'codigo'        => 'ST'.substr((string) $edicao->ano, -2).'-0000-0000-0000',
+        ]);
+        $exemplo->setRelation('edicao', $edicao);
+
+        return response($exemplo->renderizaPdf(), 200, [
+            'Content-Type'        => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="previa-'.$edicao->ano.'-'.$tipo.'.pdf"',
+        ]);
     }
 
     /**
@@ -240,6 +308,11 @@ class CertificadosController extends Controller
 
         /** @var array{carga_evento: int, carga_organizacao: int, atividades: array<string, array{nome: string, carga_horaria: int, horario: string}>} $config */
         return $config;
+    }
+
+    private function garanteModelo(Edicao $edicao): void
+    {
+        abort_unless(view()->exists('certificados.'.$edicao->ano), 422, "A edição {$edicao->ano} não tem modelo de certificado.");
     }
 
     private function garanteRascunho(Certificado $certificado): void
