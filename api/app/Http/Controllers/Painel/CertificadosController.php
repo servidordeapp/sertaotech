@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Painel;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\CertificadoResource;
+use App\Jobs\AvisaCertificado;
 use App\Jobs\EmiteCertificado;
 use App\Models\Auditoria;
 use App\Models\Certificado;
@@ -17,6 +18,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 /**
@@ -50,6 +52,9 @@ class CertificadosController extends Controller
                 'emitidos'    => (clone $daEdicao)->whereNotNull('emitido_em')->whereNull('revogado_em')->count(),
                 'descartados' => (clone $daEdicao)->whereNotNull('descartado_em')->count(),
                 'revogados'   => (clone $daEdicao)->whereNotNull('revogado_em')->count(),
+                // Por e-mail, não por certificado: um aviso leva todos os do endereço.
+                'avisados'       => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNotNull('enviado_em')->count(),
+                'avisos_na_fila' => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNull('enviado_em')->count(),
             ],
             'atividades' => $this->configDa($edicao)['atividades'],
         ]);
@@ -81,6 +86,43 @@ class CertificadosController extends Controller
             });
 
         Auditoria::registra($request, 'certificados.emitiu', $enfileirados.' em '.$edicao->ano);
+
+        return response()->json(['enfileirados' => $enfileirados]);
+    }
+
+    /**
+     * Um aviso por e-mail com certificado emitido e ainda não avisado. Só quem
+     * insere a linha enfileira, então disparar de novo alcança só e-mails
+     * novos: é como entram os retardatários.
+     */
+    public function avisar(Request $request, Edicao $edicao): JsonResponse
+    {
+        $request->validate(['confirmar' => ['accepted']]);
+
+        $emails = $edicao->certificados()
+            ->whereNotNull('emitido_em')
+            ->whereNull('revogado_em')
+            ->distinct()
+            ->pluck('email');
+
+        $enfileirados = 0;
+        foreach ($emails as $email) {
+            $inseriu = DB::table('avisos_certificado')->insertOrIgnore([
+                'edicao_id'  => $edicao->id,
+                'email'      => $email,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+            if ($inseriu === 1) {
+                /** @var int $avisoId */
+                $avisoId = DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->where('email', $email)->value('id');
+                AvisaCertificado::dispatch($avisoId);
+                $enfileirados++;
+            }
+        }
+
+        Auditoria::registra($request, 'certificados.avisou', $enfileirados.' em '.$edicao->ano);
 
         return response()->json(['enfileirados' => $enfileirados]);
     }

@@ -45,6 +45,10 @@ class AppServiceProvider extends ServiceProvider
 
         RateLimiter::for('smtp', fn () => Limit::perDay(config()->integer('mail.limite_diario')));
 
+        // O aviso de certificado é um disparo grande de uma vez: fica com o teto
+        // menos 30 por dia, e as confirmações da lista de espera não esperam dias.
+        RateLimiter::for('certificados', fn () => Limit::perDay(max(1, config()->integer('mail.limite_diario') - 30)));
+
         // Login do painel: a chave é e-mail + IP. Só IP juntaria todo mundo
         // atrás de um NAT; só e-mail deixaria qualquer um trancar a conta
         // alheia tentando senha errada cinco vezes.

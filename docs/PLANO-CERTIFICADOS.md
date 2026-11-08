@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** decisões fechadas, fases 1, 2 e 3 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** decisões fechadas, fases 1 a 4 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
@@ -270,6 +270,9 @@ O validador diferencia o cancelamento pela LGPD da revogação por erro, porque 
 - Mailable HTML com tabelas e CSS inline, mais versão em texto. O texto cita os tipos de certificado e há um botão por certificado.
 - Job com a garantia descrita acima.
 - Limitador próprio de 70/dia além do `smtp`, reservando 30/dia para a lista de espera. 2026 leva cerca de 3 dias e as duas edições juntas cerca de 4, dentro do `retryUntil` de 7 dias.
+- O limitador `certificados` vale `MAIL_LIMITE_DIARIO` menos 30: se o plano do SMTP subir, ele sobe junto. Vem antes do `smtp` no job, então quando segura o envio não gasta a cota da lista de espera.
+- Disparo: `POST /api/painel/certificados/{ano}/avisar` com `confirmar: true`. O resumo da listagem traz `avisados` e `avisos_na_fila`, contados por e-mail.
+- O botão do e-mail usa `CERTIFICADO_URL_PAGINA`, que em dev pode apontar para o Astro local.
 
 ### Fase 5: painel e LGPD
 

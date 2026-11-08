@@ -18,8 +18,10 @@ return [
         'cnpj'         => env('CERTIFICADO_CNPJ'),
     ],
 
-    // O QR Code do PDF abre esta página com ?codigo= preenchido.
+    // O QR Code do PDF abre a validação, e o botão do e-mail abre a página do
+    // certificado, as duas com ?codigo= preenchido. Em dev, apontar para o Astro local.
     'url_validacao' => env('CERTIFICADO_URL_VALIDACAO', 'https://osertaotech.com.br/certificado/validar'),
+    'url_pagina'    => env('CERTIFICADO_URL_PAGINA', 'https://osertaotech.com.br/certificado'),
 
     'edicoes' => [
         2025 => [
