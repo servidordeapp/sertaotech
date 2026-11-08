@@ -338,6 +338,7 @@ async function copiaLink(linha) {
                 :options="opcoesNaLinha"
                 option-label="rotulo"
                 option-value="valor"
+                placeholder="Nenhuma"
                 size="small"
                 :loading="ocupado === `atividade-${data.id}`"
                 :aria-label="`Atividade de ${data.nome}`"
