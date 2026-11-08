@@ -11,6 +11,7 @@ use App\Models\Participante;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 /**
@@ -47,8 +48,26 @@ class ParticipantesController extends Controller
                 'compareceram' => (clone $daEdicao)->where('compareceu', true)->count(),
                 'da_equipe'    => (clone $daEdicao)->where('compareceu', true)->whereIn('cupom', Participante::CUPONS_DA_EQUIPE)->count(),
             ],
-            'cupons' => (clone $daEdicao)->whereNotNull('cupom')->distinct()->orderBy('cupom')->pluck('cupom'),
+            'cupons'        => (clone $daEdicao)->whereNotNull('cupom')->distinct()->orderBy('cupom')->pluck('cupom'),
+            'emails_unicos' => $this->emailsUnicos(),
         ]);
+    }
+
+    /**
+     * Quantas pessoas o evento alcança, somando todas as edições: e-mails de
+     * ingresso, da lista de espera e de certificado (a equipe sem ingresso). O
+     * UNION já tira repetidos, e anonimizado não conta: não é mais ninguém.
+     */
+    private function emailsUnicos(): int
+    {
+        $email = 'lower(trim(email)) as email';
+
+        return DB::query()->fromSub(
+            DB::table('participantes')->whereNull('anonimizado_em')->selectRaw($email)
+                ->union(DB::table('waitlist_entries')->whereNull('anonimizado_em')->selectRaw($email))
+                ->union(DB::table('certificados')->whereNull('anonimizado_em')->selectRaw($email)),
+            'emails',
+        )->count();
     }
 
     /**

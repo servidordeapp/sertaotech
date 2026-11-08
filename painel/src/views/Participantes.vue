@@ -32,6 +32,7 @@ const linhas = ref(null);
 const total = ref(0);
 const resumo = ref(null);
 const cupons = ref([]);
+const emailsUnicos = ref(null);
 const carregando = ref(false);
 const erro = ref(null);
 
@@ -82,6 +83,7 @@ async function carrega() {
     total.value = resposta.meta.total;
     resumo.value = resposta.resumo;
     cupons.value = resposta.cupons;
+    emailsUnicos.value = resposta.emails_unicos;
   } catch (e) {
     if (atual === requisicao) erro.value = e;
   } finally {
@@ -144,6 +146,11 @@ watch(ano, () => {
           <h2 class="eyebrow numero__rotulo">Público presente</h2>
           <strong class="numero__valor">{{ resumo.compareceram - resumo.da_equipe }}</strong>
           <small class="numero__nota">Sem palestrantes e organização</small>
+        </article>
+        <article class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">E-mails únicos</h2>
+          <strong class="numero__valor">{{ emailsUnicos }}</strong>
+          <small class="numero__nota">Todas as edições, lista de espera e certificados</small>
         </article>
       </section>
 

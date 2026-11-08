@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Models\Certificado;
 use App\Models\Edicao;
 use App\Models\Participante;
 use App\Models\User;
@@ -153,4 +154,19 @@ describe('selo na lista de espera', function () {
             ->assertJsonCount(1, 'data')
             ->assertJsonPath('data.0.participou_em', []);
     });
+});
+
+test('conta os e-mails únicos de todas as edições, da lista de espera e dos certificados', function () {
+    Participante::factory()->create(['email' => 'ana@example.com']);
+    Participante::factory()->create(['email' => ' ANA@example.com', 'edicao_id' => edicaoDe(2025)]);
+    Participante::factory()->create(['email' => 'bia@example.com', 'edicao_id' => edicaoDe(2025)]);
+    Participante::factory()->create(['email' => 'apagado@anonimizado.invalid', 'anonimizado_em' => now()]);
+    WaitlistEntry::factory()->create(['email' => 'bia@example.com']);
+    WaitlistEntry::factory()->create(['email' => 'caio@example.com']);
+    Certificado::factory()->create(['email' => 'equipe-sem-ingresso@example.com']);
+
+    $this->actingAs(User::factory()->create())
+        ->getJson('/api/painel/participantes/2026')
+        ->assertOk()
+        ->assertJsonPath('emails_unicos', 4);
 });
