@@ -25,7 +25,13 @@
         <env name="CACHE_STORE" value="array"/>
         <env name="DB_DATABASE" value="testing"/>
         <env name="DB_URL" value=""/>
-        <env name="MAIL_MAILER" value="array"/>
+        <!-- <server> com force: o docker-compose.yml define MAIL_* e
+             CERTIFICADO_URL_* para a api usar o Mailpit e o site local, e o
+             Laravel lê $_SERVER antes de $_ENV. Com <env>, mesmo forçado, os
+             testes mandariam e-mail para o Mailpit e veriam as URLs de dev. -->
+        <server name="MAIL_MAILER" value="array" force="true"/>
+        <server name="CERTIFICADO_URL_PAGINA" value="https://osertaotech.com.br/certificado" force="true"/>
+        <server name="CERTIFICADO_URL_VALIDACAO" value="https://osertaotech.com.br/certificado/validar" force="true"/>
         <env name="QUEUE_CONNECTION" value="sync"/>
         <env name="SESSION_DRIVER" value="array"/>
         <!-- Origem do painel em dev. As rotas de /api/painel só ganham sessão
