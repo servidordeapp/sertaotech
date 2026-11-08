@@ -1,0 +1,4 @@
+# O vendor vem do estágio deps, instalado pelo composer.lock. Sem esta linha o
+# COPY . . do Dockerfile copiava o vendor do host por cima, e pacote novo sumia
+# do autoload (o container caía com "Class ... not found").
+/vendor
