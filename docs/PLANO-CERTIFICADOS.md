@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** decisões fechadas, fases 1 e 2 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** decisões fechadas, fases 1, 2 e 3 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
@@ -262,6 +262,8 @@ O validador diferencia o cancelamento pela LGPD da revogação por erro, porque 
 - O PDF é servido pela URL pública do R2. O nome do arquivo é o código, que não dá para adivinhar, e é o mesmo que já está impresso no PDF.
 - Duas páginas Astro estáticas com `?codigo=`, com `noindex` e fora do sitemap, sem precisar de rewrite na Vercel.
 - O certificado na tela é o próprio PDF guardado, então o que a pessoa vê é exatamente o que baixa.
+- Revogado responde com `situacao: revogado` e sem `pdf_url`, mas com o hash: o arquivo antigo ainda é conferido como "original, mas revogado". O motivo da revogação não sai na API pública.
+- Páginas: `site/src/pages/certificado/index.astro` e `site/src/pages/certificado/validar.astro`. O "Baixar PDF" aponta para o R2, outro domínio, então o navegador abre o PDF numa aba em vez de baixar direto.
 
 ### Fase 4: e-mail e disparo
 

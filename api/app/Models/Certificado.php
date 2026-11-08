@@ -33,6 +33,7 @@ use LogicException;
  * @property string|null $titulo
  * @property string|null $codigo
  * @property string|null $pdf_caminho
+ * @property string|null $pdf_sha256
  * @property Carbon|null $emitido_em
  * @property Carbon|null $descartado_em
  * @property Carbon|null $revogado_em

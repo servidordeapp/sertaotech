@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\CertificadoPublicoController;
 use App\Http\Controllers\FeedbackPatrocinadorController;
 use App\Http\Controllers\Painel\AuditoriasController;
 use App\Http\Controllers\Painel\CertificadosController;
@@ -24,6 +25,11 @@ Route::post('lista-de-espera/{tipo}', [WaitlistController::class, 'store'])
 
 Route::post('feedback-patrocinador/{edicao:ano}', [FeedbackPatrocinadorController::class, 'store'])
     ->middleware('throttle:10,1');
+
+// O código tem 60 bits: o limite é contra varredura, não contra adivinhação.
+Route::get('certificados/{codigo}', [CertificadoPublicoController::class, 'show'])
+    ->where('codigo', '[A-Za-z0-9-]{1,30}')
+    ->middleware('throttle:30,1');
 
 /*
  * Painel (painel.osertaotech.com.br). Sessão por cookie, não token: quem

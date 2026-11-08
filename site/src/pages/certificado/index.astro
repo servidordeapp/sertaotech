@@ -1,0 +1,98 @@
+---
+/**
+ * Destino do botão do e-mail: /certificado?codigo=ST26-.... Página estática, o
+ * certificado vem da API no navegador. O PDF exibido é o próprio arquivo guardado
+ * no R2, então o que a pessoa vê é exatamente o que baixa. Fora do Google: noindex
+ * e fora do sitemap (astro.config.mjs).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FooterCols2027 from '../../components/FooterCols2027.astro';
+import { NAV_2027, CTA_2027 } from '../../data/nav';
+
+const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
+---
+<BaseLayout
+  title="Seu certificado | Sertão Tech"
+  description="Veja e baixe o seu certificado do Sertão Tech."
+  path="/certificado"
+  noindex
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  brandHref="/"
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main id="conteudo">
+  <section class="section">
+    <div class="container ct" id="ct" data-api={api}>
+      <h1 class="section-title">Seu certificado</h1>
+      <p id="ct-msg" role="status">Carregando o certificado…</p>
+
+      <div id="ct-ok" hidden>
+        <p class="ct-lead"><strong id="ct-nome"></strong><br><span id="ct-resumo"></span></p>
+        <div class="ct-acoes">
+          <a id="ct-baixar" class="btn btn--primary btn--lg" target="_blank" rel="noopener" download>Baixar PDF</a>
+          <a id="ct-validar" class="btn btn--outline btn--lg">Conferir validade</a>
+        </div>
+        <iframe id="ct-pdf" class="ct-pdf" title="Certificado em PDF"></iframe>
+        <p class="ct-nota">O PDF não abriu aqui? Use o botão "Baixar PDF".</p>
+      </div>
+    </div>
+  </section>
+</main>
+<Fragment slot="footer-cols"><FooterCols2027 /></Fragment>
+
+<script is:inline slot="scripts">
+  var raiz = document.getElementById('ct');
+  var msg = document.getElementById('ct-msg');
+  var codigo = (new URLSearchParams(location.search).get('codigo') || '').trim().toUpperCase();
+  var TIPOS = { participante: 'Participante', palestrante: 'Palestrante', ministrante: 'Ministrante', organizacao: 'Organização' };
+
+  function falha(texto) {
+    msg.textContent = texto;
+    msg.classList.add('ct-erro');
+  }
+
+  if (!codigo) {
+    falha('Abra o link que veio no e-mail. Para conferir um código, use a página de validação: osertaotech.com.br/certificado/validar.');
+  } else {
+    fetch(raiz.dataset.api + '/api/certificados/' + encodeURIComponent(codigo), { headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (r.status === 404) throw new Error('Não encontramos este certificado. Confira se o link veio inteiro do e-mail.');
+        if (r.status === 429) throw new Error('Muitas consultas seguidas. Espere um minuto e recarregue a página.');
+        if (!r.ok) throw new Error('Algo deu errado. Tente de novo em instantes.');
+        return r.json();
+      })
+      .then(function (j) {
+        var c = j.data;
+        var validar = '/certificado/validar?codigo=' + encodeURIComponent(c.codigo);
+        if (c.situacao !== 'valido') {
+          falha('Este certificado foi revogado e não vale mais. Se você recebeu um novo, use o link do e-mail mais recente.');
+          return;
+        }
+        msg.hidden = true;
+        document.getElementById('ct-nome').textContent = c.nome;
+        document.getElementById('ct-resumo').textContent =
+          TIPOS[c.tipo] + ' da ' + c.edicao.numero + ' edição · ' + c.carga_horaria + ' h · código ' + c.codigo;
+        document.getElementById('ct-baixar').href = c.pdf_url;
+        document.getElementById('ct-validar').href = validar;
+        document.getElementById('ct-pdf').src = c.pdf_url;
+        document.getElementById('ct-ok').hidden = false;
+      })
+      .catch(function (err) {
+        falha(err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message);
+      });
+  }
+</script>
+
+<style>
+  .ct { max-width: 60rem; }
+  .ct-lead { color: var(--text-muted); margin-bottom: var(--space-6); }
+  .ct-lead strong { color: var(--text-strong); font-size: 1.25em; }
+  .ct-acoes { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-bottom: var(--space-6); }
+  /* A4 paisagem: 297 por 210. */
+  .ct-pdf { display: block; width: 100%; aspect-ratio: 297 / 210; border: 1px solid var(--border-subtle); border-radius: var(--radius-field); background: var(--surface-card); }
+  .ct-nota { color: var(--text-muted); font-size: .9em; margin-top: var(--space-3); }
+  .ct-erro { color: #b3261e; font-weight: 600; }
+</style>
+</BaseLayout>
