@@ -1,0 +1,21 @@
+---
+/** Cards das 4 trilhas de 2027, no layout do kit (css/site.css: .track). */
+import Icon from './Icon.astro';
+import { TRILHAS_2027 } from '../data/trilhas-2027';
+---
+<div class="grid-4 tracks">
+  {TRILHAS_2027.map((t) => (
+    <div class={`track t-${t.cor}`}>
+      <div class="track-head">
+        <Icon name={t.icone} size={36} />
+        <span class="eyebrow">trilha {t.n}</span>
+        <h3>{t.nome}</h3>
+      </div>
+      <div class="track-body">
+        <p class="track-body__text">{t.texto}</p>
+        <span class="eyebrow">Para quem</span>
+        <p class="track-body__small">{t.quem}</p>
+      </div>
+    </div>
+  ))}
+</div>

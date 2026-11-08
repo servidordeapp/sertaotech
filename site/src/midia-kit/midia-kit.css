@@ -43,6 +43,7 @@
 .cols-2 { grid-template-columns: repeat(2, 1fr); }
 .cols-3 { grid-template-columns: repeat(3, 1fr); }
 .cols-4 { grid-template-columns: repeat(4, 1fr); }
+.cols-5 { grid-template-columns: repeat(5, 1fr); }
 .cols-6 { grid-template-columns: repeat(6, 1fr); }
 
 /* ---------- Texto ---------- */
@@ -402,7 +403,7 @@
 .mk-flow .row { flex-wrap: wrap; gap: 24px; }
 .mk-flow .cols-2, .mk-flow .cols-3, .mk-flow .cols-4, .mk-flow .prog-list,
 .mk-flow .stats, .mk-flow .ruled-list, .mk-flow .reason-grid, .mk-flow .prop-grid { grid-template-columns: 1fr; }
-.mk-flow .stat-grid, .mk-flow .contacts, .mk-flow .cols-6 { grid-template-columns: repeat(2, 1fr); }
+.mk-flow .stat-grid, .mk-flow .contacts, .mk-flow .cols-5, .mk-flow .cols-6 { grid-template-columns: repeat(2, 1fr); }
 .mk-flow .stats > div { padding: 32px 0 0; }
 .mk-flow .stats > div + div { border-left: 0; border-top: 1px solid var(--border-on-ink); }
 .mk-flow .cover-brand { flex-direction: column; align-items: flex-start; gap: 48px; }

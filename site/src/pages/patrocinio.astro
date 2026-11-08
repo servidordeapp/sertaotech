@@ -1,0 +1,333 @@
+---
+/**
+ * Patrocínio da 3ª edição (2027). Versão pública do kit
+ * (`public/midia-kit/2027`), sem preços: o kit completo vai pelo WhatsApp.
+ * Também é a "lista publicada no site" que o consentimento de
+ * compartilhamento da lista de espera promete (docs/PLANO-2027.md).
+ *
+ * Fora de propósito: os 26 grupos de comunidades, o prazo do relatório e
+ * qualquer link para relatório ou para o kit.
+ */
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FooterCols2027 from '../components/FooterCols2027.astro';
+import PageHead from '../components/PageHead.astro';
+import CtaBand from '../components/CtaBand.astro';
+import LogoWall from '../components/LogoWall.astro';
+import SponsorTelemetry from '../components/SponsorTelemetry.astro';
+import Icon from '../components/Icon.astro';
+import { graph, organization, website, webpage, breadcrumb } from '../lib/schema';
+import { SITE } from '../lib/site';
+import { NAV_2027, CTA_2027 } from '../data/nav';
+import Trilhas2027 from '../components/Trilhas2027.astro';
+
+const path = '/patrocinio';
+const title = 'Patrocínio — Sertão Tech 2027 | programas, trilhas e cotas';
+const description =
+  'Patrocine o Sertão Tech 2027, em 15 e 16 de outubro na UFDPar, Parnaíba - PI. Quatro trilhas, programas no YouTube com marca apresentadora e 15 vagas de patrocínio.';
+const ogImage = '/assets/og-patrocinio.jpg';
+
+const jsonLd = graph(
+  organization(),
+  website(),
+  webpage({ path, name: title, description, image: ogImage }),
+  breadcrumb([{ name: 'Patrocínio', path }]),
+);
+
+const kit = `${SITE.whatsapp}?text=${encodeURIComponent('Olá! Quero receber o kit de patrocínio do Sertão Tech 2027.')}`;
+
+const numeros = [
+  { k: 'presentes', v: '176', note: '+61% sobre a 1ª edição' },
+  { k: 'comparecimento', v: '76%', note: '176 check-ins de 233 inscritos' },
+  { k: 'da meta de público', v: '117%', note: 'meta de 150, vieram 176' },
+  { k: 'pessoas no palco', v: '18', note: '6x a 1ª edição' },
+];
+
+const programas = [
+  {
+    nome: 'Sertão Tech Robótica',
+    associa: 'Inovação, engenharia, experimentação e entretenimento.',
+    so: ['Prêmio da marca para a equipe campeã', 'Entrega da premiação no palco', 'Um desafio proposto pela marca na competição'],
+  },
+  {
+    nome: 'Sertão Tech Negócios',
+    associa: 'Empreendedorismo, inovação e geração de oportunidades.',
+    so: ['Jurado ou mentor da marca na banca', 'Prêmio da marca para a startup destaque', 'Palestra empresarial com curadoria'],
+  },
+];
+
+const programaComum = [
+  'Vinheta “apresentado por” em cada episódio',
+  'Logo no cenário da trilha e no telão',
+  'Menção do apresentador ao vivo e nos episódios',
+  'No mínimo 3 episódios e 6 cortes verticais',
+  'Link da marca na descrição de todos os vídeos',
+];
+
+const cotas = [
+  { nome: 'Ouro', vagas: '2 vagas', itens: ['Estande em área de destaque', 'Palestra ou workshop de até 30 min, com curadoria', 'Vídeo de 30 s no telão na abertura', 'Leads dos inscritos que autorizarem (LGPD)', '6 credenciais, com o After'] },
+  { nome: 'Prata', vagas: '4 vagas', itens: ['Logomarca no banner oficial e nos impressos', 'Mesa expositora', 'Leads do seu espaço por QR code', '1 ativação do menu', '4 credenciais, com o After'] },
+  { nome: 'Bronze', vagas: '6 vagas', itens: ['Logomarca no site e nos materiais digitais', 'Post de boas-vindas no Instagram e no LinkedIn', 'Brindes ou materiais no credenciamento', 'Menção na abertura', '2 credenciais, com o After'] },
+];
+
+const porque = [
+  { titulo: 'Iniciativa regional', texto: 'Sua marca ao lado de um movimento de tecnologia do norte do Piauí, realizado por PHP PI e PHPWomen PI.' },
+  { titulo: 'Talentos e profissionais', texto: 'Contato com estudantes em formação e, em 2027, também com profissionais experientes.' },
+  { titulo: 'Posicionamento de marca', texto: 'Sua empresa lembrada como parceira de quem investe em tecnologia no interior.' },
+  { titulo: 'Relacionamento com empreendedores', texto: 'A Trilha de Negócios aproxima sua marca de startups, fundadores, mentores e consultores.' },
+  { titulo: 'Visibilidade digital', texto: 'Canais que cresceram de forma 100% orgânica na 2ª edição.' },
+  { titulo: 'Presencial e audiovisual', texto: 'Do dia do evento aos episódios no YouTube das trilhas de Robótica e Negócios.' },
+];
+
+const objetivos = [
+  { icone: 'users', titulo: 'Recrutar', itens: ['Vagas da empresa no Hub de carreiras', 'Revisão de currículo e LinkedIn com o seu RH', 'Trilha Sênior+ apresentada pela marca'] },
+  { icone: 'spark', titulo: 'Marca', itens: ['Coffee break ou credenciamento apresentado pela marca', 'Parede instagramável', 'Sorteio de brinde no palco'] },
+  { icone: 'book', titulo: 'Produto e DevRel', itens: ['Lab hands-on com a tecnologia da marca', 'Desafio da marca na competição de Robótica', 'Pergunta da marca na pesquisa de inscrição'] },
+  { icone: 'heart', titulo: 'Impacto social', itens: ['Bolsas PHPWomen: inscrição e transporte para mulheres na tecnologia', 'Caravanas: transporte de estudantes de outras cidades'] },
+];
+
+const vagas = [
+  { n: '2', nome: 'Programas' },
+  { n: '1', nome: 'Sênior+' },
+  { n: '2', nome: 'Ouro' },
+  { n: '4', nome: 'Prata' },
+  { n: '6', nome: 'Bronze' },
+];
+---
+<BaseLayout
+  title={title}
+  description={description}
+  path={path}
+  nav="patrocinio"
+  ogDescription="Quatro trilhas, programas no YouTube com marca apresentadora e 15 vagas. 15 e 16 de outubro de 2027, na UFDPar."
+  ogImage={ogImage}
+  ogImageAlt="Patrocínio do Sertão Tech 2027"
+  jsonLd={jsonLd}
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  brandHref="/"
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main>
+  <PageHead
+    trail={[{ name: 'Patrocínio' }]}
+    eyebrow="// patrocínio · 3ª edição"
+    title="O Sertão Tech está crescendo. Sua marca pode crescer junto."
+    lead="Mais tecnologia, mais experiências, mais oportunidades. Dois dias e quatro trilhas em 15 e 16 de outubro de 2027, na UFDPar, em Parnaíba - PI."
+  >
+    <div class="hero__actions">
+      <a class="btn btn--accent btn--lg" href={kit} target="_blank" rel="noopener">Quero o kit de patrocínio<Icon name="arrow" /></a>
+      <a class="btn btn--outline-ink btn--lg" href="#propriedades">Ver as propriedades</a>
+    </div>
+  </PageHead>
+
+  <!-- RESULTADOS DA 2ª EDIÇÃO -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// resultados da 2ª edição</span>
+      <h2 class="section-title">Uma edição que superou a meta</h2>
+      <p class="section-lead">Em um dia de evento, em 2026, na UFDPar.</p>
+      <div class="range-facts range-facts--4">
+        {numeros.map((f) => (
+          <div class="range-fact">
+            <span class="range-fact__k">{f.k}</span>
+            <div class="range-fact__v">{f.v}</div>
+            <p class="range-fact__note">{f.note}</p>
+          </div>
+        ))}
+      </div>
+      <div class="two-col" style="margin-top: 32px; align-items: start;">
+        <div class="card">
+          <span class="eyebrow">// presença digital · 100% orgânica</span>
+          <div class="range-facts">
+            <div>
+              <div class="range-fact__v">88.286</div>
+              <p class="range-fact__note">visualizações no Instagram</p>
+            </div>
+            <div>
+              <div class="range-fact__v">9.272</div>
+              <p class="range-fact__note">impressões no LinkedIn</p>
+            </div>
+          </div>
+          <p class="range-fact__note" style="margin-top: 14px;">29 ago a 27 out de 2026, sem mídia paga. Visualizações e impressões contam exibições, não pessoas únicas.</p>
+        </div>
+        <a class="card card--badge card--interactive" style="display: block; text-decoration: none;" href="https://ufdpar.edu.br/ufdpar/sertao-tech-2026-chega-a-ufdpar-para-apresentar-aos-estudantes-as-carreiras-possiveis-na-tecnologia" target="_blank" rel="noopener">
+          <span class="eyebrow">// na mídia · UFDPar · 06 out 2026</span>
+          <h3 class="card-title" style="margin-top: 10px;">“O principal objetivo do Sertão Tech é aproximar o meio acadêmico do mercado.”</h3>
+          <p class="card-text">O portal da universidade noticiou a 2ª edição.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2027 · TRILHAS -->
+  <div class="band-sunken">
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">// 2027 · expansão</span>
+        <h2 class="section-title">Quatro trilhas, um só evento</h2>
+        <p class="section-lead">Meta de <strong>350 inscritos</strong> em <strong>2 dias</strong>. Do primeiro passo na tecnologia à liderança técnica, com novos públicos: profissionais experientes, empreendedores e equipes de robótica.</p>
+        <Trilhas2027 />
+      </div>
+    </section>
+  </div>
+
+  <!-- PROPRIEDADES DE MÍDIA -->
+  <div class="band-ink">
+    <section class="section" id="propriedades">
+      <div class="container">
+        <span class="eyebrow eyebrow--ink">// novidade 2027 · propriedades de mídia</span>
+        <h2 class="section-title section-title--on-ink">Sua marca apresentando um programa</h2>
+        <p class="cta__lead">As trilhas de Robótica e Negócios viram programas audiovisuais do Sertão Tech, com apresentador, narração e episódios no YouTube que seguem circulando depois do evento. Cada programa tem uma única marca apresentadora.</p>
+        <div class="grid-2" style="margin-top: 28px; gap: 18px;">
+          {programas.map((p) => (
+            <div class="card">
+              <span class="chip chip--gold">● rec · 1 vaga</span>
+              <h3 class="card-title" style="margin-top: 14px;">{p.nome}</h3>
+              <p class="card-text">apresentado por <strong>sua marca</strong>. {p.associa}</p>
+              <ul class="ticket__list" style="margin-top: 16px;">
+                {[...programaComum, ...p.so].map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="card" style="margin-top: 18px;">
+          <span class="chip chip--gold">trilha sênior+ · 1 vaga</span>
+          <h3 class="card-title" style="margin-top: 14px;">Trilha Sênior+, apresentada por sua marca</h3>
+          <p class="card-text">Arquitetura, escala e liderança técnica: o público mais disputado por quem contrata.</p>
+          <ul class="ticket__list" style="margin-top: 16px;">
+            {['“Apresentada por” na sala, na página da trilha e na programação', 'Fala institucional de 3 min na abertura da trilha', 'Palestra técnica de um especialista da marca, com curadoria', 'Leads dos participantes da trilha que autorizarem (LGPD)'].map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- COTAS TRADICIONAIS -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// cotas</span>
+      <h2 class="section-title">Ouro, Prata e Bronze</h2>
+      <p class="section-lead">Cada cota inclui tudo o que a cota abaixo dela oferece. Leads só de quem autorizou o compartilhamento na inscrição (LGPD).</p>
+      <div class="grid-3" style="margin-top: 28px;">
+        {cotas.map((c) => (
+          <div class="card">
+            <span class="eyebrow">{c.vagas}</span>
+            <h3 class="card-title" style="margin-top: 10px;">{c.nome}</h3>
+            <ul class="ticket__list" style="margin-top: 16px;">
+              {c.itens.map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- DO JEITO DA SUA EMPRESA -->
+  <div class="band-sunken">
+    <section class="section">
+      <div class="container">
+        <span class="eyebrow">// menu de ativações</span>
+        <h2 class="section-title">Do jeito da sua empresa</h2>
+        <p class="section-lead">A mesma cota se adapta ao objetivo: recrutar, fortalecer a marca, apresentar um produto ou gerar impacto social.</p>
+        <div class="grid-4" style="margin-top: 28px;">
+          {objetivos.map((o) => (
+            <div class="card">
+              <span class="chip-icon chip-icon--terra"><Icon name={o.icone} /></span>
+              <h3 class="card-title" style="margin-top: 14px;">{o.titulo}</h3>
+              <ul class="ticket__list" style="margin-top: 12px;">
+                {o.itens.map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- POR QUE PATROCINAR -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// por que patrocinar</span>
+      <h2 class="section-title">Patrocinar não é comprar espaço para logomarca. É participar de um movimento.</h2>
+      <div class="grid-3" style="margin-top: 28px;">
+        {porque.map((p, i) => (
+          <div class="card">
+            <span class="eyebrow">{String(i + 1).padStart(2, '0')}</span>
+            <h3 class="card-title" style="margin-top: 10px;">{p.titulo}</h3>
+            <p class="card-text">{p.texto}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VAGAS -->
+  <div class="band-sunken">
+    <section class="section--tight">
+      <div class="container">
+        <span class="eyebrow">// disponibilidade</span>
+        <h2 class="section-title">15 vagas para a 3ª edição</h2>
+        <p class="section-lead">Cotas confirmadas por ordem de fechamento. Condição especial de renovação para quem patrocinou em 2026.</p>
+        <div class="range-facts range-facts--5">
+          {vagas.map((v) => (
+            <div class="range-fact">
+              <div class="range-fact__v">{v.n}</div>
+              <span class="range-fact__k">{v.nome}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PATROCINADORES E PARCEIROS DE 2027: a lista que o consentimento de
+       compartilhamento promete. Patrocinador confirmado entra aqui. -->
+  <section class="section" id="patrocinadores-2027">
+    <div class="container">
+      <div class="sponsors-intro">
+        <span class="eyebrow">// edição 2027</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">Patrocinadores e parceiros de 2027</h2>
+        <p class="section-lead">Realização: PHP PI e PHPWomen PI. Em parceria com o Bacharelado em Inteligência Artificial da UFDPar.</p>
+      </div>
+      <p class="logo-wall__empty">As primeiras empresas confirmadas aparecem aqui. Sua marca pode ser uma delas.</p>
+    </div>
+  </section>
+
+  <!-- QUEM CONFIOU EM 2026 -->
+  <section class="section" id="patrocinadores" style="padding-top: 0;">
+    <div class="container">
+      <div class="sponsors-intro">
+        <span class="eyebrow">// quem já confiou</span>
+        <h2 class="section-title" style="margin-bottom: 8px;">Quem patrocinou a 2ª edição</h2>
+        <p class="section-lead">Empresas e comunidades que fizeram 2026 acontecer.</p>
+      </div>
+      <LogoWall utm="patrocinio2027" apoio="logos" />
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="// próximo passo"
+    title="Vamos construir a 3ª edição juntos?"
+    lead="Peça o kit pelo WhatsApp: contrapartidas de cada cota, vagas disponíveis e como sua marca entra no Sertão Tech 2027."
+  >
+    <a class="btn btn--accent btn--lg" href={kit} target="_blank" rel="noopener">Quero o kit de patrocínio<Icon name="arrow" /></a>
+    <a class="btn btn--outline-ink btn--lg" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Entrar na lista de patrocinadores</a>
+  </CtaBand>
+</main>
+<Fragment slot="footer-cols">
+  <FooterCols2027 />
+</Fragment>
+
+<SponsorTelemetry slot="scripts" />
+
+<script is:inline slot="scripts">
+  // Mesmo waitlist_click da home.
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('[data-waitlist]');
+    if (!link || typeof gtag !== 'function') return;
+    gtag('event', 'waitlist_click', { tipo: link.getAttribute('data-waitlist') });
+  });
+</script>
+
+</BaseLayout>

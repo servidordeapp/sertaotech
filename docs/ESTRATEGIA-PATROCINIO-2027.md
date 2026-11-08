@@ -13,7 +13,7 @@ O TDC não cobra caro por ser grande. Cobra caro porque **prova o público,
 entrega leads e detalha cada contrapartida**. O kit 2027 hoje faz o oposto:
 
 - **Benefícios vazios.** Bronze, Prata e Ouro estão "Em definição pela
-  organização"; os programas de R$ 10.000 dizem "Contrapartidas detalhadas
+  organização"; os programas de R$ 15.000 dizem "Contrapartidas detalhadas
   definidas com a organização". Empresa grande não aprova verba sem lista
   fechada. Esse é o bloqueio número 1.
 - **Custo por pessoa já passou o do TDC.** Ouro R$ 5.000 ÷ 176 check-ins ≈
@@ -37,8 +37,8 @@ entrega leads e detalha cada contrapartida**. O kit 2027 hoje faz o oposto:
 | AI Hacking Lounge | R$ 60.000 |
 | Mantenedor Enterprise (anual) | R$ 150.000 + cotas |
 
-Proporção Titanium/Bronze ≈ 9×. A nossa (Programa R$ 10.000 / Bronze
-R$ 1.000) é 10×: a escada está boa, falta o conteúdo de cada degrau.
+Proporção Titanium/Bronze ≈ 9×. A nossa (Programa R$ 15.000 / Bronze
+R$ 1.000) é 15×: a escada está boa, falta o conteúdo de cada degrau.
 
 ## O que o TDC tem e nós não
 
@@ -55,21 +55,14 @@ R$ 1.000) é 10×: a escada está boa, falta o conteúdo de cada degrau.
 
 ## Estratégias
 
-### 1. Cota acima dos programas
-
-**"Sertão Tech 2027, apresentado por [marca]"**: 1 vaga, R$ 15–20 mil
-(equivalente ao Titanium). Keynote na abertura, logo na entrada e no palco,
-cordão do crachá, nome do After, logo em todas as trilhas e episódios. Hoje o
-teto é R$ 10 mil e não há lugar para quem quer ser a marca principal.
-
-### 2. Trilha Sênior+ com marca apresentadora
+### 1. Trilha Sênior+ com marca apresentadora
 
 Terceira propriedade de nome. Público mais valioso para quem contrata dev
 remoto (arquitetos e tech leads do Nordeste). Sugestão: R$ 7.500, com mailing
 da trilha (com consentimento), fala de 3 minutos e palestra técnica da marca
 (passa pela curadoria).
 
-### 3. Itens avulsos
+### 2. Itens avulsos
 
 Como Trilha, Fórum Startup e AI Hacking Lounge no TDC:
 
@@ -80,7 +73,7 @@ Como Trilha, Fórum Startup e AI Hacking Lounge no TDC:
 - **Cordão do crachá** e **parede instagramável**.
 - **Pergunta na pesquisa de inscrição.**
 
-### 4. Outros orçamentos, não só o de marketing
+### 3. Outros orçamentos, não só o de marketing
 
 | Orçamento | O que oferecer |
 |---|---|
@@ -89,7 +82,7 @@ Como Trilha, Fórum Startup e AI Hacking Lounge no TDC:
 | Inovação | Negócios + Startup Piauí: banca, prêmio patrocinado |
 | Produto / DevRel | Lab hands-on, Robótica |
 
-### 5. Contrapartidas dos programas Robótica e Negócios
+### 4. Contrapartidas dos programas Robótica e Negócios
 
 - Vinheta "apresentado por" em cada episódio; logo no cenário; menção do
   apresentador.
@@ -103,14 +96,14 @@ Como Trilha, Fórum Startup e AI Hacking Lounge no TDC:
 Sem histórico de YouTube: prometer **quantidade entregue** (episódios,
 cortes), não visualizações.
 
-### 6. Patrocínio anual ("Mantenedor Sertão Tech")
+### 5. Patrocínio anual ("Mantenedor Sertão Tech")
 
 Cota do evento + episódios lançados ao longo do ano + divulgação mensal nos 26
 grupos + presença nos meetups da PHP PI e da PHPWomen PI. Mesmo modelo dos
 pacotes Enterprise/Growth/Starter do TDC: valor maior, marca aparece mais
 vezes.
 
-### 7. Relatório e descontos como argumento de venda
+### 6. Relatório e descontos como argumento de venda
 
 - "Relatório com comprovação em 30 dias" já é decisão nossa e o TDC não
   oferece no kit. Colocar como diferencial.
@@ -121,8 +114,7 @@ vezes.
 
 | Cota | Valor | Vagas |
 |---|---|---|
-| Cota Master: Sertão Tech 2027, apresentado por | R$ 15.000 | 1 |
-| Sertão Tech - Robótica / Sertão Tech - Negócios, apresentado por | R$ 10.000 | 1 cada |
+| Sertão Tech - Robótica / Sertão Tech - Negócios, apresentado por | R$ 15.000 | 1 cada |
 | Trilha Sênior+, apresentada por | R$ 7.500 | 1 |
 | Ouro | R$ 5.000 | 2 |
 | Prata | R$ 2.500 | 4 |
@@ -131,7 +123,7 @@ vezes.
 
 Valores novos são hipótese. Validar com patrocinadores de 2026 antes de
 publicar. Contrapartidas de cada cota: `midia-kit/2027/index.html`, slides
-15 a 20. Quantidades a confirmar com a operação: episódios e cortes dos
+15 a 19. Quantidades a confirmar com a operação: episódios e cortes dos
 programas, minutos de palco, credenciais, desconto de 5% ao combinar cotas.
 
 ## Plano de ação
@@ -158,7 +150,6 @@ programas, minutos de palco, credenciais, desconto de 5% ao combinar cotas.
 
 **P2 — novos produtos**
 
-- [ ] Cota "Sertão Tech 2027, apresentado por".
 - [ ] Trilha Sênior+ apresentada por.
 - [ ] Bolsas PHPWomen e Caravanas.
 - [ ] Menu de itens avulsos.
@@ -186,3 +177,7 @@ programas, minutos de palco, credenciais, desconto de 5% ao combinar cotas.
   patrocinador em até 30 dias (antes 15).
 - 2026-11-02 — Kit 2027: slide 05 com os logos dos patrocinadores de 2026
   por cota. Depoimentos continuam pendentes.
+- 2026-11-08 — Cota Master ("Sertão Tech 2027, apresentado por") removida do
+  kit, do site, do relatório 2026 e do painel. Programas Sertão Tech - Robótica
+  e Sertão Tech - Negócios sobem de R$ 10.000 para R$ 15.000 cada. Total de
+  vagas: 15.

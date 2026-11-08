@@ -18,10 +18,10 @@
     if (!cards.length) return;
 
     // sponsor_page separa os cliques por página no relatório. Sai do caminho
-    // da URL: a home de 2027 manda 'home2027', a de 2026 'home' e a página de
-    // cotas 'patrocinio' — os mesmos valores das páginas estáticas.
+    // da URL: a home de 2027 manda 'home2027', a de 2026 'home', a página de
+    // cotas de 2026 'patrocinio' e a de 2027 'patrocinio2027'.
     var p = location.pathname.replace(/\/$/, '');
-    var PAGE = p === '' ? 'home2027' : p === '/2026/patrocinio' ? 'patrocinio' : 'home';
+    var PAGE = p === '' ? 'home2027' : p === '/patrocinio' ? 'patrocinio2027' : p === '/2026/patrocinio' ? 'patrocinio' : 'home';
 
     function sponsorName(card) {
       var img = card.querySelector('img');

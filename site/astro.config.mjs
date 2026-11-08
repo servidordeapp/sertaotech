@@ -26,10 +26,10 @@ export default defineConfig({
     sitemap({
       // Decks públicos em public/ (passthrough) não são páginas Astro, então o
       // integration não os enxerga. Os noindex (/links, /after, /relatorio,
-      // /apresentacoes, /impressos, /cerimonial, /mesa-redonda) ficam de fora
+      // /apresentacoes, /impressos, /cerimonial, /mesa-redonda, /midia-kit/2027,
+      // que só vai pelo WhatsApp) ficam de fora
       // por não serem páginas Astro nem estarem aqui.
       customPages: [
-        'https://osertaotech.com.br/midia-kit/2027',
         'https://osertaotech.com.br/midia-kit/caravanas-2027',
         'https://osertaotech.com.br/midia-kit/2026',
       ],
@@ -40,6 +40,7 @@ export default defineConfig({
         const tune = {
           '/': { changefreq: 'weekly', priority: 1.0 },
           '/eventos-de-tecnologia-parnaiba': { changefreq: 'weekly', priority: 0.9 },
+          '/patrocinio': { changefreq: 'monthly', priority: 0.8 },
           // Arquivo congelado: não muda mais, mas continua indexado.
           '/2026': { changefreq: 'yearly', priority: 0.7 },
           '/2026/palestrantes': { changefreq: 'yearly', priority: 0.5 },

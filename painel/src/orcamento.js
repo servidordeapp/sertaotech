@@ -23,9 +23,8 @@ export const SITUACOES_DE_DESPESA = {
  */
 export const COTAS = {
   2027: [
-    { nome: 'Master', valor: 15000 },
-    { nome: 'Sertão Tech - Robótica', valor: 10000 },
-    { nome: 'Sertão Tech - Negócios', valor: 10000 },
+    { nome: 'Sertão Tech - Robótica', valor: 15000 },
+    { nome: 'Sertão Tech - Negócios', valor: 15000 },
     { nome: 'Trilha Sênior+', valor: 7500 },
     { nome: 'Ouro', valor: 5000 },
     { nome: 'Prata', valor: 2500 },
