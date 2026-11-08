@@ -39,6 +39,7 @@ export const CTA_2026: NavCta = {
 
 /** Edição vigente: a home é a própria página, então o menu é curto. */
 export const NAV_2027: NavLink[] = [
+  { label: 'Patrocínio', href: '/patrocinio', key: 'patrocinio' },
   { label: 'Fotos', href: '/fotos', key: 'fotos' },
   { label: 'Edição 2026', href: '/2026' },
 ];

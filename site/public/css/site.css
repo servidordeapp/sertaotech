@@ -1126,3 +1126,32 @@ html:has(dialog[open]) { overflow: hidden; }
   .lightbox__nav--next { right: 8px; }
   .lightbox__bar { flex-direction: column; align-items: flex-start; }
 }
+
+/* ---------- trilhas 2027: mesmo card do kit (midia-kit.css: .track) ---------- */
+.tracks { margin-top: 18px; }
+.t-principal { --track: var(--terra-600); --track-fg: var(--text-on-brand); }
+.t-robotica { --track: var(--amber-500); --track-fg: var(--espresso-900); }
+.t-negocios { --track: var(--espresso-800); --track-fg: var(--sand-100); }
+.t-senior { --track: var(--cactus-600); --track-fg: var(--sand-50); }
+.track { display: flex; flex-direction: column; overflow: hidden; background: var(--surface-card); border: 2px solid var(--border-ink); border-radius: var(--radius-card); box-shadow: var(--shadow-badge); }
+.track-head { display: flex; flex-direction: column; gap: 10px; padding: 22px; background: var(--track); color: var(--track-fg); }
+.track-head .eyebrow { color: inherit; opacity: 0.8; }
+.track-head h3 { font-family: var(--font-display); font-weight: 700; font-size: 26px; line-height: 1.1; margin: 0; color: inherit; }
+.track-body { display: flex; flex: 1; flex-direction: column; gap: 8px; padding: 20px 22px 22px; }
+.track-body__text { font-size: 15px; line-height: 1.55; color: var(--text-body); margin: 0; }
+.track-body .eyebrow { margin-top: auto; padding-top: 8px; color: var(--text-muted); }
+.track-body__small { font-size: 14px; line-height: 1.5; color: var(--text-muted); margin: 0; }
+
+/* ---------- faixas de números de /patrocinio e da home 2027 ---------- */
+/* No fim do arquivo para vencer o `.range-facts { 1fr }` do celular. */
+.range-facts--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.range-facts--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.range-facts--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+@media (max-width: 1024px) {
+  .range-facts--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .range-facts--5 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 760px) {
+  .range-facts--3 { grid-template-columns: 1fr; }
+  .range-facts--5 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

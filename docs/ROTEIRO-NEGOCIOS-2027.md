@@ -24,7 +24,7 @@ recebeu o kit.
 - Vira programa no YouTube, formato inspirado em Shark Tank, O Plano Perfeito
   e G4 Arena, com apresentador.
 - **Sertão Tech - Negócios, apresentado por [marca]:** cota exclusiva, 1 vaga,
-  R$ 10.000. Contrapartidas propostas no slide 15 (a validar): vinheta,
+  R$ 15.000. Contrapartidas propostas no slide 15 (a validar): vinheta,
   logo no cenário, mínimo de 3 episódios e 6 cortes, leads da trilha, 6
   credenciais, tudo da cota Ouro, jurado ou mentor da marca na banca, prêmio
   da marca à startup destaque e palestra empresarial de até 20 min.
@@ -116,7 +116,7 @@ clara, time, tração, ligação com o Piauí/região, potencial de vídeo
   exclusividade de segmento. Usar o contrato padrão de patrocínio da 3ª
   edição (ver "Para a 3ª edição (2027)" no
   `RELATORIO-PATROCINADORES-2026.md`).
-- **Nota fiscal:** a cota de R$ 10.000 só fecha com empresa grande se o
+- **Nota fiscal:** a cota de R$ 15.000 só fecha com empresa grande se o
   Sertão Tech emitir NF. Resolver quem fatura antes de vender.
 - **Imagem:** termo de uso de imagem assinado por todos que aparecem no
   vídeo (startups, banca, mentores, apresentador).
@@ -139,7 +139,7 @@ D+90 = 13/01/2028.
 - [ ] Validar o formato do dia com a Startup Piauí e com a produção.
 - [ ] Validar as contrapartidas da cota Sertão Tech - Negócios propostas no
       slide 15 do `midia-kit/2027`.
-- [ ] Orçar a produção audiovisual (a cota de R$ 10.000 precisa cobrir ou
+- [ ] Orçar a produção audiovisual (a cota de R$ 15.000 precisa cobrir ou
       ajudar a cobrir).
 - [ ] Definir quem emite a NF do Sertão Tech (CNPJ).
 - [ ] Contrato padrão de patrocínio revisado por advogado, com relatório
@@ -232,3 +232,4 @@ D+90 = 13/01/2028.
 - 2026-11-02 — Data e local definidos (15 e 16/10/2027, UFDPar), cronograma
   com datas, programa renomeado para Sertão Tech - Negócios, relatório em
   D+30 e contrapartidas propostas no slide 15 do kit.
+- 2026-11-08 — Cota Sertão Tech - Negócios sobe de R$ 10.000 para R$ 15.000.

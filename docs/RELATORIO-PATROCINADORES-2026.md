@@ -342,7 +342,7 @@ sem link para o kit: o próximo passo é uma conversa (decidido em 2026-11-05).
 3. **Imagine {{empresa}} apresentando um programa:** Sertão Tech - Robótica e
    Sertão Tech - Negócios, com o logo do patrocinador no "apresentado por".
 4. **O próximo capítulo é maior:** por que seguir junto.
-5. **Vamos construir a 3ª edição juntos?** 16 vagas, sem valores, e o botão.
+5. **Vamos construir a 3ª edição juntos?** 15 vagas, sem valores, e o botão.
 
 Botão para o WhatsApp com a mensagem pronta: "Oi! Aqui é da {{empresa}}. Vi o
 relatório do Sertão Tech 2026 e quero entender se faz sentido patrocinar de novo
@@ -529,7 +529,7 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
 - [ ] **CNPJ e nota fiscal.** Definir quem fatura pelo Sertão Tech. Empresa
       grande paga por TED/boleto contra NF, pedida com antecedência (ex.: 10
       dias úteis antes do vencimento, pagamento em dias fixos do mês).
-      Precisa estar resolvido antes de vender os programas de R$ 10.000.
+      Precisa estar resolvido antes de vender os programas de R$ 15.000.
 - [ ] **Contrato padrão de patrocínio**, revisado por advogado, com:
   - contrapartidas detalhadas por cota (anexo);
   - troca de contrapartida só por escrito, mantendo o valor;
@@ -608,3 +608,5 @@ Negócios estão também no `ROTEIRO-NEGOCIOS-2027.md`.
   caminho relativo dava 404 no deck online.
 - 2026-11-05 — Feedback sai do Google Forms: página própria no site e tela
   `/feedback` no painel.
+- 2026-11-08 — Cota Master removida: o slide de vagas passa a 15 vagas, sem
+  o chip "1 Master". Programas de R$ 15.000.

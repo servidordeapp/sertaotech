@@ -12,11 +12,6 @@
       "permanent": false
     },
     {
-      "source": "/patrocinio",
-      "destination": "/2026/patrocinio",
-      "permanent": false
-    },
-    {
       "source": "/caravanas",
       "destination": "/2026/caravanas",
       "permanent": false

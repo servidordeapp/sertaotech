@@ -17,6 +17,7 @@ import { graph, organization, website, webpage } from '../lib/schema';
 import { NAV_2027, CTA_2027 } from '../data/nav';
 import { GALERIA_2026, AFTER_2026, foto, srcset } from '../data/fotos';
 import evento from '../data/evento-2027.json';
+import Trilhas2027 from '../components/Trilhas2027.astro';
 
 const path = '/';
 const title = 'Sertão Tech 2027 — Lista de espera';
@@ -75,15 +76,17 @@ const jsonLd = graph(
       <div class="fact">
         <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></span>
         <div>
-          <div class="fact__k">palestras e minicursos</div>
-          <div class="fact__v">15</div>
+          <div class="fact__k">presentes em 2026</div>
+          <div class="fact__v">176</div>
+          <div class="fact__note">+61% sobre a 1ª edição</div>
         </div>
       </div>
       <div class="fact">
         <span class="fact__icon"><svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2"/><path d="M13 17v2"/><path d="M13 11v2"/></svg></span>
         <div>
-          <div class="fact__k">caravanas</div>
-          <div class="fact__v">4</div>
+          <div class="fact__k">comparecimento</div>
+          <div class="fact__v">76%</div>
+          <div class="fact__note">117% da meta de público</div>
         </div>
       </div>
       <div class="fact">
@@ -95,6 +98,30 @@ const jsonLd = graph(
       </div>
     </div>
   </div>
+
+  <!-- 2027: TRILHAS (mesmo dado de /patrocinio) -->
+  <section class="section">
+    <div class="container">
+      <span class="eyebrow">// 2027 · o sertão tech está crescendo</span>
+      <h2 class="section-title">Quatro trilhas, um só evento</h2>
+      <p class="section-lead">Do primeiro passo na tecnologia à liderança técnica.</p>
+      <div class="range-facts range-facts--3">
+        <div class="range-fact"><span class="range-fact__k">meta de inscritos</span><div class="range-fact__v">350</div></div>
+        <div class="range-fact"><span class="range-fact__k">dias de evento</span><div class="range-fact__v">2</div></div>
+        <div class="range-fact"><span class="range-fact__k">trilhas</span><div class="range-fact__v">4</div></div>
+      </div>
+      <Trilhas2027 />
+      <!-- Teaser das propriedades de mídia: o detalhe fica em /patrocinio. -->
+      <div class="card card--badge" style="margin-top: 18px; padding: 28px;">
+        <span class="eyebrow">// novidade 2027 · episódios no YouTube</span>
+        <h3 class="card-title" style="margin-top: 10px;">Robótica e Negócios viram programas, cada um com uma marca apresentadora.</h3>
+        <p class="card-text">Sertão Tech Robótica e Sertão Tech Negócios, apresentados por sua marca. Uma vaga em cada.</p>
+        <div class="hero__actions">
+          <a class="btn btn--primary btn--md" href="/patrocinio#propriedades">Conhecer as propriedades<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- GALERIA DA 2ª EDIÇÃO -->
   <section class="section">
@@ -156,8 +183,11 @@ const jsonLd = graph(
           <div class="card waitlist-card">
             <span class="chip-icon chip-icon--terra"><svg class="icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26"/></svg></span>
             <h3 class="card-title">Patrocinar</h3>
-            <p class="card-text">Receba as cotas de 2027 assim que saírem e conecte sua marca aos talentos de tecnologia do norte do Piauí.</p>
-            <a class="btn btn--primary btn--md" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar</a>
+            <p class="card-text">Programas no YouTube, trilhas com marca apresentadora e 15 vagas. Conecte sua marca aos talentos de tecnologia do norte do Piauí.</p>
+            <div class="hero__actions" style="margin-top: auto;">
+              <a class="btn btn--primary btn--md" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar</a>
+              <a class="btn btn--outline btn--md" href="/patrocinio">Ver como patrocinar</a>
+            </div>
           </div>
         </div>
 
@@ -197,7 +227,8 @@ const jsonLd = graph(
         </div>
 
         <LogoWall utm="home2027" apoio="logos" />
-      <div class="sponsor-cta">
+      <div class="sponsor-cta hero__actions" style="justify-content: center;">
+        <a class="btn btn--outline btn--lg" href="/patrocinio">Ver como patrocinar em 2027</a>
         <a class="btn btn--primary btn--lg" href="/lista-de-espera/patrocinador" data-waitlist="patrocinador">Quero patrocinar em 2027<svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
       </div>
     </div>

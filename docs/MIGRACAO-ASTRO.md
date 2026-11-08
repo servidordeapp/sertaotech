@@ -130,8 +130,8 @@ Negócio é evento anual com arquivo por edição. Isso dita o roteamento:
   `permanent: false` de propósito.
 - **Três funis de captação**: participante, palestrante e patrocinador, via
   Google Forms, com evento GA4 `waitlist_click` lido do `data-waitlist`.
-- **Patrocínio é o produto que paga.** Escada de cotas (Master R$ 15.000,
-  Robótica e Negócios R$ 10.000 cada, Sênior+ R$ 7.500, Ouro R$ 5.000, Prata
+- **Patrocínio é o produto que paga.** Escada de cotas (Robótica e Negócios
+  R$ 15.000 cada, Sênior+ R$ 7.500, Ouro R$ 5.000, Prata
   R$ 2.500, Bronze R$ 1.000), mural de logos com telemetria própria
   (`sponsor_impression` e `sponsor_click`, a impressão servindo de denominador
   via `IntersectionObserver`) e relatório pós-evento prometido em 30 dias. Nome
