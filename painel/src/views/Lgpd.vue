@@ -11,6 +11,7 @@ import { useToast } from 'primevue/usetoast';
 import Estado from '../components/Estado.vue';
 import Pagina from '../components/Pagina.vue';
 import { api } from '../api.js';
+import { SITUACOES, rotuloDoTipo } from '../certificados.js';
 import { dataHora } from '../formato.js';
 
 const PALAVRA = 'ANONIMIZAR';
@@ -28,6 +29,13 @@ const confirmando = ref(false);
 const digitado = ref('');
 const anonimizando = ref(false);
 const podeAnonimizar = computed(() => digitado.value.trim().toUpperCase() === PALAVRA);
+
+// Certificado emitido sai da página de validação: a pessoa tem de guardar o PDF antes.
+const emitidos = computed(() => (resultado.value?.certificados ?? [])
+  .filter((c) => ['emitido', 'revogado'].includes(c.situacao)));
+const temAlgo = computed(() => resultado.value && (resultado.value.inscricoes.length
+  || resultado.value.participantes.length
+  || resultado.value.certificados.length));
 
 async function consultar() {
   buscando.value = true;
@@ -57,7 +65,7 @@ async function anonimizar() {
     toast.add({
       severity: 'success',
       summary: 'Anonimizado',
-      detail: `${feito.inscricoes} inscrição(ões), ${feito.participantes} ingresso(s) e ${feito.emails} registro(s) de envio.`,
+      detail: `${feito.inscricoes} inscrição(ões), ${feito.participantes} ingresso(s), ${feito.certificados} certificado(s) e ${feito.emails} registro(s) de envio.`,
       life: 6000,
     });
 
@@ -118,7 +126,7 @@ onMounted(carregaAuditoria);
         <h2 class="cartao__titulo mono">{{ resultado.email }}</h2>
 
         <Message
-          v-if="!resultado.inscricoes.length && !resultado.participantes.length && !resultado.emails.length"
+          v-if="!temAlgo && !resultado.emails.length"
           severity="info"
           :closable="false"
           class="consulta__aviso"
@@ -143,6 +151,14 @@ onMounted(carregaAuditoria);
             </div>
           </dl>
 
+          <h3 class="eyebrow consulta__secao">Certificados ({{ resultado.certificados.length }})</h3>
+          <ul class="envios">
+            <li v-for="c in resultado.certificados" :key="c.id">
+              {{ c.ano }} · {{ rotuloDoTipo(c.tipo) }} · {{ SITUACOES[c.situacao].rotulo }}<template v-if="c.codigo"> · <span class="mono">{{ c.codigo }}</span></template>
+            </li>
+            <li v-if="!resultado.certificados.length">Nenhum.</li>
+          </ul>
+
           <h3 class="eyebrow consulta__secao">E-mails enviados ({{ resultado.emails.length }})</h3>
           <ul class="envios">
             <li v-for="e in resultado.emails" :key="e.id">
@@ -151,7 +167,11 @@ onMounted(carregaAuditoria);
             <li v-if="!resultado.emails.length">Nenhum.</li>
           </ul>
 
-          <div v-if="resultado.inscricoes.length || resultado.participantes.length" class="consulta__acoes">
+          <Message v-if="emitidos.length" severity="warn" :closable="false" class="consulta__aviso">
+            Esta pessoa tem {{ emitidos.length }} certificado(s) emitido(s). Antes de excluir, avise que o certificado sai da página de validação e peça que guarde o PDF: com o arquivo, ela ainda comprova que é o original.
+          </Message>
+
+          <div v-if="temAlgo" class="consulta__acoes">
             <Button label="Anonimizar titular" icon="pi pi-trash" severity="danger" size="small" @click="pedirAnonimizacao" />
           </div>
         </template>
@@ -203,7 +223,10 @@ onMounted(carregaAuditoria);
             <ul>
               <li>Nome, e-mail, WhatsApp e respostas somem de {{ resultado.inscricoes.length }} inscrição(ões).</li>
               <li>Nome, e-mail, telefone, ingresso e pedido somem de {{ resultado.participantes.length }} ingresso(s). A presença fica, sem identificar a pessoa, e futuras importações não a trazem de volta.</li>
-              <li>No log de envio, o endereço vira um hash.</li>
+              <li v-if="resultado.certificados.length">
+                {{ resultado.certificados.length }} certificado(s): rascunho sai inteiro; emitido perde nome, e-mail e PDF e fica como "cancelado a pedido do titular". Código e hash ficam, sem dado pessoal.
+              </li>
+              <li>No log de envio e no aviso de certificado, o endereço vira um hash.</li>
               <li>A data e a versão do aceite de LGPD ficam, como prova do consentimento.</li>
               <li>A ação fica registrada no histórico de acesso.</li>
             </ul>

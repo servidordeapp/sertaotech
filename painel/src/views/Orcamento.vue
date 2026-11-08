@@ -111,8 +111,8 @@ function exportar() {
   const situacao = (d) => SITUACOES_DE_DESPESA[d.vencida ? 'vencido' : d.status];
 
   salvaArquivo(csv(
-    ['Categoria', 'Descrição', 'Fornecedor', 'Responsável', 'Orçado', 'Realizado', 'Status', 'Vencimento'],
-    dados.value.despesas.map((d) => [d.categoria, d.descricao, d.fornecedor, d.responsavel, valorCsv(d.orcado_centavos), valorCsv(d.realizado_centavos), situacao(d), d.vencimento ? dia(d.vencimento) : '']),
+    ['Categoria', 'Descrição', 'Fornecedor', 'Responsável', 'Orçado', 'Realizado', 'Status', 'Vencimento', 'Anotações'],
+    dados.value.despesas.map((d) => [d.categoria, d.descricao, d.fornecedor, d.responsavel, valorCsv(d.orcado_centavos), valorCsv(d.realizado_centavos), situacao(d), d.vencimento ? dia(d.vencimento) : '', d.anotacoes ?? '']),
   ), `${nome}-despesas.csv`);
 
   salvaArquivo(csv(

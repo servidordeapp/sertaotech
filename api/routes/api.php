@@ -2,8 +2,10 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\CertificadoPublicoController;
 use App\Http\Controllers\FeedbackPatrocinadorController;
 use App\Http\Controllers\Painel\AuditoriasController;
+use App\Http\Controllers\Painel\CertificadosController;
 use App\Http\Controllers\Painel\DespesasController;
 use App\Http\Controllers\Painel\EdicoesController;
 use App\Http\Controllers\Painel\EmailsController;
@@ -23,6 +25,11 @@ Route::post('lista-de-espera/{tipo}', [WaitlistController::class, 'store'])
 
 Route::post('feedback-patrocinador/{edicao:ano}', [FeedbackPatrocinadorController::class, 'store'])
     ->middleware('throttle:10,1');
+
+// O código tem 60 bits: o limite é contra varredura, não contra adivinhação.
+Route::get('certificados/{codigo}', [CertificadoPublicoController::class, 'show'])
+    ->where('codigo', '[A-Za-z0-9-]{1,30}')
+    ->middleware('throttle:30,1');
 
 /*
  * Painel (painel.osertaotech.com.br). Sessão por cookie, não token: quem
@@ -83,6 +90,17 @@ Route::prefix('painel')->group(function (): void {
             Route::get('auditorias', [AuditoriasController::class, 'index']);
 
             Route::get('participantes/{edicao:ano}', [ParticipantesController::class, 'index']);
+
+            Route::get('certificados/{edicao:ano}', [CertificadosController::class, 'index']);
+            Route::post('certificados/{edicao:ano}', [CertificadosController::class, 'store']);
+            Route::post('certificados/{edicao:ano}/preparar', [CertificadosController::class, 'preparar']);
+            Route::get('certificados/{edicao:ano}/previa', [CertificadosController::class, 'previa']);
+            Route::post('certificados/{edicao:ano}/emitir', [CertificadosController::class, 'emitir']);
+            Route::post('certificados/{edicao:ano}/emitir/{certificado}', [CertificadosController::class, 'emitirUm'])->scopeBindings();
+            Route::post('certificados/{edicao:ano}/avisar', [CertificadosController::class, 'avisar']);
+            Route::post('certificados/{certificado}/revogar', [CertificadosController::class, 'revogar']);
+            Route::patch('certificados/{certificado}', [CertificadosController::class, 'update']);
+            Route::delete('certificados/{certificado}', [CertificadosController::class, 'destroy']);
         });
     });
 });

@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import { auth, carregaSessao, telaInicial } from './auth.js';
 import Login from './views/Login.vue';
 import Apresentacoes from './views/Apresentacoes.vue';
+import Certificados from './views/Certificados.vue';
 import Inscricoes from './views/Inscricoes.vue';
 import Emails from './views/Emails.vue';
 import Feedbacks from './views/Feedbacks.vue';
@@ -27,6 +28,12 @@ export const router = createRouter({
       path: '/participantes',
       name: 'participantes',
       component: Participantes,
+      meta: { papeis: ['admin'], porEdicao: true, edicaoEncerrada: true },
+    },
+    {
+      path: '/certificados',
+      name: 'certificados',
+      component: Certificados,
       meta: { papeis: ['admin'], porEdicao: true, edicaoEncerrada: true },
     },
     { path: '/metricas', name: 'metricas', component: Metricas, meta: { papeis: COM_INSCRICOES } },

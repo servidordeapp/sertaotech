@@ -1,0 +1,196 @@
+---
+/**
+ * Validação pública: o QR Code do PDF abre /certificado/validar?codigo=..., já
+ * preenchido. Mostra nome, tipo, edição, carga horária e situação, nunca o
+ * e-mail. A conferência do arquivo calcula o SHA-256 do PDF no próprio navegador
+ * e compara com o guardado na emissão: o arquivo não sai do computador de quem
+ * confere. Fora do Google: noindex e fora do sitemap (astro.config.mjs).
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import FooterCols2027 from '../../components/FooterCols2027.astro';
+import FormEstilos from '../../components/FormEstilos.astro';
+import { NAV_2027, CTA_2027 } from '../../data/nav';
+
+const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
+---
+<BaseLayout
+  title="Validar certificado | Sertão Tech"
+  description="Confira se um certificado do Sertão Tech é válido pelo código impresso no PDF."
+  path="/certificado/validar"
+  noindex
+  navLinks={NAV_2027}
+  cta={CTA_2027}
+  brandHref="/"
+  footerAbout="Feito no sertão, pra todo mundo dar o primeiro passo na tecnologia. 3ª edição em 15 e 16 de outubro de 2027, na UFDPar."
+  footerApoio="logos"
+>
+<main id="conteudo">
+  <section class="section">
+    <div class="container wl">
+      <h1 class="section-title">Validar certificado</h1>
+      <p class="wl-lead">Digite o código impresso no certificado, ao lado do QR Code.</p>
+
+      <form id="vc-form" novalidate data-api={api}>
+        <div class="wl-field">
+          <label for="vc-codigo">Código de validação</label>
+          <input id="vc-codigo" name="codigo" required autocomplete="off" spellcheck="false" autocapitalize="characters"
+            placeholder="ST26-XXXX-XXXX-XXXX" pattern="[A-Za-z0-9\-]{4,30}" maxlength="30" />
+        </div>
+        <p id="wl-msg" role="alert" hidden></p>
+        <button class="btn btn--primary btn--lg" type="submit">Validar</button>
+      </form>
+
+      <div id="vc-resultado" class="vc-resultado" role="status" hidden>
+        <p id="vc-situacao" class="vc-situacao"></p>
+        <p id="vc-cancelado" class="vc-cancelado" hidden>Atendendo à Lei Geral de Proteção de Dados (LGPD), os dados da pessoa foram excluídos e este certificado não pode mais ser exibido aqui. Se você tem o arquivo PDF, confira abaixo se ele é o original.</p>
+        <dl id="vc-dados" class="vc-dados">
+          <dt>Nome</dt><dd id="vc-nome"></dd>
+          <dt>Certificado de</dt><dd id="vc-tipo"></dd>
+          <dt id="vc-titulo-rotulo">Apresentação</dt><dd id="vc-titulo"></dd>
+          <dt>Evento</dt><dd id="vc-edicao"></dd>
+          <dt>Carga horária</dt><dd id="vc-carga"></dd>
+          <dt id="vc-atividades-rotulo">Atividades</dt><dd id="vc-atividades"></dd>
+          <dt>Código</dt><dd id="vc-cod" class="vc-mono"></dd>
+        </dl>
+
+        <div class="wl-box">
+          <div class="wl-field">
+            <label for="vc-arquivo">Tem o arquivo? Confira se é o original</label>
+            <small>O PDF é conferido aqui no seu navegador e não é enviado para lugar nenhum.</small>
+            <input id="vc-arquivo" type="file" accept="application/pdf,.pdf" />
+          </div>
+          <p id="vc-arquivo-resultado" class="vc-situacao" role="status" hidden></p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<Fragment slot="footer-cols"><FooterCols2027 /></Fragment>
+
+<script is:inline slot="scripts">
+  var form = document.getElementById('vc-form');
+  var campo = document.getElementById('vc-codigo');
+  var msg = document.getElementById('wl-msg');
+  var resultado = document.getElementById('vc-resultado');
+  var arquivo = document.getElementById('vc-arquivo');
+  var arquivoResultado = document.getElementById('vc-arquivo-resultado');
+  var TIPOS = { participante: 'Participação', palestrante: 'Palestrante', ministrante: 'Ministrante', organizacao: 'Organização' };
+  var atual = null;
+
+  function texto(id, valor) { document.getElementById(id).textContent = valor; }
+  function mostra(id, visivel) { document.getElementById(id).hidden = !visivel; }
+
+  function situacao(el, tipo, frase) {
+    el.textContent = frase;
+    el.className = 'vc-situacao vc-situacao--' + tipo;
+    el.hidden = false;
+  }
+
+  function exibe(c) {
+    atual = c;
+    arquivo.value = '';
+    arquivoResultado.hidden = true;
+    resultado.hidden = false;
+    var cancelado = c.situacao === 'cancelado';
+    mostra('vc-cancelado', cancelado);
+    mostra('vc-dados', !cancelado);
+    // Cancelado pela LGPD: a API não devolve nome nem dados, só o hash para conferir o arquivo.
+    if (cancelado) {
+      situacao(document.getElementById('vc-situacao'), 'aviso', 'Certificado emitido e depois cancelado a pedido do titular.');
+      return;
+    }
+    var data = new Date(c.edicao.data + 'T12:00:00').toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
+    situacao(document.getElementById('vc-situacao'), c.situacao === 'valido' ? 'ok' : 'erro',
+      c.situacao === 'valido' ? 'Certificado válido, emitido pelo Sertão Tech.' : 'Certificado revogado: foi emitido, mas não vale mais.');
+    texto('vc-nome', c.nome);
+    texto('vc-tipo', TIPOS[c.tipo] || c.tipo);
+    texto('vc-titulo', c.titulo || '');
+    mostra('vc-titulo', !!c.titulo);
+    mostra('vc-titulo-rotulo', !!c.titulo);
+    texto('vc-edicao', c.edicao.numero + ' edição do Sertão Tech, ' + data);
+    texto('vc-carga', c.carga_horaria + (c.carga_horaria === 1 ? ' hora' : ' horas'));
+    texto('vc-atividades', c.atividades.join('; '));
+    mostra('vc-atividades', c.atividades.length > 0);
+    mostra('vc-atividades-rotulo', c.atividades.length > 0);
+    texto('vc-cod', c.codigo);
+  }
+
+  function valida(codigo) {
+    msg.hidden = true;
+    resultado.hidden = true;
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true;
+    btn.setAttribute('aria-busy', 'true');
+    history.replaceState(null, '', '?codigo=' + encodeURIComponent(codigo));
+    fetch(form.dataset.api + '/api/certificados/' + encodeURIComponent(codigo), { headers: { Accept: 'application/json' } })
+      .then(function (r) {
+        if (r.status === 404) throw new Error('Nenhum certificado com este código. Confira as letras e os números.');
+        if (r.status === 429) throw new Error('Muitas consultas seguidas. Espere um minuto e tente de novo.');
+        if (!r.ok) throw new Error('Algo deu errado. Tente de novo em instantes.');
+        return r.json();
+      })
+      .then(function (j) { exibe(j.data); })
+      .catch(function (err) {
+        msg.textContent = err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message;
+        msg.hidden = false;
+      })
+      .then(function () {
+        btn.disabled = false;
+        btn.removeAttribute('aria-busy');
+      });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    campo.value = campo.value.trim().toUpperCase();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    valida(campo.value);
+  });
+
+  arquivo.addEventListener('change', function () {
+    var pdf = arquivo.files && arquivo.files[0];
+    if (!pdf || !atual) return;
+    if (!window.crypto || !crypto.subtle) {
+      situacao(arquivoResultado, 'erro', 'Este navegador não consegue conferir o arquivo. Tente em outro.');
+      return;
+    }
+    pdf.arrayBuffer()
+      .then(function (bytes) { return crypto.subtle.digest('SHA-256', bytes); })
+      .then(function (hash) {
+        var hex = Array.prototype.map.call(new Uint8Array(hash), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+        if (hex !== atual.pdf_sha256) {
+          situacao(arquivoResultado, 'erro', 'Este arquivo não é o original emitido para este código. Pode ter sido alterado.');
+        } else if (atual.situacao === 'valido' || atual.situacao === 'cancelado') {
+          situacao(arquivoResultado, 'ok', 'Arquivo original, emitido pelo Sertão Tech.');
+        } else {
+          situacao(arquivoResultado, 'erro', 'Arquivo original, mas o certificado foi revogado e não vale mais.');
+        }
+      });
+  });
+
+  var inicial = new URLSearchParams(location.search).get('codigo');
+  if (inicial) {
+    campo.value = inicial.trim().toUpperCase();
+    valida(campo.value);
+  }
+</script>
+
+<FormEstilos />
+<style>
+  .vc-resultado { margin-top: var(--space-8); }
+  .vc-situacao { font-weight: 600; padding: var(--space-3) var(--space-4); border-radius: var(--radius-field); margin: 0 0 var(--space-5); }
+  .vc-situacao--ok { color: var(--cactus-600); background: var(--cactus-100); }
+  .vc-situacao--erro { color: var(--brick-600); background: var(--brick-100); }
+  .vc-situacao--aviso { color: var(--honey-700); background: var(--honey-100); }
+  .vc-cancelado { margin: 0 0 var(--space-6); }
+  .vc-dados { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-5); margin: 0 0 var(--space-6); }
+  .vc-dados dt { color: var(--text-muted); }
+  .vc-dados dd { margin: 0; color: var(--text-strong); overflow-wrap: anywhere; }
+  .vc-dados [hidden] { display: none; }
+  .vc-mono { font-family: var(--font-mono); }
+  @media (max-width: 30rem) {
+    .vc-dados { grid-template-columns: 1fr; gap: 0; }
+    .vc-dados dd { margin-bottom: var(--space-3); }
+  }
+</style>
+</BaseLayout>

@@ -24,6 +24,12 @@ class Edicao extends Model
         return $this->hasMany(Receita::class);
     }
 
+    /** @return HasMany<Certificado, $this> */
+    public function certificados(): HasMany
+    {
+        return $this->hasMany(Certificado::class);
+    }
+
     /** @return HasMany<Despesa, $this> */
     public function despesas(): HasMany
     {
