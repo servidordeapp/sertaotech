@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use App\Jobs\BackupBanco;
+use App\Jobs\LimpaBackups;
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Schedule;
@@ -24,3 +26,9 @@ Schedule::command('queue:work --stop-when-empty --max-time=50')
     ->everyMinute()
     ->withoutOverlapping(10)
     ->appendOutputTo(storage_path('logs/cron-queue.log'));
+
+// Backup às 4h; a limpeza vem depois para nunca apagar o arquivo recém-criado.
+// Os jobs vão para a fila, e quem a esvazia é o cron do cPanel via schedule:run.
+// O app roda em UTC; as 4h são de Brasília.
+Schedule::job(new BackupBanco())->dailyAt('04:00')->timezone('America/Sao_Paulo');
+Schedule::job(new LimpaBackups())->dailyAt('04:30')->timezone('America/Sao_Paulo');
