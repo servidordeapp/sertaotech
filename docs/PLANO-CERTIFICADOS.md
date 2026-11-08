@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** decisões fechadas, implementação não iniciada. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** decisões fechadas, fase 1 implementada. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
@@ -183,7 +183,7 @@ Não recomendo a trava de retenção do R2 (bucket lock): ela impediria apagar o
 certificados: edicao_id, participante_id (null = adicionado à mão), nome, email,
               tipo, titulo, carga_horaria, atividades (json),
               codigo (unique, null no rascunho), pdf_caminho, pdf_sha256,
-              emitido_em, revogado_em, motivo_revogacao
+              emitido_em, descartado_em, revogado_em, motivo_revogacao
               unique(edicao_id, participante_id, tipo)
 
 avisos_certificado: edicao_id, email, enviado_em (null = pendente)
@@ -191,7 +191,9 @@ avisos_certificado: edicao_id, email, enviado_em (null = pendente)
 ```
 
 - Tudo que vai impresso fica copiado no certificado, para uma reimportação da planilha não mudar nada.
-- "Preparar" é idempotente: só cria rascunho para quem ainda não tem certificado daquele tipo, e não recria o que foi descartado ou revogado.
+- "Preparar" é idempotente: só cria rascunho para quem ainda não tem certificado daquele tipo, e não recria o que foi descartado ou revogado. Por isso descartar marca `descartado_em` em vez de apagar a linha.
+- O certificado reemitido depois de uma revogação entra sem `participante_id`, porque a linha revogada ocupa a chave única.
+- `avisos_certificado` entra na fase 4, junto com o disparo.
 
 ## Garantia de um e-mail por edição
 

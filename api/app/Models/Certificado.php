@@ -1,0 +1,161 @@
+<?php
+
+declare(strict_types=1);
+
+namespace App\Models;
+
+use Database\Factories\CertificadoFactory;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
+use LogicException;
+
+/**
+ * Um certificado por pessoa e papel em uma edição. Sem `emitido_em` é rascunho
+ * e a revisão mexe à vontade. Emitido, é documento: só aceita a revogação, uma
+ * vez. A trava vale para o Eloquent; update em massa pelo query builder passa
+ * por fora, então nada no projeto altera certificado assim.
+ *
+ * @property int $id
+ * @property int $edicao_id
+ * @property int|null $participante_id
+ * @property string $nome
+ * @property string $tipo
+ * @property int $carga_horaria
+ * @property list<string> $atividades
+ * @property Carbon|null $emitido_em
+ * @property Carbon|null $descartado_em
+ * @property Carbon|null $revogado_em
+ * @property-read Edicao $edicao
+ * @property-read Participante|null $participante
+ */
+class Certificado extends Model
+{
+    /** @use HasFactory<CertificadoFactory> */
+    use HasFactory;
+
+    public const TIPOS = ['participante', 'palestrante', 'ministrante', 'organizacao'];
+
+    /** Cupom da planilha que já diz o papel. PALESTRANTE também cobre ministrante: a revisão separa. */
+    public const TIPO_DO_CUPOM = ['PALESTRANTE' => 'palestrante', 'ORGANIZACAO' => 'organizacao'];
+
+    /** O que a revogação pode tocar num certificado emitido. */
+    private const CAMPOS_DA_REVOGACAO = ['revogado_em', 'motivo_revogacao', 'updated_at'];
+
+    protected $guarded = [];
+
+    protected $attributes = ['atividades' => '[]'];
+
+    protected function casts(): array
+    {
+        return [
+            'carga_horaria' => 'integer',
+            'atividades'    => 'array',
+            'emitido_em'    => 'datetime',
+            'descartado_em' => 'datetime',
+            'revogado_em'   => 'datetime',
+        ];
+    }
+
+    protected static function booted(): void
+    {
+        static::updating(function (Certificado $certificado): void {
+            if ($certificado->getOriginal('emitido_em') === null) {
+                return;
+            }
+
+            $revogacao = $certificado->getOriginal('revogado_em') === null
+                && array_diff(array_keys($certificado->getDirty()), self::CAMPOS_DA_REVOGACAO) === [];
+
+            if (! $revogacao) {
+                throw new LogicException("Certificado #{$certificado->id} já foi emitido e não muda.");
+            }
+        });
+
+        static::deleting(function (Certificado $certificado): void {
+            if ($certificado->getOriginal('emitido_em') !== null) {
+                throw new LogicException("Certificado #{$certificado->id} já foi emitido e não pode ser apagado.");
+            }
+        });
+    }
+
+    /** @return BelongsTo<Edicao, $this> */
+    public function edicao(): BelongsTo
+    {
+        return $this->belongsTo(Edicao::class);
+    }
+
+    /** @return BelongsTo<Participante, $this> */
+    public function participante(): BelongsTo
+    {
+        return $this->belongsTo(Participante::class);
+    }
+
+    public function ehRascunho(): bool
+    {
+        return $this->emitido_em === null && $this->descartado_em === null;
+    }
+
+    public function situacao(): string
+    {
+        return match (true) {
+            $this->revogado_em !== null   => 'revogado',
+            $this->emitido_em !== null    => 'emitido',
+            $this->descartado_em !== null => 'descartado',
+            default                       => 'rascunho',
+        };
+    }
+
+    /**
+     * Cria os rascunhos que faltam: participante para quem fez check-in, e
+     * palestrante ou organização pelo cupom, com ou sem check-in, porque a
+     * revisão é quem separa quem cancelou. Rodar de novo não duplica nem recria
+     * o que foi descartado: a chave única ignora a linha que já existe.
+     *
+     * @param  array{carga_evento: int, carga_organizacao: int}  $config
+     * @return int quantos rascunhos novos
+     */
+    public static function prepara(Edicao $edicao, array $config): int
+    {
+        $agora  = now();
+        $linhas = [];
+
+        $participantes = Participante::query()
+            ->where('edicao_id', $edicao->id)
+            ->whereNull('anonimizado_em')
+            ->get();
+
+        foreach ($participantes as $participante) {
+            $tipos = [];
+
+            if ($participante->compareceu) {
+                $tipos['participante'] = $config['carga_evento'];
+            }
+
+            $doCupom = self::TIPO_DO_CUPOM[(string) $participante->cupom] ?? null;
+            if ($doCupom !== null) {
+                $tipos[$doCupom] = $doCupom === 'organizacao' ? $config['carga_organizacao'] : $config['carga_evento'];
+            }
+
+            foreach ($tipos as $tipo => $carga) {
+                $linhas[] = [
+                    'edicao_id'       => $edicao->id,
+                    'participante_id' => $participante->id,
+                    'nome'            => $participante->nome,
+                    'email'           => $participante->email,
+                    'tipo'            => $tipo,
+                    'carga_horaria'   => $carga,
+                    'atividades'      => '[]',
+                    'created_at'      => $agora,
+                    'updated_at'      => $agora,
+                ];
+            }
+        }
+
+        return DB::transaction(fn (): int => collect($linhas)
+            ->chunk(500)
+            ->sum(fn ($lote): int => self::query()->insertOrIgnore($lote->all())));
+    }
+}

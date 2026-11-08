@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\FeedbackPatrocinadorController;
 use App\Http\Controllers\Painel\AuditoriasController;
+use App\Http\Controllers\Painel\CertificadosController;
 use App\Http\Controllers\Painel\DespesasController;
 use App\Http\Controllers\Painel\EdicoesController;
 use App\Http\Controllers\Painel\EmailsController;
@@ -83,6 +84,12 @@ Route::prefix('painel')->group(function (): void {
             Route::get('auditorias', [AuditoriasController::class, 'index']);
 
             Route::get('participantes/{edicao:ano}', [ParticipantesController::class, 'index']);
+
+            Route::get('certificados/{edicao:ano}', [CertificadosController::class, 'index']);
+            Route::post('certificados/{edicao:ano}', [CertificadosController::class, 'store']);
+            Route::post('certificados/{edicao:ano}/preparar', [CertificadosController::class, 'preparar']);
+            Route::patch('certificados/{certificado}', [CertificadosController::class, 'update']);
+            Route::delete('certificados/{certificado}', [CertificadosController::class, 'destroy']);
         });
     });
 });
