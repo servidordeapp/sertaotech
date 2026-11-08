@@ -31,7 +31,7 @@
 
 ### Conferir em produção
 
-- [ ] Existe cron do `queue:work` no cPanel? Não há nenhum no repositório.
+- [x] Existe cron do `queue:work` no cPanel? Existe. Passa a ser `schedule:run` a cada minuto, e o `queue:work` sai do agendamento em `api/routes/console.php`. Falta trocar a linha no cPanel.
 - [ ] Qual o valor de `MAIL_LIMITE_DIARIO`? O padrão do `.env.example` é 100.
 - [ ] As planilhas de 2025 e 2026 já foram importadas? O banco local está vazio.
 - [ ] O disco `s3` de produção aponta para o R2? O `.env.example` sugere que sim, com o bucket `osertaotech` público em `arquivos.osertaotech.com.br`.
