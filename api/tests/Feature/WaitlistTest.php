@@ -83,6 +83,11 @@ test('e-mails renderizam', function () {
         'dados' => ['cidade' => 'Parnaíba'], 'lgpd_versao' => 'v1', 'lgpd_aceito_em' => now(),
     ]);
 
-    expect((new InscricaoRecebida($e))->render())->toContain('Ana & Cia')
-        ->and((new NovaInscricao($e))->render())->toContain('cidade: Parnaíba');
+    // No HTML o nome sai escapado: é texto que a pessoa digitou.
+    (new InscricaoRecebida($e))
+        ->assertSeeInHtml('Ana &amp; Cia', false)
+        ->assertSeeInHtml('lista de espera de participantes')
+        ->assertSeeInText('Ana & Cia');
+
+    expect((new NovaInscricao($e))->render())->toContain('cidade: Parnaíba');
 });

@@ -20,6 +20,13 @@ class InscricaoRecebida extends Mailable implements ShouldQueue
     use Queueable;
     use SerializesModels;
 
+    /** Completa "lista de espera ..." no texto. */
+    private const LISTAS = [
+        'participante' => 'de participantes',
+        'palestrante'  => 'de palestrantes',
+        'patrocinador' => 'de patrocinadores',
+    ];
+
     /** Release do rate limit conta como tentativa, então quem limita a retentativa é o retryUntil; $tries não serve aqui. */
     public int $maxExceptions = 3;
 
@@ -45,6 +52,10 @@ class InscricaoRecebida extends Mailable implements ShouldQueue
 
     public function content(): Content
     {
-        return new Content(text: 'mail.inscricao-recebida');
+        return new Content(
+            html: 'mail.inscricao-recebida',
+            text: 'mail.inscricao-recebida-texto',
+            with: ['lista' => self::LISTAS[$this->entry->tipo] ?? 'do evento'],
+        );
     }
 }
