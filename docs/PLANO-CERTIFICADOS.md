@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** fases 1 a 5 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** fases 1 a 5 implementadas. Como o módulo funciona e como operar: [CERTIFICADOS.md](CERTIFICADOS.md). Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
