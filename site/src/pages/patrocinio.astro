@@ -44,13 +44,13 @@ const numeros = [
 
 const programas = [
   {
-    nome: 'Sertão Tech Robótica',
-    associa: 'Inovação, engenharia, experimentação e entretenimento.',
+    nome: 'Robótica',
+    associa: ['Inovação', 'Engenharia', 'Experimentação', 'Entretenimento'],
     so: ['Prêmio da marca para a equipe campeã', 'Entrega da premiação no palco', 'Um desafio proposto pela marca na competição'],
   },
   {
-    nome: 'Sertão Tech Negócios',
-    associa: 'Empreendedorismo, inovação e geração de oportunidades.',
+    nome: 'Negócios',
+    associa: ['Empreendedorismo', 'Inovação', 'Geração de oportunidades'],
     so: ['Jurado ou mentor da marca na banca', 'Prêmio da marca para a startup destaque', 'Palestra empresarial com curadoria'],
   },
 ];
@@ -61,6 +61,16 @@ const programaComum = [
   'Menção do apresentador ao vivo e nos episódios',
   'No mínimo 3 episódios e 6 cortes verticais',
   'Link da marca na descrição de todos os vídeos',
+  'Leads dos participantes da trilha que autorizarem (LGPD)',
+];
+
+const senior = [
+  '“Apresentada por” na sala, na página da trilha e na programação',
+  'Logo no painel da sala durante toda a trilha',
+  'Fala institucional de 3 min na abertura da trilha',
+  'Palestra técnica de um especialista da marca, com curadoria',
+  'Vídeo de 30 s entre as palestras da trilha',
+  'Leads dos participantes da trilha que autorizarem (LGPD)',
 ];
 
 const cotas = [
@@ -178,26 +188,47 @@ const vagas = [
       <div class="container">
         <span class="eyebrow eyebrow--ink">// novidade 2027 · propriedades de mídia</span>
         <h2 class="section-title section-title--on-ink">Sua marca apresentando um programa</h2>
-        <p class="cta__lead">As trilhas de Robótica e Negócios viram programas audiovisuais do Sertão Tech, com apresentador, narração e episódios no YouTube que seguem circulando depois do evento. Cada programa tem uma única marca apresentadora.</p>
-        <div class="grid-2" style="margin-top: 28px; gap: 18px;">
+        <p class="cta__lead" style="max-width: 760px;">As trilhas de Robótica e Negócios viram programas audiovisuais do Sertão Tech, com apresentador, narração e episódios no YouTube que seguem circulando depois do evento. Cada programa tem uma única marca apresentadora.</p>
+        <div class="grid-2 props" style="margin-top: 36px;">
           {programas.map((p) => (
-            <div class="card">
-              <span class="chip chip--gold">● rec · 1 vaga</span>
-              <h3 class="card-title" style="margin-top: 14px;">{p.nome}</h3>
-              <p class="card-text">apresentado por <strong>sua marca</strong>. {p.associa}</p>
-              <ul class="ticket__list" style="margin-top: 16px;">
-                {[...programaComum, ...p.so].map((i) => <li><Icon name="check" size={16} />{i}</li>)}
-              </ul>
+            <div class="prop">
+              <div class="prop-screen">
+                <div class="prop-screen__top"><span class="prop-rec">rec</span><span class="prop-vaga">1 vaga</span></div>
+                <p class="prop-program"><small>Sertão Tech</small>{p.nome}</p>
+                <p class="prop-presented">apresentado por</p>
+                <p class="prop-slot">sua marca</p>
+              </div>
+              <div class="prop-body">
+                <span class="eyebrow eyebrow--ink">sua marca associada a</span>
+                <div class="prop-tags">{p.associa.map((a) => <span class="chip chip--gold">{a}</span>)}</div>
+                <span class="eyebrow eyebrow--ink" style="margin-top: 8px;">só neste programa</span>
+                <ul class="prop-list">
+                  {p.so.map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+                </ul>
+              </div>
             </div>
           ))}
         </div>
-        <div class="card" style="margin-top: 18px;">
-          <span class="chip chip--gold">trilha sênior+ · 1 vaga</span>
-          <h3 class="card-title" style="margin-top: 14px;">Trilha Sênior+, apresentada por sua marca</h3>
-          <p class="card-text">Arquitetura, escala e liderança técnica: o público mais disputado por quem contrata.</p>
-          <ul class="ticket__list" style="margin-top: 16px;">
-            {['“Apresentada por” na sala, na página da trilha e na programação', 'Fala institucional de 3 min na abertura da trilha', 'Palestra técnica de um especialista da marca, com curadoria', 'Leads dos participantes da trilha que autorizarem (LGPD)'].map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+        <div class="prop-common">
+          <span class="eyebrow eyebrow--ink">nos dois programas, a marca apresentadora recebe</span>
+          <ul class="prop-list prop-list--grid">
+            {programaComum.map((i) => <li><Icon name="check" size={16} />{i}</li>)}
           </ul>
+          <p class="prop-plus">+ tudo o que a cota Ouro inclui</p>
+        </div>
+        <div class="track t-senior prop-senior">
+          <div class="track-head">
+            <Icon name="layers" size={36} />
+            <span class="eyebrow">trilha sênior+ · 1 vaga</span>
+            <h3>Trilha Sênior+, apresentada por sua marca</h3>
+            <p class="prop-senior__lead">Arquitetura, escala e liderança técnica: o público mais disputado por quem contrata.</p>
+          </div>
+          <div class="track-body">
+            <ul class="prop-list prop-list--grid prop-list--light">
+              {senior.map((i) => <li><Icon name="check" size={16} />{i}</li>)}
+            </ul>
+            <p class="track-body__small" style="margin-top: auto; padding-top: 10px;">+ tudo o que a cota Prata inclui</p>
+          </div>
         </div>
       </div>
     </section>
