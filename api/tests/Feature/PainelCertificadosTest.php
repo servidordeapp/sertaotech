@@ -198,5 +198,5 @@ test('lista filtra por minicurso e traz o resumo da edição', function () {
         ->assertOk()
         ->assertJsonCount(1, 'data')
         ->assertJsonPath('data.0.nome', 'Ana')
-        ->assertJsonPath('resumo', ['rascunhos' => 2, 'emitidos' => 1, 'descartados' => 1, 'revogados' => 0, 'avisados' => 0, 'avisos_na_fila' => 0]);
+        ->assertJsonPath('resumo', ['rascunhos' => 2, 'emitidos' => 1, 'descartados' => 1, 'revogados' => 0, 'cancelados' => 0, 'avisados' => 0, 'avisos_na_fila' => 0]);
 });

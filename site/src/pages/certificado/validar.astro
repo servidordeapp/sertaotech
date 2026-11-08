@@ -42,7 +42,8 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
 
       <div id="vc-resultado" class="vc-resultado" role="status" hidden>
         <p id="vc-situacao" class="vc-situacao"></p>
-        <dl class="vc-dados">
+        <p id="vc-cancelado" class="vc-cancelado" hidden>Atendendo à Lei Geral de Proteção de Dados (LGPD), os dados da pessoa foram excluídos e este certificado não pode mais ser exibido aqui. Se você tem o arquivo PDF, confira abaixo se ele é o original.</p>
+        <dl id="vc-dados" class="vc-dados">
           <dt>Nome</dt><dd id="vc-nome"></dd>
           <dt>Certificado de</dt><dd id="vc-tipo"></dd>
           <dt id="vc-titulo-rotulo">Apresentação</dt><dd id="vc-titulo"></dd>
@@ -87,6 +88,17 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
 
   function exibe(c) {
     atual = c;
+    arquivo.value = '';
+    arquivoResultado.hidden = true;
+    resultado.hidden = false;
+    var cancelado = c.situacao === 'cancelado';
+    mostra('vc-cancelado', cancelado);
+    mostra('vc-dados', !cancelado);
+    // Cancelado pela LGPD: a API não devolve nome nem dados, só o hash para conferir o arquivo.
+    if (cancelado) {
+      situacao(document.getElementById('vc-situacao'), 'aviso', 'Certificado emitido e depois cancelado a pedido do titular.');
+      return;
+    }
     var data = new Date(c.edicao.data + 'T12:00:00').toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric' });
     situacao(document.getElementById('vc-situacao'), c.situacao === 'valido' ? 'ok' : 'erro',
       c.situacao === 'valido' ? 'Certificado válido, emitido pelo Sertão Tech.' : 'Certificado revogado: foi emitido, mas não vale mais.');
@@ -101,9 +113,6 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
     mostra('vc-atividades', c.atividades.length > 0);
     mostra('vc-atividades-rotulo', c.atividades.length > 0);
     texto('vc-cod', c.codigo);
-    arquivo.value = '';
-    arquivoResultado.hidden = true;
-    resultado.hidden = false;
   }
 
   function valida(codigo) {
@@ -151,7 +160,7 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
         var hex = Array.prototype.map.call(new Uint8Array(hash), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
         if (hex !== atual.pdf_sha256) {
           situacao(arquivoResultado, 'erro', 'Este arquivo não é o original emitido para este código. Pode ter sido alterado.');
-        } else if (atual.situacao === 'valido') {
+        } else if (atual.situacao === 'valido' || atual.situacao === 'cancelado') {
           situacao(arquivoResultado, 'ok', 'Arquivo original, emitido pelo Sertão Tech.');
         } else {
           situacao(arquivoResultado, 'erro', 'Arquivo original, mas o certificado foi revogado e não vale mais.');
@@ -172,6 +181,8 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
   .vc-situacao { font-weight: 600; padding: var(--space-3) var(--space-4); border-radius: var(--radius-field); margin: 0 0 var(--space-5); }
   .vc-situacao--ok { color: var(--cactus-600); background: var(--cactus-100); }
   .vc-situacao--erro { color: var(--brick-600); background: var(--brick-100); }
+  .vc-situacao--aviso { color: var(--honey-700); background: var(--honey-100); }
+  .vc-cancelado { margin: 0 0 var(--space-6); }
   .vc-dados { display: grid; grid-template-columns: max-content 1fr; gap: var(--space-2) var(--space-5); margin: 0 0 var(--space-6); }
   .vc-dados dt { color: var(--text-muted); }
   .vc-dados dd { margin: 0; color: var(--text-strong); overflow-wrap: anywhere; }

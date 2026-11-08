@@ -1,6 +1,6 @@
 # Plano: módulo de certificados
 
-**Status:** decisões fechadas, fases 1 a 4 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
+**Status:** fases 1 a 5 implementadas. Faltam só os itens de [Conferir em produção](#conferir-em-produção) e os dados de razão social e CNPJ no `.env`.
 **Última revisão:** 2026-11-07.
 
 ## Objetivo
@@ -278,6 +278,10 @@ O validador diferencia o cancelamento pela LGPD da revogação por erro, porque 
 
 - Tela `Certificados.vue`, por edição, seguindo `Participantes.vue`: totais (rascunhos, emitidos, avisados), busca, revisão, minicursos, emissão, revogação, teste e disparo com confirmação.
 - `LgpdController` conforme a seção [LGPD](#lgpd).
+- Rotas: `POST /api/painel/certificados/{id}/revogar` com `motivo`. O motivo fica no painel e não sai no validador.
+- Reemissão: o botão "Reemitir" da linha revogada abre o formulário já preenchido, sem ingresso, porque a linha revogada ocupa a chave única.
+- Minicurso: a coluna "Atividade" troca o minicurso do rascunho direto na linha. Quem faltou ao check-in entra pelo "Adicionar", buscando o nome na planilha de ingressos.
+- Cancelamento pela LGPD usa a coluna `anonimizado_em`, separada da revogação. A trava do model aceita nela só nome, e-mail e PDF, e depois dela nada mais muda.
 
 ## Testes das regras críticas
 

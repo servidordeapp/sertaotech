@@ -66,6 +66,10 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
       .then(function (j) {
         var c = j.data;
         var validar = '/certificado/validar?codigo=' + encodeURIComponent(c.codigo);
+        if (c.situacao === 'cancelado') {
+          falha('Este certificado foi cancelado a pedido do titular, conforme a LGPD, e não pode mais ser exibido aqui. Quem tem o PDF pode conferir se ele é o original em osertaotech.com.br/certificado/validar.');
+          return;
+        }
         if (c.situacao !== 'valido') {
           falha('Este certificado foi revogado e não vale mais. Se você recebeu um novo, use o link do e-mail mais recente.');
           return;

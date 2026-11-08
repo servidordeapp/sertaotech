@@ -70,6 +70,7 @@ class AvisaCertificado implements ShouldQueue
                 ->where('email', $aviso->email)
                 ->whereNotNull('emitido_em')
                 ->whereNull('revogado_em')
+                ->whereNull('anonimizado_em')
                 ->orderBy('nome')
                 ->orderBy('id')
                 ->get();

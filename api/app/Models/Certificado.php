@@ -20,7 +20,7 @@ use LogicException;
 /**
  * Um certificado por pessoa e papel em uma edição. Sem `emitido_em` é rascunho
  * e a revisão mexe à vontade. Emitido, é documento: só aceita a revogação, uma
- * vez. A trava vale para o Eloquent; update em massa pelo query builder passa
+ * vez, e o cancelamento pela LGPD, que apaga nome, e-mail e PDF e encerra tudo. A trava vale para o Eloquent; update em massa pelo query builder passa
  * por fora, então nada no projeto altera certificado assim.
  *
  * @property int $id
@@ -37,6 +37,7 @@ use LogicException;
  * @property Carbon|null $emitido_em
  * @property Carbon|null $descartado_em
  * @property Carbon|null $revogado_em
+ * @property Carbon|null $anonimizado_em
  * @property-read Edicao $edicao
  * @property-read Participante|null $participante
  */
@@ -56,6 +57,9 @@ class Certificado extends Model
     /** O que a revogação pode tocar num certificado emitido. */
     private const CAMPOS_DA_REVOGACAO = ['revogado_em', 'motivo_revogacao', 'updated_at'];
 
+    /** O que o cancelamento pela LGPD pode tocar. Código e hash ficam: não identificam ninguém. */
+    private const CAMPOS_DA_LGPD = ['nome', 'email', 'pdf_caminho', 'anonimizado_em', 'updated_at'];
+
     protected $guarded = [];
 
     protected $attributes = ['atividades' => '[]'];
@@ -63,11 +67,12 @@ class Certificado extends Model
     protected function casts(): array
     {
         return [
-            'carga_horaria' => 'integer',
-            'atividades'    => 'array',
-            'emitido_em'    => 'datetime',
-            'descartado_em' => 'datetime',
-            'revogado_em'   => 'datetime',
+            'carga_horaria'  => 'integer',
+            'atividades'     => 'array',
+            'emitido_em'     => 'datetime',
+            'descartado_em'  => 'datetime',
+            'revogado_em'    => 'datetime',
+            'anonimizado_em' => 'datetime',
         ];
     }
 
@@ -78,10 +83,16 @@ class Certificado extends Model
                 return;
             }
 
-            $revogacao = $certificado->getOriginal('revogado_em') === null
-                && array_diff(array_keys($certificado->getDirty()), self::CAMPOS_DA_REVOGACAO) === [];
+            $alterados = array_keys($certificado->getDirty());
 
-            if (! $revogacao) {
+            $permitido = match (true) {
+                $certificado->getOriginal('anonimizado_em') !== null => false,
+                $certificado->isDirty('anonimizado_em')              => array_diff($alterados, self::CAMPOS_DA_LGPD) === [],
+                default                                              => $certificado->getOriginal('revogado_em') === null
+                    && array_diff($alterados, self::CAMPOS_DA_REVOGACAO) === [],
+            };
+
+            if (! $permitido) {
                 throw new LogicException("Certificado #{$certificado->id} já foi emitido e não muda.");
             }
         });
@@ -113,10 +124,11 @@ class Certificado extends Model
     public function situacao(): string
     {
         return match (true) {
-            $this->revogado_em !== null   => 'revogado',
-            $this->emitido_em !== null    => 'emitido',
-            $this->descartado_em !== null => 'descartado',
-            default                       => 'rascunho',
+            $this->anonimizado_em !== null => 'cancelado',
+            $this->revogado_em !== null    => 'revogado',
+            $this->emitido_em !== null     => 'emitido',
+            $this->descartado_em !== null  => 'descartado',
+            default                        => 'rascunho',
         };
     }
 

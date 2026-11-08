@@ -31,7 +31,7 @@ class CertificadosController extends Controller
     {
         $request->validate([
             'tipo'       => ['sometimes', Rule::in(Certificado::TIPOS)],
-            'situacao'   => ['sometimes', Rule::in(['rascunho', 'emitido', 'descartado', 'revogado'])],
+            'situacao'   => ['sometimes', Rule::in(['rascunho', 'emitido', 'descartado', 'revogado', 'cancelado'])],
             'atividade'  => ['sometimes', 'string', 'max:60'],
             'busca'      => ['sometimes', 'string', 'max:120'],
             'por_pagina' => ['sometimes', 'integer', 'min:1', 'max:200'],
@@ -49,9 +49,10 @@ class CertificadosController extends Controller
         )->additional([
             'resumo' => [
                 'rascunhos'   => (clone $daEdicao)->whereNull('emitido_em')->whereNull('descartado_em')->count(),
-                'emitidos'    => (clone $daEdicao)->whereNotNull('emitido_em')->whereNull('revogado_em')->count(),
+                'emitidos'    => (clone $daEdicao)->whereNotNull('emitido_em')->whereNull('revogado_em')->whereNull('anonimizado_em')->count(),
                 'descartados' => (clone $daEdicao)->whereNotNull('descartado_em')->count(),
-                'revogados'   => (clone $daEdicao)->whereNotNull('revogado_em')->count(),
+                'revogados'   => (clone $daEdicao)->whereNotNull('revogado_em')->whereNull('anonimizado_em')->count(),
+                'cancelados'  => (clone $daEdicao)->whereNotNull('anonimizado_em')->count(),
                 // Por e-mail, não por certificado: um aviso leva todos os do endereço.
                 'avisados'       => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNotNull('enviado_em')->count(),
                 'avisos_na_fila' => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNull('enviado_em')->count(),
@@ -102,6 +103,7 @@ class CertificadosController extends Controller
         $emails = $edicao->certificados()
             ->whereNotNull('emitido_em')
             ->whereNull('revogado_em')
+            ->whereNull('anonimizado_em')
             ->distinct()
             ->pluck('email');
 
@@ -125,6 +127,25 @@ class CertificadosController extends Controller
         Auditoria::registra($request, 'certificados.avisou', $enfileirados.' em '.$edicao->ano);
 
         return response()->json(['enfileirados' => $enfileirados]);
+    }
+
+    /**
+     * Erro depois de emitir (nome errado, tipo trocado): o certificado continua
+     * no R2 e o validador passa a responder "revogado". O certo entra como
+     * certificado novo, sem ingresso, com outro código.
+     */
+    public function revogar(Request $request, Certificado $certificado): CertificadoResource
+    {
+        abort_unless($certificado->situacao() === 'emitido', 409, 'Só certificado emitido e válido pode ser revogado.');
+
+        /** @var array{motivo: string} $dados */
+        $dados = $request->validate(['motivo' => ['required', 'string', 'max:255']]);
+
+        $certificado->update(['revogado_em' => now(), 'motivo_revogacao' => $dados['motivo']]);
+
+        Auditoria::registra($request, 'certificados.revogou', '#'.$certificado->id.' '.$certificado->codigo.' '.$dados['motivo']);
+
+        return new CertificadoResource($certificado->load('participante'));
     }
 
     /** Na hora, sem fila: é o certificado de teste, para conferir o PDF antes da edição inteira. */
@@ -278,9 +299,10 @@ class CertificadosController extends Controller
 
         match ($request->string('situacao')->toString()) {
             'rascunho'   => $consulta->whereNull('emitido_em')->whereNull('descartado_em'),
-            'emitido'    => $consulta->whereNotNull('emitido_em')->whereNull('revogado_em'),
+            'emitido'    => $consulta->whereNotNull('emitido_em')->whereNull('revogado_em')->whereNull('anonimizado_em'),
             'descartado' => $consulta->whereNotNull('descartado_em'),
-            'revogado'   => $consulta->whereNotNull('revogado_em'),
+            'revogado'   => $consulta->whereNotNull('revogado_em')->whereNull('anonimizado_em'),
+            'cancelado'  => $consulta->whereNotNull('anonimizado_em'),
             default      => null,
         };
 

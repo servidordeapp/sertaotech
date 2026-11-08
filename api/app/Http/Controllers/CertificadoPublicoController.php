@@ -22,6 +22,16 @@ class CertificadoPublicoController extends Controller
             ->whereNotNull('emitido_em')
             ->firstOr(fn () => abort(404, 'Certificado não encontrado.'));
 
+        // Cancelado pela LGPD: nem nome nem data do pedido. O hash fica, e a
+        // conferência do arquivo continua provando que o PDF é original.
+        if ($certificado->anonimizado_em !== null) {
+            return response()->json(['data' => [
+                'codigo'     => $certificado->codigo,
+                'situacao'   => 'cancelado',
+                'pdf_sha256' => $certificado->pdf_sha256,
+            ]]);
+        }
+
         $ano = $certificado->edicao->ano;
         /** @var array{edicao: string, data: string, atividades: array<string, array{nome: string}>} $edicao */
         $edicao   = config('certificados.edicoes.'.$ano);

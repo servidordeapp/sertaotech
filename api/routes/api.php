@@ -98,6 +98,7 @@ Route::prefix('painel')->group(function (): void {
             Route::post('certificados/{edicao:ano}/emitir', [CertificadosController::class, 'emitir']);
             Route::post('certificados/{edicao:ano}/emitir/{certificado}', [CertificadosController::class, 'emitirUm'])->scopeBindings();
             Route::post('certificados/{edicao:ano}/avisar', [CertificadosController::class, 'avisar']);
+            Route::post('certificados/{certificado}/revogar', [CertificadosController::class, 'revogar']);
             Route::patch('certificados/{certificado}', [CertificadosController::class, 'update']);
             Route::delete('certificados/{certificado}', [CertificadosController::class, 'destroy']);
         });
