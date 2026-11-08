@@ -74,13 +74,31 @@ services:
       AWS_ENDPOINT: 'http://rustfs:9000'
       AWS_URL: 'http://localhost:9000/osertaotech'
       AWS_USE_PATH_STYLE_ENDPOINT: 'true'
+      # Pelo mesmo motivo, o e-mail daqui nunca sai para o provedor real: cai no
+      # Mailpit, em http://localhost:8025.
+      MAIL_MAILER: smtp
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      MAIL_SCHEME: smtp
+      # Botão do e-mail e QR Code do PDF abrem o site local, não o de produção.
+      CERTIFICADO_URL_PAGINA: 'http://localhost:4321/certificado'
+      CERTIFICADO_URL_VALIDACAO: 'http://localhost:4321/certificado/validar'
     depends_on:
+      mailpit:
+        condition: service_started
       mysql:
         # O boot roda `artisan migrate`, que precisa do banco de pé, não só do
         # container criado.
         condition: service_healthy
       rustfs-bucket:
         condition: service_completed_successfully
+
+  # Caixa de entrada falsa: guarda todo e-mail que a api manda e mostra em
+  # http://localhost:8025. Nada chega a ninguém de verdade.
+  mailpit:
+    image: 'axllent/mailpit:v1.27.0'
+    ports:
+      - '8025:8025'
 
   # O lugar do Cloudflare R2 em dev: mesma api S3, sem conta nem custo. Console em
   # http://localhost:9001, com o usuário e a senha abaixo.
