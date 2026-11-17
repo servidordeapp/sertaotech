@@ -142,12 +142,13 @@ não sequenciais. Gerado em `Certificado::novoCodigo()`.
   e tabelas, e as cores são os tokens de `site/public/ds/tokens/colors.css`
   copiados à mão.
 - **Fontes:** os TTF de Space Grotesk, Instrument Sans, Space Mono e League
-  Spartan ficam em `api/resources/fonts/`, com a licença em `OFL.txt`. O dompdf
+  Spartan e Italianno ficam em `api/resources/fonts/`, com a licença em `OFL.txt`. O dompdf
   guarda as métricas em `storage/fonts`, que o post-deploy cria.
 - **Logos:** JPEG em `api/resources/certificados/`, sobre o creme do papel. O
   dompdf só lê PNG com a extensão GD, que o servidor pode não ter. O QR Code é
   SVG pelo mesmo motivo.
-- **Assinatura:** nome do responsável digitado sobre uma linha, sem imagem.
+- **Assinatura:** o nome do responsável em fonte cursiva (Italianno, OFL) sobre a linha, com o nome em fonte normal embaixo. Sem imagem, então nenhuma assinatura real entra no git. Monotype Corsiva é proprietária, por isso não vai no repositório.
+- **Curso:** o Bacharelado em Inteligência Artificial da UFDPar ainda não tem logo. O nome do curso, em texto, ocupa o lugar do logo em "Realização", ao lado de PHP Women Piauí. Quando o logo existir, troca o `<div class="curso">` por uma `<img>` em `api/resources/certificados/`.
 
 ## Imutabilidade
 
