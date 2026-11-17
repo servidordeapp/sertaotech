@@ -21,7 +21,7 @@ use LogicException;
  * Um certificado por pessoa e papel em uma edição. Sem `emitido_em` é rascunho
  * e a revisão mexe à vontade. Emitido, é documento: só aceita a revogação, uma
  * vez, e o cancelamento pela LGPD, que apaga nome, e-mail e PDF e encerra tudo. A trava vale para o Eloquent; update em massa pelo query builder passa
- * por fora, então nada no projeto altera certificado assim.
+ * por fora, então só o registro do primeiro acesso (CertificadoPublicoController::acesso) altera certificado assim.
  *
  * @property int $id
  * @property int $edicao_id
@@ -37,6 +37,7 @@ use LogicException;
  * @property Carbon|null $emitido_em
  * @property Carbon|null $descartado_em
  * @property Carbon|null $revogado_em
+ * @property Carbon|null $acessado_em
  * @property Carbon|null $anonimizado_em
  * @property-read Edicao $edicao
  * @property-read Participante|null $participante
@@ -72,6 +73,7 @@ class Certificado extends Model
             'emitido_em'     => 'datetime',
             'descartado_em'  => 'datetime',
             'revogado_em'    => 'datetime',
+            'acessado_em'    => 'datetime',
             'anonimizado_em' => 'datetime',
         ];
     }

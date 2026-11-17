@@ -33,6 +33,7 @@ class CertificadoResource extends JsonResource
             'compareceu'       => $this->participante?->compareceu,
             'emitido_em'       => $this->emitido_em?->toIso8601String(),
             'revogado_em'      => $this->revogado_em?->toIso8601String(),
+            'acessado_em'      => $this->acessado_em?->toIso8601String(),
             'motivo_revogacao' => $this->motivo_revogacao,
         ];
     }

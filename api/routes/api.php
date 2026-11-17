@@ -30,6 +30,9 @@ Route::post('feedback-patrocinador/{edicao:ano}', [FeedbackPatrocinadorControlle
 Route::get('certificados/{codigo}', [CertificadoPublicoController::class, 'show'])
     ->where('codigo', '[A-Za-z0-9-]{1,30}')
     ->middleware('throttle:30,1');
+Route::post('certificados/{codigo}/acesso', [CertificadoPublicoController::class, 'acesso'])
+    ->where('codigo', '[A-Za-z0-9-]{1,30}')
+    ->middleware('throttle:30,1');
 
 /*
  * Painel (painel.osertaotech.com.br). Sessão por cookie, não token: quem

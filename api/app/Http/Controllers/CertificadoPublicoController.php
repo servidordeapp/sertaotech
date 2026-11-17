@@ -14,6 +14,23 @@ use Illuminate\Http\JsonResponse;
  */
 class CertificadoPublicoController extends Controller
 {
+    /**
+     * Chamado pela página do botão do e-mail (não pela validação por QR):
+     * grava só o primeiro acesso. UPDATE condicional, atômico e idempotente.
+     */
+    public function acesso(string $codigo): JsonResponse
+    {
+        Certificado::query()
+            ->where('codigo', strtoupper(trim($codigo)))
+            ->whereNotNull('emitido_em')
+            ->whereNull('revogado_em')
+            ->whereNull('anonimizado_em')
+            ->whereNull('acessado_em')
+            ->update(['acessado_em' => now()]);
+
+        return response()->json(null, 204);
+    }
+
     public function show(string $codigo): JsonResponse
     {
         $certificado = Certificado::query()

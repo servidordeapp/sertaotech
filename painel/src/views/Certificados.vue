@@ -244,6 +244,11 @@ async function copiaLink(linha) {
           <strong class="numero__valor">{{ resumo.avisados }}</strong>
           <small v-if="resumo.avisos_na_fila" class="numero__nota">{{ resumo.avisos_na_fila }} na fila</small>
         </article>
+        <article class="cartao numero">
+          <h2 class="eyebrow numero__rotulo">Acessaram o certificado</h2>
+          <strong class="numero__valor">{{ resumo.emitidos ? Math.round((resumo.acessaram / resumo.emitidos) * 100) : 0 }}%</strong>
+          <small class="numero__nota">{{ resumo.acessaram }} de {{ resumo.emitidos }} emitidos</small>
+        </article>
         <article class="cartao numero previa">
           <h2 class="eyebrow numero__rotulo">Prévia do modelo</h2>
           <div class="previa__botoes">
@@ -362,6 +367,7 @@ async function copiaLink(linha) {
               <Tag :value="SITUACOES[data.situacao].rotulo" :severity="SITUACOES[data.situacao].severidade" />
               <div v-if="data.codigo && data.situacao !== 'rascunho'" class="mono apoio">{{ data.codigo }}</div>
               <div v-if="data.motivo_revogacao" class="apoio">{{ data.motivo_revogacao }}</div>
+              <div v-if="data.situacao === 'emitido'" class="apoio">{{ data.acessado_em ? 'Acessou em ' + new Date(data.acessado_em).toLocaleString('pt-BR') : 'Ainda não acessou' }}</div>
             </template>
           </Column>
           <Column header="" class="coluna-acoes">

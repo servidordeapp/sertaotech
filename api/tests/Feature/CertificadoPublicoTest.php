@@ -64,3 +64,26 @@ test('limita as consultas por minuto', function () {
 
     $this->getJson('/api/certificados/ST26-ZZZZ-ZZZZ-ZZZZ')->assertTooManyRequests();
 });
+
+test('registra só o primeiro acesso pela página do e-mail', function () {
+    $certificado = Certificado::factory()->emitido()->create();
+
+    $this->travelTo(now()->subDay());
+    $this->postJson("/api/certificados/{$certificado->codigo}/acesso")->assertNoContent();
+    $primeiro = $certificado->fresh()->acessado_em;
+    $this->travelBack();
+    $this->postJson("/api/certificados/{$certificado->codigo}/acesso")->assertNoContent();
+
+    expect($primeiro)->not->toBeNull()
+        ->and($certificado->fresh()->acessado_em->equalTo($primeiro))->toBeTrue();
+});
+
+test('consultar ou validar não conta como acesso, e revogado não registra', function () {
+    $certificado = Certificado::factory()->emitido()->create();
+    $this->getJson("/api/certificados/{$certificado->codigo}")->assertOk();
+    expect($certificado->fresh()->acessado_em)->toBeNull();
+
+    $certificado->update(['revogado_em' => now()]);
+    $this->postJson("/api/certificados/{$certificado->codigo}/acesso")->assertNoContent();
+    expect($certificado->fresh()->acessado_em)->toBeNull();
+});

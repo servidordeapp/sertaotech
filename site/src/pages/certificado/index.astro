@@ -82,6 +82,8 @@ const api = import.meta.env.PUBLIC_API_URL ?? 'https://api.osertaotech.com.br';
         document.getElementById('ct-validar').href = validar;
         document.getElementById('ct-pdf').src = c.pdf_url;
         document.getElementById('ct-ok').hidden = false;
+        // Registra o acesso ao certificado; falha aqui não atrapalha quem abriu.
+        fetch(raiz.dataset.api + '/api/certificados/' + encodeURIComponent(c.codigo) + '/acesso', { method: 'POST' }).catch(function () {});
       })
       .catch(function (err) {
         falha(err.message === 'Failed to fetch' ? 'Sem conexão com o servidor. Tente de novo.' : err.message);

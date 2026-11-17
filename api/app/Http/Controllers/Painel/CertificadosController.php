@@ -34,6 +34,7 @@ class CertificadosController extends Controller
             'situacao'   => ['sometimes', Rule::in(['rascunho', 'emitido', 'descartado', 'revogado', 'cancelado'])],
             'atividade'  => ['sometimes', 'string', 'max:60'],
             'busca'      => ['sometimes', 'string', 'max:120'],
+            'acesso'     => ['sometimes', Rule::in(['sim', 'nao'])],
             'por_pagina' => ['sometimes', 'integer', 'min:1', 'max:200'],
         ]);
 
@@ -53,6 +54,8 @@ class CertificadosController extends Controller
                 'descartados' => (clone $daEdicao)->whereNotNull('descartado_em')->count(),
                 'revogados'   => (clone $daEdicao)->whereNotNull('revogado_em')->whereNull('anonimizado_em')->count(),
                 'cancelados'  => (clone $daEdicao)->whereNotNull('anonimizado_em')->count(),
+                // Dos emitidos válidos, quantos já abriram a página pelo botão do e-mail.
+                'acessaram' => (clone $daEdicao)->whereNotNull('emitido_em')->whereNull('revogado_em')->whereNull('anonimizado_em')->whereNotNull('acessado_em')->count(),
                 // Por e-mail, não por certificado: um aviso leva todos os do endereço.
                 'avisados'       => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNotNull('enviado_em')->count(),
                 'avisos_na_fila' => DB::table('avisos_certificado')->where('edicao_id', $edicao->id)->whereNull('enviado_em')->count(),
@@ -304,6 +307,12 @@ class CertificadosController extends Controller
             'revogado'   => $consulta->whereNotNull('revogado_em')->whereNull('anonimizado_em'),
             'cancelado'  => $consulta->whereNotNull('anonimizado_em'),
             default      => null,
+        };
+
+        match ($request->string('acesso')->toString()) {
+            'sim'   => $consulta->whereNotNull('acessado_em'),
+            'nao'   => $consulta->whereNull('acessado_em'),
+            default => null,
         };
 
         $atividade = $request->string('atividade')->toString();
