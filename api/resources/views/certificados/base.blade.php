@@ -34,6 +34,7 @@
     @font-face { font-family: "Instrument Sans"; font-weight: 400; src: url("{{ resource_path('fonts/InstrumentSans-Regular.ttf') }}") format("truetype"); }
     @font-face { font-family: "Instrument Sans"; font-weight: 700; src: url("{{ resource_path('fonts/InstrumentSans-SemiBold.ttf') }}") format("truetype"); }
     @font-face { font-family: "Space Mono"; font-weight: 400; src: url("{{ resource_path('fonts/SpaceMono-Regular.ttf') }}") format("truetype"); }
+    @font-face { font-family: "Italianno"; font-weight: 400; src: url("{{ resource_path('fonts/Italianno-Regular.ttf') }}") format("truetype"); }
     @font-face { font-family: "League Spartan"; font-weight: 700; src: url("{{ resource_path('fonts/LeagueSpartan-ExtraBold.ttf') }}") format("truetype"); }
 
     /* --sand-50, --espresso-*, --terra-*, --amber-* de site/public/ds/tokens/colors.css */
@@ -54,7 +55,10 @@
     .realizacao { position: absolute; top: 17mm; right: 20mm; }
     .realizacao .rotulo { font-family: "Space Mono", monospace; font-size: 7.5pt; color: #6B4526; text-transform: uppercase; letter-spacing: 1pt; text-align: right; padding-bottom: 1.5mm; }
     .realizacao img { height: 18mm; }
-    .realizacao td { padding: 0 0 0 4mm; }
+    .realizacao td { padding: 0 0 0 4mm; vertical-align: middle; }
+    /* Curso ainda sem logo: o nome faz o papel, na altura dos outros logos. */
+    .realizacao .curso { font-family: "League Spartan", sans-serif; font-weight: 700; font-size: 9pt; line-height: 1.15; color: #3C210B; text-transform: uppercase; letter-spacing: 0.5pt; text-align: left; padding-left: 5mm; border-left: 0.3mm solid #3C210B; margin-left: 4mm; }
+    .realizacao .curso small { display: block; font-family: "Space Mono", monospace; font-weight: 400; font-size: 7pt; color: #6B4526; letter-spacing: 1pt; }
 
     .conteudo { position: absolute; top: 50mm; left: 30mm; width: 237mm; text-align: center; }
     .titulo { font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 34pt; line-height: 1; color: @yield('cor-destaque', '#A8511A'); letter-spacing: 6pt; margin: 0; }
@@ -65,7 +69,8 @@
     .texto { font-size: 12pt; line-height: 1.45; margin: 0 6mm; }
     .atividade { font-size: 10pt; color: #4E2E13; margin: 2mm 6mm 0; }
 
-    .assinatura { position: absolute; top: 164mm; left: 26mm; width: 85mm; text-align: center; }
+    .assinatura { position: absolute; top: 152mm; left: 20mm; width: 110mm; text-align: center; }
+    .assinatura .rubrica { font-family: "Italianno", cursive; font-size: 22pt; line-height: 1; color: #1F1305; height: 12mm; white-space: nowrap; }
     .assinatura .linha { border-top: 0.3mm solid #3C210B; margin-bottom: 1.5mm; }
     .assinatura .quem { font-weight: 700; font-size: 10.5pt; }
     .assinatura .papel { font-size: 8.5pt; color: #6B4526; }
@@ -97,10 +102,11 @@
 
     <div class="realizacao">
         <table>
-            <tr><td colspan="2" class="rotulo">Realização</td></tr>
+            <tr><td colspan="3" class="rotulo">Realização</td></tr>
             <tr>
                 <td><img src="{{ resource_path('certificados/phppi.jpg') }}" alt="PHP Piauí"></td>
                 <td><img src="{{ resource_path('certificados/phpwomen-piaui.jpg') }}" alt="PHP Women Piauí"></td>
+                <td><div class="curso">Bacharelado em<br>Inteligência Artificial<small>UFDPar</small></div></td>
             </tr>
         </table>
     </div>
@@ -132,6 +138,7 @@
     </div>
 
     <div class="assinatura">
+        <div class="rubrica">{{ $emissor['responsavel'] }}</div>
         <div class="linha"></div>
         <div class="quem">{{ $emissor['responsavel'] }}</div>
         <div class="papel">Organização · Sertão Tech</div>
